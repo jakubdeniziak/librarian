@@ -32,6 +32,40 @@ GET http://localhost:8080/api/authors/bcaafcc2-ba5c-45f0-8a72-296072a2967f
 
 
 
+// --------------- PUBLISHERS ---------------
+
+### Create a publisher
+
+PUT http://localhost:8080/api/publishers/4af1dede-c955-48d4-a23e-5e84d204bc9a
+Content-Type: application/json
+
+{
+  "websiteUrl": "http://localhost/",
+  "description": "Publisher created for testing"
+}
+
+
+### Update a publisher
+
+PATCH http://localhost:8080/api/publishers/4af1dede-c955-48d4-a23e-5e84d204bc9a
+Content-Type: application/json
+
+{
+  "description": "Updated description"
+}
+
+
+### Get all publishers
+
+GET http://localhost:8080/api/publishers
+
+
+### Get a specific publisher
+
+GET http://localhost:8080/api/publishers/4af1dede-c955-48d4-a23e-5e84d204bc9a
+
+
+
 // --------------- BOOKS ---------------
 
 ### Create a book
@@ -43,7 +77,7 @@ Content-Type: application/json
   "isbn": "978-2-8785-1039-3",
   "title": "Test book",
   "author": "bcaafcc2-ba5c-45f0-8a72-296072a2967f",
-  "publisher": "943ee6fe-d162-4866-89dc-10cc0bc73b8f"
+  "publisher": "4af1dede-c955-48d4-a23e-5e84d204bc9a"
 }
 
 
