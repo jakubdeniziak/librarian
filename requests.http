@@ -1,0 +1,30 @@
+### Create a book
+
+PUT http://localhost:8080/api/books/d33e6abf-7b13-42c2-9816-f4c56c462abf
+Content-Type: application/json
+
+{
+  "isbn": "978-2-8785-1039-3",
+  "title": "Test book",
+  "author": "d14a1fa2-51c0-4537-9f52-0a8bb2e496cc",
+  "publisher": "943ee6fe-d162-4866-89dc-10cc0bc73b8f"
+}
+
+### Update a book
+
+PATCH http://localhost:8080/api/books/d33e6abf-7b13-42c2-9816-f4c56c462abf
+Content-Type: application/json
+
+{
+  "title": "Test book 2"
+}
+
+
+### Get all books
+
+GET http://localhost:8080/api/books
+
+
+### Get a specific book
+
+GET http://localhost:8080/api/books/d33e6abf-7b13-42c2-9816-f4c56c462abf
