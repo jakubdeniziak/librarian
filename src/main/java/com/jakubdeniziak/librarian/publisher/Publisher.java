@@ -21,6 +21,8 @@ import java.util.UUID;
 public class Publisher {
     @Id
     private UUID id;
+    private String websiteUrl;
+    private String description;
     @OneToMany(mappedBy = "publisher", cascade = CascadeType.REMOVE)
     private List<Book> booksPublished;
 }
