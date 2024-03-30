@@ -138,3 +138,18 @@ GET http://localhost:8080/api/libraries/f9d6f84e-3c81-4404-8e65-7d03c445a7b4
 ### Delete a library
 
 DELETE http://localhost:8080/api/libraries/f9d6f84e-3c81-4404-8e65-7d03c445a7b4
+
+
+### Get all books from library
+
+GET http://localhost:8080/api/libraries/f9d6f84e-3c81-4404-8e65-7d03c445a7b4/books
+
+
+### Add book to library
+
+PUT http://localhost:8080/api/libraries/f9d6f84e-3c81-4404-8e65-7d03c445a7b4/books/d33e6abf-7b13-42c2-9816-f4c56c462abf
+Content-Type: application/json
+
+{
+  "numberOfCopies": 3
+}
