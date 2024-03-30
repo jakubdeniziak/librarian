@@ -99,3 +99,42 @@ GET http://localhost:8080/api/books
 ### Get a specific book
 
 GET http://localhost:8080/api/books/d33e6abf-7b13-42c2-9816-f4c56c462abf
+
+
+
+// --------------- LIBRARIES ---------------
+
+### Create a library
+
+PUT http://localhost:8080/api/libraries/f9d6f84e-3c81-4404-8e65-7d03c445a7b4
+Content-Type: application/json
+
+{
+  "name": "Main Library",
+  "address": "test street 1, Test"
+}
+
+
+### Update a library
+
+PATCH http://localhost:8080/api/libraries/f9d6f84e-3c81-4404-8e65-7d03c445a7b4
+Content-Type: application/json
+
+{
+  "address": "test street  2, Test"
+}
+
+
+### Get all libraries
+
+GET http://localhost:8080/api/libraries
+
+
+### Get a specific library
+
+GET http://localhost:8080/api/libraries/f9d6f84e-3c81-4404-8e65-7d03c445a7b4
+
+
+### Delete a library
+
+DELETE http://localhost:8080/api/libraries/f9d6f84e-3c81-4404-8e65-7d03c445a7b4
