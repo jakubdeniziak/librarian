@@ -7,6 +7,7 @@ import com.jakubdeniziak.librarian.library.librarybook.LibraryBook;
 import com.jakubdeniziak.librarian.library.librarybook.LibraryBookMapper;
 import com.jakubdeniziak.librarian.library.librarybook.LibraryBookService;
 import com.jakubdeniziak.librarian.library.librarybook.dto.LibraryBookRequest;
+import com.jakubdeniziak.librarian.library.librarybook.dto.LibraryBookResponse;
 import com.jakubdeniziak.librarian.library.librarybook.dto.LibraryBooksResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -59,6 +60,13 @@ public class RestLibraryController implements LibraryController {
     }
 
     @Override
+    @GetMapping("/{library_id}/books/{book_id}")
+    public LibraryBookResponse readBookInLibrary(@PathVariable("library_id") UUID libraryId, @PathVariable("book_id") UUID bookId) {
+        LibraryBook libraryBook = libraryBookService.findOne(bookId, libraryId);
+        return libraryBookMapper.map(libraryBook);
+    }
+
+    @Override
     @GetMapping("/{id}/books")
     public LibraryBooksResponse readAllBooksInLibrary(@PathVariable("id") UUID libraryId) {
         List<LibraryBook> libraryBooks = libraryBookService.findAllByLibraryId(libraryId);
@@ -70,5 +78,11 @@ public class RestLibraryController implements LibraryController {
     public void addBookToLibrary(@PathVariable("book_id") UUID bookId, @PathVariable("library_id") UUID libraryId, @RequestBody LibraryBookRequest request) {
         int numberOfCopies = request.getNumberOfCopies();
         libraryBookService.save(bookId, libraryId, numberOfCopies);
+    }
+
+    @Override
+    @DeleteMapping("/{library_id}/books/{book_id}")
+    public void deleteBookFromLibrary(@PathVariable("book_id") UUID bookId, @PathVariable("library_id") UUID libraryId) {
+        libraryBookService.delete(bookId, libraryId);
     }
 }

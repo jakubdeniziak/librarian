@@ -8,5 +8,8 @@ import java.util.UUID;
 
 @Repository
 public interface LibraryBookRepository extends JpaRepository<LibraryBook, Long> {
+    LibraryBook findByBookIdAndLibraryId(UUID bookId, UUID libraryId);
     List<LibraryBook> findAllByLibraryId(UUID libraryId);
+
+    void deleteByBookIdAndLibraryId(UUID bookId, UUID libraryId);
 }
