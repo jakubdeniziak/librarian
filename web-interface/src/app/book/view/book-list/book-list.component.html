@@ -1,0 +1,9 @@
+<section>
+    <header><h2>Books</h2></header>
+
+    <div *ngIf="books">
+        <p *ngFor="let book of books.books" style="list-style: none">
+            {{book.title}}
+        </p>
+    </div>
+</section>
