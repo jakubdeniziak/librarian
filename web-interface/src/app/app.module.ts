@@ -8,11 +8,13 @@ import {HttpClientModule} from "@angular/common/http";
 import {BookService} from "./book/service/book.service";
 import {NavComponent} from "./section/nav/nav.component";
 import {FooterComponent} from "./section/footer/footer.component";
+import {HeaderComponent} from "./section/header/header.component";
 
 @NgModule({
     declarations: [
         AppComponent,
         NavComponent,
+        HeaderComponent,
         FooterComponent,
         BookListComponent
     ],
