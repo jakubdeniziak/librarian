@@ -9,6 +9,7 @@ import {BookService} from "./book/service/book.service";
 import {NavComponent} from "./section/nav/nav.component";
 import {FooterComponent} from "./section/footer/footer.component";
 import {HeaderComponent} from "./section/header/header.component";
+import {HomeComponent} from "./home/home.component";
 
 @NgModule({
     declarations: [
@@ -16,6 +17,7 @@ import {HeaderComponent} from "./section/header/header.component";
         NavComponent,
         HeaderComponent,
         FooterComponent,
+        HomeComponent,
         BookListComponent
     ],
     imports: [
