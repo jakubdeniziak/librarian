@@ -6,10 +6,12 @@ import { BookListComponent } from "./book/view/book-list/book-list.component";
 import {AppRoutingModule} from "./app-routing.module";
 import {HttpClientModule} from "@angular/common/http";
 import {BookService} from "./book/service/book.service";
+import {NavComponent} from "./section/nav/nav.component";
 
 @NgModule({
     declarations: [
         AppComponent,
+        NavComponent,
         BookListComponent
     ],
     imports: [
