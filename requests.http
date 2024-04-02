@@ -78,6 +78,7 @@ Content-Type: application/json
 {
   "isbn": "978-2-8785-1039-3",
   "title": "Test book",
+  "description": "Book created for testing purposes.",
   "author": "bcaafcc2-ba5c-45f0-8a72-296072a2967f",
   "publisher": "4af1dede-c955-48d4-a23e-5e84d204bc9a"
 }

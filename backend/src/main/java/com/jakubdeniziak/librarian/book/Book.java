@@ -21,6 +21,7 @@ public class Book {
     private UUID id;
     private String isbn;
     private String title;
+    private String description;
     @ManyToOne
     @JoinColumn(name = "author")
     private Author author;
