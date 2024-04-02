@@ -7,7 +7,8 @@ Content-Type: application/json
 
 {
   "firstName": "John",
-  "lastName": "Smith"
+  "lastName": "Smith",
+  "description": "Test description"
 }
 
 

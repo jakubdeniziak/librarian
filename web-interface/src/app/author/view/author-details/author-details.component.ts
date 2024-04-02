@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthorService} from "../../service/author.service";
-import {Author} from "../../model/author";
 import {ActivatedRoute} from "@angular/router";
+import {AuthorDetails} from "../../model/author-details";
 
 @Component({
   selector: 'app-author-details',
@@ -9,7 +9,7 @@ import {ActivatedRoute} from "@angular/router";
   styleUrl: './author-details.component.css'
 })
 export class AuthorDetailsComponent implements OnInit {
-    author: Author | undefined
+    author: AuthorDetails | undefined
 
     constructor(private service: AuthorService, private route: ActivatedRoute) {
     }
