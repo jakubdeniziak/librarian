@@ -12,6 +12,8 @@ import {HeaderComponent} from "./section/header/header.component";
 import {HomeComponent} from "./home/home.component";
 import {AuthorListComponent} from "./author/view/author-list/author-list.component";
 import {AuthorService} from "./author/service/author.service";
+import {PublisherService} from "./publisher/service/publisher.service";
+import {PublisherListComponent} from "./publisher/view/publisher-list/publisher-list.component";
 
 @NgModule({
     declarations: [
@@ -21,7 +23,8 @@ import {AuthorService} from "./author/service/author.service";
         FooterComponent,
         HomeComponent,
         AuthorListComponent,
-        BookListComponent
+        BookListComponent,
+        PublisherListComponent
     ],
     imports: [
         BrowserModule,
@@ -30,7 +33,8 @@ import {AuthorService} from "./author/service/author.service";
     ],
     providers: [
         AuthorService,
-        BookService
+        BookService,
+        PublisherService
     ],
     bootstrap: [
         AppComponent
