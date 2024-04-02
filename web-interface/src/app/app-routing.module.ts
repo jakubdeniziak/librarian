@@ -7,6 +7,7 @@ import {PublisherListComponent} from "./publisher/view/publisher-list/publisher-
 import {LibraryListComponent} from "./library/view/library-list/library-list.component";
 import {AuthorDetailsComponent} from "./author/view/author-details/author-details.component";
 import {PublisherDetailsComponent} from "./publisher/view/publisher-details/publisher-details.component";
+import {LibraryDetailsComponent} from "./library/view/library-details/library-details.component";
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
     { path: 'books', component: BookListComponent },
     { path: 'publishers', component: PublisherListComponent },
     { path: 'publishers/:uuid', component: PublisherDetailsComponent },
-    { path: 'libraries', component: LibraryListComponent }
+    { path: 'libraries', component: LibraryListComponent },
+    { path: 'libraries/:uuid', component: LibraryDetailsComponent }
 ];
 
 @NgModule({

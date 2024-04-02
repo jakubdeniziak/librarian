@@ -18,6 +18,7 @@ import {LibraryListComponent} from "./library/view/library-list/library-list.com
 import {LibraryService} from "./library/service/library.service";
 import {AuthorDetailsComponent} from "./author/view/author-details/author-details.component";
 import {PublisherDetailsComponent} from "./publisher/view/publisher-details/publisher-details.component";
+import {LibraryDetailsComponent} from "./library/view/library-details/library-details.component";
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import {PublisherDetailsComponent} from "./publisher/view/publisher-details/publ
         BookListComponent,
         PublisherListComponent,
         PublisherDetailsComponent,
-        LibraryListComponent
+        LibraryListComponent,
+        LibraryDetailsComponent
     ],
     imports: [
         BrowserModule,

@@ -5,7 +5,9 @@
 
     <div *ngIf="libraries" class="grid gap-4 w-1/6 mx-auto">
         <p *ngFor="let library of libraries.libraries" class="bg-bgSecondary p-2 rounded-md shadow-md text-center">
-            {{library.name}}
+            <a [routerLink]="['/libraries/', library.id]" class="hover:underline">
+                {{library.name}}
+            </a>
         </p>
     </div>
 </section>
