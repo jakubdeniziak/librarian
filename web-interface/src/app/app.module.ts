@@ -16,6 +16,7 @@ import {PublisherService} from "./publisher/service/publisher.service";
 import {PublisherListComponent} from "./publisher/view/publisher-list/publisher-list.component";
 import {LibraryListComponent} from "./library/view/library-list/library-list.component";
 import {LibraryService} from "./library/service/library.service";
+import {AuthorDetailsComponent} from "./author/view/author-details/author-details.component";
 
 @NgModule({
     declarations: [
@@ -25,6 +26,7 @@ import {LibraryService} from "./library/service/library.service";
         FooterComponent,
         HomeComponent,
         AuthorListComponent,
+        AuthorDetailsComponent,
         BookListComponent,
         PublisherListComponent,
         LibraryListComponent

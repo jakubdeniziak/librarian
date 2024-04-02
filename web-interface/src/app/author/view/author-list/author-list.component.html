@@ -5,7 +5,9 @@
 
     <div *ngIf="authors" class="grid gap-4 w-1/6 mx-auto">
         <p *ngFor="let author of authors.authors" class="bg-bgSecondary p-2 rounded-md shadow-md text-center">
-            {{author.firstName}} {{author.lastName}}
+            <a [routerLink]="['/authors/', author.id]" class="hover:underline">
+                {{author.firstName}} {{author.lastName}}
+            </a>
         </p>
     </div>
 </section>
