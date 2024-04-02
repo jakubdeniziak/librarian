@@ -5,7 +5,9 @@
 
     <div *ngIf="publishers" class="grid gap-4 w-1/6 mx-auto">
         <p *ngFor="let publisher of publishers.publishers" class="bg-bgSecondary p-2 rounded-md shadow-md text-center">
-            {{publisher.websiteUrl}}
+            <a [routerLink]="['/publishers/', publisher.id]" class="hover:underline">
+                {{publisher.websiteUrl}}
+            </a>
         </p>
     </div>
 </section>

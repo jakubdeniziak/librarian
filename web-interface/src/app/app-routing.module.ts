@@ -6,6 +6,7 @@ import {AuthorListComponent} from "./author/view/author-list/author-list.compone
 import {PublisherListComponent} from "./publisher/view/publisher-list/publisher-list.component";
 import {LibraryListComponent} from "./library/view/library-list/library-list.component";
 import {AuthorDetailsComponent} from "./author/view/author-details/author-details.component";
+import {PublisherDetailsComponent} from "./publisher/view/publisher-details/publisher-details.component";
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
     { path: 'authors/:uuid', component: AuthorDetailsComponent },
     { path: 'books', component: BookListComponent },
     { path: 'publishers', component: PublisherListComponent },
+    { path: 'publishers/:uuid', component: PublisherDetailsComponent },
     { path: 'libraries', component: LibraryListComponent }
 ];
 
