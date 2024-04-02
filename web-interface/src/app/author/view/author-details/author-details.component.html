@@ -11,5 +11,9 @@
     </p>
 
     <h3 class="text-xl font-bold mt-5">Books</h3>
-    <p class="mt-1">Placeholder</p>
+    <div *ngIf="books" class="grid gap-2 w-1/6 mx-auto mt-1">
+        <p *ngFor="let book of books.books" class="bg-bgSecondary p-2 rounded-md shadow-md text-center">
+            {{book.title}}
+        </p>
+    </div>
 </section>

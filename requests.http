@@ -32,6 +32,10 @@ GET http://localhost:8081/api/authors
 GET http://localhost:8081/api/authors/bcaafcc2-ba5c-45f0-8a72-296072a2967f
 
 
+### Get all books by author
+
+GET http://localhost:8081/api/authors/bcaafcc2-ba5c-45f0-8a72-296072a2967f/books
+
 
 // --------------- PUBLISHERS ---------------
 

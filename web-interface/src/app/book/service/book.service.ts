@@ -11,4 +11,8 @@ export class BookService {
     getBooks(): Observable<Books> {
         return this.http.get<Books>('/api/books')
     }
+
+    getBooksByAuthor(uuid: string): Observable<Books> {
+        return this.http.get<Books>('/api/authors/' + uuid + '/books')
+    }
 }

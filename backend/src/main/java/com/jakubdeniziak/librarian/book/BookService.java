@@ -26,6 +26,10 @@ public class BookService {
         return repository.findAll();
     }
 
+    public List<Book> findAllByAuthorId(UUID id) {
+        return repository.findAllByAuthorId(id);
+    }
+
     public void save(Book book) {
         repository.save(book);
     }
