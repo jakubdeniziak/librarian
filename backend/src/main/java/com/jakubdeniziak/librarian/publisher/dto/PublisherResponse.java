@@ -9,6 +9,7 @@ import java.util.UUID;
 @Getter
 public class PublisherResponse {
     private UUID id;
+    private String name;
     private String websiteUrl;
     private String description;
 }

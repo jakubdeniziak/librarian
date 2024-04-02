@@ -41,6 +41,7 @@ PUT http://localhost:8081/api/publishers/4af1dede-c955-48d4-a23e-5e84d204bc9a
 Content-Type: application/json
 
 {
+  "name": "Test publisher",
   "websiteUrl": "http://localhost/",
   "description": "Publisher created for testing"
 }
