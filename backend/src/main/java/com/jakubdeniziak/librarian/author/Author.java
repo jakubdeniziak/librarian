@@ -21,6 +21,7 @@ public class Author {
     private UUID id;
     private String firstName;
     private String lastName;
+    private String description;
     @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
     private List<Book> booksWritten;
 }

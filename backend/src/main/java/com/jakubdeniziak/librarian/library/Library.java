@@ -21,6 +21,7 @@ public class Library {
     private UUID id;
     private String name;
     private String address;
+    private String description;
     @OneToMany(mappedBy = "library", cascade = CascadeType.REMOVE)
     private Set<LibraryBook> libraryBooks;
 }

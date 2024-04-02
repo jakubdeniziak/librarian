@@ -7,7 +7,8 @@ Content-Type: application/json
 
 {
   "firstName": "John",
-  "lastName": "Smith"
+  "lastName": "Smith",
+  "description": "Test description"
 }
 
 
@@ -40,6 +41,7 @@ PUT http://localhost:8081/api/publishers/4af1dede-c955-48d4-a23e-5e84d204bc9a
 Content-Type: application/json
 
 {
+  "name": "Test publisher",
   "websiteUrl": "http://localhost/",
   "description": "Publisher created for testing"
 }
@@ -76,6 +78,7 @@ Content-Type: application/json
 {
   "isbn": "978-2-8785-1039-3",
   "title": "Test book",
+  "description": "Book created for testing purposes.",
   "author": "bcaafcc2-ba5c-45f0-8a72-296072a2967f",
   "publisher": "4af1dede-c955-48d4-a23e-5e84d204bc9a"
 }
@@ -111,7 +114,8 @@ Content-Type: application/json
 
 {
   "name": "Main Library",
-  "address": "test street 1, Test"
+  "address": "test street 1, Test",
+  "description": "The first library, used for testing."
 }
 
 

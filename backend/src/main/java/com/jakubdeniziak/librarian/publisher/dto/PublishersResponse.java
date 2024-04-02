@@ -9,13 +9,12 @@ import java.util.UUID;
 @Builder
 @Getter
 public class PublishersResponse {
-    private List<Publisher> publishers;
-
     @Builder
     @Getter
     public static class Publisher {
         private UUID id;
-        private String websiteUrl;
-        private String description;
+        private String name;
     }
+
+    private List<Publisher> publishers;
 }

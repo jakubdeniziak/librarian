@@ -13,6 +13,7 @@ public class PublisherMapper {
     public PublisherResponse map(Publisher publisher) {
         return PublisherResponse.builder()
                 .id(publisher.getId())
+                .name(publisher.getName())
                 .websiteUrl(publisher.getWebsiteUrl())
                 .description(publisher.getDescription())
                 .build();
@@ -23,8 +24,7 @@ public class PublisherMapper {
                 .publishers(publishers.stream()
                         .map(publisher -> PublishersResponse.Publisher.builder()
                                 .id(publisher.getId())
-                                .websiteUrl(publisher.getWebsiteUrl())
-                                .description(publisher.getDescription())
+                                .name(publisher.getName())
                                 .build())
                         .toList())
                 .build();
@@ -33,6 +33,7 @@ public class PublisherMapper {
     public Publisher map(UUID id, PublisherRequest request) {
         return Publisher.builder()
                 .id(id)
+                .name(request.getName())
                 .websiteUrl(request.getWebsiteUrl())
                 .description(request.getDescription())
                 .build();

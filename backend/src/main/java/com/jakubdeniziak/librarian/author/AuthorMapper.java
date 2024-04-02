@@ -15,6 +15,7 @@ public class AuthorMapper {
                 .id(author.getId())
                 .firstName(author.getFirstName())
                 .lastName(author.getLastName())
+                .description(author.getDescription())
                 .build();
     }
 
@@ -35,6 +36,7 @@ public class AuthorMapper {
                 .id(id)
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
+                .description(request.getDescription())
                 .build();
     }
 }

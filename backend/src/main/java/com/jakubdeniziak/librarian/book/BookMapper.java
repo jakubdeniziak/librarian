@@ -17,6 +17,7 @@ public class BookMapper {
                 .id(book.getId())
                 .isbn(book.getIsbn())
                 .title(book.getTitle())
+                .description(book.getDescription())
                 .authorId(book.getAuthor().getId())
                 .publisherId(book.getPublisher().getId())
                 .build();
@@ -41,6 +42,7 @@ public class BookMapper {
                 .id(id)
                 .isbn(request.getIsbn())
                 .title(request.getTitle())
+                .description(request.getDescription())
                 .author(Author.builder()
                         .id(request.getAuthor())
                         .build())

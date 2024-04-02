@@ -9,8 +9,6 @@ import java.util.UUID;
 @Builder
 @Getter
 public class AuthorsResponse {
-    private List<Author> authors;
-
     @Builder
     @Getter
     public static class Author {
@@ -18,4 +16,6 @@ public class AuthorsResponse {
         private String firstName;
         private String lastName;
     }
+
+    private List<Author> authors;
 }

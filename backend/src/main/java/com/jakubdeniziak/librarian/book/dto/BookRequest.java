@@ -8,6 +8,7 @@ import java.util.UUID;
 public class BookRequest {
     private String isbn;
     private String title;
+    private String description;
     private UUID author;
     private UUID publisher;
 }

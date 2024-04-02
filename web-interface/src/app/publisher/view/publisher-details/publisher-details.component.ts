@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PublisherService} from "../../service/publisher.service";
 import {ActivatedRoute} from "@angular/router";
-import {Publisher} from "../../model/publisher";
+import {PublisherDetails} from "../../model/publisher-details";
 
 @Component({
   selector: 'app-publisher-details',
@@ -12,7 +12,7 @@ export class PublisherDetailsComponent implements OnInit {
     constructor(private service: PublisherService, private route: ActivatedRoute) {
     }
 
-    publisher: Publisher | undefined;
+    publisher: PublisherDetails | undefined;
 
     ngOnInit(): void {
         this.route.params.subscribe(params => {

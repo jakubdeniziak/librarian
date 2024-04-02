@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LibraryService} from "../../service/library.service";
 import {ActivatedRoute} from "@angular/router";
-import {Library} from "../../model/library";
+import {LibraryDetails} from "../../model/library-details";
 
 @Component({
   selector: 'app-library-details',
@@ -12,7 +12,7 @@ export class LibraryDetailsComponent implements OnInit {
     constructor(private service: LibraryService, private route: ActivatedRoute) {
     }
 
-    library: Library | undefined
+    library: LibraryDetails | undefined
 
     ngOnInit(): void {
         this.route.params.subscribe(params => {
