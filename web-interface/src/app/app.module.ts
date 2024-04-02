@@ -14,6 +14,8 @@ import {AuthorListComponent} from "./author/view/author-list/author-list.compone
 import {AuthorService} from "./author/service/author.service";
 import {PublisherService} from "./publisher/service/publisher.service";
 import {PublisherListComponent} from "./publisher/view/publisher-list/publisher-list.component";
+import {LibraryListComponent} from "./library/view/library-list/library-list.component";
+import {LibraryService} from "./library/service/library.service";
 
 @NgModule({
     declarations: [
@@ -24,7 +26,8 @@ import {PublisherListComponent} from "./publisher/view/publisher-list/publisher-
         HomeComponent,
         AuthorListComponent,
         BookListComponent,
-        PublisherListComponent
+        PublisherListComponent,
+        LibraryListComponent
     ],
     imports: [
         BrowserModule,
@@ -34,7 +37,8 @@ import {PublisherListComponent} from "./publisher/view/publisher-list/publisher-
     providers: [
         AuthorService,
         BookService,
-        PublisherService
+        PublisherService,
+        LibraryService
     ],
     bootstrap: [
         AppComponent
