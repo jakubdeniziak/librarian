@@ -113,7 +113,8 @@ Content-Type: application/json
 
 {
   "name": "Main Library",
-  "address": "test street 1, Test"
+  "address": "test street 1, Test",
+  "description": "The first library, used for testing."
 }
 
 

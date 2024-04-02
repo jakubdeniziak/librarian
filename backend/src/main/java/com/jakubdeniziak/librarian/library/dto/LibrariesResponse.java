@@ -9,8 +9,6 @@ import java.util.UUID;
 @Builder
 @Getter
 public class LibrariesResponse {
-    List<Library> libraries;
-
     @Builder
     @Getter
     public static class Library {
@@ -18,4 +16,6 @@ public class LibrariesResponse {
         private String name;
         private String address;
     }
+
+    List<Library> libraries;
 }

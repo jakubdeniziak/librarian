@@ -6,4 +6,5 @@ import lombok.Getter;
 public class LibraryRequest {
     private String name;
     private String address;
+    private String description;
 }

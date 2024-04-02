@@ -15,6 +15,7 @@ public class LibraryMapper {
                 .id(library.getId())
                 .name(library.getName())
                 .address(library.getAddress())
+                .description(library.getDescription())
                 .build();
     }
 
@@ -35,6 +36,7 @@ public class LibraryMapper {
                 .id(id)
                 .name(request.getName())
                 .address(request.getAddress())
+                .description(request.getDescription())
                 .build();
     }
 }
