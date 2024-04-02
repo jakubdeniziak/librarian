@@ -10,6 +10,8 @@ import {NavComponent} from "./section/nav/nav.component";
 import {FooterComponent} from "./section/footer/footer.component";
 import {HeaderComponent} from "./section/header/header.component";
 import {HomeComponent} from "./home/home.component";
+import {AuthorListComponent} from "./author/view/author-list/author-list.component";
+import {AuthorService} from "./author/service/author.service";
 
 @NgModule({
     declarations: [
@@ -18,6 +20,7 @@ import {HomeComponent} from "./home/home.component";
         HeaderComponent,
         FooterComponent,
         HomeComponent,
+        AuthorListComponent,
         BookListComponent
     ],
     imports: [
@@ -26,6 +29,7 @@ import {HomeComponent} from "./home/home.component";
         HttpClientModule
     ],
     providers: [
+        AuthorService,
         BookService
     ],
     bootstrap: [
