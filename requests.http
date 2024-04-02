@@ -71,6 +71,11 @@ GET http://localhost:8081/api/publishers
 GET http://localhost:8081/api/publishers/4af1dede-c955-48d4-a23e-5e84d204bc9a
 
 
+### Get books by publisher
+
+GET http://localhost:8081/api/publishers/4af1dede-c955-48d4-a23e-5e84d204bc9a/books
+
+
 
 // --------------- BOOKS ---------------
 

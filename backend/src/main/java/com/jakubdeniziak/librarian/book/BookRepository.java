@@ -9,4 +9,5 @@ import java.util.UUID;
 @Repository
 public interface BookRepository extends JpaRepository<Book, UUID> {
     List<Book> findAllByAuthorId(UUID id);
+    List<Book> findAllByPublisherId(UUID id);
 }

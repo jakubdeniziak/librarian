@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {PublisherService} from "../../service/publisher.service";
 import {ActivatedRoute} from "@angular/router";
 import {PublisherDetails} from "../../model/publisher-details";
+import {Books} from "../../../book/model/books";
+import {BookService} from "../../../book/service/book.service";
 
 @Component({
   selector: 'app-publisher-details',
@@ -9,15 +11,19 @@ import {PublisherDetails} from "../../model/publisher-details";
   styleUrl: './publisher-details.component.css'
 })
 export class PublisherDetailsComponent implements OnInit {
-    constructor(private service: PublisherService, private route: ActivatedRoute) {
-    }
-
     publisher: PublisherDetails | undefined;
+    books: Books | undefined;
+
+    constructor(private publisherService: PublisherService, private bookService: BookService, private route: ActivatedRoute) {
+    }
 
     ngOnInit(): void {
         this.route.params.subscribe(params => {
-            this.service.getPublisher(params['uuid'])
+            this.publisherService.getPublisher(params['uuid'])
                 .subscribe(publisher => this.publisher = publisher)
+
+            this.bookService.getBooksByPublisher(params['uuid'])
+                .subscribe(books => this.books = books)
         });
     }
 }

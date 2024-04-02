@@ -1,5 +1,9 @@
 package com.jakubdeniziak.librarian.publisher;
 
+import com.jakubdeniziak.librarian.book.Book;
+import com.jakubdeniziak.librarian.book.BookMapper;
+import com.jakubdeniziak.librarian.book.BookService;
+import com.jakubdeniziak.librarian.book.dto.BooksResponse;
 import com.jakubdeniziak.librarian.publisher.dto.PublisherRequest;
 import com.jakubdeniziak.librarian.publisher.dto.PublisherResponse;
 import com.jakubdeniziak.librarian.publisher.dto.PublishersResponse;
@@ -13,40 +17,49 @@ import java.util.UUID;
 @RequestMapping("/api/publishers")
 @AllArgsConstructor
 public class RestPublisherController implements PublisherController {
-    private final PublisherService service;
-    private final PublisherMapper mapper;
+    private final PublisherService publisherService;
+    private final BookService bookService;
+    private final PublisherMapper publisherMapper;
+    private final BookMapper bookMapper;
 
     @Override
     @GetMapping("/{id}")
     public PublisherResponse readPublisher(@PathVariable("id") UUID id) {
-        Publisher publisher = service.findById(id);
-        return mapper.map(publisher);
+        Publisher publisher = publisherService.findById(id);
+        return publisherMapper.map(publisher);
     }
 
     @Override
     @GetMapping
     public PublishersResponse readPublishers() {
-        List<Publisher> publishers = service.findAll();
-        return mapper.map(publishers);
+        List<Publisher> publishers = publisherService.findAll();
+        return publisherMapper.map(publishers);
+    }
+
+    @Override
+    @GetMapping("/{id}/books")
+    public BooksResponse readBooksByPublisher(@PathVariable("id") UUID publisherId) {
+        List<Book> books = bookService.findAllByPublisherId(publisherId);
+        return bookMapper.map(books);
     }
 
     @Override
     @PutMapping("/{id}")
     public void createPublisher(@PathVariable("id") UUID id, @RequestBody PublisherRequest request) {
-        Publisher publisher = mapper.map(id, request);
-        service.save(publisher);
+        Publisher publisher = publisherMapper.map(id, request);
+        publisherService.save(publisher);
     }
 
     @Override
     @PatchMapping("/{id}")
     public void updatePublisher(@PathVariable("id") UUID id, @RequestBody PublisherRequest request) {
-        Publisher publisher = mapper.map(id, request);
-        service.update(id, publisher);
+        Publisher publisher = publisherMapper.map(id, request);
+        publisherService.update(id, publisher);
     }
 
     @Override
     @DeleteMapping("/{id}")
     public void deletePublisher(@PathVariable("id") UUID id) {
-        service.delete(id);
+        publisherService.delete(id);
     }
 }

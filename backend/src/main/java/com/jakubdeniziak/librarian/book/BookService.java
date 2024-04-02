@@ -30,6 +30,10 @@ public class BookService {
         return repository.findAllByAuthorId(id);
     }
 
+    public List<Book> findAllByPublisherId(UUID id) {
+        return repository.findAllByPublisherId(id);
+    }
+
     public void save(Book book) {
         repository.save(book);
     }
