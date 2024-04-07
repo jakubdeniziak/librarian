@@ -1,0 +1,29 @@
+<section class="p-4 text-center" *ngIf="book">
+    <header class="mb-4">
+        <h2 class="text-2xl font-bold">
+                {{book.title}}
+        </h2>
+        <p>
+            {{book.isbn}}
+        </p>
+    </header>
+
+    <h3 class="text-xl font-bold mt-5">Description</h3>
+    <p class="mt-1">
+        {{book.description}}
+    </p>
+
+    <div *ngIf="author">
+        <h3 class="text-xl font-bold mt-5 mb-1">Author</h3>
+        <a [routerLink]="['/authors/', author.id]" class="hover:underline">
+            {{author.firstName}} {{author.lastName}}
+        </a>
+    </div>
+
+    <div *ngIf="publisher">
+        <h3 class="text-xl font-bold mt-5 mb-1">Publisher</h3>
+        <a [routerLink]="['/publishers/', publisher.id]" class="hover:underline">
+            {{publisher.name}}
+        </a>
+    </div>
+</section>
