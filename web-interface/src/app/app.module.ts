@@ -19,6 +19,8 @@ import {LibraryService} from "./library/service/library.service";
 import {AuthorDetailsComponent} from "./author/view/author-details/author-details.component";
 import {PublisherDetailsComponent} from "./publisher/view/publisher-details/publisher-details.component";
 import {LibraryDetailsComponent} from "./library/view/library-details/library-details.component";
+import {AuthorNewComponent} from "./author/view/author-new/author-new.component";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
     declarations: [
@@ -29,6 +31,7 @@ import {LibraryDetailsComponent} from "./library/view/library-details/library-de
         HomeComponent,
         AuthorListComponent,
         AuthorDetailsComponent,
+        AuthorNewComponent,
         BookListComponent,
         PublisherListComponent,
         PublisherDetailsComponent,
@@ -38,7 +41,8 @@ import {LibraryDetailsComponent} from "./library/view/library-details/library-de
     imports: [
         BrowserModule,
         AppRoutingModule,
-        HttpClientModule
+        HttpClientModule,
+        FormsModule
     ],
     providers: [
         AuthorService,

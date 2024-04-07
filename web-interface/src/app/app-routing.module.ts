@@ -8,10 +8,12 @@ import {LibraryListComponent} from "./library/view/library-list/library-list.com
 import {AuthorDetailsComponent} from "./author/view/author-details/author-details.component";
 import {PublisherDetailsComponent} from "./publisher/view/publisher-details/publisher-details.component";
 import {LibraryDetailsComponent} from "./library/view/library-details/library-details.component";
+import {AuthorNewComponent} from "./author/view/author-new/author-new.component";
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'authors', component: AuthorListComponent },
+    { path: 'authors/add', component: AuthorNewComponent },
     { path: 'authors/:uuid', component: AuthorDetailsComponent },
     { path: 'books', component: BookListComponent },
     { path: 'publishers', component: PublisherListComponent },
