@@ -11,6 +11,7 @@ import {LibraryDetailsComponent} from "./library/view/library-details/library-de
 import {AuthorNewComponent} from "./author/view/author-new/author-new.component";
 import {PublisherNewComponent} from "./publisher/view/publisher-new/publisher-new.component";
 import {BookDetailsComponent} from "./book/view/book-details/book-details.component";
+import {BookNewComponent} from "./book/view/book-new/book-new.component";
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
     { path: 'authors/add', component: AuthorNewComponent },
     { path: 'authors/:uuid', component: AuthorDetailsComponent },
     { path: 'books', component: BookListComponent },
+    { path: 'books/add', component: BookNewComponent },
     { path: 'books/:uuid', component: BookDetailsComponent },
     { path: 'publishers', component: PublisherListComponent },
     { path: 'publishers/add', component: PublisherNewComponent },

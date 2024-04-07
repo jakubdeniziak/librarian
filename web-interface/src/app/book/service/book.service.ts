@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Books} from "../model/books";
 import {BookDetails} from "../model/book-details";
+import {BookForm} from "../model/book-form";
 
 @Injectable()
 export class BookService {
@@ -24,5 +25,9 @@ export class BookService {
 
     getBooksByPublisher(uuid: string): Observable<Books> {
         return this.http.get<Books>('/api/publishers/' + uuid + '/books')
+    }
+
+    putBook(uuid: string, request: BookForm): Observable<any> {
+        return this.http.put('/api/books/' + uuid, request);
     }
 }
