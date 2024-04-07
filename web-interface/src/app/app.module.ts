@@ -21,6 +21,7 @@ import {PublisherDetailsComponent} from "./publisher/view/publisher-details/publ
 import {LibraryDetailsComponent} from "./library/view/library-details/library-details.component";
 import {AuthorNewComponent} from "./author/view/author-new/author-new.component";
 import {FormsModule} from "@angular/forms";
+import {PublisherNewComponent} from "./publisher/view/publisher-new/publisher-new.component";
 
 @NgModule({
     declarations: [
@@ -35,6 +36,7 @@ import {FormsModule} from "@angular/forms";
         BookListComponent,
         PublisherListComponent,
         PublisherDetailsComponent,
+        PublisherNewComponent,
         LibraryListComponent,
         LibraryDetailsComponent
     ],
