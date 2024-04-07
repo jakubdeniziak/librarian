@@ -44,10 +44,10 @@ public class BookMapper {
                 .title(request.getTitle())
                 .description(request.getDescription())
                 .author(Author.builder()
-                        .id(request.getAuthor())
+                        .id(request.getAuthorId())
                         .build())
                 .publisher(Publisher.builder()
-                        .id(request.getPublisher())
+                        .id(request.getPublisherId())
                         .build())
                 .build();
     }
