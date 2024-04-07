@@ -22,6 +22,6 @@ public class Publisher {
     private String name;
     private String websiteUrl;
     private String description;
-    @OneToMany(mappedBy = "publisher", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL)
     private List<Book> booksPublished;
 }

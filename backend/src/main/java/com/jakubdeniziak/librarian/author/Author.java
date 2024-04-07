@@ -22,6 +22,6 @@ public class Author {
     private String firstName;
     private String lastName;
     private String description;
-    @OneToMany(mappedBy = "author", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Book> booksWritten;
 }
