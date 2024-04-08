@@ -30,4 +30,8 @@ export class BookService {
     putBook(uuid: string, request: BookForm): Observable<any> {
         return this.http.put('/api/books/' + uuid, request);
     }
+
+    deleteBook(uuid: string): Observable<any> {
+        return this.http.delete('/api/books/' + uuid)
+    }
 }
