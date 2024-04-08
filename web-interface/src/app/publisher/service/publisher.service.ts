@@ -21,4 +21,8 @@ export class PublisherService {
     putPublisher(uuid: string, request: PublisherForm): Observable<any> {
         return this.http.put('/api/publishers/' + uuid, request);
     }
+
+    deletePublisher(uuid: string): Observable<any> {
+        return this.http.delete('/api/publishers/' + uuid)
+    }
 }

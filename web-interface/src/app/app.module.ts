@@ -26,6 +26,7 @@ import {BookDetailsComponent} from "./book/view/book-details/book-details.compon
 import {BookNewComponent} from "./book/view/book-new/book-new.component";
 import {AuthorDeleteComponent} from "./author/view/author-delete/author-delete.component";
 import {AuthorEditComponent} from "./author/view/author-edit/author-edit.component";
+import {PublisherDeleteComponent} from "./publisher/view/publisher-delete/publisher-delete.component";
 
 @NgModule({
     declarations: [
@@ -45,6 +46,7 @@ import {AuthorEditComponent} from "./author/view/author-edit/author-edit.compone
         PublisherListComponent,
         PublisherDetailsComponent,
         PublisherNewComponent,
+        PublisherDeleteComponent,
         LibraryListComponent,
         LibraryDetailsComponent
     ],
