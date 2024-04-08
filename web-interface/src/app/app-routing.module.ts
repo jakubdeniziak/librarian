@@ -12,11 +12,13 @@ import {AuthorNewComponent} from "./author/view/author-new/author-new.component"
 import {PublisherNewComponent} from "./publisher/view/publisher-new/publisher-new.component";
 import {BookDetailsComponent} from "./book/view/book-details/book-details.component";
 import {BookNewComponent} from "./book/view/book-new/book-new.component";
+import {AuthorDeleteComponent} from "./author/view/author-delete/author-delete.component";
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'authors', component: AuthorListComponent },
     { path: 'authors/add', component: AuthorNewComponent },
+    { path: 'authors/delete', component: AuthorDeleteComponent },
     { path: 'authors/:uuid', component: AuthorDetailsComponent },
     { path: 'books', component: BookListComponent },
     { path: 'books/add', component: BookNewComponent },

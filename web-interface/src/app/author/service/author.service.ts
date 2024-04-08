@@ -21,4 +21,8 @@ export class AuthorService {
     putAuthor(uuid: string, request: AuthorForm): Observable<any> {
         return this.http.put('/api/authors/' + uuid, request);
     }
+
+    deleteAuthor(uuid: string): Observable<any> {
+        return this.http.delete('/api/authors/' + uuid)
+    }
 }
