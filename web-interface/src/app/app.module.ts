@@ -31,6 +31,7 @@ import {PublisherEditComponent} from "./publisher/view/publisher-edit/publisher-
 import {BookDeleteComponent} from "./book/view/book-delete/book-delete.component";
 import {BookEditComponent} from "./book/view/book-edit/book-edit.component";
 import {LibraryNewComponent} from "./library/view/library-new/library-new.component";
+import {LibraryDeleteComponent} from "./library/view/library-delete/library-delete.component";
 
 @NgModule({
     declarations: [
@@ -56,7 +57,8 @@ import {LibraryNewComponent} from "./library/view/library-new/library-new.compon
         PublisherEditComponent,
         LibraryListComponent,
         LibraryDetailsComponent,
-        LibraryNewComponent
+        LibraryNewComponent,
+        LibraryDeleteComponent
     ],
     imports: [
         BrowserModule,

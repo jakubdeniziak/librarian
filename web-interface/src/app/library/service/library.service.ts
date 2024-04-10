@@ -20,4 +20,8 @@ export class LibraryService {
     putLibrary(uuid: string, request: LibraryForm): Observable<any> {
         return this.httpClient.put('/api/libraries/' + uuid, request);
     }
+
+    deleteLibrary(uuid: string): Observable<any> {
+        return this.httpClient.delete('/api/libraries/' + uuid);
+    }
 }
