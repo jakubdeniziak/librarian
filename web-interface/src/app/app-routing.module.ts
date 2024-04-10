@@ -18,6 +18,7 @@ import {PublisherDeleteComponent} from "./publisher/view/publisher-delete/publis
 import {PublisherEditComponent} from "./publisher/view/publisher-edit/publisher-edit.component";
 import {BookDeleteComponent} from "./book/view/book-delete/book-delete.component";
 import {BookEditComponent} from "./book/view/book-edit/book-edit.component";
+import {LibraryNewComponent} from "./library/view/library-new/library-new.component";
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -37,6 +38,7 @@ const routes: Routes = [
     { path: 'publishers/:uuid', component: PublisherDetailsComponent },
     { path: 'publishers/:uuid/edit', component: PublisherEditComponent },
     { path: 'libraries', component: LibraryListComponent },
+    { path: 'libraries/add', component: LibraryNewComponent },
     { path: 'libraries/:uuid', component: LibraryDetailsComponent }
 ];
 

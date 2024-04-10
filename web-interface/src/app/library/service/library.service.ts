@@ -3,6 +3,7 @@ import {Libraries} from "../model/libraries";
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {LibraryDetails} from "../model/library-details";
+import {LibraryForm} from "../model/library-form";
 
 @Injectable()
 export class LibraryService {
@@ -14,5 +15,9 @@ export class LibraryService {
 
     getLibrary(uuid: string): Observable<LibraryDetails> {
         return this.httpClient.get<LibraryDetails>('/api/libraries/' + uuid)
+    }
+
+    putLibrary(uuid: string, request: LibraryForm): Observable<any> {
+        return this.httpClient.put('/api/libraries/' + uuid, request);
     }
 }
