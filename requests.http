@@ -2,18 +2,19 @@
 
 ### Create an author
 
-PUT http://localhost:8080/api/authors/bcaafcc2-ba5c-45f0-8a72-296072a2967f
+PUT http://localhost:8081/api/authors/bcaafcc2-ba5c-45f0-8a72-296072a2967f
 Content-Type: application/json
 
 {
   "firstName": "John",
-  "lastName": "Smith"
+  "lastName": "Smith",
+  "description": "Test description"
 }
 
 
 ### Update an author
 
-PATCH http://localhost:8080/api/authors/bcaafcc2-ba5c-45f0-8a72-296072a2967f
+PATCH http://localhost:8081/api/authors/bcaafcc2-ba5c-45f0-8a72-296072a2967f
 Content-Type: application/json
 
 {
@@ -23,23 +24,28 @@ Content-Type: application/json
 
 ### Get all authors
 
-GET http://localhost:8080/api/authors
+GET http://localhost:8081/api/authors
 
 
 ### Get a specific author
 
-GET http://localhost:8080/api/authors/bcaafcc2-ba5c-45f0-8a72-296072a2967f
+GET http://localhost:8081/api/authors/bcaafcc2-ba5c-45f0-8a72-296072a2967f
 
+
+### Get all books by author
+
+GET http://localhost:8081/api/authors/bcaafcc2-ba5c-45f0-8a72-296072a2967f/books
 
 
 // --------------- PUBLISHERS ---------------
 
 ### Create a publisher
 
-PUT http://localhost:8080/api/publishers/4af1dede-c955-48d4-a23e-5e84d204bc9a
+PUT http://localhost:8081/api/publishers/4af1dede-c955-48d4-a23e-5e84d204bc9a
 Content-Type: application/json
 
 {
+  "name": "Test publisher",
   "websiteUrl": "http://localhost/",
   "description": "Publisher created for testing"
 }
@@ -47,7 +53,7 @@ Content-Type: application/json
 
 ### Update a publisher
 
-PATCH http://localhost:8080/api/publishers/4af1dede-c955-48d4-a23e-5e84d204bc9a
+PATCH http://localhost:8081/api/publishers/4af1dede-c955-48d4-a23e-5e84d204bc9a
 Content-Type: application/json
 
 {
@@ -57,12 +63,17 @@ Content-Type: application/json
 
 ### Get all publishers
 
-GET http://localhost:8080/api/publishers
+GET http://localhost:8081/api/publishers
 
 
 ### Get a specific publisher
 
-GET http://localhost:8080/api/publishers/4af1dede-c955-48d4-a23e-5e84d204bc9a
+GET http://localhost:8081/api/publishers/4af1dede-c955-48d4-a23e-5e84d204bc9a
+
+
+### Get books by publisher
+
+GET http://localhost:8081/api/publishers/4af1dede-c955-48d4-a23e-5e84d204bc9a/books
 
 
 
@@ -70,12 +81,13 @@ GET http://localhost:8080/api/publishers/4af1dede-c955-48d4-a23e-5e84d204bc9a
 
 ### Create a book
 
-PUT http://localhost:8080/api/books/d33e6abf-7b13-42c2-9816-f4c56c462abf
+PUT http://localhost:8081/api/books/d33e6abf-7b13-42c2-9816-f4c56c462abf
 Content-Type: application/json
 
 {
   "isbn": "978-2-8785-1039-3",
   "title": "Test book",
+  "description": "Book created for testing purposes.",
   "author": "bcaafcc2-ba5c-45f0-8a72-296072a2967f",
   "publisher": "4af1dede-c955-48d4-a23e-5e84d204bc9a"
 }
@@ -83,7 +95,7 @@ Content-Type: application/json
 
 ### Update a book
 
-PATCH http://localhost:8080/api/books/d33e6abf-7b13-42c2-9816-f4c56c462abf
+PATCH http://localhost:8081/api/books/d33e6abf-7b13-42c2-9816-f4c56c462abf
 Content-Type: application/json
 
 {
@@ -93,12 +105,12 @@ Content-Type: application/json
 
 ### Get all books
 
-GET http://localhost:8080/api/books
+GET http://localhost:8081/api/books
 
 
 ### Get a specific book
 
-GET http://localhost:8080/api/books/d33e6abf-7b13-42c2-9816-f4c56c462abf
+GET http://localhost:8081/api/books/d33e6abf-7b13-42c2-9816-f4c56c462abf
 
 
 
@@ -106,18 +118,19 @@ GET http://localhost:8080/api/books/d33e6abf-7b13-42c2-9816-f4c56c462abf
 
 ### Create a library
 
-PUT http://localhost:8080/api/libraries/f9d6f84e-3c81-4404-8e65-7d03c445a7b4
+PUT http://localhost:8081/api/libraries/f9d6f84e-3c81-4404-8e65-7d03c445a7b4
 Content-Type: application/json
 
 {
   "name": "Main Library",
-  "address": "test street 1, Test"
+  "address": "test street 1, Test",
+  "description": "The first library, used for testing."
 }
 
 
 ### Update a library
 
-PATCH http://localhost:8080/api/libraries/f9d6f84e-3c81-4404-8e65-7d03c445a7b4
+PATCH http://localhost:8081/api/libraries/f9d6f84e-3c81-4404-8e65-7d03c445a7b4
 Content-Type: application/json
 
 {
@@ -127,32 +140,32 @@ Content-Type: application/json
 
 ### Get all libraries
 
-GET http://localhost:8080/api/libraries
+GET http://localhost:8081/api/libraries
 
 
 ### Get a specific library
 
-GET http://localhost:8080/api/libraries/f9d6f84e-3c81-4404-8e65-7d03c445a7b4
+GET http://localhost:8081/api/libraries/f9d6f84e-3c81-4404-8e65-7d03c445a7b4
 
 
 ### Delete a library
 
-DELETE http://localhost:8080/api/libraries/f9d6f84e-3c81-4404-8e65-7d03c445a7b4
+DELETE http://localhost:8081/api/libraries/f9d6f84e-3c81-4404-8e65-7d03c445a7b4
 
 
 ### Get a specfic book from library
 
-GET http://localhost:8080/api/libraries/f9d6f84e-3c81-4404-8e65-7d03c445a7b4/books/d33e6abf-7b13-42c2-9816-f4c56c462abf
+GET http://localhost:8081/api/libraries/f9d6f84e-3c81-4404-8e65-7d03c445a7b4/books/d33e6abf-7b13-42c2-9816-f4c56c462abf
 
 
 ### Get all books from library
 
-GET http://localhost:8080/api/libraries/f9d6f84e-3c81-4404-8e65-7d03c445a7b4/books
+GET http://localhost:8081/api/libraries/f9d6f84e-3c81-4404-8e65-7d03c445a7b4/books
 
 
 ### Add book to library
 
-PUT http://localhost:8080/api/libraries/f9d6f84e-3c81-4404-8e65-7d03c445a7b4/books/d33e6abf-7b13-42c2-9816-f4c56c462abf
+PUT http://localhost:8081/api/libraries/f9d6f84e-3c81-4404-8e65-7d03c445a7b4/books/d33e6abf-7b13-42c2-9816-f4c56c462abf
 Content-Type: application/json
 
 {
@@ -162,4 +175,4 @@ Content-Type: application/json
 
 ### Delete a book from library
 
-DELETE http://localhost:8080/api/libraries/f9d6f84e-3c81-4404-8e65-7d03c445a7b4/books/d33e6abf-7b13-42c2-9816-f4c56c462abf
+DELETE http://localhost:8081/api/libraries/f9d6f84e-3c81-4404-8e65-7d03c445a7b4/books/d33e6abf-7b13-42c2-9816-f4c56c462abf

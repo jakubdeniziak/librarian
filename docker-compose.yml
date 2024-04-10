@@ -3,7 +3,7 @@ version: '3.8'
 services:
   spring-boot-app:
     build:
-      context: .
+      context: backend/
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "8081:8081"

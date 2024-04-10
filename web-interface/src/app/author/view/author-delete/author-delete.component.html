@@ -1,0 +1,22 @@
+<section class="p-4">
+    <header class="text-center mb-4">
+        <h2 class="text-2xl font-bold">Authors</h2>
+    </header>
+
+    <div *ngIf="authors" class="grid gap-4 w-1/6 mx-auto">
+        <div *ngFor="let author of authors.authors" class="flex gap-4">
+            <p  class="bg-bgSecondary p-2 rounded-md shadow-md text-center w-64 h-12">
+                <a [routerLink]="['/authors/', author.id]" class="hover:underline">
+                    {{author.firstName}} {{author.lastName}}
+                </a>
+            </p>
+            <button (click)="onDeleteButtonClicked(author.id)" class="bg-bgSecondary p-2 rounded-md shadow-md text-center w-12 h-12 text-2xl">
+                X
+            </button>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <button routerLink="/authors" class="rounded-md bg-bgSecondary text-primary px-4 py-2 mx-auto my-1 w-36 h-10">Return</button>
+    </div>
+</section>
