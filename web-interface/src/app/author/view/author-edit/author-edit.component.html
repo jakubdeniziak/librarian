@@ -1,0 +1,30 @@
+<section class="p-4">
+    <header class="text-center mb-4">
+        <h2 class="text-2xl font-bold">Edit author</h2>
+    </header>
+
+    <form (ngSubmit)="onSubmit()" *ngIf="author" class="text-center">
+        <div>
+            <label for="firstName">First name:</label>
+            <br>
+            <input id="firstName" name="firstName" [(ngModel)]="author.firstName" class="text-bgSecondary mt-1 p-1"/>
+        </div>
+
+        <div class="mt-3">
+            <label for="lastName">Last name:</label>
+            <br>
+            <input id="lastName" name="lastName" [(ngModel)]="author.lastName" class="text-bgSecondary mt-1 p-1"/>
+        </div>
+
+        <div class="mt-3">
+            <label for="description">Description:</label>
+            <br>
+            <input id="description" name="description" [(ngModel)]="author.description" class="text-bgSecondary mt-1 p-1"/>
+        </div>
+
+        <div class="text-center mt-5">
+            <button type="submit" class="rounded-md bg-bgSecondary text-primary px-4 py-2 mx-auto my-1 w-36 h-10 mr-3">Submit</button>
+            <button [routerLink]="'/authors/' + author.id" class="rounded-md bg-bgSecondary text-primary px-4 py-2 mx-auto my-1 w-36 h-10">Cancel</button>
+        </div>
+    </form>
+</section>

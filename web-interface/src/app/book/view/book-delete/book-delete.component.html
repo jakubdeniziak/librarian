@@ -1,0 +1,20 @@
+<section class="p-4">
+    <header class="text-center mb-4">
+        <h2 class="text-2xl font-bold">Delete books</h2>
+    </header>
+
+    <div *ngIf="books" class="grid gap-4 w-1/6 mx-auto">
+        <div *ngFor="let book of books.books" class="flex gap-4">
+            <p  class="bg-bgSecondary p-2 rounded-md shadow-md text-center w-64 h-12">
+                {{book.title}}
+            </p>
+            <button (click)="onDeleteButtonClicked(book.id)" class="bg-bgSecondary p-2 rounded-md shadow-md text-center w-12 h-12 text-2xl">
+                X
+            </button>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <button routerLink="/books" class="rounded-md bg-bgSecondary text-primary px-4 py-2 mx-auto my-1 w-36 h-10">Return</button>
+    </div>
+</section>
