@@ -3,7 +3,7 @@ import {Books} from "../../../book/model/books";
 import {LibraryService} from "../../service/library.service";
 import {BookService} from "../../../book/service/book.service";
 import {ActivatedRoute} from "@angular/router";
-import {LibraryBook} from "../../model/library-book";
+import {LibraryBookForm} from "../../model/library-book/library-book-form";
 
 @Component({
   selector: 'app-library-add-book',
@@ -14,7 +14,7 @@ export class LibraryAddBookComponent implements OnInit {
     libraryId: string | undefined;
     bookId: string | undefined;
     books: Books | undefined;
-    libraryBook: LibraryBook | undefined;
+    libraryBook: LibraryBookForm | undefined;
 
 
     constructor(private libraryService: LibraryService,
