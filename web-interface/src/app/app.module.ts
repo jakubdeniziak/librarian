@@ -32,6 +32,7 @@ import {BookDeleteComponent} from "./book/view/book-delete/book-delete.component
 import {BookEditComponent} from "./book/view/book-edit/book-edit.component";
 import {LibraryNewComponent} from "./library/view/library-new/library-new.component";
 import {LibraryDeleteComponent} from "./library/view/library-delete/library-delete.component";
+import {LibraryAddBookComponent} from "./library/view/library-add-book/library-add-book.component";
 
 @NgModule({
     declarations: [
@@ -58,7 +59,8 @@ import {LibraryDeleteComponent} from "./library/view/library-delete/library-dele
         LibraryListComponent,
         LibraryDetailsComponent,
         LibraryNewComponent,
-        LibraryDeleteComponent
+        LibraryDeleteComponent,
+        LibraryAddBookComponent
     ],
     imports: [
         BrowserModule,

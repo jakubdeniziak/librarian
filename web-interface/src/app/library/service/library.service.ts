@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {LibraryDetails} from "../model/library-details";
 import {LibraryForm} from "../model/library-form";
+import {LibraryBook} from "../model/library-book";
 
 @Injectable()
 export class LibraryService {
@@ -23,5 +24,9 @@ export class LibraryService {
 
     deleteLibrary(uuid: string): Observable<any> {
         return this.httpClient.delete('/api/libraries/' + uuid);
+    }
+
+    addBookToLibrary(libraryId: string, bookId: string, request: LibraryBook): Observable<any> {
+        return this.httpClient.put('/api/libraries/' + libraryId + '/books/' + bookId, request);
     }
 }
