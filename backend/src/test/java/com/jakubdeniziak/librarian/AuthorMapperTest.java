@@ -2,10 +2,12 @@ package com.jakubdeniziak.librarian;
 
 import com.jakubdeniziak.librarian.author.Author;
 import com.jakubdeniziak.librarian.author.AuthorMapper;
+import com.jakubdeniziak.librarian.author.dto.AuthorRequest;
 import com.jakubdeniziak.librarian.author.dto.AuthorResponse;
 import com.jakubdeniziak.librarian.author.dto.AuthorsResponse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 import java.util.List;
 import java.util.UUID;
@@ -13,12 +15,17 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.openMocks;
 
 public class AuthorMapperTest {
     private AuthorMapper mapper;
 
+    @Mock
+    private AuthorRequest request;
+
     @BeforeEach
     void setUp() {
+        openMocks(this);
         mapper = new AuthorMapper();
     }
 
@@ -75,5 +82,27 @@ public class AuthorMapperTest {
         assertEquals(id2, authorsResponse.getAuthors().get(1).getId());
         assertEquals(firstName2, authorsResponse.getAuthors().get(1).getFirstName());
         assertEquals(lastName2, authorsResponse.getAuthors().get(1).getLastName());
+    }
+
+    @Test
+    public void testAuthorRequestMap() {
+        // Given
+        UUID id = UUID.fromString("a147ef41-01c2-443f-9a33-1092738bdadf");
+        String firstName = "John";
+        String lastName = "Doe";
+        String description = "Sample description";
+
+        when(request.getFirstName()).thenReturn(firstName);
+        when(request.getLastName()).thenReturn(lastName);
+        when(request.getDescription()).thenReturn(description);
+
+        // When
+        Author author = mapper.map(id, request);
+
+        // Then
+        assertEquals(id, author.getId());
+        assertEquals(firstName, author.getFirstName());
+        assertEquals(lastName, author.getLastName());
+        assertEquals(description, author.getDescription());
     }
 }
