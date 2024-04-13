@@ -2,6 +2,7 @@ package com.jakubdeniziak.librarian;
 
 import com.jakubdeniziak.librarian.publisher.Publisher;
 import com.jakubdeniziak.librarian.publisher.PublisherMapper;
+import com.jakubdeniziak.librarian.publisher.dto.PublisherRequest;
 import com.jakubdeniziak.librarian.publisher.dto.PublisherResponse;
 import com.jakubdeniziak.librarian.publisher.dto.PublishersResponse;
 import org.junit.jupiter.api.BeforeEach;
@@ -20,6 +21,9 @@ public class PublisherMapperTest {
 
     @Mock
     private Publisher publisher;
+
+    @Mock
+    private PublisherRequest request;
 
     @BeforeEach
     public void setUp() {
@@ -72,5 +76,27 @@ public class PublisherMapperTest {
         assertEquals(name1, response.getPublishers().get(0).getName());
         assertEquals(id2, response.getPublishers().get(1).getId());
         assertEquals(name2, response.getPublishers().get(1).getName());
+    }
+
+    @Test
+    public void testPublisherRequestMap() {
+        // Given
+        UUID id = UUID.randomUUID();
+        String name = "Publisher Name";
+        String websiteUrl = "https://example.com";
+        String description = "Publisher Description";
+
+        when(request.getName()).thenReturn(name);
+        when(request.getWebsiteUrl()).thenReturn(websiteUrl);
+        when(request.getDescription()).thenReturn(description);
+
+        // When
+        Publisher mappedPublisher = mapper.map(id, request);
+
+        // Then
+        assertEquals(id, mappedPublisher.getId());
+        assertEquals(name, mappedPublisher.getName());
+        assertEquals(websiteUrl, mappedPublisher.getWebsiteUrl());
+        assertEquals(description, mappedPublisher.getDescription());
     }
 }
