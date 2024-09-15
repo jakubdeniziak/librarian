@@ -17,10 +17,10 @@ CREATE TABLE books (
     isbn VARCHAR(13) NOT NULL UNIQUE,
     title VARCHAR(255) NOT NULL,
     description TEXT,
-    author CHAR(36),
-    publisher CHAR(36),
-    CONSTRAINT fk_author FOREIGN KEY (author) REFERENCES authors(id) ON DELETE SET NULL,
-    CONSTRAINT fk_publisher FOREIGN KEY (publisher) REFERENCES publishers(id) ON DELETE SET NULL
+    author_id CHAR(36),
+    publisher_id CHAR(36),
+    CONSTRAINT fk_author FOREIGN KEY (author_id) REFERENCES authors(id) ON DELETE SET NULL,
+    CONSTRAINT fk_publisher FOREIGN KEY (publisher_id) REFERENCES publishers(id) ON DELETE SET NULL
 );
 
 CREATE TABLE libraries (
@@ -32,9 +32,9 @@ CREATE TABLE libraries (
 
 CREATE TABLE library_books (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    library CHAR(36),
-    book CHAR(36),
+    library_id CHAR(36),
+    book_id CHAR(36),
     number_of_copies INT NOT NULL,
-    CONSTRAINT fk_library FOREIGN KEY (library) REFERENCES libraries(id) ON DELETE CASCADE,
-    CONSTRAINT fk_book FOREIGN KEY (book) REFERENCES books(id) ON DELETE CASCADE
+    CONSTRAINT fk_library FOREIGN KEY (library_id) REFERENCES libraries(id) ON DELETE CASCADE,
+    CONSTRAINT fk_book FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
 );
