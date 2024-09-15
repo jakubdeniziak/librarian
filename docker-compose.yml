@@ -2,6 +2,15 @@ version: '3.8'
 
 
 services:
+  web-interface:
+    build: ./web-interface
+    ports:
+      - "4200:4200"
+    networks:
+      - librarian-network
+    depends_on:
+      - backend
+
   backend:
     build: ./backend
     environment:
@@ -39,3 +48,4 @@ volumes:
 
 networks:
   librarian-network:
+    driver: bridge
