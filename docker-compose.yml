@@ -1,9 +1,51 @@
 version: '3.8'
 
+
 services:
-  spring-boot-app:
-    build:
-      context: backend/
-      dockerfile: Dockerfile
+  web-interface:
+    build: ./web-interface
     ports:
-      - "8081:8081"
+      - "4200:4200"
+    networks:
+      - librarian-network
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://database:3306/library
+    ports:
+      - "8080:8080"
+    networks:
+      librarian-network:
+    depends_on:
+      database:
+        condition: service_healthy
+
+  database:
+    image: mysql:9.0
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: library
+    ports:
+      - "3306:3306"
+    networks:
+      librarian-network:
+    volumes:
+      - database_data:/var/lib/mysql
+      - ./sql-scripts:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+
+
+volumes:
+  database_data:
+
+
+networks:
+  librarian-network:
+    driver: bridge
