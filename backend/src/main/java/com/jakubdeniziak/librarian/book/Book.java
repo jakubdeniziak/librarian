@@ -2,10 +2,7 @@ package com.jakubdeniziak.librarian.book;
 
 import com.jakubdeniziak.librarian.author.Author;
 import com.jakubdeniziak.librarian.publisher.Publisher;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.UUID;
@@ -16,6 +13,7 @@ import java.util.UUID;
 @Builder
 @Getter
 @Setter
+@Table(name = "books")
 public class Book {
     @Id
     private UUID id;

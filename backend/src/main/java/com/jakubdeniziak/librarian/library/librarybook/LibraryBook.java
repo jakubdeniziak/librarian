@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Getter
+@Table(name = "library_books")
 public class LibraryBook {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

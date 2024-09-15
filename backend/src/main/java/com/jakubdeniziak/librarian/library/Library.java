@@ -1,10 +1,7 @@
 package com.jakubdeniziak.librarian.library;
 
 import com.jakubdeniziak.librarian.library.librarybook.LibraryBook;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Set;
@@ -16,6 +13,7 @@ import java.util.UUID;
 @Builder
 @Getter
 @Setter
+@Table(name = "libraries")
 public class Library {
     @Id
     private UUID id;

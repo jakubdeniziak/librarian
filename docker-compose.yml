@@ -1,7 +1,41 @@
 version: '3.8'
 
+
 services:
   backend:
     build: ./backend
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://database:3306/library
     ports:
       - "8080:8080"
+    networks:
+      librarian-network:
+    depends_on:
+      database:
+        condition: service_healthy
+
+  database:
+    image: mysql:9.0
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: library
+    ports:
+      - "3306:3306"
+    networks:
+      librarian-network:
+    volumes:
+      - database_data:/var/lib/mysql
+      - ./sql-scripts:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost"]
+      interval: 10s
+      timeout: 10s
+      retries: 3
+
+
+volumes:
+  database_data:
+
+
+networks:
+  librarian-network:
