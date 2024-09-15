@@ -3,6 +3,8 @@ package com.jakubdeniziak.librarian.author;
 import com.jakubdeniziak.librarian.book.Book;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 import java.util.List;
 import java.util.UUID;
@@ -16,6 +18,8 @@ import java.util.UUID;
 @Table(name = "authors")
 public class Author {
     @Id
+    @JdbcTypeCode(SqlTypes.CHAR)
+    @Column(columnDefinition = "CHAR(36)")
     private UUID id;
     private String firstName;
     private String lastName;
