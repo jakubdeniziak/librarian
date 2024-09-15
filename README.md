@@ -1,6 +1,6 @@
 # Librarian
 
-An application that will help manage both personal and public libraries.
+An application that will help manage personal libraries.
 
 ## License
 
