@@ -1,0 +1,4 @@
+spring:
+  datasource:
+    username: root
+    driverClassName: com.mysql.cj.jdbc.Driver
