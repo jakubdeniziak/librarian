@@ -13,7 +13,7 @@ public class LibraryService {
     private final LibraryRepository repository;
 
     public Library findById(UUID id) {
-        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Library id: " + id + "not found"));
+        return repository.findById(id).orElseThrow(ResourceNotFoundException::new);
     }
 
     public List<Library> findAll() {

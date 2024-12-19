@@ -1,6 +1,6 @@
 package com.jakubdeniziak.librarian.book;
 
-import com.jakubdeniziak.librarian.author.Author;
+import com.jakubdeniziak.librarian.author.entity.AuthorEntity;
 import com.jakubdeniziak.librarian.book.dto.BookRequest;
 import com.jakubdeniziak.librarian.book.dto.BookResponse;
 import com.jakubdeniziak.librarian.book.dto.BooksResponse;
@@ -18,7 +18,7 @@ public class BookMapper {
                 .isbn(book.getIsbn())
                 .title(book.getTitle())
                 .description(book.getDescription())
-                .authorId(book.getAuthor().getId())
+                .authorId(book.getAuthorEntity().getId())
                 .publisherId(book.getPublisher().getId())
                 .build();
     }
@@ -30,7 +30,7 @@ public class BookMapper {
                                 .id(book.getId())
                                 .isbn(book.getIsbn())
                                 .title(book.getTitle())
-                                .authorId(book.getAuthor().getId())
+                                .authorId(book.getAuthorEntity().getId())
                                 .publisherId(book.getPublisher().getId())
                                 .build()
                         ).toList()
@@ -43,7 +43,7 @@ public class BookMapper {
                 .isbn(request.getIsbn())
                 .title(request.getTitle())
                 .description(request.getDescription())
-                .author(Author.builder()
+                .authorEntity(AuthorEntity.builder()
                         .id(request.getAuthorId())
                         .build())
                 .publisher(Publisher.builder()

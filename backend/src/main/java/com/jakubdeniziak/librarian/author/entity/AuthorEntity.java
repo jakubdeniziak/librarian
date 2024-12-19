@@ -1,4 +1,4 @@
-package com.jakubdeniziak.librarian.author;
+package com.jakubdeniziak.librarian.author.entity;
 
 import com.jakubdeniziak.librarian.book.Book;
 import jakarta.persistence.*;
@@ -9,14 +9,14 @@ import org.hibernate.type.SqlTypes;
 import java.util.List;
 import java.util.UUID;
 
-@Entity
+@Entity(name = "Author")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Getter
 @Setter
 @Table(name = "authors")
-public class Author {
+public class AuthorEntity {
     @Id
     @JdbcTypeCode(SqlTypes.CHAR)
     @Column(columnDefinition = "CHAR(36)")

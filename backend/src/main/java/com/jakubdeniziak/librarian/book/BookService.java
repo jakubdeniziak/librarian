@@ -1,7 +1,7 @@
 package com.jakubdeniziak.librarian.book;
 
-import com.jakubdeniziak.librarian.author.Author;
-import com.jakubdeniziak.librarian.author.AuthorService;
+import com.jakubdeniziak.librarian.author.entity.AuthorEntity;
+import com.jakubdeniziak.librarian.author.service.DefaultAuthorService;
 import com.jakubdeniziak.librarian.exceptions.ResourceNotFoundException;
 import com.jakubdeniziak.librarian.publisher.Publisher;
 import com.jakubdeniziak.librarian.publisher.PublisherService;
@@ -15,11 +15,11 @@ import java.util.UUID;
 @AllArgsConstructor
 public class BookService {
     private final BookRepository repository;
-    private final AuthorService authorService;
+    private final DefaultAuthorService defaultAuthorService;
     private final PublisherService publisherService;
 
     public Book findById(UUID id) {
-        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Book id: " + id + "not found"));
+        return repository.findById(id).orElseThrow(ResourceNotFoundException::new);
     }
 
     public List<Book> findAll() {
@@ -47,9 +47,9 @@ public class BookService {
         if (updatedBook.getTitle() != null) {
             book.setTitle(updatedBook.getTitle());
         }
-        if (updatedBook.getAuthor().getId() != null) {
-            Author author = authorService.findById(updatedBook.getAuthor().getId());
-            book.setAuthor(author);
+        if (updatedBook.getAuthorEntity().getId() != null) {
+            AuthorEntity authorEntity = defaultAuthorService.find(updatedBook.getAuthorEntity().getId()).orElseThrow(ResourceNotFoundException::new);
+            book.setAuthorEntity(authorEntity);
         }
         if (updatedBook.getPublisher().getId() != null) {
             Publisher publisher = publisherService.findById(updatedBook.getPublisher().getId());

@@ -1,6 +1,6 @@
 package com.jakubdeniziak.librarian.book;
 
-import com.jakubdeniziak.librarian.author.Author;
+import com.jakubdeniziak.librarian.author.entity.AuthorEntity;
 import com.jakubdeniziak.librarian.publisher.Publisher;
 import jakarta.persistence.*;
 import lombok.*;
@@ -26,7 +26,7 @@ public class Book {
     private String description;
     @ManyToOne
     @JoinColumn(name = "author_id")
-    private Author author;
+    private AuthorEntity authorEntity;
     @ManyToOne
     @JoinColumn(name = "publisher_id")
     private Publisher publisher;

@@ -9,6 +9,8 @@ import java.util.UUID;
 public interface BookController {
     BookResponse readBook(UUID id);
 
+    BooksResponse readBooksByAuthor(UUID id);
+
     BooksResponse readBooks();
 
     void createBook(UUID id, BookRequest request);

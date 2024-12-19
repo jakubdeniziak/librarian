@@ -13,7 +13,7 @@ public class PublisherService {
     private final PublisherRepository repository;
 
     public Publisher findById(UUID id) {
-        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Publisher id: " + id + "not found"));
+        return repository.findById(id).orElseThrow(ResourceNotFoundException::new);
     }
 
     public List<Publisher> findAll() {
