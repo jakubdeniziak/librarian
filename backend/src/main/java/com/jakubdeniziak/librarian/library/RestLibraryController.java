@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/libraries")
+@RequestMapping("/libraries")
 @AllArgsConstructor
 public class RestLibraryController implements LibraryController {
     private final LibraryService libraryService;

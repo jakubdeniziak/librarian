@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/publishers")
+@RequestMapping("/publishers")
 @AllArgsConstructor
 public class RestPublisherController implements PublisherController {
     private final PublisherService publisherService;

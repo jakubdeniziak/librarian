@@ -2,3 +2,6 @@ spring:
   datasource:
     username: root
     driverClassName: com.mysql.cj.jdbc.Driver
+server:
+  servlet:
+    context-path: /api

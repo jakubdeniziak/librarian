@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/authors")
+@RequestMapping("/authors")
 @AllArgsConstructor
 public class RestAuthorController implements AuthorController {
     private final AuthorService authorService;
