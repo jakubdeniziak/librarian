@@ -1,6 +1,6 @@
 package com.jakubdeniziak.librarian.author.controller;
 
-import com.jakubdeniziak.librarian.author.entity.AuthorEntity;
+import com.jakubdeniziak.librarian.author.domain.Author;
 import com.jakubdeniziak.librarian.author.mapper.AuthorMapper;
 import com.jakubdeniziak.librarian.author.service.AuthorService;
 import com.jakubdeniziak.librarian.author.dto.AuthorRequest;
@@ -29,14 +29,14 @@ public class AuthorRestController implements AuthorController {
     @Override
     @GetMapping("/{id}")
     public AuthorResponse read(@PathVariable UUID id) {
-        AuthorEntity authorEntity = service.find(id).orElseThrow(ResourceNotFoundException::new);
-        return mapper.map(authorEntity);
+        Author author = service.find(id).orElseThrow(ResourceNotFoundException::new);
+        return mapper.mapToResponse(author);
     }
 
     @Override
     @GetMapping
     public AuthorsResponse readAll() {
-        return mapper.map(service.findAll());
+        return mapper.mapToResponse(service.findAll());
     }
 
     @Override

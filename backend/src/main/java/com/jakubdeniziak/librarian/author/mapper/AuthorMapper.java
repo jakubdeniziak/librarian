@@ -1,38 +1,31 @@
 package com.jakubdeniziak.librarian.author.mapper;
 
-import com.jakubdeniziak.librarian.author.entity.AuthorEntity;
+import com.jakubdeniziak.librarian.author.domain.Author;
 import com.jakubdeniziak.librarian.author.dto.AuthorRequest;
 import com.jakubdeniziak.librarian.author.dto.AuthorResponse;
 import com.jakubdeniziak.librarian.author.dto.AuthorsResponse;
-import org.springframework.stereotype.Component;
+import com.jakubdeniziak.librarian.author.entity.AuthorEntity;
+import org.mapstruct.Mapper;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
-@Component
-public class AuthorMapper {
-    public AuthorResponse map(AuthorEntity authorEntity) {
-        return AuthorResponse.builder()
-                .id(authorEntity.getId())
-                .firstName(authorEntity.getFirstName())
-                .lastName(authorEntity.getLastName())
-                .description(authorEntity.getDescription())
-                .build();
-    }
+@Mapper(componentModel = "spring")
+public interface AuthorMapper {
 
-    public AuthorsResponse map(List<AuthorEntity> authorEntities) {
-        List<AuthorsResponse.Author> authorsResponse = authorEntities.stream()
-                .map(author -> new AuthorsResponse.Author(author.getId(), author.getFirstName(), author.getLastName()))
-                .toList();
-        return new AuthorsResponse(authorsResponse);
-    }
+    Author map(UUID id, AuthorRequest request);
 
-    public AuthorEntity map(UUID id, AuthorRequest request) {
-        return AuthorEntity.builder()
-                .id(id)
-                .firstName(request.getFirstName())
-                .lastName(request.getLastName())
-                .description(request.getDescription())
-                .build();
-    }
+    AuthorEntity mapToEntity(Author author);
+
+    Author map(AuthorEntity entity);
+
+    Optional<Author> map(Optional<AuthorEntity> entity);
+
+    List<Author> map(List<AuthorEntity> authors);
+
+    AuthorResponse mapToResponse(Author author);
+
+    AuthorsResponse mapToResponse(List<Author> authors);
+
 }
