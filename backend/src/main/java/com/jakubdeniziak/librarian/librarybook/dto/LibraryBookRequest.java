@@ -1,4 +1,4 @@
-package com.jakubdeniziak.librarian.library.librarybook.dto;
+package com.jakubdeniziak.librarian.librarybook.dto;
 
 import lombok.Getter;
 

@@ -3,9 +3,9 @@ package com.jakubdeniziak.librarian.library;
 import com.jakubdeniziak.librarian.library.dto.LibrariesResponse;
 import com.jakubdeniziak.librarian.library.dto.LibraryRequest;
 import com.jakubdeniziak.librarian.library.dto.LibraryResponse;
-import com.jakubdeniziak.librarian.library.librarybook.dto.LibraryBookRequest;
-import com.jakubdeniziak.librarian.library.librarybook.dto.LibraryBookResponse;
-import com.jakubdeniziak.librarian.library.librarybook.dto.LibraryBooksResponse;
+import com.jakubdeniziak.librarian.librarybook.dto.LibraryBookRequest;
+import com.jakubdeniziak.librarian.librarybook.dto.LibraryBookResponse;
+import com.jakubdeniziak.librarian.librarybook.dto.LibraryBooksResponse;
 
 import java.util.UUID;
 

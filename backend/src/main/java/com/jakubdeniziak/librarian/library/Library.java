@@ -1,6 +1,6 @@
 package com.jakubdeniziak.librarian.library;
 
-import com.jakubdeniziak.librarian.library.librarybook.LibraryBook;
+import com.jakubdeniziak.librarian.librarybook.LibraryBook;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;

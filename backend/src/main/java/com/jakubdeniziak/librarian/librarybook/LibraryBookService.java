@@ -1,7 +1,7 @@
-package com.jakubdeniziak.librarian.library.librarybook;
+package com.jakubdeniziak.librarian.librarybook;
 
-import com.jakubdeniziak.librarian.book.Book;
-import com.jakubdeniziak.librarian.book.BookService;
+import com.jakubdeniziak.librarian.book.entity.BookEntity;
+import com.jakubdeniziak.librarian.book.service.BookDefaultService;
 import com.jakubdeniziak.librarian.library.Library;
 import com.jakubdeniziak.librarian.library.LibraryService;
 import lombok.AllArgsConstructor;
@@ -16,7 +16,7 @@ import java.util.UUID;
 public class LibraryBookService {
     private final LibraryBookRepository repository;
     private final LibraryService libraryService;
-    private final BookService bookService;
+    private final BookDefaultService bookDefaultService;
 
     public LibraryBook findOne(UUID bookId, UUID libraryId) {
         return repository.findByBookIdAndLibraryId(bookId, libraryId);
@@ -27,11 +27,11 @@ public class LibraryBookService {
     }
 
     public void save(UUID bookId, UUID libraryId, int numberOfCopies) {
-        Book book = bookService.findById(bookId);
+        BookEntity bookEntity = bookDefaultService.findById(bookId);
         Library library = libraryService.findById(libraryId);
         LibraryBook libraryBook = LibraryBook.builder()
                 .library(library)
-                .book(book)
+                .bookEntity(bookEntity)
                 .numberOfCopies(numberOfCopies)
                 .build();
 

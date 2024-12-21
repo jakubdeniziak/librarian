@@ -1,6 +1,6 @@
-package com.jakubdeniziak.librarian.library.librarybook;
+package com.jakubdeniziak.librarian.librarybook;
 
-import com.jakubdeniziak.librarian.book.Book;
+import com.jakubdeniziak.librarian.book.entity.BookEntity;
 import com.jakubdeniziak.librarian.library.Library;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,6 +23,6 @@ public class LibraryBook {
     private Library library;
     @ManyToOne
     @JoinColumn(name = "book_id")
-    private Book book;
+    private BookEntity bookEntity;
     private int numberOfCopies;
 }

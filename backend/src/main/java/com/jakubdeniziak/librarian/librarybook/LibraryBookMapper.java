@@ -1,7 +1,7 @@
-package com.jakubdeniziak.librarian.library.librarybook;
+package com.jakubdeniziak.librarian.librarybook;
 
-import com.jakubdeniziak.librarian.library.librarybook.dto.LibraryBookResponse;
-import com.jakubdeniziak.librarian.library.librarybook.dto.LibraryBooksResponse;
+import com.jakubdeniziak.librarian.librarybook.dto.LibraryBookResponse;
+import com.jakubdeniziak.librarian.librarybook.dto.LibraryBooksResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -11,8 +11,8 @@ public class LibraryBookMapper {
     public LibraryBookResponse map(LibraryBook libraryBook) {
         return LibraryBookResponse.builder()
                 .id(libraryBook.getId())
-                .bookId(libraryBook.getBook().getId())
-                .libraryId(libraryBook.getBook().getId())
+                .bookId(libraryBook.getBookEntity().getId())
+                .libraryId(libraryBook.getBookEntity().getId())
                 .numberOfCopies(libraryBook.getNumberOfCopies())
                 .build();
     }
@@ -22,7 +22,7 @@ public class LibraryBookMapper {
                 .libraryBooks(books.stream()
                         .map(libraryBook -> LibraryBooksResponse.LibraryBook.builder()
                                 .id(libraryBook.getId())
-                                .bookId(libraryBook.getBook().getId())
+                                .bookId(libraryBook.getBookEntity().getId())
                                 .libraryId(libraryBook.getLibrary().getId())
                                 .numberOfCopies(libraryBook.getNumberOfCopies())
                                 .build())

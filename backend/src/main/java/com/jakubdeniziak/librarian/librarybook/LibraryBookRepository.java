@@ -1,4 +1,4 @@
-package com.jakubdeniziak.librarian.library.librarybook;
+package com.jakubdeniziak.librarian.librarybook;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
