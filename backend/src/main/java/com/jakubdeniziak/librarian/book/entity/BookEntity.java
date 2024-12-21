@@ -1,7 +1,7 @@
-package com.jakubdeniziak.librarian.book;
+package com.jakubdeniziak.librarian.book.entity;
 
 import com.jakubdeniziak.librarian.author.entity.AuthorEntity;
-import com.jakubdeniziak.librarian.publisher.Publisher;
+import com.jakubdeniziak.librarian.publisher.entity.PublisherEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
@@ -16,7 +16,8 @@ import java.util.UUID;
 @Getter
 @Setter
 @Table(name = "books")
-public class Book {
+public class BookEntity {
+
     @Id
     @JdbcTypeCode(SqlTypes.CHAR)
     @Column(columnDefinition = "CHAR(36)")
@@ -29,5 +30,6 @@ public class Book {
     private AuthorEntity authorEntity;
     @ManyToOne
     @JoinColumn(name = "publisher_id")
-    private Publisher publisher;
+    private PublisherEntity publisherEntity;
+
 }

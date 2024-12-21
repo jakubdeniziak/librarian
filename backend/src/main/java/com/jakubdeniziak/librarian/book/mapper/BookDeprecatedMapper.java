@@ -1,44 +1,44 @@
-package com.jakubdeniziak.librarian.book;
+package com.jakubdeniziak.librarian.book.mapper;
 
 import com.jakubdeniziak.librarian.author.entity.AuthorEntity;
 import com.jakubdeniziak.librarian.book.dto.BookRequest;
 import com.jakubdeniziak.librarian.book.dto.BookResponse;
 import com.jakubdeniziak.librarian.book.dto.BooksResponse;
-import com.jakubdeniziak.librarian.publisher.Publisher;
+import com.jakubdeniziak.librarian.book.entity.BookEntity;
+import com.jakubdeniziak.librarian.publisher.entity.PublisherEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.UUID;
 
 @Component
-public class BookMapper {
-    public BookResponse map(Book book) {
+@Deprecated
+public class BookDeprecatedMapper {
+
+    public BookResponse map(BookEntity bookEntity) {
         return BookResponse.builder()
-                .id(book.getId())
-                .isbn(book.getIsbn())
-                .title(book.getTitle())
-                .description(book.getDescription())
-                .authorId(book.getAuthorEntity().getId())
-                .publisherId(book.getPublisher().getId())
+                .id(bookEntity.getId())
+                .isbn(bookEntity.getIsbn())
+                .title(bookEntity.getTitle())
+                .description(bookEntity.getDescription())
+                .authorId(bookEntity.getAuthorEntity().getId())
+                .publisherId(bookEntity.getPublisherEntity().getId())
                 .build();
     }
 
-    public BooksResponse map(List<Book> books) {
+    public BooksResponse map(List<BookEntity> bookEntities) {
         return BooksResponse.builder()
-                .books(books.stream()
+                .books(bookEntities.stream()
                         .map(book -> BooksResponse.Book.builder()
                                 .id(book.getId())
-                                .isbn(book.getIsbn())
                                 .title(book.getTitle())
-                                .authorId(book.getAuthorEntity().getId())
-                                .publisherId(book.getPublisher().getId())
                                 .build()
                         ).toList()
                 ).build();
     }
 
-    public Book map(UUID id, BookRequest request) {
-        return Book.builder()
+    public BookEntity map(UUID id, BookRequest request) {
+        return BookEntity.builder()
                 .id(id)
                 .isbn(request.getIsbn())
                 .title(request.getTitle())
@@ -46,9 +46,10 @@ public class BookMapper {
                 .authorEntity(AuthorEntity.builder()
                         .id(request.getAuthorId())
                         .build())
-                .publisher(Publisher.builder()
+                .publisherEntity(PublisherEntity.builder()
                         .id(request.getPublisherId())
                         .build())
                 .build();
     }
+
 }

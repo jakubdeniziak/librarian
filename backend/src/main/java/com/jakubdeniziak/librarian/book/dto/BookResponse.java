@@ -1,17 +1,19 @@
 package com.jakubdeniziak.librarian.book.dto;
 
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Value;
 
 import java.util.UUID;
 
+@Value
 @Builder
-@Getter
 public class BookResponse {
-    private UUID id;
-    private String isbn;
-    private String title;
-    private String description;
-    private UUID authorId;
-    private UUID publisherId;
+
+    UUID id;
+    String isbn;
+    String title;
+    String description;
+    UUID authorId;
+    UUID publisherId;
+
 }

@@ -1,6 +1,6 @@
 package com.jakubdeniziak.librarian.author.entity;
 
-import com.jakubdeniziak.librarian.book.Book;
+import com.jakubdeniziak.librarian.book.entity.BookEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
@@ -25,5 +25,5 @@ public class AuthorEntity {
     private String lastName;
     private String description;
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-    private List<Book> booksWritten;
+    private List<BookEntity> booksWritten;
 }
