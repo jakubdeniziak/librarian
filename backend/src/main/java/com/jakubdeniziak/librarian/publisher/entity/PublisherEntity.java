@@ -1,6 +1,6 @@
-package com.jakubdeniziak.librarian.publisher;
+package com.jakubdeniziak.librarian.publisher.entity;
 
-import com.jakubdeniziak.librarian.book.Book;
+import com.jakubdeniziak.librarian.book.entity.BookEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.JdbcTypeCode;
@@ -9,14 +9,15 @@ import org.hibernate.type.SqlTypes;
 import java.util.List;
 import java.util.UUID;
 
-@Entity
+@Entity(name = "Publisher")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Getter
 @Setter
 @Table(name = "publishers")
-public class Publisher {
+public class PublisherEntity {
+
     @Id
     @JdbcTypeCode(SqlTypes.CHAR)
     @Column(columnDefinition = "CHAR(36)")
@@ -25,5 +26,6 @@ public class Publisher {
     private String websiteUrl;
     private String description;
     @OneToMany(mappedBy = "publisher", cascade = CascadeType.ALL)
-    private List<Book> booksPublished;
+    private List<BookEntity> booksPublished;
+
 }

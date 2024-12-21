@@ -1,20 +1,19 @@
 package com.jakubdeniziak.librarian.publisher.dto;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.Value;
 
 import java.util.List;
 import java.util.UUID;
 
-@Builder
-@Getter
+@Value
 public class PublishersResponse {
-    @Builder
-    @Getter
+
+    @Value
     public static class Publisher {
-        private UUID id;
-        private String name;
+        UUID id;
+        String name;
     }
 
-    private List<Publisher> publishers;
+    List<Publisher> publishers;
+
 }

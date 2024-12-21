@@ -1,15 +1,15 @@
 package com.jakubdeniziak.librarian.publisher.dto;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.Value;
 
 import java.util.UUID;
 
-@Builder
-@Getter
+@Value
 public class PublisherResponse {
-    private UUID id;
-    private String name;
-    private String websiteUrl;
-    private String description;
+
+    UUID id;
+    String name;
+    String websiteUrl;
+    String description;
+
 }
