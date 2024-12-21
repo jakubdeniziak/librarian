@@ -1,20 +1,20 @@
 package com.jakubdeniziak.librarian.library.dto;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.Value;
 
 import java.util.List;
 import java.util.UUID;
 
-@Builder
-@Getter
+@Value
 public class LibrariesResponse {
-    @Builder
-    @Getter
+
+    @Value
     public static class Library {
-        private UUID id;
-        private String name;
-        private String address;
+
+        UUID id;
+        String name;
+        String address;
+
     }
 
     List<Library> libraries;

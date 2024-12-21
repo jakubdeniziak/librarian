@@ -1,4 +1,4 @@
-package com.jakubdeniziak.librarian.library;
+package com.jakubdeniziak.librarian.library.entity;
 
 import com.jakubdeniziak.librarian.librarybook.LibraryBook;
 import jakarta.persistence.*;
@@ -9,14 +9,15 @@ import org.hibernate.type.SqlTypes;
 import java.util.Set;
 import java.util.UUID;
 
-@Entity
+@Entity(name = "Library")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Getter
 @Setter
 @Table(name = "libraries")
-public class Library {
+public class LibraryEntity {
+
     @Id
     @JdbcTypeCode(SqlTypes.CHAR)
     @Column(columnDefinition = "CHAR(36)")
@@ -26,4 +27,5 @@ public class Library {
     private String description;
     @OneToMany(mappedBy = "library", cascade = CascadeType.REMOVE)
     private Set<LibraryBook> libraryBooks;
+
 }

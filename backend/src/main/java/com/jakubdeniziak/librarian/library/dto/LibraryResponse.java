@@ -1,15 +1,15 @@
 package com.jakubdeniziak.librarian.library.dto;
 
-import lombok.Builder;
-import lombok.Getter;
+import lombok.Value;
 
 import java.util.UUID;
 
-@Builder
-@Getter
+@Value
 public class LibraryResponse {
-    private UUID id;
-    private String name;
-    private String address;
-    private String description;
+
+    UUID id;
+    String name;
+    String address;
+    String description;
+
 }

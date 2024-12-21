@@ -23,7 +23,7 @@ public class LibraryBookMapper {
                         .map(libraryBook -> LibraryBooksResponse.LibraryBook.builder()
                                 .id(libraryBook.getId())
                                 .bookId(libraryBook.getBookEntity().getId())
-                                .libraryId(libraryBook.getLibrary().getId())
+                                .libraryId(libraryBook.getLibraryEntity().getId())
                                 .numberOfCopies(libraryBook.getNumberOfCopies())
                                 .build())
                         .toList())

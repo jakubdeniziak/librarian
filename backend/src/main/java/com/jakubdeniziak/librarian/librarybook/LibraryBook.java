@@ -1,7 +1,7 @@
 package com.jakubdeniziak.librarian.librarybook;
 
 import com.jakubdeniziak.librarian.book.entity.BookEntity;
-import com.jakubdeniziak.librarian.library.Library;
+import com.jakubdeniziak.librarian.library.entity.LibraryEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,7 +20,7 @@ public class LibraryBook {
     private Long id;
     @ManyToOne
     @JoinColumn(name = "library_id")
-    private Library library;
+    private LibraryEntity libraryEntity;
     @ManyToOne
     @JoinColumn(name = "book_id")
     private BookEntity bookEntity;

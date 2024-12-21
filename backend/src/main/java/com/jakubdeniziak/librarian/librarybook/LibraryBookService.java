@@ -2,8 +2,8 @@ package com.jakubdeniziak.librarian.librarybook;
 
 import com.jakubdeniziak.librarian.book.entity.BookEntity;
 import com.jakubdeniziak.librarian.book.service.BookDefaultService;
-import com.jakubdeniziak.librarian.library.Library;
-import com.jakubdeniziak.librarian.library.LibraryService;
+import com.jakubdeniziak.librarian.library.entity.LibraryEntity;
+import com.jakubdeniziak.librarian.library.service.LibraryDefaultService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +15,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class LibraryBookService {
     private final LibraryBookRepository repository;
-    private final LibraryService libraryService;
+    private final LibraryDefaultService libraryDefaultService;
     private final BookDefaultService bookDefaultService;
 
     public LibraryBook findOne(UUID bookId, UUID libraryId) {
@@ -28,9 +28,9 @@ public class LibraryBookService {
 
     public void save(UUID bookId, UUID libraryId, int numberOfCopies) {
         BookEntity bookEntity = bookDefaultService.findById(bookId);
-        Library library = libraryService.findById(libraryId);
+        LibraryEntity libraryEntity = libraryDefaultService.findById(libraryId);
         LibraryBook libraryBook = LibraryBook.builder()
-                .library(library)
+                .libraryEntity(libraryEntity)
                 .bookEntity(bookEntity)
                 .numberOfCopies(numberOfCopies)
                 .build();

@@ -1,10 +1,12 @@
 package com.jakubdeniziak.librarian.library.dto;
 
-import lombok.Getter;
+import lombok.Value;
 
-@Getter
+@Value
 public class LibraryRequest {
-    private String name;
-    private String address;
-    private String description;
+
+    String name;
+    String address;
+    String description;
+
 }
