@@ -27,7 +27,7 @@ public class PublisherDeprecatedMapper {
         return List.of();
     }
 
-    public PublisherResponse map(Optional<Publisher> publisher) {
+    public PublisherResponse map(Publisher publisher) {
         return new PublisherResponse(null, null, null, null);
     }
 

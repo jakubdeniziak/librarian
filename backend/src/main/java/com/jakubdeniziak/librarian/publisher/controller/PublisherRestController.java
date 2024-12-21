@@ -1,5 +1,7 @@
 package com.jakubdeniziak.librarian.publisher.controller;
 
+import com.jakubdeniziak.librarian.exceptions.ResourceNotFoundException;
+import com.jakubdeniziak.librarian.publisher.domain.Publisher;
 import com.jakubdeniziak.librarian.publisher.mapper.PublisherDeprecatedMapper;
 import com.jakubdeniziak.librarian.publisher.dto.PublisherRequest;
 import com.jakubdeniziak.librarian.publisher.dto.PublisherResponse;
@@ -27,7 +29,8 @@ public class PublisherRestController implements PublisherController {
     @Override
     @GetMapping("/{id}")
     public PublisherResponse read(@PathVariable("id") UUID id) {
-        return mapper.map(service.find(id));
+        Publisher publisher = service.find(id).orElseThrow(ResourceNotFoundException::new);
+        return mapper.map(publisher);
     }
 
     @Override
