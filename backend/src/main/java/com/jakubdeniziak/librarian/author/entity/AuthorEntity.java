@@ -18,6 +18,7 @@ public class AuthorEntity {
 
     @Id
     private UUID id;
+
     private String firstName;
     private String lastName;
     private String description;
