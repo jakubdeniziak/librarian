@@ -1,29 +1,41 @@
 package com.jakubdeniziak.librarian.author.entity;
 
-import com.jakubdeniziak.librarian.book.entity.BookEntity;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
+import org.hibernate.proxy.HibernateProxy;
 
-import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity(name = "Author")
+@Table(name = "authors")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Getter
 @Setter
-@Table(name = "authors")
 public class AuthorEntity {
+
     @Id
-    @JdbcTypeCode(SqlTypes.CHAR)
-    @Column(columnDefinition = "CHAR(36)")
     private UUID id;
     private String firstName;
     private String lastName;
     private String description;
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-    private List<BookEntity> booksWritten;
+
+    @Override
+    public final boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null) return false;
+        Class<?> oEffectiveClass = o instanceof HibernateProxy ? ((HibernateProxy) o).getHibernateLazyInitializer().getPersistentClass() : o.getClass();
+        Class<?> thisEffectiveClass = this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass() : this.getClass();
+        if (thisEffectiveClass != oEffectiveClass) return false;
+        AuthorEntity that = (AuthorEntity) o;
+        return getId() != null && Objects.equals(getId(), that.getId());
+    }
+
+    @Override
+    public final int hashCode() {
+        return this instanceof HibernateProxy ? ((HibernateProxy) this).getHibernateLazyInitializer().getPersistentClass().hashCode() : getClass().hashCode();
+    }
+
 }
