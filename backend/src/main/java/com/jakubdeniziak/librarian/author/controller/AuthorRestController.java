@@ -6,7 +6,6 @@ import com.jakubdeniziak.librarian.author.service.AuthorService;
 import com.jakubdeniziak.librarian.author.dto.AuthorRequest;
 import com.jakubdeniziak.librarian.author.dto.AuthorResponse;
 import com.jakubdeniziak.librarian.author.dto.AuthorsResponse;
-import com.jakubdeniziak.librarian.exceptions.ResourceNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +28,7 @@ public class AuthorRestController implements AuthorController {
     @Override
     @GetMapping("/{id}")
     public AuthorResponse read(@PathVariable UUID id) {
-        Author author = service.find(id).orElseThrow(ResourceNotFoundException::new);
+        Author author = service.find(id);
         return mapper.mapToResponse(author);
     }
 

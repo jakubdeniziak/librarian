@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -20,12 +19,12 @@ public class AuthorDefaultService implements AuthorService {
 
     @Override
     public void save(Author author) {
-        repository.save(mapper.mapToEntity(author));
+        repository.save(mapper.map(author));
     }
 
     @Override
-    public Optional<Author> find(UUID id) {
-        return mapper.map(repository.findById(id));
+    public Author find(UUID id) {
+        return mapper.map(repository.findById(id).orElseThrow(ResourceNotFoundException::new));
     }
 
     @Override
@@ -35,7 +34,7 @@ public class AuthorDefaultService implements AuthorService {
 
     @Override
     public void update(UUID id, Author updated) {
-        Author author = find(id).orElseThrow(ResourceNotFoundException::new);
+        Author author = find(id);
 
         if (updated.getFirstName() != null) {
             author.setFirstName(updated.getFirstName());
@@ -51,4 +50,5 @@ public class AuthorDefaultService implements AuthorService {
     public void delete(UUID id) {
         repository.deleteById(id);
     }
+
 }
