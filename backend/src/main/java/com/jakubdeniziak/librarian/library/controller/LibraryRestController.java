@@ -1,8 +1,6 @@
 package com.jakubdeniziak.librarian.library.controller;
 
-import com.jakubdeniziak.librarian.exceptions.ResourceNotFoundException;
-import com.jakubdeniziak.librarian.library.domain.Library;
-import com.jakubdeniziak.librarian.library.mapper.LibraryDeprecatedMapper;
+import com.jakubdeniziak.librarian.library.mapper.LibraryDefaultMapper;
 import com.jakubdeniziak.librarian.library.service.LibraryDefaultService;
 import com.jakubdeniziak.librarian.library.dto.LibrariesResponse;
 import com.jakubdeniziak.librarian.library.dto.LibraryRequest;
@@ -18,7 +16,7 @@ import java.util.UUID;
 public class LibraryRestController implements LibraryController {
 
     private final LibraryDefaultService service;
-    private final LibraryDeprecatedMapper mapper;
+    private final LibraryDefaultMapper mapper;
 
     @Override
     @PutMapping("/{id}")
@@ -29,14 +27,13 @@ public class LibraryRestController implements LibraryController {
     @Override
     @GetMapping("/{id}")
     public LibraryResponse read(@PathVariable("id") UUID id) {
-        Library library = service.find(id).orElseThrow(ResourceNotFoundException::new);
-        return mapper.map(library);
+        return mapper.mapToResponse(service.find(id));
     }
 
     @Override
     @GetMapping
     public LibrariesResponse readAll() {
-        return mapper.map(service.findAll());
+        return mapper.mapToResponse(service.findAll());
     }
 
     @Override

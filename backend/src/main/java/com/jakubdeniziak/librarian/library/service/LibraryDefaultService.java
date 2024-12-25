@@ -2,13 +2,12 @@ package com.jakubdeniziak.librarian.library.service;
 
 import com.jakubdeniziak.librarian.exceptions.ResourceNotFoundException;
 import com.jakubdeniziak.librarian.library.domain.Library;
-import com.jakubdeniziak.librarian.library.mapper.LibraryDeprecatedMapper;
+import com.jakubdeniziak.librarian.library.mapper.LibraryMapper;
 import com.jakubdeniziak.librarian.library.repository.LibraryJpaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -16,31 +15,34 @@ import java.util.UUID;
 public class LibraryDefaultService implements LibraryService {
 
     private final LibraryJpaRepository repository;
-    private final LibraryDeprecatedMapper mapper;
+    private final LibraryMapper mapper;
 
     @Override
     public void save(Library library) {
-        repository.save(mapper.mapToEntity(library));
+        repository.save(mapper.map(library));
     }
 
     @Override
-    public Optional<Library> find(UUID id) {
-        return mapper.map(repository.findById(id));
+    public Library find(UUID id) {
+        return mapper.map(repository.findById(id).orElseThrow(ResourceNotFoundException::new));
     }
 
     @Override
     public List<Library> findAll() {
-        return mapper.mapToDomain(repository.findAll());
+        return mapper.map(repository.findAll());
     }
 
     @Override
     public void update(UUID id, Library updated) {
-        Library library = find(id).orElseThrow(ResourceNotFoundException::new);
+        Library library = find(id);
         if (updated.getName() != null) {
             library.setName(updated.getName());
         }
         if (updated.getAddress() != null) {
             library.setAddress(updated.getAddress());
+        }
+        if (updated.getDescription() != null) {
+            library.setDescription(updated.getDescription());
         }
         save(library);
     }
