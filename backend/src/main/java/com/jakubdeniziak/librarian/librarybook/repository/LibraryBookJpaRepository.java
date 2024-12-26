@@ -11,6 +11,6 @@ import java.util.UUID;
 @Repository
 public interface LibraryBookJpaRepository extends JpaRepository<LibraryBookEntity, LibraryBookKey> {
 
-    List<LibraryBookEntity> findAllByLibraryId(UUID libraryId);
+    List<LibraryBookEntity> findAllByLibrary_Id(UUID libraryId);
 
 }

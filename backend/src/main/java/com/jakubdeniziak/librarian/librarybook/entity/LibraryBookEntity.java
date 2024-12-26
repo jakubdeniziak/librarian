@@ -22,10 +22,10 @@ public class LibraryBookEntity {
     @ManyToOne
     @MapsId("libraryId")
     @JoinColumn(name = "library_id")
-    private LibraryEntity libraryEntity;
+    private LibraryEntity library;
     @ManyToOne
     @MapsId("bookId")
     @JoinColumn(name = "book_id")
-    private BookEntity bookEntity;
+    private BookEntity entity;
 
 }

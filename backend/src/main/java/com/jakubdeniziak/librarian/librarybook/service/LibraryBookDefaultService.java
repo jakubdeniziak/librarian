@@ -31,7 +31,7 @@ public class LibraryBookDefaultService implements LibraryBookService {
 
     @Override
     public List<LibraryBook> findAllByLibrary(UUID libraryId) {
-        return mapper.map(repository.findAllByLibraryId(libraryId));
+        return mapper.map(repository.findAllByLibrary_Id(libraryId));
     }
 
     @Override
