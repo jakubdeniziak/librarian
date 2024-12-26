@@ -13,8 +13,10 @@ public class PublishersResponse {
     @Value
     @Builder
     public static class Publisher {
+
         UUID id;
         String name;
+
     }
 
     List<Publisher> publishers;
