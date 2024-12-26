@@ -4,35 +4,33 @@ import com.jakubdeniziak.librarian.author.entity.AuthorEntity;
 import com.jakubdeniziak.librarian.publisher.entity.PublisherEntity;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.proxy.HibernateProxy;
-import org.hibernate.type.SqlTypes;
 
 import java.util.Objects;
 import java.util.UUID;
 
-@Entity
+@Entity(name = "Book")
+@Table(name = "books")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Getter
 @Setter
-@Table(name = "books")
 public class BookEntity {
 
     @Id
-    @JdbcTypeCode(SqlTypes.CHAR)
-    @Column(columnDefinition = "CHAR(36)")
     private UUID id;
+
     private String isbn;
     private String title;
     private String description;
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "author_id")
-    private AuthorEntity authorEntity;
-    @ManyToOne
+    private AuthorEntity author;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "publisher_id")
-    private PublisherEntity publisherEntity;
+    private PublisherEntity publisher;
 
     @Override
     public final boolean equals(Object o) {

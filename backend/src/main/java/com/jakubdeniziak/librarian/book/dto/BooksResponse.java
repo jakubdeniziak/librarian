@@ -13,8 +13,10 @@ public class BooksResponse {
     @Value
     @Builder
     public static class Book {
+
         UUID id;
         String title;
+
     }
 
     List<Book> books;
