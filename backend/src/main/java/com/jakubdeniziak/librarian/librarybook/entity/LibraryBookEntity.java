@@ -1,28 +1,31 @@
-package com.jakubdeniziak.librarian.librarybook;
+package com.jakubdeniziak.librarian.librarybook.entity;
 
 import com.jakubdeniziak.librarian.book.entity.BookEntity;
 import com.jakubdeniziak.librarian.library.entity.LibraryEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Entity
+@Entity(name = "LibraryBook")
+@Table(name = "library_books")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @Getter
-@Table(name = "library_books")
-public class LibraryBook {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+@Setter
+public class LibraryBookEntity {
+
+    @EmbeddedId
+    private LibraryBookKey id;
+
+    private Integer numberOfCopies;
+
     @ManyToOne
+    @MapsId("libraryId")
     @JoinColumn(name = "library_id")
     private LibraryEntity libraryEntity;
     @ManyToOne
+    @MapsId("bookId")
     @JoinColumn(name = "book_id")
     private BookEntity bookEntity;
-    private int numberOfCopies;
+
 }

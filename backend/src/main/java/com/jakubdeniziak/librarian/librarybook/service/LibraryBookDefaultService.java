@@ -1,0 +1,66 @@
+package com.jakubdeniziak.librarian.librarybook.service;
+
+import com.jakubdeniziak.librarian.exceptions.ResourceNotFoundException;
+import com.jakubdeniziak.librarian.librarybook.domain.LibraryBook;
+import com.jakubdeniziak.librarian.librarybook.entity.LibraryBookKey;
+import com.jakubdeniziak.librarian.librarybook.mapper.LibraryBookMapper;
+import com.jakubdeniziak.librarian.librarybook.repository.LibraryBookJpaRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.UUID;
+
+@Service
+@AllArgsConstructor
+public class LibraryBookDefaultService implements LibraryBookService {
+
+    private final LibraryBookJpaRepository repository;
+    private final LibraryBookMapper mapper;
+
+    @Override
+    public void save(LibraryBook libraryBook) {
+        repository.save(mapper.map(libraryBook));
+    }
+
+    @Override
+    public LibraryBook find(UUID libraryId, UUID bookId) {
+        return mapper.map(repository.findById(createKey(libraryId, bookId))
+                .orElseThrow(ResourceNotFoundException::new));
+    }
+
+    @Override
+    public List<LibraryBook> findAllByLibrary(UUID libraryId) {
+        return mapper.map(repository.findAllByLibraryId(libraryId));
+    }
+
+    @Override
+    public List<LibraryBook> findAll() {
+        return mapper.map(repository.findAll());
+    }
+
+    @Override
+    public void update(UUID libraryId, UUID bookId, LibraryBook updated) {
+        LibraryBook libraryBook = find(libraryId, bookId);
+        if (updated.getNumberOfCopies() != null) {
+            libraryBook.setNumberOfCopies(updated.getNumberOfCopies());
+        }
+        if (updated.getLibraryId() != null) {
+            libraryBook.setLibraryId(updated.getLibraryId());
+        }
+        if (updated.getBookId() != null) {
+            libraryBook.setBookId(updated.getBookId());
+        }
+        save(libraryBook);
+    }
+
+    @Override
+    public void delete(UUID libraryId, UUID bookId) {
+        repository.deleteById(createKey(libraryId, bookId));
+    }
+
+    private LibraryBookKey createKey(UUID libraryId, UUID bookId) {
+        return new LibraryBookKey(libraryId, bookId);
+    }
+
+}

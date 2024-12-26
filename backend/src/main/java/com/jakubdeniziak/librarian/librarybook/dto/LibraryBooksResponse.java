@@ -2,21 +2,25 @@ package com.jakubdeniziak.librarian.librarybook.dto;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Value;
 
 import java.util.List;
 import java.util.UUID;
 
+@Value
 @Builder
-@Getter
 public class LibraryBooksResponse {
-    private List<LibraryBook> libraryBooks;
 
+    @Value
     @Builder
-    @Getter
     public static class LibraryBook {
-        private Long id;
-        private UUID libraryId;
-        private UUID bookId;
-        private int numberOfCopies;
+
+        UUID libraryId;
+        UUID bookId;
+        Integer numberOfCopies;
+
     }
+
+    List<LibraryBook> libraryBooks;
+
 }

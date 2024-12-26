@@ -1,8 +1,10 @@
 package com.jakubdeniziak.librarian.librarybook.dto;
 
-import lombok.Getter;
+import lombok.Value;
 
-@Getter
+@Value
 public class LibraryBookRequest {
-    private int numberOfCopies;
+
+    Integer numberOfCopies;
+
 }
