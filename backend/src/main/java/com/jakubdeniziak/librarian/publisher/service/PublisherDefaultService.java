@@ -2,13 +2,12 @@ package com.jakubdeniziak.librarian.publisher.service;
 
 import com.jakubdeniziak.librarian.exceptions.ResourceNotFoundException;
 import com.jakubdeniziak.librarian.publisher.domain.Publisher;
-import com.jakubdeniziak.librarian.publisher.mapper.PublisherDeprecatedMapper;
+import com.jakubdeniziak.librarian.publisher.mapper.PublisherMapper;
 import com.jakubdeniziak.librarian.publisher.repository.PublisherJpaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -16,26 +15,29 @@ import java.util.UUID;
 public class PublisherDefaultService implements PublisherService {
 
     private final PublisherJpaRepository repository;
-    private final PublisherDeprecatedMapper mapper;
+    private final PublisherMapper mapper;
 
     @Override
     public void save(Publisher publisher) {
-        repository.save(mapper.mapToEntity(publisher));
+        repository.save(mapper.map(publisher));
     }
 
     @Override
-    public Optional<Publisher> find(UUID id) {
-        return mapper.mapToOptional(repository.findById(id));
+    public Publisher find(UUID id) {
+        return mapper.map(repository.findById(id).orElseThrow(ResourceNotFoundException::new));
     }
 
     @Override
     public List<Publisher> findAll() {
-        return mapper.mapEntities(repository.findAll());
+        return mapper.map(repository.findAll());
     }
 
     @Override
     public void update(UUID id, Publisher updated) {
-        Publisher publisher = find(id).orElseThrow(ResourceNotFoundException::new);
+        Publisher publisher = find(id);
+        if (updated.getName() != null) {
+            publisher.setName(updated.getName());
+        }
         if (updated.getWebsiteUrl() != null) {
             publisher.setWebsiteUrl(updated.getWebsiteUrl());
         }
