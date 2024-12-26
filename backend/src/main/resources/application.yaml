@@ -4,3 +4,8 @@ spring:
 server:
   servlet:
     context-path: /api
+springdoc:
+  api-docs:
+    path: /docs/download
+  swagger-ui:
+    path: /docs
