@@ -24,6 +24,8 @@ public class BookEntity {
     private String isbn;
     private String title;
     private String description;
+    @Enumerated(EnumType.STRING)
+    private BookFormat format;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "author_id")

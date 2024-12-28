@@ -27,6 +27,7 @@ public class BookDefaultMapper implements BookMapper {
                 .isbn(request.getIsbn())
                 .title(request.getTitle())
                 .description(request.getDescription())
+                .format(request.getFormat())
                 .build();
     }
 
@@ -37,6 +38,7 @@ public class BookDefaultMapper implements BookMapper {
                 .isbn(book.getIsbn())
                 .title(book.getTitle())
                 .description(book.getDescription())
+                .format(book.getFormat())
                 .author(authorMapper.map(book.getAuthor()))
                 .publisher(publisherMapper.map(book.getPublisher()))
                 .build();
@@ -49,6 +51,7 @@ public class BookDefaultMapper implements BookMapper {
                 .isbn(book.getIsbn())
                 .title(book.getTitle())
                 .description(book.getDescription())
+                .format(book.getFormat())
                 .author(authorMapper.map(book.getAuthor()))
                 .publisher(publisherMapper.map(book.getPublisher()))
                 .build();
@@ -68,6 +71,7 @@ public class BookDefaultMapper implements BookMapper {
                 .isbn(book.getIsbn())
                 .title(book.getTitle())
                 .description(book.getDescription())
+                .format(book.getFormat())
                 .authorId(book.getAuthor().getId())
                 .publisherId(book.getPublisher().getId())
                 .build();
