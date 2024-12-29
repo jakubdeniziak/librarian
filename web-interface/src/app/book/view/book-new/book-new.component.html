@@ -23,6 +23,16 @@
         </div>
 
         <div class="mt-3">
+            <label for="format">Format:</label>
+            <br>
+            <select id="format" name="format" [(ngModel)]="book.format" class="text-bgSecondary mt-1 p-1">
+                <option *ngFor="let format of formats" [value]="format">
+                    {{format}}
+                </option>
+            </select>
+        </div>
+
+        <div class="mt-3">
             <label for="author">Author:</label>
             <br>
             <select id="author" name="author" [(ngModel)]="book.authorId" class="text-bgSecondary mt-1 p-1">
