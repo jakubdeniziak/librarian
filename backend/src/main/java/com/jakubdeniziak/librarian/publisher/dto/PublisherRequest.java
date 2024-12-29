@@ -1,10 +1,12 @@
 package com.jakubdeniziak.librarian.publisher.dto;
 
-import lombok.Getter;
+import lombok.Value;
 
-@Getter
+@Value
 public class PublisherRequest {
-    private String name;
-    private String websiteUrl;
-    private String description;
+
+    String name;
+    String websiteUrl;
+    String description;
+
 }

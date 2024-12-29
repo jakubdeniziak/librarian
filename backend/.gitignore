@@ -1,9 +1,4 @@
-.idea
-.mvn
+.idea/
+target/
 
-target
-
-mvnw
-mvnw.cmd
-
-librarian.iml
+*.iml

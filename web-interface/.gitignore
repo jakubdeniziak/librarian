@@ -1,3 +1,5 @@
 .angular/
-dist
+.idea/
+
+dist/
 node_modules/

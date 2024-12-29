@@ -36,7 +36,6 @@ export class LibraryDetailsComponent implements OnInit {
         this.libraryBooks?.libraryBooks.forEach(libraryBook => {
             this.bookService.getBook(libraryBook.bookId).subscribe(book => {
                 this.bookTitles[libraryBook.bookId] = book.title;
-                console.log(book.title)
             });
         });
     }

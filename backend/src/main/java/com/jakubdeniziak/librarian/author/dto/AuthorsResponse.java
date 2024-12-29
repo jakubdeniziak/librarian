@@ -1,21 +1,25 @@
 package com.jakubdeniziak.librarian.author.dto;
 
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Value;
 
 import java.util.List;
 import java.util.UUID;
 
+@Value
 @Builder
-@Getter
 public class AuthorsResponse {
+
+    @Value
     @Builder
-    @Getter
     public static class Author {
-        private UUID id;
-        private String firstName;
-        private String lastName;
+
+        UUID id;
+        String firstName;
+        String lastName;
+
     }
 
-    private List<Author> authors;
+    List<Author> authors;
+
 }
