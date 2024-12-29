@@ -21,7 +21,7 @@ public class LibraryBookRestController implements LibraryBookController {
     @Override
     @PutMapping("/{library_id}/books/{book_id}")
     public void create(@PathVariable("library_id") UUID libraryId, @PathVariable("book_id") UUID bookId, @RequestBody LibraryBookRequest request) {
-        service.save(mapper.map(bookId, libraryId, request));
+        service.save(mapper.map(request), libraryId, bookId);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class LibraryBookRestController implements LibraryBookController {
     @Override
     @PatchMapping("/{library_id}/books/{book_id}")
     public void update(@PathVariable("library_id") UUID libraryId, @PathVariable("book_id") UUID bookId, @RequestBody LibraryBookRequest request) {
-        service.update(libraryId, bookId, mapper.map(libraryId, bookId, request));
+        service.update(libraryId, bookId, mapper.map(request));
     }
 
     @Override

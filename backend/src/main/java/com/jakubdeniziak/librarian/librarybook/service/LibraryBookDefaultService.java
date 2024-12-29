@@ -1,6 +1,8 @@
 package com.jakubdeniziak.librarian.librarybook.service;
 
+import com.jakubdeniziak.librarian.book.service.BookService;
 import com.jakubdeniziak.librarian.exceptions.ResourceNotFoundException;
+import com.jakubdeniziak.librarian.library.service.LibraryService;
 import com.jakubdeniziak.librarian.librarybook.domain.LibraryBook;
 import com.jakubdeniziak.librarian.librarybook.entity.LibraryBookKey;
 import com.jakubdeniziak.librarian.librarybook.mapper.LibraryBookMapper;
@@ -17,9 +19,13 @@ public class LibraryBookDefaultService implements LibraryBookService {
 
     private final LibraryBookJpaRepository repository;
     private final LibraryBookMapper mapper;
+    private final LibraryService libraryService;
+    private final BookService bookService;
 
     @Override
-    public void save(LibraryBook libraryBook) {
+    public void save(LibraryBook libraryBook, UUID libraryId, UUID bookId) {
+        libraryBook.setLibrary(libraryService.find(libraryId));
+        libraryBook.setBook(bookService.find(bookId));
         repository.save(mapper.map(libraryBook));
     }
 
@@ -45,13 +51,13 @@ public class LibraryBookDefaultService implements LibraryBookService {
         if (updated.getNumberOfCopies() != null) {
             libraryBook.setNumberOfCopies(updated.getNumberOfCopies());
         }
-        if (updated.getLibraryId() != null) {
-            libraryBook.setLibraryId(updated.getLibraryId());
+        if (updated.getLibrary() != null) {
+            libraryBook.setLibrary(updated.getLibrary());
         }
-        if (updated.getBookId() != null) {
-            libraryBook.setBookId(updated.getBookId());
+        if (updated.getBook() != null) {
+            libraryBook.setBook(updated.getBook());
         }
-        save(libraryBook);
+        save(libraryBook, libraryId, bookId);
     }
 
     @Override

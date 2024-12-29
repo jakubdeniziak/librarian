@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Books} from "../../../book/model/books";
 import {LibraryService} from "../../service/library.service";
 import {BookService} from "../../../book/service/book.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {LibraryBookForm} from "../../model/library-book/library-book-form";
 
 @Component({
@@ -19,7 +19,8 @@ export class LibraryAddBookComponent implements OnInit {
 
     constructor(private libraryService: LibraryService,
                 private bookService: BookService,
-                private route: ActivatedRoute) {
+                private route: ActivatedRoute,
+                private router: Router) {
     }
 
     ngOnInit(): void {
@@ -30,11 +31,11 @@ export class LibraryAddBookComponent implements OnInit {
 
         this.bookService.getBooks().subscribe(books => this.books = books);
 
-        this.libraryBook = {numberOfCopies: ""};
+        this.libraryBook = {numberOfCopies: 0};
     }
 
     onSubmit() {
         this.libraryService.addBookToLibrary(this.libraryId!, this.bookId!, this.libraryBook!)
-            .subscribe(() => this.ngOnInit());
+            .subscribe(() => this.router.navigate(['/libraries', this.libraryId!]));
     }
 }

@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public interface LibraryBookService {
 
-    void save(LibraryBook libraryBook);
+    void save(LibraryBook libraryBook, UUID libraryId, UUID bookId);
     LibraryBook find(UUID libraryId, UUID bookId);
     List<LibraryBook> findAllByLibrary(UUID libraryId);
     List<LibraryBook> findAll();

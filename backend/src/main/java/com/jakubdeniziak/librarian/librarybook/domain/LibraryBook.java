@@ -1,14 +1,16 @@
 package com.jakubdeniziak.librarian.librarybook.domain;
 
+import com.jakubdeniziak.librarian.book.domain.Book;
+import com.jakubdeniziak.librarian.library.domain.Library;
+import lombok.Builder;
 import lombok.Data;
 
-import java.util.UUID;
-
 @Data
+@Builder
 public class LibraryBook {
 
-    private UUID libraryId;
-    private UUID bookId;
+    private Library library;
+    private Book book;
     private Integer numberOfCopies;
 
 }

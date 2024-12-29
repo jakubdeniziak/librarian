@@ -26,6 +26,7 @@ services:
       librarian-network:
     depends_on:
       - database
+      
 
   database:
     image: postgres:17
@@ -39,7 +40,7 @@ services:
     networks:
       librarian-network:
     volumes:
-      - database_data:/var/lib/postgresql
+      - database_data:/var/lib/postgresql/data
       - ./sql-scripts:/docker-entrypoint-initdb.d
 
 

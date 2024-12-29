@@ -7,11 +7,10 @@ import com.jakubdeniziak.librarian.librarybook.dto.LibraryBooksResponse;
 import com.jakubdeniziak.librarian.librarybook.entity.LibraryBookEntity;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface LibraryBookMapper {
 
-    LibraryBook map(UUID libraryId, UUID bookId, LibraryBookRequest request);
+    LibraryBook map(LibraryBookRequest request);
     LibraryBookEntity map(LibraryBook libraryBook);
     LibraryBook map(LibraryBookEntity libraryBook);
     List<LibraryBook> map(List<LibraryBookEntity> libraryBooks);
