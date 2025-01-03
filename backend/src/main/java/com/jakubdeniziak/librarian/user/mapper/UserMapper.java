@@ -13,8 +13,9 @@ public interface UserMapper {
 
     User map(UUID id, UserRequest request);
     UserEntity map(User user);
-    User map(UserEntity user);
-    List<User> map(List<UserEntity> users);
+    List<UserEntity> map(List<User> users);
+    User mapToDomain(UserEntity user);
+    List<User> mapToDomain(List<UserEntity> users);
     UserResponse mapToResponse(User user);
     UsersResponse mapToResponse(List<User> users);
 

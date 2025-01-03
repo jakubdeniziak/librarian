@@ -23,13 +23,18 @@ public class UserDefaultService implements UserService {
     }
 
     @Override
+    public void saveAll(List<User> users) {
+        repository.saveAll(mapper.map(users));
+    }
+
+    @Override
     public User find(UUID id) {
-        return mapper.map(repository.findById(id).orElseThrow(ResourceNotFoundException::new));
+        return mapper.mapToDomain(repository.findById(id).orElseThrow(ResourceNotFoundException::new));
     }
 
     @Override
     public List<User> findAll() {
-        return mapper.map(repository.findAll());
+        return mapper.mapToDomain(repository.findAll());
     }
 
 }

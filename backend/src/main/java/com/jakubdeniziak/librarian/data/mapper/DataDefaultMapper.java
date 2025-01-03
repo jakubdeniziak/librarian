@@ -10,6 +10,9 @@ import com.jakubdeniziak.librarian.library.domain.Library;
 import com.jakubdeniziak.librarian.librarybook.domain.LibraryBook;
 import com.jakubdeniziak.librarian.librarybook.domain.LibraryBookTuple;
 import com.jakubdeniziak.librarian.publisher.domain.Publisher;
+import com.jakubdeniziak.librarian.user.domain.User;
+import com.jakubdeniziak.librarian.userbook.domain.UserBook;
+import com.jakubdeniziak.librarian.userbook.domain.UserBookTuple;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -18,13 +21,15 @@ import java.util.List;
 public class DataDefaultMapper implements DataMapper {
 
     @Override
-    public DataResponse map(List<Author> authors, List<Publisher> publishers, List<Library> libraries, List<Book> books, List<LibraryBook> libraryBooks) {
+    public DataResponse map(List<Author> authors, List<Publisher> publishers, List<Library> libraries, List<User> users, List<Book> books, List<LibraryBook> libraryBooks, List<UserBook> userBooks) {
         return DataResponse.builder()
                 .authors(mapAuthors(authors))
                 .publishers(mapPublishers(publishers))
                 .libraries(mapLibraries(libraries))
+                .users(mapUsers(users))
                 .books(mapBooks(books))
                 .libraryBooks(mapLibraryBooks(libraryBooks))
+                .userBooks(mapUserBooks(userBooks))
                 .build();
     }
 
@@ -65,6 +70,18 @@ public class DataDefaultMapper implements DataMapper {
     }
 
     @Override
+    public List<User> mapUsers(DataRequest request) {
+        return request.getUsers().stream()
+                .map(user -> User.builder()
+                        .id(user.getId())
+                        .firstName(user.getFirstName())
+                        .lastName(user.getLastName())
+                        .nickname(user.getNickname())
+                        .build())
+                .toList();
+    }
+
+    @Override
     public List<BookTuple> mapBooks(DataRequest request) {
         return request.getBooks().stream()
                 .map(book -> BookTuple.builder()
@@ -90,6 +107,24 @@ public class DataDefaultMapper implements DataMapper {
                                 .build())
                         .libraryId(libraryBook.getLibraryId())
                         .bookId(libraryBook.getBookId())
+                        .build())
+                .toList();
+    }
+
+    @Override
+    public List<UserBookTuple> mapUserBooks(DataRequest request) {
+        return request.getUserBooks().stream()
+                .map(userBook -> UserBookTuple.builder()
+                        .userBook(UserBook.builder()
+                                .id(userBook.getId())
+                                .startedOn(userBook.getStartedOn())
+                                .finishedOn(userBook.getFinishedOn())
+                                .rating(userBook.getRating())
+                                .review(userBook.getReview())
+                                .readingStatus(userBook.getReadingStatus())
+                                .build())
+                        .userId(userBook.getUserId())
+                        .bookId(userBook.getBookId())
                         .build())
                 .toList();
     }
@@ -127,6 +162,17 @@ public class DataDefaultMapper implements DataMapper {
                 .toList();
     }
 
+    private List<DataFormat.User> mapUsers(List<User> users) {
+        return users.stream()
+                .map(user -> DataFormat.User.builder()
+                        .id(user.getId())
+                        .firstName(user.getFirstName())
+                        .lastName(user.getLastName())
+                        .nickname(user.getNickname())
+                        .build())
+                .toList();
+    }
+
     private List<DataFormat.Book> mapBooks(List<Book> books) {
         return books.stream()
                 .map(book -> DataFormat.Book.builder()
@@ -147,6 +193,21 @@ public class DataDefaultMapper implements DataMapper {
                         .libraryId(libraryBook.getLibrary().getId())
                         .bookId(libraryBook.getBook().getId())
                         .numberOfCopies(libraryBook.getNumberOfCopies())
+                        .build())
+                .toList();
+    }
+
+    private List<DataFormat.UserBook> mapUserBooks(List<UserBook> userBooks) {
+        return userBooks.stream()
+                .map(userBook -> DataFormat.UserBook.builder()
+                        .id(userBook.getId())
+                        .userId(userBook.getUser().getId())
+                        .bookId(userBook.getBook().getId())
+                        .startedOn(userBook.getStartedOn())
+                        .finishedOn(userBook.getFinishedOn())
+                        .rating(userBook.getRating())
+                        .review(userBook.getReview())
+                        .readingStatus(userBook.getReadingStatus())
                         .build())
                 .toList();
     }

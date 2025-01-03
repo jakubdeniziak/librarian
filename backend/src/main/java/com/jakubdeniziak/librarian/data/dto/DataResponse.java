@@ -12,7 +12,9 @@ public class DataResponse {
     List<DataFormat.Author> authors;
     List<DataFormat.Publisher> publishers;
     List<DataFormat.Library> libraries;
+    List<DataFormat.User> users;
     List<DataFormat.Book> books;
     List<DataFormat.LibraryBook> libraryBooks;
+    List<DataFormat.UserBook> userBooks;
 
 }

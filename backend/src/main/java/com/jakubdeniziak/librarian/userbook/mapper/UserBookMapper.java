@@ -13,8 +13,9 @@ public interface UserBookMapper {
 
     UserBook map(UUID id, UserBookRequest request);
     UserBookEntity map(UserBook userBook);
-    UserBook map(UserBookEntity userBook);
-    List<UserBook> map(List<UserBookEntity> userBooks);
+    List<UserBookEntity> map(List<UserBook> userBooks);
+    UserBook mapToDomain(UserBookEntity userBook);
+    List<UserBook> mapToDomain(List<UserBookEntity> userBooks);
     UserBookResponse mapToResponse(UserBook userBook);
     UserBooksResponse mapToResponse(List<UserBook> userBooks);
 

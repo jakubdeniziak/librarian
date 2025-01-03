@@ -34,7 +34,14 @@ public class UserDefaultMapper implements UserMapper {
     }
 
     @Override
-    public User map(UserEntity user) {
+    public List<UserEntity> map(List<User> users) {
+        return users.stream()
+                .map(this::map)
+                .toList();
+    }
+
+    @Override
+    public User mapToDomain(UserEntity user) {
         return User.builder()
                 .id(user.getId())
                 .firstName(user.getFirstName())
@@ -44,9 +51,9 @@ public class UserDefaultMapper implements UserMapper {
     }
 
     @Override
-    public List<User> map(List<UserEntity> users) {
+    public List<User> mapToDomain(List<UserEntity> users) {
         return users.stream()
-                .map(this::map)
+                .map(this::mapToDomain)
                 .toList();
     }
 

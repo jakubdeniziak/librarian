@@ -47,7 +47,14 @@ public class UserBookDefaultMapper implements UserBookMapper {
     }
 
     @Override
-    public UserBook map(UserBookEntity userBook) {
+    public List<UserBookEntity> map(List<UserBook> userBooks) {
+        return userBooks.stream()
+                .map(this::map)
+                .toList();
+    }
+
+    @Override
+    public UserBook mapToDomain(UserBookEntity userBook) {
         return UserBook.builder()
                 .id(userBook.getId())
                 .startedOn(userBook.getStartedOn())
@@ -55,15 +62,15 @@ public class UserBookDefaultMapper implements UserBookMapper {
                 .rating(userBook.getRating())
                 .review(userBook.getReview())
                 .readingStatus(userBook.getReadingStatus())
-                .user(userMapper.map(userBook.getUser()))
-                .book(bookMapper.map(userBook.getBook()))
+                .user(userMapper.mapToDomain(userBook.getUser()))
+                .book(bookMapper.mapToDomain(userBook.getBook()))
                 .build();
     }
 
     @Override
-    public List<UserBook> map(List<UserBookEntity> userBooks) {
+    public List<UserBook> mapToDomain(List<UserBookEntity> userBooks) {
         return userBooks.stream()
-                .map(this::map)
+                .map(this::mapToDomain)
                 .toList();
     }
 
