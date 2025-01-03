@@ -13,8 +13,9 @@ public interface AuthorMapper {
 
     Author map(UUID id, AuthorRequest request);
     AuthorEntity map(Author author);
-    Author map(AuthorEntity author);
-    List<Author> map(List<AuthorEntity> authors);
+    List<AuthorEntity> map(List<Author> authors);
+    Author mapToDomain(AuthorEntity author);
+    List<Author> mapToDomain(List<AuthorEntity> authors);
     AuthorResponse mapToResponse(Author author);
     AuthorsResponse mapToResponse(List<Author> authors);
 
