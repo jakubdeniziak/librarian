@@ -8,7 +8,6 @@ import org.hibernate.proxy.HibernateProxy;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.UUID;
 
 @Entity(name = "UserBook")
 @Table(name = "user_books")
@@ -19,8 +18,8 @@ import java.util.UUID;
 @Setter
 public class UserBookEntity {
 
-    @Id
-    private UUID id;
+    @EmbeddedId
+    private UserBookKey id;
 
     private LocalDateTime startedOn;
     private LocalDateTime finishedOn;

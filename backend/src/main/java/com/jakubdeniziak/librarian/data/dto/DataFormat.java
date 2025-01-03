@@ -82,7 +82,6 @@ public class DataFormat {
     @Builder
     public static class UserBook {
 
-        UUID id;
         UUID userId;
         UUID bookId;
         LocalDateTime startedOn;

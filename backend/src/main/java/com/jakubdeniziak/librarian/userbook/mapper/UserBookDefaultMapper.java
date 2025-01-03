@@ -7,11 +7,11 @@ import com.jakubdeniziak.librarian.userbook.dto.UserBookRequest;
 import com.jakubdeniziak.librarian.userbook.dto.UserBookResponse;
 import com.jakubdeniziak.librarian.userbook.dto.UserBooksResponse;
 import com.jakubdeniziak.librarian.userbook.entity.UserBookEntity;
+import com.jakubdeniziak.librarian.userbook.entity.UserBookKey;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.UUID;
 
 @Component
 @AllArgsConstructor
@@ -21,9 +21,8 @@ public class UserBookDefaultMapper implements UserBookMapper {
     private final BookMapper bookMapper;
 
     @Override
-    public UserBook map(UUID id, UserBookRequest request) {
+    public UserBook map(UserBookRequest request) {
         return UserBook.builder()
-                .id(id)
                 .startedOn(request.getStartedOn())
                 .finishedOn(request.getFinishedOn())
                 .rating(request.getRating())
@@ -35,7 +34,10 @@ public class UserBookDefaultMapper implements UserBookMapper {
     @Override
     public UserBookEntity map(UserBook userBook) {
         return UserBookEntity.builder()
-                .id(userBook.getId())
+                .id(UserBookKey.builder()
+                        .userId(userBook.getUser().getId())
+                        .bookId(userBook.getBook().getId())
+                        .build())
                 .startedOn(userBook.getStartedOn())
                 .finishedOn(userBook.getFinishedOn())
                 .rating(userBook.getRating())
@@ -56,14 +58,13 @@ public class UserBookDefaultMapper implements UserBookMapper {
     @Override
     public UserBook mapToDomain(UserBookEntity userBook) {
         return UserBook.builder()
-                .id(userBook.getId())
+                .user(userMapper.mapToDomain(userBook.getUser()))
+                .book(bookMapper.mapToDomain(userBook.getBook()))
                 .startedOn(userBook.getStartedOn())
                 .finishedOn(userBook.getFinishedOn())
                 .rating(userBook.getRating())
                 .review(userBook.getReview())
                 .readingStatus(userBook.getReadingStatus())
-                .user(userMapper.mapToDomain(userBook.getUser()))
-                .book(bookMapper.mapToDomain(userBook.getBook()))
                 .build();
     }
 
@@ -77,14 +78,13 @@ public class UserBookDefaultMapper implements UserBookMapper {
     @Override
     public UserBookResponse mapToResponse(UserBook userBook) {
         return UserBookResponse.builder()
-                .id(userBook.getId())
+                .userId(userBook.getUser().getId())
+                .bookId(userBook.getBook().getId())
                 .startedOn(userBook.getStartedOn())
                 .finishedOn(userBook.getFinishedOn())
                 .rating(userBook.getRating())
                 .review(userBook.getReview())
                 .readingStatus(userBook.getReadingStatus())
-                .userId(userBook.getUser().getId())
-                .bookId(userBook.getBook().getId())
                 .build();
     }
 
@@ -92,7 +92,6 @@ public class UserBookDefaultMapper implements UserBookMapper {
     public UserBooksResponse mapToResponse(List<UserBook> userBooks) {
         List<UserBooksResponse.UserBook> responseUserBooks = userBooks.stream()
                 .map(userBook -> UserBooksResponse.UserBook.builder()
-                        .id(userBook.getId())
                         .userId(userBook.getUser().getId())
                         .bookId(userBook.getBook().getId())
                         .build())

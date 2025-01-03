@@ -11,13 +11,12 @@ import java.util.UUID;
 @Builder
 public class UserBookResponse {
 
-    UUID id;
+    UUID userId;
+    UUID bookId;
     LocalDateTime startedOn;
     LocalDateTime finishedOn;
     Float rating;
     String review;
     ReadingStatus readingStatus;
-    UUID userId;
-    UUID bookId;
 
 }

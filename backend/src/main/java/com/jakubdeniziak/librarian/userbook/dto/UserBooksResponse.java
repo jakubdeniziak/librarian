@@ -14,7 +14,6 @@ public class UserBooksResponse {
     @Builder
     public static class UserBook {
 
-        UUID id;
         UUID userId;
         UUID bookId;
 

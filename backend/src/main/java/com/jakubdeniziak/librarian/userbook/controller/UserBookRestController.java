@@ -19,9 +19,9 @@ public class UserBookRestController implements UserBookController {
     private final UserBookMapper mapper;
 
     @Override
-    @PutMapping("/{userId}/books/{id}")
-    public void create(@PathVariable UUID userId, @PathVariable UUID id, UserBookRequest request) {
-        service.save(mapper.map(id, request), userId, request.getBookId());
+    @PutMapping("/{userId}/books/{bookId}")
+    public void create(@PathVariable UUID userId, @PathVariable UUID bookId, @RequestBody UserBookRequest request) {
+        service.save(mapper.map(request), userId, bookId);
     }
 
     @Override

@@ -7,11 +7,10 @@ import com.jakubdeniziak.librarian.userbook.dto.UserBooksResponse;
 import com.jakubdeniziak.librarian.userbook.entity.UserBookEntity;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface UserBookMapper {
 
-    UserBook map(UUID id, UserBookRequest request);
+    UserBook map(UserBookRequest request);
     UserBookEntity map(UserBook userBook);
     List<UserBookEntity> map(List<UserBook> userBooks);
     UserBook mapToDomain(UserBookEntity userBook);

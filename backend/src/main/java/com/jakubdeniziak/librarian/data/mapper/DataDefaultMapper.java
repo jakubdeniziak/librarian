@@ -116,7 +116,6 @@ public class DataDefaultMapper implements DataMapper {
         return request.getUserBooks().stream()
                 .map(userBook -> UserBookTuple.builder()
                         .userBook(UserBook.builder()
-                                .id(userBook.getId())
                                 .startedOn(userBook.getStartedOn())
                                 .finishedOn(userBook.getFinishedOn())
                                 .rating(userBook.getRating())
@@ -200,7 +199,6 @@ public class DataDefaultMapper implements DataMapper {
     private List<DataFormat.UserBook> mapUserBooks(List<UserBook> userBooks) {
         return userBooks.stream()
                 .map(userBook -> DataFormat.UserBook.builder()
-                        .id(userBook.getId())
                         .userId(userBook.getUser().getId())
                         .bookId(userBook.getBook().getId())
                         .startedOn(userBook.getStartedOn())

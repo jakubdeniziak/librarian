@@ -14,6 +14,5 @@ public class UserBookRequest {
     Float rating;
     String review;
     ReadingStatus readingStatus;
-    UUID bookId;
 
 }
