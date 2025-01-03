@@ -15,8 +15,20 @@
         Libraries
     </button>
     <br>
-    <button (click)="downloadFile()" class="rounded-md bg-bgSecondary text-primary px-4 py-2 mx-auto mt-12 w-40 h-10">
+    <button (click)="downloadFile()" class="rounded-md bg-bgSecondary text-primary px-4 py-2 mx-auto mt-12 mb-1 w-40 h-10">
         Download all
     </button>
+    <br>
+    <div>
+        <input
+            type="file"
+            (change)="onFileSelected($event)"
+            accept=".json"
+            class="rounded-md bg-bgSecondary text-primary px-4 py-2 mx-auto my-1 w-60 h-11"
+        />
+        <button (click)="submitJson()" [disabled]="!loadedData" class="rounded-md bg-bgSecondary text-primary px-4 py-2 mx-auto my-1 ml-2 w-40 h-10">
+            Import all
+        </button>
+    </div>
 </section>
 
