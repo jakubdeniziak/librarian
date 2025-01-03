@@ -23,13 +23,18 @@ public class LibraryDefaultService implements LibraryService {
     }
 
     @Override
+    public void saveAll(List<Library> libraries) {
+        repository.saveAll(mapper.map(libraries));
+    }
+
+    @Override
     public Library find(UUID id) {
-        return mapper.map(repository.findById(id).orElseThrow(ResourceNotFoundException::new));
+        return mapper.mapToDomain(repository.findById(id).orElseThrow(ResourceNotFoundException::new));
     }
 
     @Override
     public List<Library> findAll() {
-        return mapper.map(repository.findAll());
+        return mapper.mapToDomain(repository.findAll());
     }
 
     @Override

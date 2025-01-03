@@ -43,7 +43,7 @@ public class LibraryBookDefaultMapper implements LibraryBookMapper {
     @Override
     public LibraryBook map(LibraryBookEntity libraryBook) {
         return LibraryBook.builder()
-                .library(libraryMapper.map(libraryBook.getLibrary()))
+                .library(libraryMapper.mapToDomain(libraryBook.getLibrary()))
                 .book(bookMapper.map(libraryBook.getBook()))
                 .numberOfCopies(libraryBook.getNumberOfCopies())
                 .build();

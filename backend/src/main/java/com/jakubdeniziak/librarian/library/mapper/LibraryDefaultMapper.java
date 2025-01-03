@@ -34,7 +34,14 @@ public class LibraryDefaultMapper implements LibraryMapper {
     }
 
     @Override
-    public Library map(LibraryEntity library) {
+    public List<LibraryEntity> map(List<Library> libraries) {
+        return libraries.stream()
+                .map(this::map)
+                .toList();
+    }
+
+    @Override
+    public Library mapToDomain(LibraryEntity library) {
         return Library.builder()
                 .id(library.getId())
                 .name(library.getName())
@@ -44,9 +51,9 @@ public class LibraryDefaultMapper implements LibraryMapper {
     }
 
     @Override
-    public List<Library> map(List<LibraryEntity> libraries) {
+    public List<Library> mapToDomain(List<LibraryEntity> libraries) {
         return libraries.stream()
-                .map(this::map)
+                .map(this::mapToDomain)
                 .toList();
     }
 
