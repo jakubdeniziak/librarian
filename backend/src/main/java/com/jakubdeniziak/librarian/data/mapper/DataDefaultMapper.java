@@ -2,6 +2,8 @@ package com.jakubdeniziak.librarian.data.mapper;
 
 import com.jakubdeniziak.librarian.author.domain.Author;
 import com.jakubdeniziak.librarian.book.domain.Book;
+import com.jakubdeniziak.librarian.data.dto.DataRequest;
+import com.jakubdeniziak.librarian.data.dto.DataFormat;
 import com.jakubdeniziak.librarian.data.dto.DataResponse;
 import com.jakubdeniziak.librarian.library.domain.Library;
 import com.jakubdeniziak.librarian.librarybook.domain.LibraryBook;
@@ -24,9 +26,10 @@ public class DataDefaultMapper implements DataMapper {
                 .build();
     }
 
-    private List<DataResponse.Author> mapAuthors(List<Author> authors) {
-        return authors.stream()
-                .map(author -> DataResponse.Author.builder()
+    @Override
+    public List<Author> mapAuthors(DataRequest request) {
+        return request.getAuthors().stream()
+                .map(author -> Author.builder()
                         .id(author.getId())
                         .firstName(author.getFirstName())
                         .lastName(author.getLastName())
@@ -35,9 +38,10 @@ public class DataDefaultMapper implements DataMapper {
                 .toList();
     }
 
-    private List<DataResponse.Publisher> mapPublishers(List<Publisher> publishers) {
-        return publishers.stream()
-                .map(publisher -> DataResponse.Publisher.builder()
+    @Override
+    public List<Publisher> mapPublishers(DataRequest request) {
+        return request.getPublishers().stream()
+                .map(publisher -> Publisher.builder()
                         .id(publisher.getId())
                         .name(publisher.getName())
                         .websiteUrl(publisher.getWebsiteUrl())
@@ -46,9 +50,10 @@ public class DataDefaultMapper implements DataMapper {
                 .toList();
     }
 
-    private List<DataResponse.Library> mapLibraries(List<Library> libraries) {
-        return libraries.stream()
-                .map(library -> DataResponse.Library.builder()
+    @Override
+    public List<Library> mapLibraries(DataRequest request) {
+        return request.getLibraries().stream()
+                .map(library -> Library.builder()
                         .id(library.getId())
                         .name(library.getName())
                         .address(library.getAddress())
@@ -57,9 +62,42 @@ public class DataDefaultMapper implements DataMapper {
                 .toList();
     }
 
-    private List<DataResponse.Book> mapBooks(List<Book> books) {
+    private List<DataFormat.Author> mapAuthors(List<Author> authors) {
+        return authors.stream()
+                .map(author -> DataFormat.Author.builder()
+                        .id(author.getId())
+                        .firstName(author.getFirstName())
+                        .lastName(author.getLastName())
+                        .description(author.getDescription())
+                        .build())
+                .toList();
+    }
+
+    private List<DataFormat.Publisher> mapPublishers(List<Publisher> publishers) {
+        return publishers.stream()
+                .map(publisher -> DataFormat.Publisher.builder()
+                        .id(publisher.getId())
+                        .name(publisher.getName())
+                        .websiteUrl(publisher.getWebsiteUrl())
+                        .description(publisher.getDescription())
+                        .build())
+                .toList();
+    }
+
+    private List<DataFormat.Library> mapLibraries(List<Library> libraries) {
+        return libraries.stream()
+                .map(library -> DataFormat.Library.builder()
+                        .id(library.getId())
+                        .name(library.getName())
+                        .address(library.getAddress())
+                        .description(library.getDescription())
+                        .build())
+                .toList();
+    }
+
+    private List<DataFormat.Book> mapBooks(List<Book> books) {
         return books.stream()
-                .map(book -> DataResponse.Book.builder()
+                .map(book -> DataFormat.Book.builder()
                         .id(book.getId())
                         .isbn(book.getIsbn())
                         .title(book.getTitle())
@@ -71,9 +109,9 @@ public class DataDefaultMapper implements DataMapper {
                 .toList();
     }
 
-    private List<DataResponse.LibraryBook> mapLibraryBooks(List<LibraryBook> libraryBooks) {
+    private List<DataFormat.LibraryBook> mapLibraryBooks(List<LibraryBook> libraryBooks) {
         return libraryBooks.stream()
-                .map(libraryBook -> DataResponse.LibraryBook.builder()
+                .map(libraryBook -> DataFormat.LibraryBook.builder()
                         .libraryId(libraryBook.getLibrary().getId())
                         .bookId(libraryBook.getBook().getId())
                         .numberOfCopies(libraryBook.getNumberOfCopies())

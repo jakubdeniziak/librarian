@@ -2,6 +2,7 @@ package com.jakubdeniziak.librarian.data.service;
 
 import com.jakubdeniziak.librarian.author.service.AuthorService;
 import com.jakubdeniziak.librarian.book.service.BookService;
+import com.jakubdeniziak.librarian.data.dto.DataRequest;
 import com.jakubdeniziak.librarian.data.dto.DataResponse;
 import com.jakubdeniziak.librarian.data.mapper.DataMapper;
 import com.jakubdeniziak.librarian.library.service.LibraryService;
@@ -20,6 +21,15 @@ public class DataDefaultService implements DataService {
     private final LibraryService libraryService;
     private final BookService bookService;
     private final LibraryBookService libraryBookService;
+
+    @Override
+    public void saveAll(DataRequest request) {
+        authorService.saveAll(mapper.mapAuthors(request));
+        publisherService.saveAll(mapper.mapPublishers(request));
+        libraryService.saveAll(mapper.mapLibraries(request));
+        // TODO: bookService.saveAll(...)
+        // TODO: libraryBookService.saveAll(...)
+    }
 
     @Override
     public DataResponse findAll() {

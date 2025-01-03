@@ -1,11 +1,10 @@
 package com.jakubdeniziak.librarian.data.controller;
 
+import com.jakubdeniziak.librarian.data.dto.DataRequest;
 import com.jakubdeniziak.librarian.data.dto.DataResponse;
 import com.jakubdeniziak.librarian.data.service.DataService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/data")
@@ -13,6 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class DataRestController implements DataController {
 
     private final DataService service;
+
+    @Override
+    @PutMapping("/all")
+    public void importAll(@RequestBody DataRequest request) {
+        service.saveAll(request);
+    }
 
     @Override
     @GetMapping("/all")
