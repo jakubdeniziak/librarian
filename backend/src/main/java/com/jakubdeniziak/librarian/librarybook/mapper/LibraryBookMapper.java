@@ -12,8 +12,9 @@ public interface LibraryBookMapper {
 
     LibraryBook map(LibraryBookRequest request);
     LibraryBookEntity map(LibraryBook libraryBook);
-    LibraryBook map(LibraryBookEntity libraryBook);
-    List<LibraryBook> map(List<LibraryBookEntity> libraryBooks);
+    List<LibraryBookEntity> map(List<LibraryBook> libraryBooks);
+    LibraryBook mapToDomain(LibraryBookEntity libraryBook);
+    List<LibraryBook> mapToDomain(List<LibraryBookEntity> libraryBooks);
     LibraryBookResponse mapToResponse(LibraryBook libraryBook);
     LibraryBooksResponse mapToResponse(List<LibraryBook> libraryBooks);
 

@@ -28,7 +28,7 @@ public class DataDefaultService implements DataService {
         publisherService.saveAll(mapper.mapPublishers(request));
         libraryService.saveAll(mapper.mapLibraries(request));
         bookService.saveAll(mapper.mapBooks(request));
-        // TODO: libraryBookService.saveAll(...)
+        libraryBookService.saveAll(mapper.mapLibraryBooks(request));
     }
 
     @Override

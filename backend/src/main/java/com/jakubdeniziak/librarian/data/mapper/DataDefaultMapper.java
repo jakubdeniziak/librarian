@@ -8,6 +8,7 @@ import com.jakubdeniziak.librarian.data.dto.DataFormat;
 import com.jakubdeniziak.librarian.data.dto.DataResponse;
 import com.jakubdeniziak.librarian.library.domain.Library;
 import com.jakubdeniziak.librarian.librarybook.domain.LibraryBook;
+import com.jakubdeniziak.librarian.librarybook.domain.LibraryBookTuple;
 import com.jakubdeniziak.librarian.publisher.domain.Publisher;
 import org.springframework.stereotype.Component;
 
@@ -76,6 +77,19 @@ public class DataDefaultMapper implements DataMapper {
                                 .build())
                         .authorId(book.getAuthorId())
                         .publisherId(book.getPublisherId())
+                        .build())
+                .toList();
+    }
+
+    @Override
+    public List<LibraryBookTuple> mapLibraryBooks(DataRequest request) {
+        return request.getLibraryBooks().stream()
+                .map(libraryBook -> LibraryBookTuple.builder()
+                        .libraryBook(LibraryBook.builder()
+                                .numberOfCopies(libraryBook.getNumberOfCopies())
+                                .build())
+                        .libraryId(libraryBook.getLibraryId())
+                        .bookId(libraryBook.getBookId())
                         .build())
                 .toList();
     }
