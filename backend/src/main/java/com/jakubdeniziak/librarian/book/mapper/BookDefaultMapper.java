@@ -53,7 +53,7 @@ public class BookDefaultMapper implements BookMapper {
                 .description(book.getDescription())
                 .format(book.getFormat())
                 .author(authorMapper.mapToDomain(book.getAuthor()))
-                .publisher(publisherMapper.map(book.getPublisher()))
+                .publisher(publisherMapper.mapToDomain(book.getPublisher()))
                 .build();
     }
 

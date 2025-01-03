@@ -13,8 +13,9 @@ public interface PublisherMapper {
 
     Publisher map(UUID id, PublisherRequest request);
     PublisherEntity map(Publisher publisher);
-    Publisher map(PublisherEntity publisher);
-    List<Publisher> map(List<PublisherEntity> publishers);
+    List<PublisherEntity> map(List<Publisher> publishers);
+    Publisher mapToDomain(PublisherEntity publisher);
+    List<Publisher> mapToDomain(List<PublisherEntity> publishers);
     PublisherResponse mapToResponse(Publisher publisher);
     PublishersResponse mapToResponse(List<Publisher> publishers);
 
