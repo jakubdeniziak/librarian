@@ -13,8 +13,9 @@ public interface LibraryMapper {
 
     Library map(UUID id, LibraryRequest request);
     LibraryEntity map(Library library);
-    Library map(LibraryEntity library);
-    List<Library> map(List<LibraryEntity> libraries);
+    List<LibraryEntity> map(List<Library> libraries);
+    Library mapToDomain(LibraryEntity library);
+    List<Library> mapToDomain(List<LibraryEntity> libraries);
     LibraryResponse mapToResponse(Library library);
     LibrariesResponse mapToResponse(List<Library> libraries);
 

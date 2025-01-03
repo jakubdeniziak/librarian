@@ -4,6 +4,7 @@ import com.jakubdeniziak.librarian.book.service.BookService;
 import com.jakubdeniziak.librarian.exceptions.ResourceNotFoundException;
 import com.jakubdeniziak.librarian.library.service.LibraryService;
 import com.jakubdeniziak.librarian.librarybook.domain.LibraryBook;
+import com.jakubdeniziak.librarian.librarybook.domain.LibraryBookTuple;
 import com.jakubdeniziak.librarian.librarybook.entity.LibraryBookKey;
 import com.jakubdeniziak.librarian.librarybook.mapper.LibraryBookMapper;
 import com.jakubdeniziak.librarian.librarybook.repository.LibraryBookJpaRepository;
@@ -24,25 +25,34 @@ public class LibraryBookDefaultService implements LibraryBookService {
 
     @Override
     public void save(LibraryBook libraryBook, UUID libraryId, UUID bookId) {
-        libraryBook.setLibrary(libraryService.find(libraryId));
-        libraryBook.setBook(bookService.find(bookId));
-        repository.save(mapper.map(libraryBook));
+        LibraryBook initializedLibraryBook = getInitializedLibraryBook(libraryBook, libraryId, bookId);
+        repository.save(mapper.map(initializedLibraryBook));
+    }
+
+    @Override
+    public void saveAll(List<LibraryBookTuple> libraryBookTuples) {
+        List<LibraryBook> initializedLibraryBooks = libraryBookTuples.stream()
+                .map(libraryBookTuple -> getInitializedLibraryBook(libraryBookTuple.getLibraryBook(),
+                        libraryBookTuple.getLibraryId(),
+                        libraryBookTuple.getBookId()))
+                .toList();
+        repository.saveAll(mapper.map(initializedLibraryBooks));
     }
 
     @Override
     public LibraryBook find(UUID libraryId, UUID bookId) {
-        return mapper.map(repository.findById(createKey(libraryId, bookId))
+        return mapper.mapToDomain(repository.findById(createKey(libraryId, bookId))
                 .orElseThrow(ResourceNotFoundException::new));
     }
 
     @Override
     public List<LibraryBook> findAllByLibrary(UUID libraryId) {
-        return mapper.map(repository.findAllByLibrary_Id(libraryId));
+        return mapper.mapToDomain(repository.findAllByLibrary_Id(libraryId));
     }
 
     @Override
     public List<LibraryBook> findAll() {
-        return mapper.map(repository.findAll());
+        return mapper.mapToDomain(repository.findAll());
     }
 
     @Override
@@ -67,6 +77,12 @@ public class LibraryBookDefaultService implements LibraryBookService {
 
     private LibraryBookKey createKey(UUID libraryId, UUID bookId) {
         return new LibraryBookKey(libraryId, bookId);
+    }
+
+    private LibraryBook getInitializedLibraryBook(LibraryBook libraryBook, UUID libraryId, UUID bookId) {
+        libraryBook.setLibrary(libraryService.find(libraryId));
+        libraryBook.setBook(bookService.find(bookId));
+        return libraryBook;
     }
 
 }

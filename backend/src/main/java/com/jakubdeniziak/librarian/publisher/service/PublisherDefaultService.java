@@ -23,13 +23,18 @@ public class PublisherDefaultService implements PublisherService {
     }
 
     @Override
+    public void saveAll(List<Publisher> publishers) {
+        repository.saveAll(mapper.map(publishers));
+    }
+
+    @Override
     public Publisher find(UUID id) {
-        return mapper.map(repository.findById(id).orElseThrow(ResourceNotFoundException::new));
+        return mapper.mapToDomain(repository.findById(id).orElseThrow(ResourceNotFoundException::new));
     }
 
     @Override
     public List<Publisher> findAll() {
-        return mapper.map(repository.findAll());
+        return mapper.mapToDomain(repository.findAll());
     }
 
     @Override

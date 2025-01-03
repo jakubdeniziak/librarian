@@ -21,6 +21,7 @@ import {BookEditComponent} from "./book/view/book-edit/book-edit.component";
 import {LibraryNewComponent} from "./library/view/library-new/library-new.component";
 import {LibraryDeleteComponent} from "./library/view/library-delete/library-delete.component";
 import {LibraryAddBookComponent} from "./library/view/library-add-book/library-add-book.component";
+import {DataComponent} from "./data/view/data.component";
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -43,7 +44,8 @@ const routes: Routes = [
     { path: 'libraries/add', component: LibraryNewComponent },
     { path: 'libraries/delete', component: LibraryDeleteComponent },
     { path: 'libraries/:uuid', component: LibraryDetailsComponent },
-    { path: 'libraries/:uuid/add-book', component: LibraryAddBookComponent }
+    { path: 'libraries/:uuid/add-book', component: LibraryAddBookComponent },
+    { path: 'data', component: DataComponent }
 ];
 
 @NgModule({

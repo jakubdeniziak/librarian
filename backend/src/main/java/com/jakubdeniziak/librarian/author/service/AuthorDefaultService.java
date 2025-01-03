@@ -23,13 +23,18 @@ public class AuthorDefaultService implements AuthorService {
     }
 
     @Override
+    public void saveAll(List<Author> authors) {
+        repository.saveAll(mapper.map(authors));
+    }
+
+    @Override
     public Author find(UUID id) {
-        return mapper.map(repository.findById(id).orElseThrow(ResourceNotFoundException::new));
+        return mapper.mapToDomain(repository.findById(id).orElseThrow(ResourceNotFoundException::new));
     }
 
     @Override
     public List<Author> findAll() {
-        return mapper.map(repository.findAll());
+        return mapper.mapToDomain(repository.findAll());
     }
 
     @Override

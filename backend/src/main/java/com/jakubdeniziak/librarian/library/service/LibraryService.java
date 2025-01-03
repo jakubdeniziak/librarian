@@ -7,7 +7,8 @@ import java.util.UUID;
 
 public interface LibraryService {
 
-    void save(Library author);
+    void save(Library library);
+    void saveAll(List<Library> libraries);
     Library find(UUID id);
     List<Library> findAll();
     void update(UUID id, Library updated);
