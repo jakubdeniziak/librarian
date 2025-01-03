@@ -44,7 +44,7 @@ public class LibraryBookDefaultMapper implements LibraryBookMapper {
     public LibraryBook map(LibraryBookEntity libraryBook) {
         return LibraryBook.builder()
                 .library(libraryMapper.mapToDomain(libraryBook.getLibrary()))
-                .book(bookMapper.map(libraryBook.getBook()))
+                .book(bookMapper.mapToDomain(libraryBook.getBook()))
                 .numberOfCopies(libraryBook.getNumberOfCopies())
                 .build();
     }

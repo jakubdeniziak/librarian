@@ -2,6 +2,7 @@ package com.jakubdeniziak.librarian.book.service;
 
 import com.jakubdeniziak.librarian.author.service.AuthorService;
 import com.jakubdeniziak.librarian.book.domain.Book;
+import com.jakubdeniziak.librarian.book.domain.BookTuple;
 import com.jakubdeniziak.librarian.book.mapper.BookMapper;
 import com.jakubdeniziak.librarian.book.repository.BookJpaRepository;
 import com.jakubdeniziak.librarian.exceptions.ResourceNotFoundException;
@@ -23,29 +24,36 @@ public class BookDefaultService implements BookService {
 
     @Override
     public void save(Book book, UUID authorId, UUID publisherId) {
-        book.setAuthor(authorService.find(authorId));
-        book.setPublisher(publisherService.find(publisherId));
-        repository.save(mapper.map(book));
+        Book initializedBook = getInitializedBook(book, authorId, publisherId);
+        repository.save(mapper.map(initializedBook));
+    }
+
+    @Override
+    public void saveAll(List<BookTuple> bookTuples) {
+        List<Book> initializedBooks = bookTuples.stream()
+                .map(bookTuple -> getInitializedBook(bookTuple.getBook(), bookTuple.getAuthorId(), bookTuple.getPublisherId()))
+                .toList();
+        repository.saveAll(mapper.map(initializedBooks));
     }
 
     @Override
     public Book find(UUID id) {
-        return mapper.map(repository.findById(id).orElseThrow(ResourceNotFoundException::new));
+        return mapper.mapToDomain(repository.findById(id).orElseThrow(ResourceNotFoundException::new));
     }
 
     @Override
     public List<Book> findAllByAuthor(UUID id) {
-        return mapper.map(repository.findAllByAuthorId(id));
+        return mapper.mapToDomain(repository.findAllByAuthorId(id));
     }
 
     @Override
     public List<Book> findAllByPublisher(UUID id) {
-        return mapper.map(repository.findAllByPublisherId(id));
+        return mapper.mapToDomain(repository.findAllByPublisherId(id));
     }
 
     @Override
     public List<Book> findAll() {
-        return mapper.map(repository.findAll());
+        return mapper.mapToDomain(repository.findAll());
     }
 
     @Override
@@ -72,6 +80,12 @@ public class BookDefaultService implements BookService {
     @Override
     public void delete(UUID id) {
         repository.deleteById(id);
+    }
+
+    private Book getInitializedBook(Book book, UUID authorId, UUID publisherId) {
+        book.setAuthor(authorService.find(authorId));
+        book.setPublisher(publisherService.find(publisherId));
+        return book;
     }
 
 }

@@ -2,6 +2,7 @@ package com.jakubdeniziak.librarian.data.mapper;
 
 import com.jakubdeniziak.librarian.author.domain.Author;
 import com.jakubdeniziak.librarian.book.domain.Book;
+import com.jakubdeniziak.librarian.book.domain.BookTuple;
 import com.jakubdeniziak.librarian.data.dto.DataRequest;
 import com.jakubdeniziak.librarian.data.dto.DataResponse;
 import com.jakubdeniziak.librarian.library.domain.Library;
@@ -16,5 +17,6 @@ public interface DataMapper {
     List<Author> mapAuthors(DataRequest request);
     List<Publisher> mapPublishers(DataRequest request);
     List<Library> mapLibraries(DataRequest request);
+    List<BookTuple> mapBooks(DataRequest request);
 
 }

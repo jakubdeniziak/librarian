@@ -13,8 +13,9 @@ public interface BookMapper {
 
     Book map(UUID id, BookRequest request);
     BookEntity map(Book book);
-    Book map(BookEntity book);
-    List<Book> map(List<BookEntity> books);
+    List<BookEntity> map(List<Book> books);
+    Book mapToDomain(BookEntity book);
+    List<Book> mapToDomain(List<BookEntity> books);
     BookResponse mapToResponse(Book book);
     BooksResponse mapToResponse(List<Book> books);
 

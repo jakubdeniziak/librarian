@@ -1,5 +1,6 @@
 package com.jakubdeniziak.librarian.data.dto;
 
+import com.jakubdeniziak.librarian.book.entity.BookFormat;
 import lombok.Builder;
 import lombok.Value;
 
@@ -48,7 +49,7 @@ public class DataFormat {
         String isbn;
         String title;
         String description;
-        String format;
+        BookFormat format;
         UUID authorId;
         UUID publisherId;
 

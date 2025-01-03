@@ -2,6 +2,7 @@ package com.jakubdeniziak.librarian.data.mapper;
 
 import com.jakubdeniziak.librarian.author.domain.Author;
 import com.jakubdeniziak.librarian.book.domain.Book;
+import com.jakubdeniziak.librarian.book.domain.BookTuple;
 import com.jakubdeniziak.librarian.data.dto.DataRequest;
 import com.jakubdeniziak.librarian.data.dto.DataFormat;
 import com.jakubdeniziak.librarian.data.dto.DataResponse;
@@ -62,6 +63,23 @@ public class DataDefaultMapper implements DataMapper {
                 .toList();
     }
 
+    @Override
+    public List<BookTuple> mapBooks(DataRequest request) {
+        return request.getBooks().stream()
+                .map(book -> BookTuple.builder()
+                        .book(Book.builder()
+                                .id(book.getId())
+                                .isbn(book.getIsbn())
+                                .title(book.getTitle())
+                                .description(book.getDescription())
+                                .format(book.getFormat())
+                                .build())
+                        .authorId(book.getAuthorId())
+                        .publisherId(book.getPublisherId())
+                        .build())
+                .toList();
+    }
+
     private List<DataFormat.Author> mapAuthors(List<Author> authors) {
         return authors.stream()
                 .map(author -> DataFormat.Author.builder()
@@ -102,7 +120,7 @@ public class DataDefaultMapper implements DataMapper {
                         .isbn(book.getIsbn())
                         .title(book.getTitle())
                         .description(book.getDescription())
-                        .format(book.getFormat().name())
+                        .format(book.getFormat())
                         .authorId(book.getAuthor().getId())
                         .publisherId(book.getPublisher().getId())
                         .build())
