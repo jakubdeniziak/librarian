@@ -8,6 +8,7 @@ import java.util.UUID;
 public interface AuthorService {
 
     void save(Author author);
+    void saveAll(List<Author> authors);
     Author find(UUID id);
     List<Author> findAll();
     void update(UUID id, Author updated);

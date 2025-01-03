@@ -34,7 +34,14 @@ public class PublisherDefaultMapper implements PublisherMapper {
     }
 
     @Override
-    public Publisher map(PublisherEntity publisher) {
+    public List<PublisherEntity> map(List<Publisher> publishers) {
+        return publishers.stream()
+                .map(this::map)
+                .toList();
+    }
+
+    @Override
+    public Publisher mapToDomain(PublisherEntity publisher) {
         return Publisher.builder()
                 .id(publisher.getId())
                 .name(publisher.getName())
@@ -44,9 +51,9 @@ public class PublisherDefaultMapper implements PublisherMapper {
     }
 
     @Override
-    public List<Publisher> map(List<PublisherEntity> publishers) {
+    public List<Publisher> mapToDomain(List<PublisherEntity> publishers) {
         return publishers.stream()
-                .map(this::map)
+                .map(this::mapToDomain)
                 .toList();
     }
 

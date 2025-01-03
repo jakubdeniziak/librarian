@@ -7,7 +7,8 @@ import java.util.UUID;
 
 public interface PublisherService {
 
-    void save(Publisher author);
+    void save(Publisher publisher);
+    void saveAll(List<Publisher> publishers);
     Publisher find(UUID id);
     List<Publisher> findAll();
     void update(UUID id, Publisher updated);

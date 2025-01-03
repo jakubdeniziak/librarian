@@ -34,7 +34,14 @@ public class AuthorDefaultMapper implements AuthorMapper {
     }
 
     @Override
-    public Author map(AuthorEntity author) {
+    public List<AuthorEntity> map(List<Author> authors) {
+        return authors.stream()
+                .map(this::map)
+                .toList();
+    }
+
+    @Override
+    public Author mapToDomain(AuthorEntity author) {
         return Author.builder()
                 .id(author.getId())
                 .firstName(author.getFirstName())
@@ -44,9 +51,9 @@ public class AuthorDefaultMapper implements AuthorMapper {
     }
 
     @Override
-    public List<Author> map(List<AuthorEntity> authors) {
+    public List<Author> mapToDomain(List<AuthorEntity> authors) {
         return authors.stream()
-                .map(this::map)
+                .map(this::mapToDomain)
                 .toList();
     }
 
