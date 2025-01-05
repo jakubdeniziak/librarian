@@ -33,6 +33,7 @@ import {BookEditComponent} from "./book/view/book-edit/book-edit.component";
 import {LibraryNewComponent} from "./library/view/library-new/library-new.component";
 import {LibraryDeleteComponent} from "./library/view/library-delete/library-delete.component";
 import {LibraryAddBookComponent} from "./library/view/library-add-book/library-add-book.component";
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
     declarations: [
@@ -66,7 +67,8 @@ import {LibraryAddBookComponent} from "./library/view/library-add-book/library-a
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
-        FormsModule
+        FormsModule,
+        NgOptimizedImage
     ],
     providers: [
         AuthorService,
