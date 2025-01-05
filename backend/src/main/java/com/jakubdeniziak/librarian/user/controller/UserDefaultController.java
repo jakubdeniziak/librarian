@@ -20,7 +20,7 @@ public class UserDefaultController implements UserController {
 
     @Override
     @PutMapping("/{id}")
-    public void create(@PathVariable UUID id, UserRequest request) {
+    public void create(@PathVariable UUID id, @RequestBody UserRequest request) {
         service.save(mapper.map(id, request));
     }
 
