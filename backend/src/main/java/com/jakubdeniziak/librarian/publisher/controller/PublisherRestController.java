@@ -20,13 +20,13 @@ public class PublisherRestController implements PublisherController {
 
     @Override
     @PutMapping("/{id}")
-    public void create(@PathVariable("id") UUID id, @RequestBody PublisherRequest request) {
+    public void create(@PathVariable UUID id, @RequestBody PublisherRequest request) {
         service.save(mapper.map(id, request));
     }
 
     @Override
     @GetMapping("/{id}")
-    public PublisherResponse read(@PathVariable("id") UUID id) {
+    public PublisherResponse read(@PathVariable UUID id) {
         return mapper.mapToResponse(service.find(id));
     }
 
@@ -38,13 +38,13 @@ public class PublisherRestController implements PublisherController {
 
     @Override
     @PatchMapping("/{id}")
-    public void update(@PathVariable("id") UUID id, @RequestBody PublisherRequest request) {
+    public void update(@PathVariable UUID id, @RequestBody PublisherRequest request) {
         service.update(id, mapper.map(id, request));
     }
 
     @Override
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") UUID id) {
+    public void delete(@PathVariable UUID id) {
         service.delete(id);
     }
     
