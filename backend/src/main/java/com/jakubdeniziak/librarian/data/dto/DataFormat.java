@@ -1,9 +1,11 @@
 package com.jakubdeniziak.librarian.data.dto;
 
 import com.jakubdeniziak.librarian.book.entity.BookFormat;
+import com.jakubdeniziak.librarian.userbook.entity.ReadingStatus;
 import lombok.Builder;
 import lombok.Value;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class DataFormat {
@@ -43,6 +45,17 @@ public class DataFormat {
 
     @Value
     @Builder
+    public static class User {
+
+        UUID id;
+        String firstName;
+        String lastName;
+        String nickname;
+
+    }
+
+    @Value
+    @Builder
     public static class Book {
 
         UUID id;
@@ -62,6 +75,20 @@ public class DataFormat {
         UUID libraryId;
         UUID bookId;
         Integer numberOfCopies;
+
+    }
+
+    @Value
+    @Builder
+    public static class UserBook {
+
+        UUID userId;
+        UUID bookId;
+        LocalDateTime startedOn;
+        LocalDateTime finishedOn;
+        Float rating;
+        String review;
+        ReadingStatus readingStatus;
 
     }
 

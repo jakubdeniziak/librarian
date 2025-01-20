@@ -1,7 +1,7 @@
 <nav class="bg-bgSecondary p-4">
     <div class="container mx-auto flex justify-between items-center">
         <a [routerLink]="'/'">
-            <img src="assets/logo-white.png" alt="Logo" class="w-12">
+            <img ngSrc="assets/logo-white.png" alt="Logo" class="w-12" height="500" width="500">
         </a>
         <ul class="flex space-x-4 justify-end">
             <li><a [routerLink]="'/'" class="text-primary hover:text-secondary">Home</a></li>
@@ -10,6 +10,7 @@
             <li><a [routerLink]="'/publishers'" class="text-primary hover:text-secondary">Publishers</a></li>
             <li><a [routerLink]="'/libraries'" class="text-primary hover:text-secondary">Libraries</a></li>
             <li><a [routerLink]="'/data'" class="text-primary hover:text-secondary ml-6">Data</a></li>
+            <li><a [routerLink]="'/login'" class="text-primary hover:text-secondary ml-6">Login</a></li>
         </ul>
     </div>
 </nav>

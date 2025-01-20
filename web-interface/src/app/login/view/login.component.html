@@ -1,0 +1,26 @@
+<section class="p-4">
+    <header class="text-center mb-4">
+        <h2 class="text-2xl font-bold">Login</h2>
+    </header>
+
+    <form (ngSubmit)="login()" class="text-center">
+        <label for="userId" class="mr-3">
+            User
+        </label>
+        <select
+            id="userId"
+            [(ngModel)]="selectedUserId"
+            name="userId"
+            required
+            class="mb-5 text-black"
+        >
+            <option *ngFor="let user of users?.users" [value]="user.id" class="text-black">
+                {{ user.nickname }}
+            </option>
+        </select>
+        <br>
+        <button type="submit" class="rounded-md bg-bgSecondary text-primary px-4 py-2 mx-auto my-1 w-36 h-10 mr-3">
+            Login
+        </button>
+    </form>
+</section>

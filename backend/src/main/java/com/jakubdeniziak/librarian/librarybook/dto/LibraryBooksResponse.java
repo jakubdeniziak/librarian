@@ -1,7 +1,6 @@
 package com.jakubdeniziak.librarian.librarybook.dto;
 
 import lombok.Builder;
-import lombok.Getter;
 import lombok.Value;
 
 import java.util.List;

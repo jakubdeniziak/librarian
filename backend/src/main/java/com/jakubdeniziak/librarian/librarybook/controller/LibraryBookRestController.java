@@ -19,20 +19,20 @@ public class LibraryBookRestController implements LibraryBookController {
     private final LibraryBookMapper mapper;
 
     @Override
-    @PutMapping("/{library_id}/books/{book_id}")
-    public void create(@PathVariable("library_id") UUID libraryId, @PathVariable("book_id") UUID bookId, @RequestBody LibraryBookRequest request) {
+    @PutMapping("/{libraryId}/books/{bookId}")
+    public void create(@PathVariable UUID libraryId, @PathVariable UUID bookId, @RequestBody LibraryBookRequest request) {
         service.save(mapper.map(request), libraryId, bookId);
     }
 
     @Override
-    @GetMapping("/{library_id}/books/{book_id}")
-    public LibraryBookResponse read(@PathVariable("library_id") UUID libraryId, @PathVariable("book_id") UUID bookId) {
+    @GetMapping("/{libraryId}/books/{bookId}")
+    public LibraryBookResponse read(@PathVariable UUID libraryId, @PathVariable UUID bookId) {
         return mapper.mapToResponse(service.find(libraryId, bookId));
     }
 
     @Override
-    @GetMapping("/{id}/books")
-    public LibraryBooksResponse readAllByLibrary(@PathVariable("id") UUID libraryId) {
+    @GetMapping("/{libraryId}/books")
+    public LibraryBooksResponse readAllByLibrary(@PathVariable UUID libraryId) {
         return mapper.mapToResponse(service.findAllByLibrary(libraryId));
     }
 
@@ -43,14 +43,14 @@ public class LibraryBookRestController implements LibraryBookController {
     }
 
     @Override
-    @PatchMapping("/{library_id}/books/{book_id}")
-    public void update(@PathVariable("library_id") UUID libraryId, @PathVariable("book_id") UUID bookId, @RequestBody LibraryBookRequest request) {
+    @PatchMapping("/{libraryId}/books/{bookId}")
+    public void update(@PathVariable UUID libraryId, @PathVariable UUID bookId, @RequestBody LibraryBookRequest request) {
         service.update(libraryId, bookId, mapper.map(request));
     }
 
     @Override
-    @DeleteMapping("/{library_id}/books/{book_id}")
-    public void delete(@PathVariable("library_id") UUID libraryId, @PathVariable("book_id") UUID bookId) {
+    @DeleteMapping("/{libraryId}/books/{bookId}")
+    public void delete(@PathVariable UUID libraryId, @PathVariable UUID bookId) {
         service.delete(bookId, libraryId);
     }
 

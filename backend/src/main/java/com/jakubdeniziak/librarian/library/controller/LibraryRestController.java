@@ -20,13 +20,13 @@ public class LibraryRestController implements LibraryController {
 
     @Override
     @PutMapping("/{id}")
-    public void create(@PathVariable("id") UUID id, @RequestBody LibraryRequest request) {
+    public void create(@PathVariable UUID id, @RequestBody LibraryRequest request) {
         service.save(mapper.map(id, request));
     }
 
     @Override
     @GetMapping("/{id}")
-    public LibraryResponse read(@PathVariable("id") UUID id) {
+    public LibraryResponse read(@PathVariable UUID id) {
         return mapper.mapToResponse(service.find(id));
     }
 
