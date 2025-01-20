@@ -10,9 +10,9 @@ public interface UserBookService {
 
     void save(UserBook userBook, UUID userId, UUID bookId);
     void saveAll(List<UserBookTuple> userBookTuples);
-    UserBook find(UUID id);
+    UserBook find(UUID userId, UUID bookId);
     List<UserBook> findAllByUser(UUID userId);
     List<UserBook> findAll();
-    void delete(UUID id);
+    void delete(UUID userId, UUID bookId);
 
 }

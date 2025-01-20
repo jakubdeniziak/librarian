@@ -25,13 +25,13 @@ public class UserBookRestController implements UserBookController {
     }
 
     @Override
-    @GetMapping("/books/{id}")
-    public UserBookResponse read(@PathVariable UUID id) {
-        return mapper.mapToResponse(service.find(id));
+    @GetMapping("/{userId}/books/{bookId}")
+    public UserBookResponse read(@PathVariable UUID userId, @PathVariable UUID bookId) {
+        return mapper.mapToResponse(service.find(userId, bookId));
     }
 
     @Override
-    @GetMapping("{userId}/books")
+    @GetMapping("/{userId}/books")
     public UserBooksResponse readAllByUser(@PathVariable UUID userId) {
         return mapper.mapToResponse(service.findAllByUser(userId));
     }
@@ -43,9 +43,9 @@ public class UserBookRestController implements UserBookController {
     }
 
     @Override
-    @DeleteMapping("/books/{id}")
-    public void delete(@PathVariable UUID id) {
-        service.delete(id);
+    @DeleteMapping("/{userId}/books/{bookId}")
+    public void delete(@PathVariable UUID userId, @PathVariable UUID bookId) {
+        service.delete(userId, bookId);
     }
 
 }

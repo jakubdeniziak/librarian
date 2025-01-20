@@ -8,10 +8,10 @@ import java.util.UUID;
 
 public interface UserBookController {
 
-    void create(UUID userId, UUID id, UserBookRequest request);
-    UserBookResponse read(UUID id);
-    UserBooksResponse readAllByUser(UUID userId);
+    void create(UUID userId, UUID bookId, UserBookRequest request);
+    UserBookResponse read(UUID userId, UUID bookId);
+    UserBooksResponse readAllByUser(UUID id);
     UserBooksResponse readAll();
-    void delete(UUID id);
+    void delete(UUID userId, UUID bookId);
 
 }

@@ -5,6 +5,7 @@ import com.jakubdeniziak.librarian.exceptions.ResourceNotFoundException;
 import com.jakubdeniziak.librarian.user.service.UserService;
 import com.jakubdeniziak.librarian.userbook.domain.UserBook;
 import com.jakubdeniziak.librarian.userbook.domain.UserBookTuple;
+import com.jakubdeniziak.librarian.userbook.entity.UserBookKey;
 import com.jakubdeniziak.librarian.userbook.mapper.UserBookMapper;
 import com.jakubdeniziak.librarian.userbook.repository.UserBookJpaRepository;
 import lombok.AllArgsConstructor;
@@ -37,13 +38,14 @@ public class UserBookDefaultService implements UserBookService {
     }
 
     @Override
-    public UserBook find(UUID id) {
-        return mapper.mapToDomain(repository.findById(id).orElseThrow(ResourceNotFoundException::new));
+    public UserBook find(UUID userId, UUID bookId) {
+        return mapper.mapToDomain(repository.findById(createKey(userId, bookId))
+                .orElseThrow(ResourceNotFoundException::new));
     }
 
     @Override
     public List<UserBook> findAllByUser(UUID userId) {
-        return mapper.mapToDomain(repository.findAllByUserId(userId));
+        return mapper.mapToDomain(repository.findAllByUser_Id(userId));
     }
 
     @Override
@@ -52,8 +54,12 @@ public class UserBookDefaultService implements UserBookService {
     }
 
     @Override
-    public void delete(UUID id) {
-        repository.deleteById(id);
+    public void delete(UUID userId, UUID bookId) {
+        repository.deleteById(createKey(userId, bookId));
+    }
+
+    private UserBookKey createKey(UUID userId, UUID bookId) {
+        return new UserBookKey(userId, bookId);
     }
 
     private UserBook getInitializedUserBook(UserBook userBook, UUID userId, UUID bookId) {
