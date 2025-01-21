@@ -11,10 +11,10 @@
 	</parent>
 
 	<groupId>com.jakubdeniziak.librarian</groupId>
-	<artifactId>service</artifactId>
+	<artifactId>backend</artifactId>
 	<version>1.0.0</version>
-	<name>Librarian</name>
-	<description>Backend application that provides and manage personal libraries.</description>
+	<name>Librarian backend service</name>
+	<description>Backend application that provides an API to manage libraries.</description>
 
 	<properties>
 		<java.version>21</java.version>
@@ -36,11 +36,6 @@
 			<version>${springdoc.starter.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
@@ -49,6 +44,11 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
