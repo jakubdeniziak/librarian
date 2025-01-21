@@ -1,6 +1,9 @@
 spring:
   application:
     name: "librarian-backend"
+  jpa:
+    hibernate:
+      ddl-auto: update
 server:
   servlet:
     context-path: /api
