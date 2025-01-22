@@ -12,3 +12,8 @@ It is available for download in two formats: [json](http://localhost:8080/api/do
 ## Code coverage
 
 To generate a JaCoCo coverage report and check whether the coverage is above 80% you can run `./mvnw verify`, it will fail if the coverage condition is not met.
+
+
+## Miscellaneous
+
+This service supports Actuator statistics that can be accessed [here](http://localhost:8080/api/actuator).

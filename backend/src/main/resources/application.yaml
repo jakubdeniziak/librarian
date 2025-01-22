@@ -6,6 +6,11 @@ spring:
 server:
   servlet:
     context-path: /api
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
 springdoc:
   api-docs:
     path: /docs/download
