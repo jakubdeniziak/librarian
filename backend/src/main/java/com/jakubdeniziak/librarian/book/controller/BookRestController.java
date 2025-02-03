@@ -18,43 +18,43 @@ public class BookRestController implements BookController {
     private final BookMapper mapper;
 
     @Override
-    @PutMapping("/books/{id}")
+    @PutMapping("/v1/books/{id}")
     public void create(@PathVariable UUID id, @RequestBody BookRequest request) {
         bookService.save(mapper.map(id, request), request.getAuthorId(), request.getPublisherId());
     }
 
     @Override
-    @GetMapping("/books/{id}")
+    @GetMapping("/v1/books/{id}")
     public BookResponse read(@PathVariable UUID id) {
         return mapper.mapToResponse(bookService.find(id));
     }
 
     @Override
-    @GetMapping("/authors/{authorId}/books")
+    @GetMapping("/v1/authors/{authorId}/books")
     public BooksResponse readAllByAuthor(@PathVariable UUID authorId) {
         return mapper.mapToResponse(bookService.findAllByAuthor(authorId));
     }
 
     @Override
-    @GetMapping("/publishers/{publisherId}/books")
+    @GetMapping("/v1/publishers/{publisherId}/books")
     public BooksResponse readAllByPublisher(@PathVariable UUID publisherId) {
         return mapper.mapToResponse(bookService.findAllByPublisher(publisherId));
     }
 
     @Override
-    @GetMapping("/books")
+    @GetMapping("/v1/books")
     public BooksResponse readAll() {
         return mapper.mapToResponse(bookService.findAll());
     }
 
     @Override
-    @PatchMapping("/books/{id}")
+    @PatchMapping("/v1/books/{id}")
     public void update(@PathVariable UUID id, @RequestBody BookRequest request) {
         bookService.update(id, mapper.map(id, request), request.getAuthorId(), request.getPublisherId());
     }
 
     @Override
-    @DeleteMapping("/books/{id}")
+    @DeleteMapping("/v1/books/{id}")
     public void delete(@PathVariable UUID id) {
         bookService.delete(id);
     }

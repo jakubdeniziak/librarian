@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/data")
+@RequestMapping("/v1/data")
 @AllArgsConstructor
 public class DataRestController implements DataController {
 

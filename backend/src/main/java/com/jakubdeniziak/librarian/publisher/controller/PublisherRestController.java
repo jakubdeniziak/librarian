@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/publishers")
+@RequestMapping("/v1/publishers")
 @AllArgsConstructor
 public class PublisherRestController implements PublisherController {
     
