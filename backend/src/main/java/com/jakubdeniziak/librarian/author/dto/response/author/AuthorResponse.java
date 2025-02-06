@@ -1,4 +1,4 @@
-package com.jakubdeniziak.librarian.author.dto;
+package com.jakubdeniziak.librarian.author.dto.response.author;
 
 import java.util.UUID;
 

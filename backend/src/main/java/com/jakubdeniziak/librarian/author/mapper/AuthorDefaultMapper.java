@@ -2,19 +2,17 @@ package com.jakubdeniziak.librarian.author.mapper;
 
 import com.jakubdeniziak.librarian.author.domain.Author;
 import com.jakubdeniziak.librarian.author.dto.AuthorRequest;
-import com.jakubdeniziak.librarian.author.dto.AuthorResponse;
-import com.jakubdeniziak.librarian.author.dto.standard.AuthorStandardResponse;
-import com.jakubdeniziak.librarian.author.dto.AuthorsResponse;
+import com.jakubdeniziak.librarian.author.dto.response.author.AuthorResponse;
+import com.jakubdeniziak.librarian.author.dto.response.author.AuthorDefaultResponse;
+import com.jakubdeniziak.librarian.author.dto.response.authors.AuthorsResponse;
 import com.jakubdeniziak.librarian.author.entity.AuthorEntity;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.UUID;
 
 @Component
-@Primary
-public class AuthorStandardMapper implements AuthorRequestToDomainMapper, AuthorDomainToEntityMapper,
+public class AuthorDefaultMapper implements AuthorRequestToDomainMapper, AuthorDomainToEntityMapper,
         AuthorEntityToDomainMapper, AuthorDomainToResponseMapper {
 
     @Override
@@ -63,7 +61,7 @@ public class AuthorStandardMapper implements AuthorRequestToDomainMapper, Author
 
     @Override
     public AuthorResponse mapToResponse(Author author) {
-        return AuthorStandardResponse.builder()
+        return AuthorDefaultResponse.builder()
                 .id(author.getId())
                 .firstName(author.getFirstName())
                 .lastName(author.getLastName())
