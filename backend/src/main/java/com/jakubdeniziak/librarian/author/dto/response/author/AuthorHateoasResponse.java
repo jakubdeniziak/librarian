@@ -1,7 +1,7 @@
 package com.jakubdeniziak.librarian.author.dto.response.author;
 
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
-import com.jakubdeniziak.librarian.book.dto.BookResponse;
+import com.jakubdeniziak.librarian.book.dto.response.book.BookResponse;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Value;

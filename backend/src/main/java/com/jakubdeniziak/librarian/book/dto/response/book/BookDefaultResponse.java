@@ -1,4 +1,4 @@
-package com.jakubdeniziak.librarian.book.dto;
+package com.jakubdeniziak.librarian.book.dto.response.book;
 
 import com.jakubdeniziak.librarian.book.entity.BookFormat;
 import lombok.Builder;
@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Value
 @Builder
-public class BookResponse {
+public class BookDefaultResponse implements BookResponse {
 
     UUID id;
     String isbn;

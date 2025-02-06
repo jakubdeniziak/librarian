@@ -3,7 +3,8 @@ package com.jakubdeniziak.librarian.book.service;
 import com.jakubdeniziak.librarian.author.service.AuthorService;
 import com.jakubdeniziak.librarian.book.domain.Book;
 import com.jakubdeniziak.librarian.book.domain.BookTuple;
-import com.jakubdeniziak.librarian.book.mapper.BookMapper;
+import com.jakubdeniziak.librarian.book.mapper.BookDomainToEntityMapper;
+import com.jakubdeniziak.librarian.book.mapper.BookEntityToDomainMapper;
 import com.jakubdeniziak.librarian.book.repository.BookJpaRepository;
 import com.jakubdeniziak.librarian.exceptions.ResourceNotFoundException;
 import com.jakubdeniziak.librarian.publisher.service.PublisherService;
@@ -18,14 +19,15 @@ import java.util.UUID;
 public class BookDefaultService implements BookService {
 
     private final BookJpaRepository repository;
-    private final BookMapper mapper;
+    private final BookDomainToEntityMapper domainToEntityMapper;
+    private final BookEntityToDomainMapper entityToDomainMapper;
     private final AuthorService authorService;
     private final PublisherService publisherService;
 
     @Override
     public void save(Book book, UUID authorId, UUID publisherId) {
         Book initializedBook = getInitializedBook(book, authorId, publisherId);
-        repository.save(mapper.map(initializedBook));
+        repository.save(domainToEntityMapper.map(initializedBook));
     }
 
     @Override
@@ -33,27 +35,27 @@ public class BookDefaultService implements BookService {
         List<Book> initializedBooks = bookTuples.stream()
                 .map(bookTuple -> getInitializedBook(bookTuple.getBook(), bookTuple.getAuthorId(), bookTuple.getPublisherId()))
                 .toList();
-        repository.saveAll(mapper.map(initializedBooks));
+        repository.saveAll(domainToEntityMapper.map(initializedBooks));
     }
 
     @Override
     public Book find(UUID id) {
-        return mapper.mapToDomain(repository.findById(id).orElseThrow(ResourceNotFoundException::new));
+        return entityToDomainMapper.mapToDomain(repository.findById(id).orElseThrow(ResourceNotFoundException::new));
     }
 
     @Override
     public List<Book> findAllByAuthor(UUID id) {
-        return mapper.mapToDomain(repository.findAllByAuthorId(id));
+        return entityToDomainMapper.mapToDomain(repository.findAllByAuthorId(id));
     }
 
     @Override
     public List<Book> findAllByPublisher(UUID id) {
-        return mapper.mapToDomain(repository.findAllByPublisherId(id));
+        return entityToDomainMapper.mapToDomain(repository.findAllByPublisherId(id));
     }
 
     @Override
     public List<Book> findAll() {
-        return mapper.mapToDomain(repository.findAll());
+        return entityToDomainMapper.mapToDomain(repository.findAll());
     }
 
     @Override

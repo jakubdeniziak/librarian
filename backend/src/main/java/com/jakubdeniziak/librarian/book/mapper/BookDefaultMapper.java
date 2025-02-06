@@ -4,8 +4,9 @@ import com.jakubdeniziak.librarian.author.mapper.AuthorDomainToEntityMapper;
 import com.jakubdeniziak.librarian.author.mapper.AuthorEntityToDomainMapper;
 import com.jakubdeniziak.librarian.book.domain.Book;
 import com.jakubdeniziak.librarian.book.dto.BookRequest;
-import com.jakubdeniziak.librarian.book.dto.BookResponse;
-import com.jakubdeniziak.librarian.book.dto.BooksResponse;
+import com.jakubdeniziak.librarian.book.dto.response.book.BookDefaultResponse;
+import com.jakubdeniziak.librarian.book.dto.response.book.BookResponse;
+import com.jakubdeniziak.librarian.book.dto.response.books.BooksResponse;
 import com.jakubdeniziak.librarian.book.entity.BookEntity;
 import com.jakubdeniziak.librarian.publisher.mapper.PublisherDomainToEntityMapper;
 import com.jakubdeniziak.librarian.publisher.mapper.PublisherEntityToDomainMapper;
@@ -17,7 +18,8 @@ import java.util.UUID;
 
 @Component
 @AllArgsConstructor
-public class BookDefaultMapper implements BookMapper {
+public class BookDefaultMapper implements BookRequestToDomainMapper, BookDomainToEntityMapper,
+        BookEntityToDomainMapper, BookDomainToResponseMapper {
 
     private final AuthorDomainToEntityMapper authorDomainToEntityMapper;
     private final AuthorEntityToDomainMapper authorEntityToDomainMapper;
@@ -77,7 +79,7 @@ public class BookDefaultMapper implements BookMapper {
 
     @Override
     public BookResponse mapToResponse(Book book) {
-        return BookResponse.builder()
+        return BookDefaultResponse.builder()
                 .id(book.getId())
                 .isbn(book.getIsbn())
                 .title(book.getTitle())
