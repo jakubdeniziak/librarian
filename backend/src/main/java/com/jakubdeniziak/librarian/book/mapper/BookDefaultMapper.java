@@ -1,6 +1,7 @@
 package com.jakubdeniziak.librarian.book.mapper;
 
-import com.jakubdeniziak.librarian.author.mapper.AuthorMapper;
+import com.jakubdeniziak.librarian.author.mapper.AuthorDomainToEntityMapper;
+import com.jakubdeniziak.librarian.author.mapper.AuthorEntityToDomainMapper;
 import com.jakubdeniziak.librarian.book.domain.Book;
 import com.jakubdeniziak.librarian.book.dto.BookRequest;
 import com.jakubdeniziak.librarian.book.dto.BookResponse;
@@ -17,7 +18,8 @@ import java.util.UUID;
 @AllArgsConstructor
 public class BookDefaultMapper implements BookMapper {
 
-    private final AuthorMapper authorMapper;
+    private final AuthorDomainToEntityMapper authorDomainToEntityMapper;
+    private final AuthorEntityToDomainMapper authorEntityToDomainMapper;
     private final PublisherMapper publisherMapper;
 
     @Override
@@ -39,7 +41,7 @@ public class BookDefaultMapper implements BookMapper {
                 .title(book.getTitle())
                 .description(book.getDescription())
                 .format(book.getFormat())
-                .author(authorMapper.map(book.getAuthor()))
+                .author(authorDomainToEntityMapper.map(book.getAuthor()))
                 .publisher(publisherMapper.map(book.getPublisher()))
                 .build();
     }
@@ -59,7 +61,7 @@ public class BookDefaultMapper implements BookMapper {
                 .title(book.getTitle())
                 .description(book.getDescription())
                 .format(book.getFormat())
-                .author(authorMapper.mapToDomain(book.getAuthor()))
+                .author(authorEntityToDomainMapper.mapToDomain(book.getAuthor()))
                 .publisher(publisherMapper.mapToDomain(book.getPublisher()))
                 .build();
     }

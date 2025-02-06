@@ -1,7 +1,8 @@
 package com.jakubdeniziak.librarian.author.service;
 
 import com.jakubdeniziak.librarian.author.domain.Author;
-import com.jakubdeniziak.librarian.author.mapper.AuthorMapper;
+import com.jakubdeniziak.librarian.author.mapper.AuthorDomainToEntityMapper;
+import com.jakubdeniziak.librarian.author.mapper.AuthorEntityToDomainMapper;
 import com.jakubdeniziak.librarian.author.repository.AuthorJpaRepository;
 import com.jakubdeniziak.librarian.exceptions.ResourceNotFoundException;
 import lombok.AllArgsConstructor;
@@ -15,26 +16,27 @@ import java.util.UUID;
 public class AuthorDefaultService implements AuthorService {
 
     private final AuthorJpaRepository repository;
-    private final AuthorMapper mapper;
+    private final AuthorDomainToEntityMapper domainToEntityMapper;
+    private final AuthorEntityToDomainMapper entityToDomainMapper;
 
     @Override
     public void save(Author author) {
-        repository.save(mapper.map(author));
+        repository.save(domainToEntityMapper.map(author));
     }
 
     @Override
     public void saveAll(List<Author> authors) {
-        repository.saveAll(mapper.map(authors));
+        repository.saveAll(domainToEntityMapper.map(authors));
     }
 
     @Override
     public Author find(UUID id) {
-        return mapper.mapToDomain(repository.findById(id).orElseThrow(ResourceNotFoundException::new));
+        return entityToDomainMapper.mapToDomain(repository.findById(id).orElseThrow(ResourceNotFoundException::new));
     }
 
     @Override
     public List<Author> findAll() {
-        return mapper.mapToDomain(repository.findAll());
+        return entityToDomainMapper.mapToDomain(repository.findAll());
     }
 
     @Override

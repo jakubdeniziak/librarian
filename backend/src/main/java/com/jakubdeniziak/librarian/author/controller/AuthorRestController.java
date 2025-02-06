@@ -1,11 +1,12 @@
 package com.jakubdeniziak.librarian.author.controller;
 
 import com.jakubdeniziak.librarian.author.domain.Author;
-import com.jakubdeniziak.librarian.author.mapper.AuthorMapper;
-import com.jakubdeniziak.librarian.author.service.AuthorService;
 import com.jakubdeniziak.librarian.author.dto.AuthorRequest;
 import com.jakubdeniziak.librarian.author.dto.AuthorResponse;
 import com.jakubdeniziak.librarian.author.dto.AuthorsResponse;
+import com.jakubdeniziak.librarian.author.mapper.AuthorDomainToResponseMapper;
+import com.jakubdeniziak.librarian.author.mapper.AuthorRequestToDomainMapper;
+import com.jakubdeniziak.librarian.author.service.AuthorService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,31 +18,32 @@ import java.util.UUID;
 public class AuthorRestController implements AuthorController {
 
     private final AuthorService service;
-    private final AuthorMapper mapper;
+    private final AuthorDomainToResponseMapper domainToResponseMapper;
+    private final AuthorRequestToDomainMapper requestToDomainMapper;
 
     @Override
     @PutMapping("/{id}")
     public void create(@PathVariable UUID id, @RequestBody AuthorRequest request) {
-        service.save(mapper.map(id, request));
+        service.save(requestToDomainMapper.map(id, request));
     }
 
     @Override
     @GetMapping("/{id}")
     public AuthorResponse read(@PathVariable UUID id) {
         Author author = service.find(id);
-        return mapper.mapToResponse(author);
+        return domainToResponseMapper.mapToResponse(author);
     }
 
     @Override
     @GetMapping
     public AuthorsResponse readAll() {
-        return mapper.mapToResponse(service.findAll());
+        return domainToResponseMapper.mapToResponse(service.findAll());
     }
 
     @Override
     @PatchMapping("/{id}")
     public void update(@PathVariable UUID id, @RequestBody AuthorRequest request) {
-        service.update(id, mapper.map(id, request));
+        service.update(id, requestToDomainMapper.map(id, request));
     }
 
     @Override
