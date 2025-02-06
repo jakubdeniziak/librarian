@@ -10,4 +10,4 @@ It is also available for download in two formats: [json](http://localhost:8080/a
 
 The API is available in two formats:
 - `/v1`: standard
-- `/v2`: HATEOAS based
+- `/v2`: HATEOAS based (implemented only for some endpoints)
