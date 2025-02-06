@@ -1,17 +1,19 @@
 package com.jakubdeniziak.librarian.publisher.mapper;
 
 import com.jakubdeniziak.librarian.publisher.domain.Publisher;
+import com.jakubdeniziak.librarian.publisher.dto.response.publisher.PublisherResponse;
 import com.jakubdeniziak.librarian.publisher.entity.PublisherEntity;
 import com.jakubdeniziak.librarian.publisher.dto.PublisherRequest;
-import com.jakubdeniziak.librarian.publisher.dto.PublisherResponse;
-import com.jakubdeniziak.librarian.publisher.dto.PublishersResponse;
+import com.jakubdeniziak.librarian.publisher.dto.response.publisher.PublisherDefaultResponse;
+import com.jakubdeniziak.librarian.publisher.dto.response.publishers.PublishersResponse;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.UUID;
 
 @Component
-public class PublisherDefaultMapper implements PublisherMapper {
+public class PublisherDefaultMapper implements PublisherRequestToDomainMapper, PublisherDomainToEntityMapper,
+        PublisherEntityToDomainMapper, PublisherDomainToResponseMapper{
 
     @Override
     public Publisher map(UUID id, PublisherRequest request) {
@@ -59,7 +61,7 @@ public class PublisherDefaultMapper implements PublisherMapper {
 
     @Override
     public PublisherResponse mapToResponse(Publisher publisher) {
-        return PublisherResponse.builder()
+        return PublisherDefaultResponse.builder()
                 .id(publisher.getId())
                 .name(publisher.getName())
                 .websiteUrl(publisher.getWebsiteUrl())

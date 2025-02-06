@@ -1,4 +1,4 @@
-package com.jakubdeniziak.librarian.author.dto;
+package com.jakubdeniziak.librarian.author.dto.response.authors;
 
 import lombok.Builder;
 import lombok.Value;

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/libraries")
+@RequestMapping("/v1/libraries")
 @AllArgsConstructor
 public class LibraryRestController implements LibraryController {
 
