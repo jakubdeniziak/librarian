@@ -1,6 +1,7 @@
 package com.jakubdeniziak.librarian.publisher.mapper;
 
 import com.jakubdeniziak.librarian.publisher.domain.Publisher;
+import com.jakubdeniziak.librarian.publisher.dto.response.publisher.PublisherResponse;
 import com.jakubdeniziak.librarian.publisher.entity.PublisherEntity;
 import com.jakubdeniziak.librarian.publisher.dto.PublisherRequest;
 import com.jakubdeniziak.librarian.publisher.dto.response.publisher.PublisherDefaultResponse;
@@ -59,7 +60,7 @@ public class PublisherDefaultMapper implements PublisherRequestToDomainMapper, P
     }
 
     @Override
-    public PublisherDefaultResponse mapToResponse(Publisher publisher) {
+    public PublisherResponse mapToResponse(Publisher publisher) {
         return PublisherDefaultResponse.builder()
                 .id(publisher.getId())
                 .name(publisher.getName())
