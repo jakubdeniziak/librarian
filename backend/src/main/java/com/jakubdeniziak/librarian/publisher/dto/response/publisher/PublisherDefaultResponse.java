@@ -1,4 +1,4 @@
-package com.jakubdeniziak.librarian.publisher.dto;
+package com.jakubdeniziak.librarian.publisher.dto.response.publisher;
 
 import lombok.Builder;
 import lombok.Value;
@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Value
 @Builder
-public class PublisherResponse {
+public class PublisherDefaultResponse implements PublisherResponse {
 
     UUID id;
     String name;

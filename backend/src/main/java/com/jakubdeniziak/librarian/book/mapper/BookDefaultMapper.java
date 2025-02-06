@@ -7,7 +7,8 @@ import com.jakubdeniziak.librarian.book.dto.BookRequest;
 import com.jakubdeniziak.librarian.book.dto.BookResponse;
 import com.jakubdeniziak.librarian.book.dto.BooksResponse;
 import com.jakubdeniziak.librarian.book.entity.BookEntity;
-import com.jakubdeniziak.librarian.publisher.mapper.PublisherMapper;
+import com.jakubdeniziak.librarian.publisher.mapper.PublisherDomainToEntityMapper;
+import com.jakubdeniziak.librarian.publisher.mapper.PublisherEntityToDomainMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +21,8 @@ public class BookDefaultMapper implements BookMapper {
 
     private final AuthorDomainToEntityMapper authorDomainToEntityMapper;
     private final AuthorEntityToDomainMapper authorEntityToDomainMapper;
-    private final PublisherMapper publisherMapper;
+    private final PublisherDomainToEntityMapper publisherDomainToEntityMapper;
+    private final PublisherEntityToDomainMapper publisherEntityToDomainMapper;
 
     @Override
     public Book map(UUID id, BookRequest request) {
@@ -42,7 +44,7 @@ public class BookDefaultMapper implements BookMapper {
                 .description(book.getDescription())
                 .format(book.getFormat())
                 .author(authorDomainToEntityMapper.map(book.getAuthor()))
-                .publisher(publisherMapper.map(book.getPublisher()))
+                .publisher(publisherDomainToEntityMapper.map(book.getPublisher()))
                 .build();
     }
 
@@ -62,7 +64,7 @@ public class BookDefaultMapper implements BookMapper {
                 .description(book.getDescription())
                 .format(book.getFormat())
                 .author(authorEntityToDomainMapper.mapToDomain(book.getAuthor()))
-                .publisher(publisherMapper.mapToDomain(book.getPublisher()))
+                .publisher(publisherEntityToDomainMapper.mapToDomain(book.getPublisher()))
                 .build();
     }
 
