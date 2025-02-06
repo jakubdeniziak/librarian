@@ -1,8 +1,8 @@
 package com.jakubdeniziak.librarian.book.controller;
 
 import com.jakubdeniziak.librarian.book.dto.BookRequest;
-import com.jakubdeniziak.librarian.book.dto.BookResponse;
-import com.jakubdeniziak.librarian.book.dto.BooksResponse;
+import com.jakubdeniziak.librarian.book.dto.response.book.BookResponse;
+import com.jakubdeniziak.librarian.book.dto.response.books.BooksResponse;
 
 import java.util.UUID;
 

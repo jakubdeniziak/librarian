@@ -1,12 +1,15 @@
 package com.jakubdeniziak.librarian.book.mapper;
 
-import com.jakubdeniziak.librarian.author.mapper.AuthorMapper;
+import com.jakubdeniziak.librarian.author.mapper.AuthorDomainToEntityMapper;
+import com.jakubdeniziak.librarian.author.mapper.AuthorEntityToDomainMapper;
 import com.jakubdeniziak.librarian.book.domain.Book;
 import com.jakubdeniziak.librarian.book.dto.BookRequest;
-import com.jakubdeniziak.librarian.book.dto.BookResponse;
-import com.jakubdeniziak.librarian.book.dto.BooksResponse;
+import com.jakubdeniziak.librarian.book.dto.response.book.BookDefaultResponse;
+import com.jakubdeniziak.librarian.book.dto.response.book.BookResponse;
+import com.jakubdeniziak.librarian.book.dto.response.books.BooksResponse;
 import com.jakubdeniziak.librarian.book.entity.BookEntity;
-import com.jakubdeniziak.librarian.publisher.mapper.PublisherMapper;
+import com.jakubdeniziak.librarian.publisher.mapper.PublisherDomainToEntityMapper;
+import com.jakubdeniziak.librarian.publisher.mapper.PublisherEntityToDomainMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -15,10 +18,13 @@ import java.util.UUID;
 
 @Component
 @AllArgsConstructor
-public class BookDefaultMapper implements BookMapper {
+public class BookDefaultMapper implements BookRequestToDomainMapper, BookDomainToEntityMapper,
+        BookEntityToDomainMapper, BookDomainToResponseMapper {
 
-    private final AuthorMapper authorMapper;
-    private final PublisherMapper publisherMapper;
+    private final AuthorDomainToEntityMapper authorDomainToEntityMapper;
+    private final AuthorEntityToDomainMapper authorEntityToDomainMapper;
+    private final PublisherDomainToEntityMapper publisherDomainToEntityMapper;
+    private final PublisherEntityToDomainMapper publisherEntityToDomainMapper;
 
     @Override
     public Book map(UUID id, BookRequest request) {
@@ -39,8 +45,8 @@ public class BookDefaultMapper implements BookMapper {
                 .title(book.getTitle())
                 .description(book.getDescription())
                 .format(book.getFormat())
-                .author(authorMapper.map(book.getAuthor()))
-                .publisher(publisherMapper.map(book.getPublisher()))
+                .author(authorDomainToEntityMapper.map(book.getAuthor()))
+                .publisher(publisherDomainToEntityMapper.map(book.getPublisher()))
                 .build();
     }
 
@@ -59,8 +65,8 @@ public class BookDefaultMapper implements BookMapper {
                 .title(book.getTitle())
                 .description(book.getDescription())
                 .format(book.getFormat())
-                .author(authorMapper.mapToDomain(book.getAuthor()))
-                .publisher(publisherMapper.mapToDomain(book.getPublisher()))
+                .author(authorEntityToDomainMapper.mapToDomain(book.getAuthor()))
+                .publisher(publisherEntityToDomainMapper.mapToDomain(book.getPublisher()))
                 .build();
     }
 
@@ -73,7 +79,7 @@ public class BookDefaultMapper implements BookMapper {
 
     @Override
     public BookResponse mapToResponse(Book book) {
-        return BookResponse.builder()
+        return BookDefaultResponse.builder()
                 .id(book.getId())
                 .isbn(book.getIsbn())
                 .title(book.getTitle())

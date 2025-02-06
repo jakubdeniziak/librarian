@@ -1,6 +1,7 @@
 package com.jakubdeniziak.librarian.userbook.mapper;
 
-import com.jakubdeniziak.librarian.book.mapper.BookMapper;
+import com.jakubdeniziak.librarian.book.mapper.BookDomainToEntityMapper;
+import com.jakubdeniziak.librarian.book.mapper.BookEntityToDomainMapper;
 import com.jakubdeniziak.librarian.user.mapper.UserMapper;
 import com.jakubdeniziak.librarian.userbook.domain.UserBook;
 import com.jakubdeniziak.librarian.userbook.dto.UserBookRequest;
@@ -18,7 +19,8 @@ import java.util.List;
 public class UserBookDefaultMapper implements UserBookMapper {
 
     private final UserMapper userMapper;
-    private final BookMapper bookMapper;
+    private final BookDomainToEntityMapper bookDomainToEntityMapper;
+    private final BookEntityToDomainMapper bookEntityToDomainMapper;
 
     @Override
     public UserBook map(UserBookRequest request) {
@@ -44,7 +46,7 @@ public class UserBookDefaultMapper implements UserBookMapper {
                 .review(userBook.getReview())
                 .readingStatus(userBook.getReadingStatus())
                 .user(userMapper.map(userBook.getUser()))
-                .book(bookMapper.map(userBook.getBook()))
+                .book(bookDomainToEntityMapper.map(userBook.getBook()))
                 .build();
     }
 
@@ -59,7 +61,7 @@ public class UserBookDefaultMapper implements UserBookMapper {
     public UserBook mapToDomain(UserBookEntity userBook) {
         return UserBook.builder()
                 .user(userMapper.mapToDomain(userBook.getUser()))
-                .book(bookMapper.mapToDomain(userBook.getBook()))
+                .book(bookEntityToDomainMapper.mapToDomain(userBook.getBook()))
                 .startedOn(userBook.getStartedOn())
                 .finishedOn(userBook.getFinishedOn())
                 .rating(userBook.getRating())
