@@ -13,6 +13,9 @@ Before running the project you have to create a `.env` file in the project root 
 that will contain the following properties:
 
 ```properties
+# Optional:
+BACKEND_VERSION=1.0.0
+# Required:
 DATABASE_USERNAME=root
 DATABASE_PASSWORD=root
 DATABASE_NAME=librarian

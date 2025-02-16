@@ -10,7 +10,10 @@ services:
       - backend
 
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      args:
+        - VERSION=${BACKEND_VERSION:-1.0.0}
     restart: always
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/${DATABASE_NAME}
