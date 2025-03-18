@@ -6,6 +6,7 @@ import com.jakubdeniziak.librarian.book.dto.response.books.BooksResponse;
 import com.jakubdeniziak.librarian.book.mapper.BookDomainToResponseMapper;
 import com.jakubdeniziak.librarian.book.mapper.BookRequestToDomainMapper;
 import com.jakubdeniziak.librarian.book.service.BookService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,7 @@ public class BookRestController implements BookController {
 
     @Override
     @PutMapping("/v1/books/{id}")
-    public void create(@PathVariable UUID id, @RequestBody BookRequest request) {
+    public void create(@PathVariable UUID id, @Valid @RequestBody BookRequest request) {
         bookService.save(requestToDomainMapper.map(id, request), request.getAuthorId(), request.getPublisherId());
     }
 
