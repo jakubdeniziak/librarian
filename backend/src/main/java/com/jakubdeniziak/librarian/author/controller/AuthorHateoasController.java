@@ -9,6 +9,7 @@ import com.jakubdeniziak.librarian.author.mapper.hateoas.AuthorHateoasMapper;
 import com.jakubdeniziak.librarian.author.service.AuthorService;
 import com.jakubdeniziak.librarian.book.domain.Book;
 import com.jakubdeniziak.librarian.book.service.BookService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +30,7 @@ public class AuthorHateoasController implements AuthorController {
 
     @Override
     @PutMapping("/{id}")
-    public void create(@PathVariable UUID id, @RequestBody AuthorRequest request) {
+    public void create(@PathVariable UUID id, @Valid @RequestBody AuthorRequest request) {
         authorService.save(requestToDomainMapper.map(id, request));
     }
 
