@@ -7,6 +7,7 @@ import com.jakubdeniziak.librarian.author.dto.response.authors.AuthorsResponse;
 import com.jakubdeniziak.librarian.author.mapper.AuthorDomainToResponseMapper;
 import com.jakubdeniziak.librarian.author.mapper.AuthorRequestToDomainMapper;
 import com.jakubdeniziak.librarian.author.service.AuthorService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,7 @@ public class AuthorRestController implements AuthorController {
 
     @Override
     @PutMapping("/{id}")
-    public void create(@PathVariable UUID id, @RequestBody AuthorRequest request) {
+    public void create(@PathVariable UUID id, @Valid @RequestBody AuthorRequest request) {
         service.save(requestToDomainMapper.map(id, request));
     }
 

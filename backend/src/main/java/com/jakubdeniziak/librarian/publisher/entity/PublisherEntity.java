@@ -1,6 +1,9 @@
 package com.jakubdeniziak.librarian.publisher.entity;
 
+import com.jakubdeniziak.librarian.validation.url.ValidUrl;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
@@ -19,8 +22,13 @@ public class PublisherEntity {
     @Id
     private UUID id;
 
+    @NotBlank
     private String name;
+
+    @ValidUrl
     private String websiteUrl;
+
+    @Size(max = 1000)
     private String description;
 
     @Override

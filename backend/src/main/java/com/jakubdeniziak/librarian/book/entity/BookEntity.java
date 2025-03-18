@@ -3,6 +3,10 @@ package com.jakubdeniziak.librarian.book.entity;
 import com.jakubdeniziak.librarian.author.entity.AuthorEntity;
 import com.jakubdeniziak.librarian.publisher.entity.PublisherEntity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
@@ -21,15 +25,26 @@ public class BookEntity {
     @Id
     private UUID id;
 
+    @NotBlank
+    @Pattern(regexp = "^(\\d{10}|\\d{13})$")
     private String isbn;
+
+    @NotBlank
     private String title;
+
+    @Size(max = 1000, message = "Description cannot exceed 1000 characters")
     private String description;
+
+    @NotNull
     @Enumerated(EnumType.STRING)
     private BookFormat format;
 
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "author_id")
     private AuthorEntity author;
+
+    @NotNull
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "publisher_id")
     private PublisherEntity publisher;

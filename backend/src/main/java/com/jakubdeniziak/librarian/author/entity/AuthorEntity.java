@@ -1,6 +1,7 @@
 package com.jakubdeniziak.librarian.author.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
@@ -19,7 +20,9 @@ public class AuthorEntity {
     @Id
     private UUID id;
 
+    @NotBlank
     private String firstName;
+    @NotBlank
     private String lastName;
     private String description;
 

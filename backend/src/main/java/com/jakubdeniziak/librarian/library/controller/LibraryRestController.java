@@ -5,6 +5,7 @@ import com.jakubdeniziak.librarian.library.service.LibraryDefaultService;
 import com.jakubdeniziak.librarian.library.dto.LibrariesResponse;
 import com.jakubdeniziak.librarian.library.dto.LibraryRequest;
 import com.jakubdeniziak.librarian.library.dto.LibraryResponse;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class LibraryRestController implements LibraryController {
 
     @Override
     @PutMapping("/{id}")
-    public void create(@PathVariable UUID id, @RequestBody LibraryRequest request) {
+    public void create(@PathVariable UUID id, @Valid @RequestBody LibraryRequest request) {
         service.save(mapper.map(id, request));
     }
 
