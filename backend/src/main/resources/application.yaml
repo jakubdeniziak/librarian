@@ -3,6 +3,8 @@ spring:
     name: "librarian-backend"
   jpa:
     open-in-view: false
+    hibernate:
+      ddl-auto: validate
 server:
   servlet:
     context-path: /api
