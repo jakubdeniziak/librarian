@@ -1,6 +1,7 @@
 package com.jakubdeniziak.librarian.librarybook.mapper;
 
-import com.jakubdeniziak.librarian.book.mapper.BookMapper;
+import com.jakubdeniziak.librarian.book.mapper.BookDomainToEntityMapper;
+import com.jakubdeniziak.librarian.book.mapper.BookEntityToDomainMapper;
 import com.jakubdeniziak.librarian.library.mapper.LibraryMapper;
 import com.jakubdeniziak.librarian.librarybook.domain.LibraryBook;
 import com.jakubdeniziak.librarian.librarybook.dto.LibraryBookRequest;
@@ -18,7 +19,8 @@ import java.util.List;
 public class LibraryBookDefaultMapper implements LibraryBookMapper {
 
     private final LibraryMapper libraryMapper;
-    private final BookMapper bookMapper;
+    private final BookDomainToEntityMapper bookDomainToEntityMapper;
+    private final BookEntityToDomainMapper bookEntityToDomainMapper;
 
     @Override
     public LibraryBook map(LibraryBookRequest request) {
@@ -35,7 +37,7 @@ public class LibraryBookDefaultMapper implements LibraryBookMapper {
                         .bookId(libraryBook.getBook().getId())
                         .build())
                 .library(libraryMapper.map(libraryBook.getLibrary()))
-                .book(bookMapper.map(libraryBook.getBook()))
+                .book(bookDomainToEntityMapper.map(libraryBook.getBook()))
                 .numberOfCopies(libraryBook.getNumberOfCopies())
                 .build();
     }
@@ -51,7 +53,7 @@ public class LibraryBookDefaultMapper implements LibraryBookMapper {
     public LibraryBook mapToDomain(LibraryBookEntity libraryBook) {
         return LibraryBook.builder()
                 .library(libraryMapper.mapToDomain(libraryBook.getLibrary()))
-                .book(bookMapper.mapToDomain(libraryBook.getBook()))
+                .book(bookEntityToDomainMapper.mapToDomain(libraryBook.getBook()))
                 .numberOfCopies(libraryBook.getNumberOfCopies())
                 .build();
     }

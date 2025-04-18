@@ -1,8 +1,8 @@
 package com.jakubdeniziak.librarian.publisher.controller;
 
 import com.jakubdeniziak.librarian.publisher.dto.PublisherRequest;
-import com.jakubdeniziak.librarian.publisher.dto.PublisherResponse;
-import com.jakubdeniziak.librarian.publisher.dto.PublishersResponse;
+import com.jakubdeniziak.librarian.publisher.dto.response.publisher.PublisherResponse;
+import com.jakubdeniziak.librarian.publisher.dto.response.publishers.PublishersResponse;
 
 import java.util.UUID;
 

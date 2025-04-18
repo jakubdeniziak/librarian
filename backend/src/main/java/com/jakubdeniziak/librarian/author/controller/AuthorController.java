@@ -1,8 +1,8 @@
 package com.jakubdeniziak.librarian.author.controller;
 
 import com.jakubdeniziak.librarian.author.dto.AuthorRequest;
-import com.jakubdeniziak.librarian.author.dto.AuthorResponse;
-import com.jakubdeniziak.librarian.author.dto.AuthorsResponse;
+import com.jakubdeniziak.librarian.author.dto.response.author.AuthorResponse;
+import com.jakubdeniziak.librarian.author.dto.response.authors.AuthorsResponse;
 
 import java.util.UUID;
 

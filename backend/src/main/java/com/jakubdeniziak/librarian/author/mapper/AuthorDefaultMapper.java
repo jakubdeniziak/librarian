@@ -2,8 +2,9 @@ package com.jakubdeniziak.librarian.author.mapper;
 
 import com.jakubdeniziak.librarian.author.domain.Author;
 import com.jakubdeniziak.librarian.author.dto.AuthorRequest;
-import com.jakubdeniziak.librarian.author.dto.AuthorResponse;
-import com.jakubdeniziak.librarian.author.dto.AuthorsResponse;
+import com.jakubdeniziak.librarian.author.dto.response.author.AuthorResponse;
+import com.jakubdeniziak.librarian.author.dto.response.author.AuthorDefaultResponse;
+import com.jakubdeniziak.librarian.author.dto.response.authors.AuthorsResponse;
 import com.jakubdeniziak.librarian.author.entity.AuthorEntity;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +12,8 @@ import java.util.List;
 import java.util.UUID;
 
 @Component
-public class AuthorDefaultMapper implements AuthorMapper {
+public class AuthorDefaultMapper implements AuthorRequestToDomainMapper, AuthorDomainToEntityMapper,
+        AuthorEntityToDomainMapper, AuthorDomainToResponseMapper {
 
     @Override
     public Author map(UUID id, AuthorRequest request) {
@@ -59,7 +61,7 @@ public class AuthorDefaultMapper implements AuthorMapper {
 
     @Override
     public AuthorResponse mapToResponse(Author author) {
-        return AuthorResponse.builder()
+        return AuthorDefaultResponse.builder()
                 .id(author.getId())
                 .firstName(author.getFirstName())
                 .lastName(author.getLastName())

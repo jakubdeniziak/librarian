@@ -1,4 +1,4 @@
-package com.jakubdeniziak.librarian.book.dto;
+package com.jakubdeniziak.librarian.book.dto.response.books;
 
 import lombok.Builder;
 import lombok.Value;
