@@ -7,9 +7,9 @@ CREATE TABLE authors (
 
 CREATE TABLE publishers (
     id UUID PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    website_url VARCHAR(255),
-    description TEXT
+    name VARCHAR(100) NOT NULL,
+    website_url VARCHAR(100),
+    description VARCHAR(1000)
 );
 
 CREATE TABLE books (
