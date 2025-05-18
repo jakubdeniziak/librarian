@@ -50,6 +50,12 @@ public class AuthorHateoasController implements AuthorController {
     }
 
     @Override
+    @GetMapping("/count")
+    public Integer getCount() {
+        return authorService.getCount();
+    }
+
+    @Override
     @PatchMapping("/{id}")
     public void update(@PathVariable UUID id, @RequestBody AuthorRequest request) {
         authorService.update(id, requestToDomainMapper.map(id, request));

@@ -42,6 +42,12 @@ public class AuthorRestController implements AuthorController {
     }
 
     @Override
+    @GetMapping("/count")
+    public Integer getCount() {
+        return service.getCount();
+    }
+
+    @Override
     @PatchMapping("/{id}")
     public void update(@PathVariable UUID id, @RequestBody AuthorRequest request) {
         service.update(id, requestToDomainMapper.map(id, request));

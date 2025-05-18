@@ -59,6 +59,11 @@ public class BookDefaultService implements BookService {
     }
 
     @Override
+    public Integer getCount() {
+        return Math.toIntExact(repository.count());
+    }
+
+    @Override
     public void update(UUID id, Book updated, UUID authorId, UUID publisherId) {
         Book book = find(id);
         if (updated.getIsbn() != null) {

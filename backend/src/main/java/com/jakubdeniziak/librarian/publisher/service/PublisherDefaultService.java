@@ -40,6 +40,11 @@ public class PublisherDefaultService implements PublisherService {
     }
 
     @Override
+    public Integer getCount() {
+        return Math.toIntExact(repository.count());
+    }
+
+    @Override
     public void update(UUID id, Publisher updated) {
         Publisher publisher = find(id);
         if (updated.getName() != null) {

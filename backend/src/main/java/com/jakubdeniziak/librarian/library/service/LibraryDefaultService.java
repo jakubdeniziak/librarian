@@ -38,6 +38,11 @@ public class LibraryDefaultService implements LibraryService {
     }
 
     @Override
+    public Integer getCount() {
+        return Math.toIntExact(repository.count());
+    }
+
+    @Override
     public void update(UUID id, Library updated) {
         Library library = find(id);
         if (updated.getName() != null) {

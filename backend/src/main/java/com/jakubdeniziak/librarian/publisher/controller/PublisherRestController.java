@@ -20,6 +20,7 @@ public class PublisherRestController implements PublisherController {
     private final PublisherService service;
     private final PublisherDomainToResponseMapper domainToResponseMapper;
     private final PublisherRequestToDomainMapper requestToDomainMapper;
+    private final PublisherService publisherService;
 
     @Override
     @PutMapping("/{id}")
@@ -37,6 +38,12 @@ public class PublisherRestController implements PublisherController {
     @GetMapping
     public PublishersResponse readAll() {
         return domainToResponseMapper.mapToResponse(service.findAll());
+    }
+
+    @Override
+    @GetMapping("/count")
+    public Integer getCount() {
+        return publisherService.getCount();
     }
 
     @Override

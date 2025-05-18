@@ -14,6 +14,7 @@ public interface BookService {
     List<Book> findAllByAuthor(UUID authorId);
     List<Book> findAllByPublisher(UUID publisherId);
     List<Book> findAll();
+    Integer getCount();
     void update(UUID id, Book updated, UUID authorId, UUID publisherId);
     void delete(UUID id);
 

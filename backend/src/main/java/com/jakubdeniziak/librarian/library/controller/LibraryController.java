@@ -11,6 +11,7 @@ public interface LibraryController {
     void create(UUID id, LibraryRequest request);
     LibraryResponse read(UUID id);
     LibrariesResponse readAll();
+    Integer getCount();
     void update(UUID id, LibraryRequest request);
     void delete(UUID id);
 

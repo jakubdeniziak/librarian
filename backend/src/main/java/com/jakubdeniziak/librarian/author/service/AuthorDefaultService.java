@@ -40,6 +40,11 @@ public class AuthorDefaultService implements AuthorService {
     }
 
     @Override
+    public Integer getCount() {
+        return Math.toIntExact(repository.count());
+    }
+
+    @Override
     public void update(UUID id, Author updated) {
         Author author = find(id);
 

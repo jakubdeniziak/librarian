@@ -17,7 +17,7 @@ export class PublisherService {
     }
 
     getPublisher(uuid: string): Observable<PublisherDetails> {
-        return this.http.get<PublisherDetails>(Endpoints.PUBLISHERS + uuid);
+        return this.http.get<PublisherDetails>(Endpoints.PUBLISHERS + "/" + uuid);
     }
 
     getPublishersCount(): Observable<number> {
@@ -25,11 +25,11 @@ export class PublisherService {
     }
 
     putPublisher(uuid: string, request: PublisherForm): Observable<any> {
-        return this.http.put(Endpoints.PUBLISHERS + uuid, request);
+        return this.http.put(Endpoints.PUBLISHERS + "/" + uuid, request);
     }
 
     deletePublisher(uuid: string): Observable<any> {
-        return this.http.delete(Endpoints.PUBLISHERS + uuid)
+        return this.http.delete(Endpoints.PUBLISHERS + "/" + uuid)
     }
 
 }

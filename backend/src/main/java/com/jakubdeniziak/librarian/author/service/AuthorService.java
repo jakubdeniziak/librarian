@@ -11,6 +11,7 @@ public interface AuthorService {
     void saveAll(List<Author> authors);
     Author find(UUID id);
     List<Author> findAll();
+    Integer getCount();
     void update(UUID id, Author updated);
     void delete(UUID id);
 

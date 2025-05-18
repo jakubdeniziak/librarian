@@ -38,6 +38,12 @@ public class LibraryRestController implements LibraryController {
     }
 
     @Override
+    @GetMapping("/count")
+    public Integer getCount() {
+        return service.getCount();
+    }
+
+    @Override
     @PatchMapping("/{id}")
     public void update(@PathVariable UUID id, @RequestBody LibraryRequest request) {
         service.update(id, mapper.map(id, request));

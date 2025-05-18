@@ -50,6 +50,12 @@ public class PublisherHateoasController implements PublisherController {
     }
 
     @Override
+    @GetMapping("/count")
+    public Integer getCount() {
+        return publisherService.getCount();
+    }
+
+    @Override
     @PatchMapping("/{id}")
     public void update(@PathVariable UUID id, @RequestBody PublisherRequest request) {
         publisherService.update(id, requestToDomainMapper.map(id, request));
