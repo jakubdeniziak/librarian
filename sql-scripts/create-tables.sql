@@ -30,7 +30,7 @@ CREATE TABLE libraries (
     id UUID PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     address VARCHAR(255) NOT NULL,
-    description TEXT
+    description VARCHAR(1000)
 );
 
 CREATE TABLE library_books (

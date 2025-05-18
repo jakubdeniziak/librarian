@@ -8,9 +8,13 @@ import lombok.Value;
 public class LibraryRequest {
 
     @NotBlank
+    @Size(max = 255)
     String name;
+
     @NotBlank
+    @Size(max = 255)
     String address;
+
     @Size(max = 1000)
     String description;
 
