@@ -20,6 +20,10 @@ export class LibraryService {
         return this.httpClient.get<LibraryDetails>(Endpoints.LIBRARIES + '/' + uuid)
     }
 
+    getLibrariesCount(): Observable<number> {
+        return this.httpClient.get<number>(Endpoints.LIBRARIES + "/count");
+    }
+
     putLibrary(uuid: string, request: LibraryForm): Observable<any> {
         return this.httpClient.put(Endpoints.LIBRARIES + '/' + uuid, request);
     }

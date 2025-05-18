@@ -20,6 +20,10 @@ export class PublisherService {
         return this.http.get<PublisherDetails>(Endpoints.PUBLISHERS + uuid);
     }
 
+    getPublishersCount(): Observable<number> {
+        return this.http.get<number>(Endpoints.PUBLISHERS + "/count");
+    }
+
     putPublisher(uuid: string, request: PublisherForm): Observable<any> {
         return this.http.put(Endpoints.PUBLISHERS + uuid, request);
     }

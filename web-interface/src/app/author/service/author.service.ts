@@ -20,6 +20,10 @@ export class AuthorService {
         return this.http.get<AuthorDetails>(Endpoints.AUTHORS + '/' + uuid);
     }
 
+    getAuthorsCount(): Observable<number> {
+        return this.http.get<number>(Endpoints.AUTHORS + "/count");
+    }
+
     putAuthor(uuid: string, request: AuthorForm): Observable<any> {
         return this.http.put(Endpoints.AUTHORS + '/' + uuid, request);
     }

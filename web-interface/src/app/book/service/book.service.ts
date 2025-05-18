@@ -21,7 +21,6 @@ export class BookService {
         return this.http.get<BookDetails>(Endpoints.BOOKS + '/' + uuid);
     }
 
-
     getBooksByAuthor(uuid: string): Observable<Books> {
         return this.http.get<Books>(Endpoints.AUTHORS + '/' + uuid + '/books')
     }
@@ -32,6 +31,10 @@ export class BookService {
 
     getBooksByLibrary(uuid: string): Observable<LibraryBooks> {
         return this.http.get<LibraryBooks>(Endpoints.LIBRARIES + '/' + uuid + '/books')
+    }
+
+    getBooksCount(): Observable<number> {
+        return this.http.get<number>(Endpoints.BOOKS + "/count");
     }
 
     putBook(uuid: string, request: BookForm): Observable<any> {
