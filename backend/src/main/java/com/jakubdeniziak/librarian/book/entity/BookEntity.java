@@ -30,6 +30,7 @@ public class BookEntity {
     private String isbn;
 
     @NotBlank
+    @Size(max = 255)
     private String title;
 
     @Size(max = 1000, message = "Description cannot exceed 1000 characters")

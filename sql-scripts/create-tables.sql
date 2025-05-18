@@ -1,3 +1,7 @@
+-- Create types
+CREATE TYPE book_format AS ENUM ('AUDIOBOOK', 'EBOOK', 'HARDCOVER', 'PAPERBACK');
+
+-- Create tables
 CREATE TABLE authors (
     id UUID PRIMARY KEY,
     first_name VARCHAR(100) NOT NULL,
@@ -14,11 +18,12 @@ CREATE TABLE publishers (
 
 CREATE TABLE books (
     id UUID PRIMARY KEY,
-    isbn VARCHAR(13) NOT NULL UNIQUE,
+    isbn VARCHAR(13) NOT NULL UNIQUE CHECK (isbn ~ '^\d{10}|\d{13}$'),
     title VARCHAR(255) NOT NULL,
-    description TEXT,
-    author_id UUID REFERENCES authors(id),
-    publisher_id UUID REFERENCES publishers(id)
+    description VARCHAR(1000),
+    format book_format NOT NULL,
+    author_id UUID NOT NULL REFERENCES authors(id),
+    publisher_id UUID NOT NULL REFERENCES publishers(id)
 );
 
 CREATE TABLE libraries (
