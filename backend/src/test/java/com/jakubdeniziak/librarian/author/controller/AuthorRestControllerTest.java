@@ -2,8 +2,10 @@ package com.jakubdeniziak.librarian.author.controller;
 
 import com.jakubdeniziak.librarian.author.domain.Author;
 import com.jakubdeniziak.librarian.author.dto.AuthorRequest;
-import com.jakubdeniziak.librarian.author.dto.AuthorResponse;
-import com.jakubdeniziak.librarian.author.mapper.AuthorMapper;
+import com.jakubdeniziak.librarian.author.dto.response.author.AuthorDefaultResponse;
+import com.jakubdeniziak.librarian.author.dto.response.author.AuthorResponse;
+import com.jakubdeniziak.librarian.author.mapper.AuthorDomainToResponseMapper;
+import com.jakubdeniziak.librarian.author.mapper.AuthorRequestToDomainMapper;
 import com.jakubdeniziak.librarian.author.service.AuthorService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -35,7 +37,7 @@ public class AuthorRestControllerTest {
             .lastName(LAST_NAME)
             .description(DESCRIPTION)
             .build();
-    private static final AuthorResponse READ_RESPONSE = AuthorResponse.builder()
+    private static final AuthorDefaultResponse READ_RESPONSE = AuthorDefaultResponse.builder()
             .id(ID)
             .firstName(FIRST_NAME)
             .lastName(LAST_NAME)
@@ -45,24 +47,26 @@ public class AuthorRestControllerTest {
     @Mock
     private AuthorService authorService;
     @Mock
-    private AuthorMapper authorMapper;
+    private AuthorRequestToDomainMapper authorRequestToDomainMapper;
+    @Mock
+    private AuthorDomainToResponseMapper authorDomainToResponseMapper;
     @InjectMocks
     private AuthorRestController authorController;
 
     @Test
     public void shouldCreateAuthor() {
-        when(authorMapper.map(ID, CREATE_REQUEST)).thenReturn(AUTHOR);
+        when(authorRequestToDomainMapper.map(ID, CREATE_REQUEST)).thenReturn(AUTHOR);
 
         authorController.create(ID, CREATE_REQUEST);
 
-        verify(authorMapper).map(ID, CREATE_REQUEST);
+        verify(authorRequestToDomainMapper).map(ID, CREATE_REQUEST);
         verify(authorService).save(AUTHOR);
     }
 
     @Test
     public void shouldReadAuthor() {
         when(authorService.find(ID)).thenReturn(AUTHOR);
-        when(authorMapper.mapToResponse(AUTHOR)).thenReturn(READ_RESPONSE);
+        when(authorDomainToResponseMapper.mapToResponse(AUTHOR)).thenReturn(READ_RESPONSE);
 
         AuthorResponse response = authorController.read(ID);
 
@@ -73,7 +77,7 @@ public class AuthorRestControllerTest {
                 .returns(DESCRIPTION, AuthorResponse::getDescription);
 
         verify(authorService).find(ID);
-        verify(authorMapper).mapToResponse(AUTHOR);
+        verify(authorDomainToResponseMapper).mapToResponse(AUTHOR);
     }
 
     @Test
