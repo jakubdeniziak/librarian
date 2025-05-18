@@ -1,6 +1,9 @@
 -- Create types
 CREATE TYPE book_format AS ENUM ('AUDIOBOOK', 'EBOOK', 'HARDCOVER', 'PAPERBACK');
 
+CREATE TYPE reading_status AS ENUM ('WANT_TO_READ', 'READING', 'READ', 'ABANDONED');
+
+
 -- Create tables
 CREATE TABLE authors (
     id UUID PRIMARY KEY,
@@ -45,4 +48,15 @@ CREATE TABLE users (
    first_name VARCHAR(100),
    last_name VARCHAR(100),
    nickname VARCHAR(100)
+);
+
+CREATE TABLE user_books (
+    user_id UUID NOT NULL REFERENCES users(id),
+    book_id UUID NOT NULL REFERENCES books(id),
+    started_on TIMESTAMP,
+    finished_on TIMESTAMP,
+    rating REAL,
+    review TEXT,
+    reading_status reading_status,
+    PRIMARY KEY (user_id, book_id)
 );
