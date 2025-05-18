@@ -34,8 +34,8 @@ CREATE TABLE libraries (
 );
 
 CREATE TABLE library_books (
-    library_id UUID REFERENCES libraries(id),
-    book_id UUID REFERENCES books(id),
-    number_of_copies INT NOT NULL,
+    library_id UUID NOT NULL REFERENCES libraries(id),
+    book_id UUID NOT NULL REFERENCES books(id),
+    number_of_copies INT NOT NULL CHECK (number_of_copies >= 0),
     PRIMARY KEY(library_id, book_id)
 );
