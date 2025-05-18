@@ -3,6 +3,7 @@ package com.jakubdeniziak.librarian.user.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
@@ -21,8 +22,13 @@ public class UserEntity {
     @Id
     private UUID id;
 
+    @Size(max = 100)
     private String firstName;
+
+    @Size(max = 100)
     private String lastName;
+
+    @Size(max = 100)
     private String nickname;
 
     @Override

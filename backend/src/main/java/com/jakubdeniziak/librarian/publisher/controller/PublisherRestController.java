@@ -6,6 +6,7 @@ import com.jakubdeniziak.librarian.publisher.dto.response.publishers.PublishersR
 import com.jakubdeniziak.librarian.publisher.mapper.PublisherDomainToResponseMapper;
 import com.jakubdeniziak.librarian.publisher.mapper.PublisherRequestToDomainMapper;
 import com.jakubdeniziak.librarian.publisher.service.PublisherService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public class PublisherRestController implements PublisherController {
 
     @Override
     @PutMapping("/{id}")
-    public void create(@PathVariable UUID id, @RequestBody PublisherRequest request) {
+    public void create(@PathVariable UUID id, @Valid @RequestBody PublisherRequest request) {
         service.save(requestToDomainMapper.map(id, request));
     }
 

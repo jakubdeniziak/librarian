@@ -1,6 +1,8 @@
 package com.jakubdeniziak.librarian.library.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
@@ -19,8 +21,15 @@ public class LibraryEntity {
     @Id
     private UUID id;
 
+    @NotBlank
+    @Size(max = 255)
     private String name;
+
+    @NotBlank
+    @Size(max = 255)
     private String address;
+
+    @Size(max = 1000)
     private String description;
 
     @Override
