@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
+import org.hibernate.validator.constraints.Length;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -21,8 +22,10 @@ public class AuthorEntity {
     private UUID id;
 
     @NotBlank
+    @Length(max = 100)
     private String firstName;
     @NotBlank
+    @Length(max = 100)
     private String lastName;
     private String description;
 

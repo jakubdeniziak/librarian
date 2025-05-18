@@ -3,6 +3,7 @@ package com.jakubdeniziak.librarian.librarybook.entity;
 import com.jakubdeniziak.librarian.book.entity.BookEntity;
 import com.jakubdeniziak.librarian.library.entity.LibraryEntity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.*;
 import org.hibernate.proxy.HibernateProxy;
 
@@ -20,6 +21,7 @@ public class LibraryBookEntity {
     @EmbeddedId
     private LibraryBookKey id;
 
+    @PositiveOrZero
     private Integer numberOfCopies;
 
     @ManyToOne

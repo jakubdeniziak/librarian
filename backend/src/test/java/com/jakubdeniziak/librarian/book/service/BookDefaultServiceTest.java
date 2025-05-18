@@ -2,7 +2,7 @@ package com.jakubdeniziak.librarian.book.service;
 
 import com.jakubdeniziak.librarian.book.domain.Book;
 import com.jakubdeniziak.librarian.book.entity.BookEntity;
-import com.jakubdeniziak.librarian.book.mapper.BookMapper;
+import com.jakubdeniziak.librarian.book.mapper.BookEntityToDomainMapper;
 import com.jakubdeniziak.librarian.book.repository.BookJpaRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,14 +34,14 @@ public class BookDefaultServiceTest {
     @Mock
     private BookJpaRepository repository;
     @Mock
-    private BookMapper mapper;
+    private BookEntityToDomainMapper bookEntityToDomainMapper;
     @InjectMocks
     private BookDefaultService bookService;
 
     @Test
     public void shouldFindBook() {
         when(repository.findById(BOOK_ID)).thenReturn(Optional.of(BOOK_ENTITY));
-        when(mapper.mapToDomain(BOOK_ENTITY)).thenReturn(BOOK);
+        when(bookEntityToDomainMapper.mapToDomain(BOOK_ENTITY)).thenReturn(BOOK);
 
         Book result = bookService.find(BOOK_ID);
 
@@ -49,7 +49,7 @@ public class BookDefaultServiceTest {
                 .returns(BOOK_ID, Book::getId);
 
         verify(repository).findById(BOOK_ID);
-        verify(mapper).mapToDomain(BOOK_ENTITY);
+        verify(bookEntityToDomainMapper).mapToDomain(BOOK_ENTITY);
     }
 
     @Test
