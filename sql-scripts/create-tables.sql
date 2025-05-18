@@ -39,3 +39,10 @@ CREATE TABLE library_books (
     number_of_copies INT NOT NULL CHECK (number_of_copies >= 0),
     PRIMARY KEY(library_id, book_id)
 );
+
+CREATE TABLE users (
+   id UUID PRIMARY KEY,
+   first_name VARCHAR(100),
+   last_name VARCHAR(100),
+   nickname VARCHAR(100)
+);
