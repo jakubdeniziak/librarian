@@ -1,13 +1,11 @@
 <section class="p-4">
-    <header class="text-center mb-4">
-        <h2 class="text-2xl font-bold">Add a book to a library</h2>
-    </header>
+    <app-page-header [title]="'Add a book to a library'"></app-page-header>
 
     <form (ngSubmit)="onSubmit()" class="text-center">
         <div *ngIf="books" class="mt-3">
             <label for="book">Book:</label>
             <br>
-            <select id="book" name="book" [(ngModel)]="bookId" class="text-bgSecondary mt-1 p-1">
+            <select id="book" name="book" [(ngModel)]="bookId" class="text-bgSecondary mt-1 p-1 w-80">
                 <option *ngFor="let book of books.books" [value]="book.id">
                     {{book.title}}
                 </option>
@@ -17,12 +15,12 @@
         <div *ngIf="libraryBook" class="mt-3">
             <label for="numberOfCopies">Number of copies:</label>
             <br>
-            <input type="number" id="numberOfCopies" name="numberOfCopies" min="1" [(ngModel)]="libraryBook.numberOfCopies" class="text-bgSecondary mt-1 p-1">
+            <input type="number" id="numberOfCopies" name="numberOfCopies" min="1" [(ngModel)]="libraryBook.numberOfCopies" class="text-bgSecondary mt-1 p-1 w-80">
         </div>
 
         <div class="text-center mt-5">
             <button type="submit" class="rounded-md bg-bgSecondary text-primary px-4 py-2 mx-auto my-1 w-36 h-10 mr-3">Submit</button>
-            <button [routerLink]="'/libraries/' + libraryId" class="rounded-md bg-bgSecondary text-primary px-4 py-2 mx-auto my-1 w-36 h-10">Return</button>
+            <button [routerLink]="'/libraries/' + libraryId" class="rounded-md bg-bgSecondary text-primary px-4 py-2 mx-auto my-1 w-36 h-10">Cancel</button>
         </div>
     </form>
 </section>

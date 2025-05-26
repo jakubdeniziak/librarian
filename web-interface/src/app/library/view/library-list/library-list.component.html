@@ -1,7 +1,5 @@
 <section class="p-4">
-    <header class="text-center mb-4">
-        <h2 class="text-2xl font-bold">Libraries</h2>
-    </header>
+    <app-page-header [title]="'Libraries'"></app-page-header>
 
     <div *ngIf="libraries" class="grid gap-4 w-1/6 mx-auto">
         <p *ngFor="let library of libraries.libraries" class="bg-bgSecondary p-2 rounded-md shadow-md text-center">
@@ -11,10 +9,14 @@
         </p>
     </div>
 
-    <div class="text-center mt-4">
+    <div class="text-center">
+        <hr class="mx-auto my-4 w-3/12">
         <h3 class="text-xl font-bold">Manage</h3>
         <button routerLink="/libraries/add" class="rounded-md bg-bgSecondary text-primary px-4 py-2 mx-auto my-1 w-36 h-10">Add</button>
         <br>
         <button routerLink="/libraries/delete" class="rounded-md bg-bgSecondary text-primary px-4 py-2 mx-auto my-1 w-36 h-10">Remove</button>
+        <br>
+        <br>
+        <button routerLink="/" class="rounded-md bg-bgSecondary text-primary px-4 py-2 mx-auto my-1 w-36 h-10">Return</button>
     </div>
 </section>

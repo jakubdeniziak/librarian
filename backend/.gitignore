@@ -1,6 +1,1 @@
-.mvn
-
-target
-
-mvnw
-mvnw.cmd
+target/

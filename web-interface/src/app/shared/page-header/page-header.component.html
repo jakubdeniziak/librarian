@@ -1,0 +1,19 @@
+<header class="text-center my-4">
+    <ng-container *ngIf="titleLink; else plainTitle">
+        <h2 class="text-4xl font-bold">
+            <a [href]="titleLink" target="_blank" class="hover:underline">
+                {{ title }}
+            </a>
+        </h2>
+    </ng-container>
+
+    <ng-template #plainTitle>
+        <h2 class="text-4xl font-bold">
+            {{ title }}
+        </h2>
+    </ng-template>
+
+    <p *ngIf="subtitle">
+        {{ subtitle }}
+    </p>
+</header>

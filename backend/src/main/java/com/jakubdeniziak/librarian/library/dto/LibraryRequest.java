@@ -1,10 +1,21 @@
 package com.jakubdeniziak.librarian.library.dto;
 
-import lombok.Getter;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.Value;
 
-@Getter
+@Value
 public class LibraryRequest {
-    private String name;
-    private String address;
-    private String description;
+
+    @NotBlank
+    @Size(max = 255)
+    String name;
+
+    @NotBlank
+    @Size(max = 255)
+    String address;
+
+    @Size(max = 1000)
+    String description;
+
 }

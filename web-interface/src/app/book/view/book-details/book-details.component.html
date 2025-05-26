@@ -1,12 +1,7 @@
 <section class="p-4 text-center" *ngIf="book">
-    <header class="mb-4">
-        <h2 class="text-2xl font-bold">
-                {{book.title}}
-        </h2>
-        <p>
-            {{book.isbn}}
-        </p>
-    </header>
+    <app-page-header [title]="book.title" [subtitle]="book.isbn"></app-page-header>
+
+    <p>Format: {{book.format}}</p>
 
     <h3 class="text-xl font-bold mt-5">Description</h3>
     <p class="mt-1">

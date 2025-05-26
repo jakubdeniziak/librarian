@@ -1,10 +1,18 @@
 package com.jakubdeniziak.librarian.publisher.dto;
 
-import lombok.Getter;
+import com.jakubdeniziak.librarian.validation.url.ValidUrl;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+import lombok.Value;
 
-@Getter
+@Value
 public class PublisherRequest {
-    private String name;
-    private String websiteUrl;
-    private String description;
+
+    @NotBlank(message = "Publisher name must not be blank.")
+    String name;
+    @ValidUrl
+    String websiteUrl;
+    @Size(max = 1000, message = "Description must not exceed 1000 characters.")
+    String description;
+
 }

@@ -16,6 +16,7 @@ import {Publishers} from "../../../publisher/model/publishers";
 export class BookNewComponent implements OnInit {
     uuid: string | undefined;
     book: BookForm | undefined;
+    formats: string[] | undefined;
     authors: Authors | undefined;
     publishers: Publishers | undefined;
 
@@ -27,7 +28,9 @@ export class BookNewComponent implements OnInit {
 
     ngOnInit(): void {
         this.uuid = uuid();
-        this.book = {isbn: "", title: "", description: "", authorId: "", publisherId: ""}
+        this.book = {isbn: "", title: "", description: "", format: "", authorId: "", publisherId: ""}
+
+        this.formats = ['AUDIOBOOK', 'EBOOK', 'HARDCOVER', 'PAPERBACK'];
 
         this.authorService.getAuthors()
             .subscribe(authors => this.authors = authors)

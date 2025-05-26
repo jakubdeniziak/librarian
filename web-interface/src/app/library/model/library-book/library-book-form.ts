@@ -1,3 +1,3 @@
 export interface LibraryBookForm {
-    numberOfCopies: string;
+    numberOfCopies: number;
 }
