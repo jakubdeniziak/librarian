@@ -8,7 +8,6 @@ import {HttpClientModule} from "@angular/common/http";
 import {BookService} from "./book/service/book.service";
 import {NavComponent} from "./section/nav/nav.component";
 import {FooterComponent} from "./section/footer/footer.component";
-import {HeaderComponent} from "./section/header/header.component";
 import {HomeComponent} from "./home/home.component";
 import {AuthorListComponent} from "./author/view/author-list/author-list.component";
 import {AuthorService} from "./author/service/author.service";
@@ -39,7 +38,6 @@ import {NgOptimizedImage} from "@angular/common";
     declarations: [
         AppComponent,
         NavComponent,
-        HeaderComponent,
         FooterComponent,
         HomeComponent,
         AuthorListComponent,
