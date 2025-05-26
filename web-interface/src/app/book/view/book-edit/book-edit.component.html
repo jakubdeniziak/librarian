@@ -1,7 +1,5 @@
 <section class="p-4">
-    <header class="text-center mb-4">
-        <h2 class="text-2xl font-bold">Edit a book</h2>
-    </header>
+    <app-page-header [title]="'Edit a book'"></app-page-header>
 
     <form (ngSubmit)="onSubmit()" *ngIf="book" class="text-center">
         <div>

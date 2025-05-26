@@ -1,7 +1,5 @@
 <section class="p-4">
-    <header class="text-center mb-4">
-        <h2 class="text-2xl font-bold">Edit a publisher</h2>
-    </header>
+    <app-page-header [title]="'Edit a publisher'"></app-page-header>
 
     <form (ngSubmit)="onSubmit()" *ngIf="publisher" class="text-center">
         <div>

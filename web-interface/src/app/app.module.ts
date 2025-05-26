@@ -33,6 +33,7 @@ import {LibraryNewComponent} from "./library/view/library-new/library-new.compon
 import {LibraryDeleteComponent} from "./library/view/library-delete/library-delete.component";
 import {LibraryAddBookComponent} from "./library/view/library-add-book/library-add-book.component";
 import {NgOptimizedImage} from "@angular/common";
+import {PageHeaderComponent} from "./shared/page-header/page-header.component";
 
 @NgModule({
     declarations: [
@@ -66,7 +67,8 @@ import {NgOptimizedImage} from "@angular/common";
         AppRoutingModule,
         HttpClientModule,
         FormsModule,
-        NgOptimizedImage
+        NgOptimizedImage,
+        PageHeaderComponent
     ],
     providers: [
         AuthorService,
