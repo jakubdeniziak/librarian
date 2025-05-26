@@ -1,9 +1,7 @@
 <section class="flex justify-center gap-6 flex-wrap p-4">
-    <a *ngFor="let card of cards"
-       [routerLink]="card.route"
-       class="home-panel">
-        <img [src]="card.image" [alt]="card.alt" class="w-16 h-16 mt-2" />
-        <div class="text-xl font-bold mt-2">{{ card.count }}</div>
+    <a *ngFor="let card of cards" [routerLink]="card.route" class="home-panel">
+        <img [src]="card.image" [alt]="card.alt" class="w-16 h-16 mt-5" />
+        <div class="text-xl font-bold">{{ card.count }}</div>
         <span class="font-semibold">{{ card.label }}</span>
     </a>
 </section>
