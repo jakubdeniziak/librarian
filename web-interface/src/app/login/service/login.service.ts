@@ -2,17 +2,19 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Users} from "../model/Users";
+import {Endpoints} from "../../endpoints";
 
 @Injectable({
     providedIn: 'root',
 })
 export class LoginService {
+
     private readonly SESSION_KEY = 'userId';
 
     constructor(private http: HttpClient) {}
 
     getUsers(): Observable<Users> {
-        return this.http.get<Users>('/api/users');
+        return this.http.get<Users>(Endpoints.USERS);
     }
 
     setUserId(userId: string): void {
@@ -26,4 +28,5 @@ export class LoginService {
     clearUserId(): void {
         sessionStorage.removeItem(this.SESSION_KEY);
     }
+
 }

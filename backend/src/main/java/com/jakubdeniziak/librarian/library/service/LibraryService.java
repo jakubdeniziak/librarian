@@ -11,6 +11,7 @@ public interface LibraryService {
     void saveAll(List<Library> libraries);
     Library find(UUID id);
     List<Library> findAll();
+    Integer getCount();
     void update(UUID id, Library updated);
     void delete(UUID id);
 

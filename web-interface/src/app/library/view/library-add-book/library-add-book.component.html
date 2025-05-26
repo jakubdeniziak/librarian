@@ -1,7 +1,5 @@
 <section class="p-4">
-    <header class="text-center mb-4">
-        <h2 class="text-2xl font-bold">Add a book to a library</h2>
-    </header>
+    <app-page-header [title]="'Add a book to a library'"></app-page-header>
 
     <form (ngSubmit)="onSubmit()" class="text-center">
         <div *ngIf="books" class="mt-3">

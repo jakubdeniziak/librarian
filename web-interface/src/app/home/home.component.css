@@ -1,0 +1,3 @@
+.home-panel {
+    @apply w-40 h-56 bg-bgSecondary rounded-xl shadow-xl hover:shadow-2xl transition p-4 flex flex-col items-center justify-between text-primary text-center;
+}

@@ -11,6 +11,7 @@ public interface AuthorController {
     void create(UUID id, AuthorRequest request);
     AuthorResponse read(UUID id);
     AuthorsResponse readAll();
+    Integer getCount();
     void update(UUID id, AuthorRequest request);
     void delete(UUID id);
 

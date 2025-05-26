@@ -1,7 +1,5 @@
 <section class="p-4">
-    <header class="text-center mb-4">
-        <h2 class="text-2xl font-bold">Delete publishers</h2>
-    </header>
+    <app-page-header [title]="'Delete publishers'"></app-page-header>
 
     <div *ngIf="publishers" class="grid gap-4 w-1/6 mx-auto">
         <div *ngFor="let publisher of publishers.publishers" class="flex gap-4">

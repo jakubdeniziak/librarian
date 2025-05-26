@@ -58,6 +58,12 @@ public class BookHateoasController implements BookController {
     }
 
     @Override
+    @GetMapping("/v2/books/count")
+    public Integer getCount() {
+        return bookService.getCount();
+    }
+
+    @Override
     @PatchMapping("/v2/books/{id}")
     public void update(@PathVariable UUID id, @RequestBody BookRequest request) {
         bookService.update(id, requestToDomainMapper.map(id, request), request.getAuthorId(), request.getPublisherId());

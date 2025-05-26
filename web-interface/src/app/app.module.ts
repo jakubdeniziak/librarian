@@ -8,7 +8,6 @@ import {HttpClientModule} from "@angular/common/http";
 import {BookService} from "./book/service/book.service";
 import {NavComponent} from "./section/nav/nav.component";
 import {FooterComponent} from "./section/footer/footer.component";
-import {HeaderComponent} from "./section/header/header.component";
 import {HomeComponent} from "./home/home.component";
 import {AuthorListComponent} from "./author/view/author-list/author-list.component";
 import {AuthorService} from "./author/service/author.service";
@@ -34,12 +33,12 @@ import {LibraryNewComponent} from "./library/view/library-new/library-new.compon
 import {LibraryDeleteComponent} from "./library/view/library-delete/library-delete.component";
 import {LibraryAddBookComponent} from "./library/view/library-add-book/library-add-book.component";
 import {NgOptimizedImage} from "@angular/common";
+import {PageHeaderComponent} from "./shared/page-header/page-header.component";
 
 @NgModule({
     declarations: [
         AppComponent,
         NavComponent,
-        HeaderComponent,
         FooterComponent,
         HomeComponent,
         AuthorListComponent,
@@ -68,7 +67,8 @@ import {NgOptimizedImage} from "@angular/common";
         AppRoutingModule,
         HttpClientModule,
         FormsModule,
-        NgOptimizedImage
+        NgOptimizedImage,
+        PageHeaderComponent
     ],
     providers: [
         AuthorService,

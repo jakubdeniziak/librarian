@@ -11,6 +11,7 @@ public interface PublisherService {
     void saveAll(List<Publisher> publishers);
     Publisher find(UUID id);
     List<Publisher> findAll();
+    Integer getCount();
     void update(UUID id, Publisher updated);
     void delete(UUID id);
 

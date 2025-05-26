@@ -13,6 +13,7 @@ public interface BookController {
     BooksResponse readAllByAuthor(UUID authorId);
     BooksResponse readAllByPublisher(UUID publisherId);
     BooksResponse readAll();
+    Integer getCount();
     void update(UUID id, BookRequest request);
     void delete(UUID id);
 
