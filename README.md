@@ -23,9 +23,11 @@ DATABASE_NAME=librarian
 
 ADMIN_USERNAME=username
 ADMIN_PASSWORD=password
+JWT_SECRET=secret
 ```
 
 You can copy and rename the `.env.example` file that contains all the required properties.
+The `JWT_SECRET` must be a base64-encoded string with 256 bits (32 bytes), you can generate it using this command: `openssl rand -base64 32`.
 
 
 ## License
