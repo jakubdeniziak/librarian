@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
@@ -19,10 +20,13 @@ public class DefaultJwtService implements JwtService {
             Base64.getDecoder().decode(System.getenv("JWT_SECRET"))
     );
 
+    @Value("${jwt.expiration}")
+    private long jwtExpirationMillis;
+
     @Override
     public String generateToken(String username, Set<String> roles) {
         Date issueDate = new Date();
-        Date expirationDate = new Date(issueDate.toInstant().toEpochMilli() + 1000);
+        Date expirationDate = new Date(issueDate.toInstant().toEpochMilli() + jwtExpirationMillis);
         return Jwts.builder()
                 .subject(username)
                 .issuedAt(issueDate)

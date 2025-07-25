@@ -18,3 +18,5 @@ springdoc:
     path: /docs/download
   swagger-ui:
     path: /docs
+jwt:
+  expiration: 3600000 # in milliseconds
