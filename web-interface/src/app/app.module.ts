@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { BookListComponent } from "./book/view/book-list/book-list.component";
 import {AppRoutingModule} from "./app-routing.module";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {BookService} from "./book/service/book.service";
 import {NavComponent} from "./section/nav/nav.component";
 import {FooterComponent} from "./section/footer/footer.component";
@@ -34,6 +34,7 @@ import {LibraryDeleteComponent} from "./library/view/library-delete/library-dele
 import {LibraryAddBookComponent} from "./library/view/library-add-book/library-add-book.component";
 import {NgOptimizedImage} from "@angular/common";
 import {PageHeaderComponent} from "./shared/page-header/page-header.component";
+import {AuthInterceptor} from "./interceptors/auth.interceptor";
 
 @NgModule({
     declarations: [
@@ -74,7 +75,12 @@ import {PageHeaderComponent} from "./shared/page-header/page-header.component";
         AuthorService,
         BookService,
         PublisherService,
-        LibraryService
+        LibraryService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptor,
+            multi: true
+        }
     ],
     bootstrap: [
         AppComponent
