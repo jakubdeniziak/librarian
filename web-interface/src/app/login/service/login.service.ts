@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {Users} from "../model/Users";
+import {map, Observable, tap} from "rxjs";
 import {Endpoints} from "../../endpoints";
 
 @Injectable({
@@ -9,24 +8,23 @@ import {Endpoints} from "../../endpoints";
 })
 export class LoginService {
 
-    private readonly SESSION_KEY = 'userId';
+    private readonly TOKEN_KEY = 'auth_token';
 
     constructor(private http: HttpClient) {}
 
-    getUsers(): Observable<Users> {
-        return this.http.get<Users>(Endpoints.USERS);
+    login(username: string, password: string): Observable<void> {
+        return this.http.post<{ token: string }>(Endpoints.LOGIN, { username, password }).pipe(
+            tap(response => sessionStorage.setItem(this.TOKEN_KEY, response.token)),
+            map(() => void 0)
+        );
     }
 
-    setUserId(userId: string): void {
-        sessionStorage.setItem(this.SESSION_KEY, userId);
+    logout(): void {
+        sessionStorage.removeItem(this.TOKEN_KEY);
     }
 
-    getUserId(): string | null {
-        return sessionStorage.getItem(this.SESSION_KEY);
-    }
-
-    clearUserId(): void {
-        sessionStorage.removeItem(this.SESSION_KEY);
+    isLoggedIn(): boolean {
+        return !!sessionStorage.getItem(this.TOKEN_KEY);
     }
 
 }

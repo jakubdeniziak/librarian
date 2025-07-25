@@ -10,8 +10,12 @@
             <li><a [routerLink]="'/publishers'" class="text-primary hover:text-secondary">Publishers</a></li>
             <li><a [routerLink]="'/libraries'" class="text-primary hover:text-secondary">Libraries</a></li>
             <li><a [routerLink]="'/data'" class="text-primary hover:text-secondary ml-6">Data</a></li>
-            <li><a [routerLink]="'/login'" class="text-primary hover:text-secondary ml-6">Login</a></li>
+            <li *ngIf="!loginService.isLoggedIn()">
+                <a [routerLink]="'/login'" class="text-primary hover:text-secondary ml-6">Login</a>
+            </li>
+            <li *ngIf="loginService.isLoggedIn()">
+                <a (click)="logout()" class="text-primary hover:text-secondary ml-6 cursor-pointer">Logout</a>
+            </li>
         </ul>
     </div>
 </nav>
-

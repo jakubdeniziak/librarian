@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {LoginService} from "../service/login.service";
-import {Users} from "../model/Users";
 import {FormsModule} from "@angular/forms";
-import {NgForOf} from "@angular/common";
+import {Router} from "@angular/router";
+import {NgIf} from "@angular/common";
+import {PageHeaderComponent} from "../../shared/page-header/page-header.component";
 
 @Component({
     selector: 'app-login',
@@ -10,33 +11,22 @@ import {NgForOf} from "@angular/common";
     styleUrls: ['./login.component.css'],
     imports: [
         FormsModule,
-        NgForOf
+        NgIf,
+        PageHeaderComponent,
     ],
     standalone: true
 })
-export class LoginComponent implements OnInit {
-    users: Users | undefined;
-    selectedUserId: string = '';
+export class LoginComponent {
+    username = '';
+    password = '';
+    error = '';
 
-    constructor(private loginService: LoginService) {}
-
-    ngOnInit(): void {
-        this.loginService.getUsers().subscribe({
-            next: (users) => {
-                this.users = users;
-            },
-            error: (error) => {
-                console.error('Failed to fetch users:', error);
-                alert('Failed to load user list. Please try again later.');
-            },
-        });
-    }
+    constructor(private loginService: LoginService, private router: Router) {}
 
     login(): void {
-        if (this.selectedUserId) {
-            this.loginService.setUserId(this.selectedUserId);
-        } else {
-            alert('Please select a user!');
-        }
+        this.loginService.login(this.username, this.password).subscribe({
+            next: () => this.router.navigate(['/']),
+            error: () => this.error = 'Invalid credentials. Please try again.',
+        });
     }
 }
