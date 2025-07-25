@@ -60,3 +60,16 @@ CREATE TABLE user_books (
     reading_status reading_status,
     PRIMARY KEY (user_id, book_id)
 );
+
+CREATE TABLE user_security (
+   id UUID PRIMARY KEY,
+   username VARCHAR(100) NOT NULL UNIQUE,
+   password VARCHAR(100) NOT NULL,
+   profile_id UUID NOT NULL REFERENCES users(id)
+);
+
+CREATE TABLE user_roles (
+    user_id UUID NOT NULL REFERENCES user_security(id),
+    role VARCHAR(255) NOT NULL,
+    PRIMARY KEY (user_id, role)
+);

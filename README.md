@@ -15,11 +15,17 @@ that will contain the following properties:
 ```properties
 # Optional:
 BACKEND_VERSION=1.0.0
+
 # Required:
 DATABASE_USERNAME=root
 DATABASE_PASSWORD=root
 DATABASE_NAME=librarian
+
+ADMIN_USERNAME=username
+ADMIN_PASSWORD=password
 ```
+
+You can copy and rename the `.env.example` file that contains all the required properties.
 
 
 ## License
