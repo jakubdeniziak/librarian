@@ -4,6 +4,7 @@ import {PublisherService} from "../publisher/service/publisher.service";
 import {LibraryService} from "../library/service/library.service";
 import {AuthorService} from "../author/service/author.service";
 import {catchError, forkJoin, of} from "rxjs";
+import {LoginService} from "../login/service/login.service";
 
 
 interface HomePanel {
@@ -24,6 +25,7 @@ export class HomeComponent implements OnInit {
     cards: HomePanel[] = [];
 
     constructor(
+        public loginService: LoginService,
         private bookService: BookService,
         private authorService: AuthorService,
         private publisherService: PublisherService,
@@ -31,6 +33,10 @@ export class HomeComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+        if (!this.loginService.isLoggedIn()) {
+            return;
+        }
+
         forkJoin({
             bookCount: this.bookService.getBooksCount().pipe(catchError(() => of(-1))),
             authorCount: this.authorService.getAuthorsCount().pipe(catchError(() => of(-1))),
