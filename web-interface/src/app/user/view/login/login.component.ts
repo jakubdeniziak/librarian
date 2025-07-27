@@ -1,12 +1,12 @@
 import {Component} from '@angular/core';
-import {LoginService} from "../service/login.service";
 import {FormsModule} from "@angular/forms";
 import {Router} from "@angular/router";
 import {NgIf} from "@angular/common";
-import {PageHeaderComponent} from "../../shared/page-header/page-header.component";
+import {PageHeaderComponent} from "../../../shared/page-header/page-header.component";
+import {UserService} from "../../service/user.service";
 
 @Component({
-    selector: 'app-login',
+    selector: 'app-user',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css'],
     imports: [
@@ -21,7 +21,7 @@ export class LoginComponent {
     password = '';
     error = '';
 
-    constructor(private loginService: LoginService, private router: Router) {}
+    constructor(private loginService: UserService, private router: Router) {}
 
     login(): void {
         this.loginService.login(this.username, this.password).subscribe({

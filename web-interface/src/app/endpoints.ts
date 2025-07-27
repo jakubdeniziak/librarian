@@ -6,5 +6,6 @@ export class Endpoints {
     public static readonly BOOKS = '/api/v1/books';
     public static readonly DATA_ALL = '/api/v1/data/all';
     public static readonly LOGIN = '/api/login';
+    public static readonly REGISTER = '/api/register';
 
 }

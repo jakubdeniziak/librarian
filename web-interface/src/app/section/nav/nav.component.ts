@@ -1,5 +1,5 @@
 import {Component, ElementRef, HostListener, OnDestroy, OnInit} from '@angular/core';
-import {LoginService} from "../../login/service/login.service";
+import {UserService} from "../../user/service/user.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -11,7 +11,7 @@ export class NavComponent implements OnInit, OnDestroy {
 
     dropdownOpen = false;
 
-    constructor(public loginService: LoginService, private router: Router, private eRef: ElementRef) {}
+    constructor(public loginService: UserService, private router: Router, private eRef: ElementRef) {}
 
     ngOnInit(): void {}
 

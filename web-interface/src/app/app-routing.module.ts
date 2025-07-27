@@ -22,7 +22,8 @@ import {LibraryNewComponent} from "./library/view/library-new/library-new.compon
 import {LibraryDeleteComponent} from "./library/view/library-delete/library-delete.component";
 import {LibraryAddBookComponent} from "./library/view/library-add-book/library-add-book.component";
 import {DataComponent} from "./data/view/data.component";
-import {LoginComponent} from "./login/view/login.component";
+import {LoginComponent} from "./user/view/login/login.component";
+import {RegisterComponent} from "./user/view/register/register.component";
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -47,7 +48,8 @@ const routes: Routes = [
     { path: 'libraries/:uuid', component: LibraryDetailsComponent },
     { path: 'libraries/:uuid/add-book', component: LibraryAddBookComponent },
     { path: 'data', component: DataComponent },
-    { path: 'login', component: LoginComponent }
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
 ];
 
 @NgModule({

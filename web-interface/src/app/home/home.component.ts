@@ -4,7 +4,7 @@ import {PublisherService} from "../publisher/service/publisher.service";
 import {LibraryService} from "../library/service/library.service";
 import {AuthorService} from "../author/service/author.service";
 import {catchError, forkJoin, of} from "rxjs";
-import {LoginService} from "../login/service/login.service";
+import {UserService} from "../user/service/user.service";
 
 
 interface HomePanel {
@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
     cards: HomePanel[] = [];
 
     constructor(
-        public loginService: LoginService,
+        public loginService: UserService,
         private bookService: BookService,
         private authorService: AuthorService,
         private publisherService: PublisherService,

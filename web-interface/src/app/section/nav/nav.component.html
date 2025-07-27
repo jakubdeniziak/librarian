@@ -19,8 +19,9 @@
                 </ul>
             </li>
         </ul>
-        <ul *ngIf="!loginService.isLoggedIn();">
-            <li><a [routerLink]="'/login'" class="text-primary hover:text-secondary">Login</a></li>
+        <ul *ngIf="!loginService.isLoggedIn();" class="flex space-x-8 justify-end items-center">
+            <li><a [routerLink]="'/login'" class="text-primary hover:text-secondary">Sign in</a></li>
+            <li><a [routerLink]="'/register'" class="text-primary hover:text-secondary">Sign up</a></li>
         </ul>
     </div>
 </nav>

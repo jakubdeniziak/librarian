@@ -8,7 +8,7 @@ export class AuthInterceptor implements HttpInterceptor {
     private readonly TOKEN_KEY = 'auth_token';
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (req.url.endsWith('/login')) {
+        if (req.url.endsWith('/user')) {
             return next.handle(req);
         }
         const token = sessionStorage.getItem(this.TOKEN_KEY);
