@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {LoginService} from "../../login/service/login.service";
 import {Router} from "@angular/router";
 
@@ -7,11 +7,29 @@ import {Router} from "@angular/router";
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })
-export class NavComponent {
+export class NavComponent implements OnInit, OnDestroy {
 
-    constructor(public loginService: LoginService, private router: Router) {}
+    dropdownOpen = false;
+
+    constructor(public loginService: LoginService, private router: Router, private eRef: ElementRef) {}
+
+    ngOnInit(): void {}
+
+    ngOnDestroy(): void {}
+
+    toggleDropdown(): void {
+        this.dropdownOpen = !this.dropdownOpen;
+    }
+
+    @HostListener('document:click', ['$event'])
+    onClickOutside(event: MouseEvent): void {
+        if (!this.eRef.nativeElement.contains(event.target)) {
+            this.dropdownOpen = false;
+        }
+    }
 
     logout(): void {
+        this.dropdownOpen = false;
         this.loginService.logout();
         this.router.navigate(['/']);
     }
