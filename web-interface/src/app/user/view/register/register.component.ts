@@ -28,7 +28,13 @@ export class RegisterComponent {
     register(): void {
         this.userService.register(this.username, this.password).subscribe({
             next: () => this.router.navigate(['/']),
-            error: () => this.error = 'Something went wrong. Please try again.',
+            error: (err) => {
+                if (err.error && typeof err.error === 'string') {
+                    this.error = err.error;
+                } else {
+                    this.error = 'Something went wrong. Please try again.';
+                }
+            }
         });
     }
 

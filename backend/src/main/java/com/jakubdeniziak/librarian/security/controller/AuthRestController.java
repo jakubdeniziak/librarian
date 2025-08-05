@@ -2,6 +2,8 @@ package com.jakubdeniziak.librarian.security.controller;
 
 import com.jakubdeniziak.librarian.security.dto.LoginRequest;
 import com.jakubdeniziak.librarian.security.dto.LoginResponse;
+import com.jakubdeniziak.librarian.security.dto.RegisterRequest;
+import com.jakubdeniziak.librarian.security.dto.RegisterResponse;
 import com.jakubdeniziak.librarian.security.service.DefaultUserDetailsService;
 import com.jakubdeniziak.librarian.security.service.JwtService;
 import lombok.AllArgsConstructor;
@@ -25,6 +27,22 @@ public class AuthRestController implements AuthController {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
     private final DefaultUserDetailsService userDetailsService;
+
+    @Override
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody RegisterRequest request) {
+        if (userDetailsService.isUserPresent(request.getUsername())) {
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body("Username is already in use");
+        }
+        userDetailsService.registerUser(request);
+        UserDetails user = userDetailsService.loadUserByUsername(request.getUsername());
+        String token = jwtService.generateToken(user.getUsername(), user.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toSet()));
+        return ResponseEntity.ok(new RegisterResponse(token));
+    }
 
     @Override
     @PostMapping("/login")
