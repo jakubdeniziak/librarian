@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -21,6 +22,7 @@ public class DefaultUserDetailsService implements UserDetailsService {
 
     private final UserSecurityRepository repository;
     private final UserJpaRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -50,7 +52,7 @@ public class DefaultUserDetailsService implements UserDetailsService {
         UserSecurityEntity user = UserSecurityEntity.builder()
                 .id(userId)
                 .username(request.getUsername())
-                .password(request.getPassword())
+                .password(passwordEncoder.encode(request.getPassword()))
                 .roles(roles)
                 .profile(userProfile)
                 .build();
