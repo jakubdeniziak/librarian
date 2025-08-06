@@ -6,6 +6,7 @@ import {AuthorService} from "../../../author/service/author.service";
 import {BookDetails} from "../../model/book-details";
 import {AuthorDetails} from "../../../author/model/author-details";
 import {PublisherDetails} from "../../../publisher/model/publisher-details";
+import {UserService} from "../../../user/service/user.service";
 
 @Component({
   selector: 'app-book-details',
@@ -17,7 +18,8 @@ export class BookDetailsComponent implements OnInit {
     author: AuthorDetails | undefined;
     publisher: PublisherDetails | undefined;
 
-    constructor(private bookService: BookService,
+    constructor(public userService: UserService,
+                private bookService: BookService,
                 private authorService: AuthorService,
                 private publisherService: PublisherService,
                 private route: ActivatedRoute) {

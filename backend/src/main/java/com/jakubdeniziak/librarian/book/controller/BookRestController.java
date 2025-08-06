@@ -8,6 +8,7 @@ import com.jakubdeniziak.librarian.book.mapper.BookRequestToDomainMapper;
 import com.jakubdeniziak.librarian.book.service.BookService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -22,6 +23,7 @@ public class BookRestController implements BookController {
 
     @Override
     @PutMapping("/v1/books/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void create(@PathVariable UUID id, @Valid @RequestBody BookRequest request) {
         bookService.save(requestToDomainMapper.map(id, request), request.getAuthorId(), request.getPublisherId());
     }
@@ -58,12 +60,14 @@ public class BookRestController implements BookController {
 
     @Override
     @PatchMapping("/v1/books/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void update(@PathVariable UUID id, @RequestBody BookRequest request) {
         bookService.update(id, requestToDomainMapper.map(id, request), request.getAuthorId(), request.getPublisherId());
     }
 
     @Override
     @DeleteMapping("/v1/books/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void delete(@PathVariable UUID id) {
         bookService.delete(id);
     }

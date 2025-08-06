@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {BookService} from "../../service/book.service";
 import {Books} from "../../model/books";
+import {UserService} from "../../../user/service/user.service";
 
 @Component({
   selector: 'app-book-list',
@@ -8,7 +9,7 @@ import {Books} from "../../model/books";
   styleUrl: './book-list.component.css'
 })
 export class BookListComponent implements OnInit {
-    constructor(private service: BookService) {
+    constructor(public userService: UserService, private service: BookService) {
     }
 
     books: Books | undefined;
