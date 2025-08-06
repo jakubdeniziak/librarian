@@ -29,11 +29,19 @@ CREATE TABLE books (
     publisher_id UUID NOT NULL REFERENCES publishers(id)
 );
 
+CREATE TABLE users (
+                       id UUID PRIMARY KEY,
+                       first_name VARCHAR(100),
+                       last_name VARCHAR(100),
+                       nickname VARCHAR(100)
+);
+
 CREATE TABLE libraries (
     id UUID PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     address VARCHAR(255) NOT NULL,
-    description VARCHAR(1000)
+    description VARCHAR(1000),
+    user_id UUID NOT NULL REFERENCES users(id)
 );
 
 CREATE TABLE library_books (
@@ -41,13 +49,6 @@ CREATE TABLE library_books (
     book_id UUID NOT NULL REFERENCES books(id),
     number_of_copies INT NOT NULL CHECK (number_of_copies >= 0),
     PRIMARY KEY(library_id, book_id)
-);
-
-CREATE TABLE users (
-   id UUID PRIMARY KEY,
-   first_name VARCHAR(100),
-   last_name VARCHAR(100),
-   nickname VARCHAR(100)
 );
 
 CREATE TABLE user_books (

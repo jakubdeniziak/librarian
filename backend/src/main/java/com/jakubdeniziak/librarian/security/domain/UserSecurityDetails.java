@@ -7,6 +7,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -29,6 +30,10 @@ public class UserSecurityDetails implements UserDetails {
         return userSecurityEntity.getRoles().stream()
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toSet());
+    }
+
+    public UUID getId() {
+        return userSecurityEntity.getId();
     }
 
 }
