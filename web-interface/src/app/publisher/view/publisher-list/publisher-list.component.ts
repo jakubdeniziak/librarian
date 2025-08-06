@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PublisherService} from "../../service/publisher.service";
 import {Publishers} from "../../model/publishers";
+import {UserService} from "../../../user/service/user.service";
 
 @Component({
   selector: 'app-publisher-list',
@@ -8,7 +9,7 @@ import {Publishers} from "../../model/publishers";
   styleUrl: './publisher-list.component.css'
 })
 export class PublisherListComponent implements OnInit {
-    constructor(private service: PublisherService) {
+    constructor(public userService: UserService, private service: PublisherService) {
     }
 
     publishers: Publishers | undefined;
