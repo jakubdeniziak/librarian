@@ -11,7 +11,7 @@ export class NavComponent implements OnInit, OnDestroy {
 
     dropdownOpen = false;
 
-    constructor(public loginService: UserService, private router: Router, private eRef: ElementRef) {}
+    constructor(public userService: UserService, private router: Router, private eRef: ElementRef) {}
 
     ngOnInit(): void {}
 
@@ -30,7 +30,7 @@ export class NavComponent implements OnInit, OnDestroy {
 
     logout(): void {
         this.dropdownOpen = false;
-        this.loginService.logout();
+        this.userService.logout();
         this.router.navigate(['/']);
     }
 

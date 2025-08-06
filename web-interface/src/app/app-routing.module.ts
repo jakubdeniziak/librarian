@@ -24,32 +24,35 @@ import {LibraryAddBookComponent} from "./library/view/library-add-book/library-a
 import {DataComponent} from "./data/view/data.component";
 import {LoginComponent} from "./user/view/login/login.component";
 import {RegisterComponent} from "./user/view/register/register.component";
+import {adminGuard} from "./auth/admin.guard";
+import {UnauthorizedComponent} from "./auth/unauthorized/unauthorized.component";
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'authors', component: AuthorListComponent },
-    { path: 'authors/add', component: AuthorNewComponent },
-    { path: 'authors/delete', component: AuthorDeleteComponent },
+    { path: 'authors/add', component: AuthorNewComponent, canActivate: [adminGuard] },
+    { path: 'authors/delete', component: AuthorDeleteComponent, canActivate: [adminGuard] },
     { path: 'authors/:uuid', component: AuthorDetailsComponent },
-    { path: 'authors/:uuid/edit', component: AuthorEditComponent },
+    { path: 'authors/:uuid/edit', component: AuthorEditComponent, canActivate: [adminGuard] },
     { path: 'books', component: BookListComponent },
-    { path: 'books/add', component: BookNewComponent },
-    { path: 'books/delete', component: BookDeleteComponent },
+    { path: 'books/add', component: BookNewComponent, canActivate: [adminGuard] },
+    { path: 'books/delete', component: BookDeleteComponent, canActivate: [adminGuard] },
     { path: 'books/:uuid', component: BookDetailsComponent },
-    { path: 'books/:uuid/edit', component: BookEditComponent },
+    { path: 'books/:uuid/edit', component: BookEditComponent, canActivate: [adminGuard] },
     { path: 'publishers', component: PublisherListComponent },
-    { path: 'publishers/add', component: PublisherNewComponent },
-    { path: 'publishers/delete', component: PublisherDeleteComponent },
+    { path: 'publishers/add', component: PublisherNewComponent, canActivate: [adminGuard] },
+    { path: 'publishers/delete', component: PublisherDeleteComponent, canActivate: [adminGuard] },
     { path: 'publishers/:uuid', component: PublisherDetailsComponent },
-    { path: 'publishers/:uuid/edit', component: PublisherEditComponent },
+    { path: 'publishers/:uuid/edit', component: PublisherEditComponent, canActivate: [adminGuard] },
     { path: 'libraries', component: LibraryListComponent },
     { path: 'libraries/add', component: LibraryNewComponent },
     { path: 'libraries/delete', component: LibraryDeleteComponent },
     { path: 'libraries/:uuid', component: LibraryDetailsComponent },
     { path: 'libraries/:uuid/add-book', component: LibraryAddBookComponent },
-    { path: 'data', component: DataComponent },
+    { path: 'data', component: DataComponent, canActivate: [adminGuard] },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'unauthorized', component: UnauthorizedComponent },
 ];
 
 @NgModule({
