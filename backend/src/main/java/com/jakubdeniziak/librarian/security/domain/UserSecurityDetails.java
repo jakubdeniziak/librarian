@@ -36,4 +36,8 @@ public class UserSecurityDetails implements UserDetails {
         return userSecurityEntity.getId();
     }
 
+    public boolean isAdmin() {
+        return userSecurityEntity.getRoles().contains("ROLE_ADMIN");
+    }
+
 }

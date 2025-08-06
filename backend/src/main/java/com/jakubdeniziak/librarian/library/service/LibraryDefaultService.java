@@ -2,6 +2,7 @@ package com.jakubdeniziak.librarian.library.service;
 
 import com.jakubdeniziak.librarian.exceptions.ResourceNotFoundException;
 import com.jakubdeniziak.librarian.library.domain.Library;
+import com.jakubdeniziak.librarian.library.entity.LibraryEntity;
 import com.jakubdeniziak.librarian.library.mapper.LibraryMapper;
 import com.jakubdeniziak.librarian.library.repository.LibraryJpaRepository;
 import com.jakubdeniziak.librarian.security.domain.UserSecurityDetails;
@@ -24,7 +25,7 @@ public class LibraryDefaultService implements LibraryService {
 
     @Override
     public void save(Library library) {
-        UUID callerId = getCurrentUserId();
+        UUID callerId = getCallerId();
         library.setUser(userService.find(callerId));
         repository.save(mapper.map(library));
     }
@@ -41,12 +42,26 @@ public class LibraryDefaultService implements LibraryService {
 
     @Override
     public List<Library> findAll() {
-        return mapper.mapToDomain(repository.findAll());
+        List<LibraryEntity> libraries;
+        if (isCallerAdmin()) {
+            libraries = repository.findAll();
+        } else {
+            UUID callerId = getCallerId();
+            libraries = repository.findAllByUserId(callerId);
+        }
+        return mapper.mapToDomain(libraries);
     }
 
     @Override
     public Integer getCount() {
-        return Math.toIntExact(repository.count());
+        long count;
+        if (isCallerAdmin()) {
+            count = repository.count();
+        } else {
+            UUID callerId = getCallerId();
+            count = repository.countAllByUserId(callerId);
+        }
+        return Math.toIntExact(count);
     }
 
     @Override
@@ -69,10 +84,16 @@ public class LibraryDefaultService implements LibraryService {
         repository.deleteById(id);
     }
 
-    private UUID getCurrentUserId() {
+    private UUID getCallerId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserSecurityDetails userDetails = (UserSecurityDetails) authentication.getPrincipal();
         return userDetails.getId();
+    }
+
+    private boolean isCallerAdmin() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserSecurityDetails userDetails = (UserSecurityDetails) authentication.getPrincipal();
+        return userDetails.isAdmin();
     }
 
 }

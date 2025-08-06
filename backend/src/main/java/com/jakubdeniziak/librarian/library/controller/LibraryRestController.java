@@ -1,10 +1,10 @@
 package com.jakubdeniziak.librarian.library.controller;
 
-import com.jakubdeniziak.librarian.library.mapper.LibraryDefaultMapper;
-import com.jakubdeniziak.librarian.library.service.LibraryDefaultService;
 import com.jakubdeniziak.librarian.library.dto.LibrariesResponse;
 import com.jakubdeniziak.librarian.library.dto.LibraryRequest;
 import com.jakubdeniziak.librarian.library.dto.LibraryResponse;
+import com.jakubdeniziak.librarian.library.mapper.LibraryMapper;
+import com.jakubdeniziak.librarian.library.service.LibraryService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +16,8 @@ import java.util.UUID;
 @AllArgsConstructor
 public class LibraryRestController implements LibraryController {
 
-    private final LibraryDefaultService service;
-    private final LibraryDefaultMapper mapper;
+    private final LibraryService service;
+    private final LibraryMapper mapper;
 
     @Override
     @PutMapping("/{id}")
