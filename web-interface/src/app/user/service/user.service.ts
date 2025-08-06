@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {map, Observable, tap} from "rxjs";
 import {Endpoints} from "../../endpoints";
+import {jwtDecode} from "jwt-decode";
 
 @Injectable({
     providedIn: 'root',
@@ -32,6 +33,15 @@ export class UserService {
 
     isLoggedIn(): boolean {
         return !!sessionStorage.getItem(this.TOKEN_KEY);
+    }
+
+    isAdmin(): boolean {
+        const token = sessionStorage.getItem(this.TOKEN_KEY);
+        if (!token) {
+            return false;
+        }
+        const decoded: any = jwtDecode(token);
+        return decoded.roles?.includes('ROLE_ADMIN');
     }
 
 }

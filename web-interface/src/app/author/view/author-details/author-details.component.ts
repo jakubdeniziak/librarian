@@ -4,6 +4,7 @@ import {ActivatedRoute} from "@angular/router";
 import {AuthorDetails} from "../../model/author-details";
 import {BookService} from "../../../book/service/book.service";
 import {Books} from "../../../book/model/books";
+import {UserService} from "../../../user/service/user.service";
 
 @Component({
   selector: 'app-author-details',
@@ -14,7 +15,7 @@ export class AuthorDetailsComponent implements OnInit {
     author: AuthorDetails | undefined
     books: Books | undefined
 
-    constructor(private authorService: AuthorService, private bookService: BookService, private route: ActivatedRoute) {
+    constructor(public userService: UserService, private authorService: AuthorService, private bookService: BookService, private route: ActivatedRoute) {
     }
 
     ngOnInit(): void {

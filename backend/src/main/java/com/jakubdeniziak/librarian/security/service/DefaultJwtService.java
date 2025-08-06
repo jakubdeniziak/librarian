@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
-import java.util.Base64;
-import java.util.Date;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class DefaultJwtService implements JwtService {
@@ -32,6 +29,7 @@ public class DefaultJwtService implements JwtService {
                 .issuedAt(issueDate)
                 .expiration(expirationDate)
                 .id(UUID.randomUUID().toString())
+                .claims(Map.of("roles", roles))
                 .signWith(key)
                 .compact();
     }
