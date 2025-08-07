@@ -5,11 +5,9 @@ import com.jakubdeniziak.librarian.library.domain.Library;
 import com.jakubdeniziak.librarian.library.entity.LibraryEntity;
 import com.jakubdeniziak.librarian.library.mapper.LibraryMapper;
 import com.jakubdeniziak.librarian.library.repository.LibraryJpaRepository;
-import com.jakubdeniziak.librarian.security.domain.UserSecurityDetails;
+import com.jakubdeniziak.librarian.security.service.CallerService;
 import com.jakubdeniziak.librarian.user.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,10 +20,11 @@ public class LibraryDefaultService implements LibraryService {
     private final LibraryJpaRepository repository;
     private final LibraryMapper mapper;
     private final UserService userService;
+    private final CallerService callerService;
 
     @Override
     public void save(Library library) {
-        UUID callerId = getCallerId();
+        UUID callerId = callerService.getCallerId();
         library.setUser(userService.find(callerId));
         repository.save(mapper.map(library));
     }
@@ -43,10 +42,10 @@ public class LibraryDefaultService implements LibraryService {
     @Override
     public List<Library> findAll() {
         List<LibraryEntity> libraries;
-        if (isCallerAdmin()) {
+        if (callerService.isCallerAdmin()) {
             libraries = repository.findAll();
         } else {
-            UUID callerId = getCallerId();
+            UUID callerId = callerService.getCallerId();
             libraries = repository.findAllByUserId(callerId);
         }
         return mapper.mapToDomain(libraries);
@@ -55,13 +54,18 @@ public class LibraryDefaultService implements LibraryService {
     @Override
     public Integer getCount() {
         long count;
-        if (isCallerAdmin()) {
+        if (callerService.isCallerAdmin()) {
             count = repository.count();
         } else {
-            UUID callerId = getCallerId();
+            UUID callerId = callerService.getCallerId();
             count = repository.countAllByUserId(callerId);
         }
         return Math.toIntExact(count);
+    }
+
+    @Override
+    public UUID getOwnerId(UUID libraryId) {
+        return find(libraryId).getUser().getId();
     }
 
     @Override
@@ -82,18 +86,6 @@ public class LibraryDefaultService implements LibraryService {
     @Override
     public void delete(UUID id) {
         repository.deleteById(id);
-    }
-
-    private UUID getCallerId() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserSecurityDetails userDetails = (UserSecurityDetails) authentication.getPrincipal();
-        return userDetails.getId();
-    }
-
-    private boolean isCallerAdmin() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserSecurityDetails userDetails = (UserSecurityDetails) authentication.getPrincipal();
-        return userDetails.isAdmin();
     }
 
 }

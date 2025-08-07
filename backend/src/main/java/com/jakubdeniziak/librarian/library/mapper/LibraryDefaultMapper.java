@@ -53,6 +53,7 @@ public class LibraryDefaultMapper implements LibraryMapper {
                 .name(library.getName())
                 .address(library.getAddress())
                 .description(library.getDescription())
+                .user(userMapper.mapToDomain(library.getUser()))
                 .build();
     }
 
