@@ -1,6 +1,6 @@
 services:
-  web-interface:
-    build: ./web-interface
+  frontend:
+    build: ./frontend
     restart: always
     ports:
       - "4200:4200"
