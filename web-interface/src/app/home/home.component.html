@@ -1,11 +1,11 @@
 <header class="text-center my-10">
-    <h1 class="text-5xl font-bold">Librarian</h1>
-    <p class="mt-2 text-secondary">The ultimate library management system</p>
+  <h1 class="text-5xl font-bold">Librarian</h1>
+  <p class="mt-2 text-secondary">The ultimate library management system</p>
 </header>
 <section *ngIf="loginService.isLoggedIn();" class="flex justify-center gap-6 flex-wrap p-4">
-    <a *ngFor="let card of cards" [routerLink]="card.route" class="home-panel">
-        <img [src]="card.image" [alt]="card.alt" class="w-16 h-16 mt-5" />
-        <div class="text-xl font-bold">{{ card.count }}</div>
-        <span class="font-semibold">{{ card.label }}</span>
-    </a>
+  <a *ngFor="let card of cards" [routerLink]="card.route" class="home-panel">
+    <img [src]="card.image" [alt]="card.alt" class="w-16 h-16 mt-5"/>
+    <div class="text-xl font-bold">{{ card.count }}</div>
+    <span class="font-semibold">{{ card.label }}</span>
+  </a>
 </section>

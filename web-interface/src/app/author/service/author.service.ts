@@ -9,27 +9,27 @@ import {Endpoints} from "../../endpoints";
 @Injectable()
 export class AuthorService {
 
-    constructor(private http: HttpClient) {
-    }
+  constructor(private http: HttpClient) {
+  }
 
-    getAuthors(): Observable<Authors> {
-        return this.http.get<Authors>(Endpoints.AUTHORS);
-    }
+  getAuthors(): Observable<Authors> {
+    return this.http.get<Authors>(Endpoints.AUTHORS);
+  }
 
-    getAuthor(uuid: string): Observable<AuthorDetails> {
-        return this.http.get<AuthorDetails>(Endpoints.AUTHORS + '/' + uuid);
-    }
+  getAuthor(uuid: string): Observable<AuthorDetails> {
+    return this.http.get<AuthorDetails>(Endpoints.AUTHORS + '/' + uuid);
+  }
 
-    getAuthorsCount(): Observable<number> {
-        return this.http.get<number>(Endpoints.AUTHORS + "/count");
-    }
+  getAuthorsCount(): Observable<number> {
+    return this.http.get<number>(Endpoints.AUTHORS + "/count");
+  }
 
-    putAuthor(uuid: string, request: AuthorForm): Observable<any> {
-        return this.http.put(Endpoints.AUTHORS + '/' + uuid, request);
-    }
+  putAuthor(uuid: string, request: AuthorForm): Observable<any> {
+    return this.http.put(Endpoints.AUTHORS + '/' + uuid, request);
+  }
 
-    deleteAuthor(uuid: string): Observable<any> {
-        return this.http.delete(Endpoints.AUTHORS + '/' + uuid)
-    }
+  deleteAuthor(uuid: string): Observable<any> {
+    return this.http.delete(Endpoints.AUTHORS + '/' + uuid)
+  }
 
 }

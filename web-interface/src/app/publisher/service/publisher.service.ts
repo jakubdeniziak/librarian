@@ -9,27 +9,27 @@ import {Endpoints} from "../../endpoints";
 @Injectable()
 export class PublisherService {
 
-    constructor(private http: HttpClient) {
-    }
+  constructor(private http: HttpClient) {
+  }
 
-    getPublishers(): Observable<Publishers> {
-        return this.http.get<Publishers>(Endpoints.PUBLISHERS);
-    }
+  getPublishers(): Observable<Publishers> {
+    return this.http.get<Publishers>(Endpoints.PUBLISHERS);
+  }
 
-    getPublisher(uuid: string): Observable<PublisherDetails> {
-        return this.http.get<PublisherDetails>(Endpoints.PUBLISHERS + "/" + uuid);
-    }
+  getPublisher(uuid: string): Observable<PublisherDetails> {
+    return this.http.get<PublisherDetails>(Endpoints.PUBLISHERS + "/" + uuid);
+  }
 
-    getPublishersCount(): Observable<number> {
-        return this.http.get<number>(Endpoints.PUBLISHERS + "/count");
-    }
+  getPublishersCount(): Observable<number> {
+    return this.http.get<number>(Endpoints.PUBLISHERS + "/count");
+  }
 
-    putPublisher(uuid: string, request: PublisherForm): Observable<any> {
-        return this.http.put(Endpoints.PUBLISHERS + "/" + uuid, request);
-    }
+  putPublisher(uuid: string, request: PublisherForm): Observable<any> {
+    return this.http.put(Endpoints.PUBLISHERS + "/" + uuid, request);
+  }
 
-    deletePublisher(uuid: string): Observable<any> {
-        return this.http.delete(Endpoints.PUBLISHERS + "/" + uuid)
-    }
+  deletePublisher(uuid: string): Observable<any> {
+    return this.http.delete(Endpoints.PUBLISHERS + "/" + uuid)
+  }
 
 }

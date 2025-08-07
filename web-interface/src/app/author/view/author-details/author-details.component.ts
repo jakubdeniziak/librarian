@@ -12,19 +12,19 @@ import {UserService} from "../../../user/service/user.service";
   styleUrl: './author-details.component.css'
 })
 export class AuthorDetailsComponent implements OnInit {
-    author: AuthorDetails | undefined
-    books: Books | undefined
+  author: AuthorDetails | undefined
+  books: Books | undefined
 
-    constructor(public userService: UserService, private authorService: AuthorService, private bookService: BookService, private route: ActivatedRoute) {
-    }
+  constructor(public userService: UserService, private authorService: AuthorService, private bookService: BookService, private route: ActivatedRoute) {
+  }
 
-    ngOnInit(): void {
-        this.route.params.subscribe(params => {
-            this.authorService.getAuthor(params['uuid'])
-                .subscribe(author => this.author = author);
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.authorService.getAuthor(params['uuid'])
+        .subscribe(author => this.author = author);
 
-            this.bookService.getBooksByAuthor(params['uuid'])
-                .subscribe(books => this.books = books)
-        });
-    }
+      this.bookService.getBooksByAuthor(params['uuid'])
+        .subscribe(books => this.books = books)
+    });
+  }
 }

@@ -14,28 +14,28 @@ import {UserService} from "../../../user/service/user.service";
   styleUrl: './book-details.component.css'
 })
 export class BookDetailsComponent implements OnInit {
-    book: BookDetails | undefined;
-    author: AuthorDetails | undefined;
-    publisher: PublisherDetails | undefined;
+  book: BookDetails | undefined;
+  author: AuthorDetails | undefined;
+  publisher: PublisherDetails | undefined;
 
-    constructor(public userService: UserService,
-                private bookService: BookService,
-                private authorService: AuthorService,
-                private publisherService: PublisherService,
-                private route: ActivatedRoute) {
-    }
+  constructor(public userService: UserService,
+              private bookService: BookService,
+              private authorService: AuthorService,
+              private publisherService: PublisherService,
+              private route: ActivatedRoute) {
+  }
 
-    ngOnInit(): void {
-        this.route.params.subscribe(params => {
-            this.bookService.getBook(params['uuid']).subscribe(book => {
-                this.book = book
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.bookService.getBook(params['uuid']).subscribe(book => {
+        this.book = book
 
-                    this.authorService.getAuthor(this.book.authorId)
-                        .subscribe(author => this.author = author)
+        this.authorService.getAuthor(this.book.authorId)
+          .subscribe(author => this.author = author)
 
-                    this.publisherService.getPublisher(this.book.publisherId)
-                        .subscribe(publisher => this.publisher = publisher)
-            })
-        });
-    }
+        this.publisherService.getPublisher(this.book.publisherId)
+          .subscribe(publisher => this.publisher = publisher)
+      })
+    });
+  }
 }

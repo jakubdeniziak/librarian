@@ -12,22 +12,22 @@ import {UserService} from "../../../user/service/user.service";
   styleUrl: './publisher-details.component.css'
 })
 export class PublisherDetailsComponent implements OnInit {
-    publisher: PublisherDetails | undefined;
-    books: Books | undefined;
+  publisher: PublisherDetails | undefined;
+  books: Books | undefined;
 
-    constructor(public userService: UserService,
-                private publisherService: PublisherService,
-                private bookService: BookService,
-                private route: ActivatedRoute) {
-    }
+  constructor(public userService: UserService,
+              private publisherService: PublisherService,
+              private bookService: BookService,
+              private route: ActivatedRoute) {
+  }
 
-    ngOnInit(): void {
-        this.route.params.subscribe(params => {
-            this.publisherService.getPublisher(params['uuid'])
-                .subscribe(publisher => this.publisher = publisher)
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.publisherService.getPublisher(params['uuid'])
+        .subscribe(publisher => this.publisher = publisher)
 
-            this.bookService.getBooksByPublisher(params['uuid'])
-                .subscribe(books => this.books = books)
-        });
-    }
+      this.bookService.getBooksByPublisher(params['uuid'])
+        .subscribe(books => this.books = books)
+    });
+  }
 }

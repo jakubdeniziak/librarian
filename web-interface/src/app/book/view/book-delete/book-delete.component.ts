@@ -8,16 +8,16 @@ import {Books} from "../../model/books";
   styleUrl: './book-delete.component.css'
 })
 export class BookDeleteComponent implements OnInit {
-    books: Books | undefined;
+  books: Books | undefined;
 
-    constructor(private service: BookService) {
-    }
+  constructor(private service: BookService) {
+  }
 
-    onDeleteButtonClicked(bookId: string) {
-        this.service.deleteBook(bookId).subscribe(() => this.ngOnInit())
-    }
+  onDeleteButtonClicked(bookId: string) {
+    this.service.deleteBook(bookId).subscribe(() => this.ngOnInit())
+  }
 
-    ngOnInit() {
-        this.service.getBooks().subscribe(books => this.books = books)
-    }
+  ngOnInit() {
+    this.service.getBooks().subscribe(books => this.books = books)
+  }
 }

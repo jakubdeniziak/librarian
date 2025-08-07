@@ -9,12 +9,12 @@ import {UserService} from "../../../user/service/user.service";
   styleUrl: './author-list.component.css'
 })
 export class AuthorListComponent implements OnInit {
-    constructor(public userService: UserService, private service: AuthorService) {
-    }
+  constructor(public userService: UserService, private service: AuthorService) {
+  }
 
-    authors: Authors | undefined;
+  authors: Authors | undefined;
 
-    ngOnInit() {
-        this.service.getAuthors().subscribe(authors => this.authors = authors)
-    }
+  ngOnInit() {
+    this.service.getAuthors().subscribe(authors => this.authors = authors)
+  }
 }

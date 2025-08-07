@@ -10,19 +10,19 @@ import {v4 as uuid} from "uuid";
   styleUrl: './publisher-new.component.css'
 })
 export class PublisherNewComponent implements OnInit {
-    uuid: string | undefined;
-    publisher: PublisherForm | undefined;
+  uuid: string | undefined;
+  publisher: PublisherForm | undefined;
 
-    constructor(private publisherService: PublisherService, private router: Router) {
-    }
+  constructor(private publisherService: PublisherService, private router: Router) {
+  }
 
-    ngOnInit(): void {
-        this.uuid = uuid();
-        this.publisher = {name: "", websiteUrl: "", description: ""}
-    }
+  ngOnInit(): void {
+    this.uuid = uuid();
+    this.publisher = {name: "", websiteUrl: "", description: ""}
+  }
 
-    onSubmit(): void {
-        this.publisherService.putPublisher(this.uuid!, this.publisher!)
-            .subscribe(() => this.router.navigate(['/publishers']));
-    }
+  onSubmit(): void {
+    this.publisherService.putPublisher(this.uuid!, this.publisher!)
+      .subscribe(() => this.router.navigate(['/publishers']));
+  }
 }

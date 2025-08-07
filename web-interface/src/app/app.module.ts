@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
-import { BookListComponent } from "./book/view/book-list/book-list.component";
+import {AppComponent} from './app.component';
+import {BookListComponent} from "./book/view/book-list/book-list.component";
 import {AppRoutingModule} from "./app-routing.module";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {BookService} from "./book/service/book.service";
@@ -37,53 +37,54 @@ import {PageHeaderComponent} from "./shared/page-header/page-header.component";
 import {AuthInterceptor} from "./interceptors/auth.interceptor";
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        NavComponent,
-        FooterComponent,
-        HomeComponent,
-        AuthorListComponent,
-        AuthorDetailsComponent,
-        AuthorNewComponent,
-        AuthorDeleteComponent,
-        AuthorEditComponent,
-        BookListComponent,
-        BookDetailsComponent,
-        BookNewComponent,
-        BookDeleteComponent,
-        BookEditComponent,
-        PublisherListComponent,
-        PublisherDetailsComponent,
-        PublisherNewComponent,
-        PublisherDeleteComponent,
-        PublisherEditComponent,
-        LibraryListComponent,
-        LibraryDetailsComponent,
-        LibraryNewComponent,
-        LibraryDeleteComponent,
-        LibraryAddBookComponent
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        FormsModule,
-        NgOptimizedImage,
-        PageHeaderComponent
-    ],
-    providers: [
-        AuthorService,
-        BookService,
-        PublisherService,
-        LibraryService,
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AuthInterceptor,
-            multi: true
-        }
-    ],
-    bootstrap: [
-        AppComponent
-    ]
+  declarations: [
+    AppComponent,
+    NavComponent,
+    FooterComponent,
+    HomeComponent,
+    AuthorListComponent,
+    AuthorDetailsComponent,
+    AuthorNewComponent,
+    AuthorDeleteComponent,
+    AuthorEditComponent,
+    BookListComponent,
+    BookDetailsComponent,
+    BookNewComponent,
+    BookDeleteComponent,
+    BookEditComponent,
+    PublisherListComponent,
+    PublisherDetailsComponent,
+    PublisherNewComponent,
+    PublisherDeleteComponent,
+    PublisherEditComponent,
+    LibraryListComponent,
+    LibraryDetailsComponent,
+    LibraryNewComponent,
+    LibraryDeleteComponent,
+    LibraryAddBookComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    NgOptimizedImage,
+    PageHeaderComponent
+  ],
+  providers: [
+    AuthorService,
+    BookService,
+    PublisherService,
+    LibraryService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
-export class AppModule { }
+export class AppModule {
+}

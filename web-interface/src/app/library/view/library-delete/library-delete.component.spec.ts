@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { LibraryDeleteComponent } from './library-delete.component';
+import {LibraryDeleteComponent} from './library-delete.component';
 
 describe('LibraryDeleteComponent', () => {
   let component: LibraryDeleteComponent;
@@ -10,8 +10,8 @@ describe('LibraryDeleteComponent', () => {
     await TestBed.configureTestingModule({
       imports: [LibraryDeleteComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(LibraryDeleteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

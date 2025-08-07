@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {BookListComponent} from "./book/view/book-list/book-list.component";
 import {HomeComponent} from "./home/home.component";
@@ -28,39 +28,40 @@ import {adminGuard} from "./auth/admin.guard";
 import {UnauthorizedComponent} from "./auth/unauthorized/unauthorized.component";
 
 const routes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'authors', component: AuthorListComponent },
-    { path: 'authors/add', component: AuthorNewComponent, canActivate: [adminGuard] },
-    { path: 'authors/delete', component: AuthorDeleteComponent, canActivate: [adminGuard] },
-    { path: 'authors/:uuid', component: AuthorDetailsComponent },
-    { path: 'authors/:uuid/edit', component: AuthorEditComponent, canActivate: [adminGuard] },
-    { path: 'books', component: BookListComponent },
-    { path: 'books/add', component: BookNewComponent, canActivate: [adminGuard] },
-    { path: 'books/delete', component: BookDeleteComponent, canActivate: [adminGuard] },
-    { path: 'books/:uuid', component: BookDetailsComponent },
-    { path: 'books/:uuid/edit', component: BookEditComponent, canActivate: [adminGuard] },
-    { path: 'publishers', component: PublisherListComponent },
-    { path: 'publishers/add', component: PublisherNewComponent, canActivate: [adminGuard] },
-    { path: 'publishers/delete', component: PublisherDeleteComponent, canActivate: [adminGuard] },
-    { path: 'publishers/:uuid', component: PublisherDetailsComponent },
-    { path: 'publishers/:uuid/edit', component: PublisherEditComponent, canActivate: [adminGuard] },
-    { path: 'libraries', component: LibraryListComponent },
-    { path: 'libraries/add', component: LibraryNewComponent },
-    { path: 'libraries/delete', component: LibraryDeleteComponent },
-    { path: 'libraries/:uuid', component: LibraryDetailsComponent },
-    { path: 'libraries/:uuid/add-book', component: LibraryAddBookComponent },
-    { path: 'data', component: DataComponent, canActivate: [adminGuard] },
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
-    { path: 'unauthorized', component: UnauthorizedComponent },
+  {path: '', component: HomeComponent},
+  {path: 'authors', component: AuthorListComponent},
+  {path: 'authors/add', component: AuthorNewComponent, canActivate: [adminGuard]},
+  {path: 'authors/delete', component: AuthorDeleteComponent, canActivate: [adminGuard]},
+  {path: 'authors/:uuid', component: AuthorDetailsComponent},
+  {path: 'authors/:uuid/edit', component: AuthorEditComponent, canActivate: [adminGuard]},
+  {path: 'books', component: BookListComponent},
+  {path: 'books/add', component: BookNewComponent, canActivate: [adminGuard]},
+  {path: 'books/delete', component: BookDeleteComponent, canActivate: [adminGuard]},
+  {path: 'books/:uuid', component: BookDetailsComponent},
+  {path: 'books/:uuid/edit', component: BookEditComponent, canActivate: [adminGuard]},
+  {path: 'publishers', component: PublisherListComponent},
+  {path: 'publishers/add', component: PublisherNewComponent, canActivate: [adminGuard]},
+  {path: 'publishers/delete', component: PublisherDeleteComponent, canActivate: [adminGuard]},
+  {path: 'publishers/:uuid', component: PublisherDetailsComponent},
+  {path: 'publishers/:uuid/edit', component: PublisherEditComponent, canActivate: [adminGuard]},
+  {path: 'libraries', component: LibraryListComponent},
+  {path: 'libraries/add', component: LibraryNewComponent},
+  {path: 'libraries/delete', component: LibraryDeleteComponent},
+  {path: 'libraries/:uuid', component: LibraryDetailsComponent},
+  {path: 'libraries/:uuid/add-book', component: LibraryAddBookComponent},
+  {path: 'data', component: DataComponent, canActivate: [adminGuard]},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'unauthorized', component: UnauthorizedComponent},
 ];
 
 @NgModule({
-    imports: [
-        RouterModule.forRoot(routes)
-    ],
-    exports: [
-        RouterModule
-    ]
+  imports: [
+    RouterModule.forRoot(routes)
+  ],
+  exports: [
+    RouterModule
+  ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

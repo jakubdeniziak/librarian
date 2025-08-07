@@ -8,18 +8,18 @@ import {LibraryService} from "../../service/library.service";
   styleUrl: './library-delete.component.css'
 })
 export class LibraryDeleteComponent implements OnInit {
-    libraries: Libraries | undefined;
+  libraries: Libraries | undefined;
 
-    constructor(private service: LibraryService) {
-    }
+  constructor(private service: LibraryService) {
+  }
 
-    ngOnInit(): void {
-        this.service.getLibraries().subscribe(libraries => this.libraries = libraries)
-    }
+  ngOnInit(): void {
+    this.service.getLibraries().subscribe(libraries => this.libraries = libraries)
+  }
 
-    onDeleteButtonClicked(libraryId: string) {
-        this.service.deleteLibrary(libraryId).subscribe(() => this.ngOnInit())
-    }
+  onDeleteButtonClicked(libraryId: string) {
+    this.service.deleteLibrary(libraryId).subscribe(() => this.ngOnInit())
+  }
 
 
 }

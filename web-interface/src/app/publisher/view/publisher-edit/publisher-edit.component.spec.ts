@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PublisherEditComponent } from './publisher-edit.component';
+import {PublisherEditComponent} from './publisher-edit.component';
 
 describe('PublisherEditComponent', () => {
   let component: PublisherEditComponent;
@@ -10,8 +10,8 @@ describe('PublisherEditComponent', () => {
     await TestBed.configureTestingModule({
       imports: [PublisherEditComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(PublisherEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

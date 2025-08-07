@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Endpoints} from "../../endpoints";
@@ -8,14 +8,15 @@ import {Endpoints} from "../../endpoints";
 })
 export class DataService {
 
-    constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
-    importAll(data: string): Observable<any> {
-        return this.http.put(Endpoints.DATA_ALL, data);
-    }
+  importAll(data: string): Observable<any> {
+    return this.http.put(Endpoints.DATA_ALL, data);
+  }
 
-    downloadAll(): Observable<any> {
-        return this.http.get(Endpoints.DATA_ALL, { responseType: 'json' });
-    }
+  downloadAll(): Observable<any> {
+    return this.http.get(Endpoints.DATA_ALL, {responseType: 'json'});
+  }
 
 }

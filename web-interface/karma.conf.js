@@ -1,5 +1,5 @@
-module.exports = function(config) {
-    config.set({
-        frameworks: ['jasmine'],
-    });
+module.exports = function (config) {
+  config.set({
+    frameworks: ['jasmine'],
+  });
 };

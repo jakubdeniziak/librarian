@@ -1,29 +1,31 @@
 <section class="p-4 text-center" *ngIf="book">
-    <app-page-header [title]="book.title" [subtitle]="book.isbn"></app-page-header>
+  <app-page-header [title]="book.title" [subtitle]="book.isbn"></app-page-header>
 
-    <p>Format: {{book.format}}</p>
+  <p>Format: {{ book.format }}</p>
 
-    <h3 class="text-xl font-bold mt-5">Description</h3>
-    <p class="mt-1">
-        {{book.description}}
-    </p>
+  <h3 class="text-xl font-bold mt-5">Description</h3>
+  <p class="mt-1">
+    {{ book.description }}
+  </p>
 
-    <div *ngIf="author">
-        <h3 class="text-xl font-bold mt-5 mb-1">Author</h3>
-        <a [routerLink]="['/authors/', author.id]" class="hover:underline">
-            {{author.firstName}} {{author.lastName}}
-        </a>
-    </div>
+  <div *ngIf="author">
+    <h3 class="text-xl font-bold mt-5 mb-1">Author</h3>
+    <a [routerLink]="['/authors/', author.id]" class="hover:underline">
+      {{ author.firstName }} {{ author.lastName }}
+    </a>
+  </div>
 
-    <div *ngIf="publisher">
-        <h3 class="text-xl font-bold mt-5 mb-1">Publisher</h3>
-        <a [routerLink]="['/publishers/', publisher.id]" class="hover:underline">
-            {{publisher.name}}
-        </a>
-    </div>
+  <div *ngIf="publisher">
+    <h3 class="text-xl font-bold mt-5 mb-1">Publisher</h3>
+    <a [routerLink]="['/publishers/', publisher.id]" class="hover:underline">
+      {{ publisher.name }}
+    </a>
+  </div>
 
-    <div *ngIf="userService.isAdmin()" class="text-center mt-4">
-        <h3 class="text-xl font-bold">Manage</h3>
-        <button [routerLink]="'/books/' + book.id + '/edit'" class="rounded-md bg-bgSecondary text-primary px-4 py-2 mx-auto my-1 w-36 h-10">Edit</button>
-    </div>
+  <div *ngIf="userService.isAdmin()" class="text-center mt-4">
+    <h3 class="text-xl font-bold">Manage</h3>
+    <button [routerLink]="'/books/' + book.id + '/edit'"
+            class="rounded-md bg-bgSecondary text-primary px-4 py-2 mx-auto my-1 w-36 h-10">Edit
+    </button>
+  </div>
 </section>

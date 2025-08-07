@@ -14,33 +14,33 @@ import {Publishers} from "../../../publisher/model/publishers";
   styleUrl: './book-new.component.css'
 })
 export class BookNewComponent implements OnInit {
-    uuid: string | undefined;
-    book: BookForm | undefined;
-    formats: string[] | undefined;
-    authors: Authors | undefined;
-    publishers: Publishers | undefined;
+  uuid: string | undefined;
+  book: BookForm | undefined;
+  formats: string[] | undefined;
+  authors: Authors | undefined;
+  publishers: Publishers | undefined;
 
-    constructor(private bookService: BookService,
-                private authorService: AuthorService,
-                private publisherService: PublisherService,
-                private router: Router) {
-    }
+  constructor(private bookService: BookService,
+              private authorService: AuthorService,
+              private publisherService: PublisherService,
+              private router: Router) {
+  }
 
-    ngOnInit(): void {
-        this.uuid = uuid();
-        this.book = {isbn: "", title: "", description: "", format: "", authorId: "", publisherId: ""}
+  ngOnInit(): void {
+    this.uuid = uuid();
+    this.book = {isbn: "", title: "", description: "", format: "", authorId: "", publisherId: ""}
 
-        this.formats = ['AUDIOBOOK', 'EBOOK', 'HARDCOVER', 'PAPERBACK'];
+    this.formats = ['AUDIOBOOK', 'EBOOK', 'HARDCOVER', 'PAPERBACK'];
 
-        this.authorService.getAuthors()
-            .subscribe(authors => this.authors = authors)
+    this.authorService.getAuthors()
+      .subscribe(authors => this.authors = authors)
 
-        this.publisherService.getPublishers()
-            .subscribe(publishers => this.publishers = publishers)
-    }
+    this.publisherService.getPublishers()
+      .subscribe(publishers => this.publishers = publishers)
+  }
 
-    onSubmit(): void {
-        this.bookService.putBook(this.uuid!, this.book!)
-            .subscribe(() => this.router.navigate(['/books']));
-    }
+  onSubmit(): void {
+    this.bookService.putBook(this.uuid!, this.book!)
+      .subscribe(() => this.router.navigate(['/books']));
+  }
 }

@@ -10,19 +10,19 @@ import {v4 as uuid} from "uuid";
   styleUrl: './library-new.component.css'
 })
 export class LibraryNewComponent implements OnInit {
-    uuid: string | undefined;
-    library: LibraryForm | undefined;
+  uuid: string | undefined;
+  library: LibraryForm | undefined;
 
-    constructor(private libraryService: LibraryService, private router: Router) {
-    }
+  constructor(private libraryService: LibraryService, private router: Router) {
+  }
 
-    ngOnInit(): void {
-        this.uuid = uuid();
-        this.library = {address: "", description: "", name: ""}
-    }
+  ngOnInit(): void {
+    this.uuid = uuid();
+    this.library = {address: "", description: "", name: ""}
+  }
 
-    onSubmit(): void {
-        this.libraryService.putLibrary(this.uuid!, this.library!)
-            .subscribe(() => this.router.navigate(['/libraries']));
-    }
+  onSubmit(): void {
+    this.libraryService.putLibrary(this.uuid!, this.library!)
+      .subscribe(() => this.router.navigate(['/libraries']));
+  }
 }

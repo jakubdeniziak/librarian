@@ -11,31 +11,31 @@ import {LibraryBookForm} from "../../model/library-book/library-book-form";
   styleUrl: './library-add-book.component.css'
 })
 export class LibraryAddBookComponent implements OnInit {
-    libraryId: string | undefined;
-    bookId: string | undefined;
-    books: Books | undefined;
-    libraryBook: LibraryBookForm | undefined;
+  libraryId: string | undefined;
+  bookId: string | undefined;
+  books: Books | undefined;
+  libraryBook: LibraryBookForm | undefined;
 
 
-    constructor(private libraryService: LibraryService,
-                private bookService: BookService,
-                private route: ActivatedRoute,
-                private router: Router) {
-    }
+  constructor(private libraryService: LibraryService,
+              private bookService: BookService,
+              private route: ActivatedRoute,
+              private router: Router) {
+  }
 
-    ngOnInit(): void {
-        this.route.params.subscribe(params => {
-            this.libraryService.getLibrary(params['uuid'])
-                .subscribe(library => this.libraryId = library.id);
-        });
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.libraryService.getLibrary(params['uuid'])
+        .subscribe(library => this.libraryId = library.id);
+    });
 
-        this.bookService.getBooks().subscribe(books => this.books = books);
+    this.bookService.getBooks().subscribe(books => this.books = books);
 
-        this.libraryBook = {numberOfCopies: 0};
-    }
+    this.libraryBook = {numberOfCopies: 0};
+  }
 
-    onSubmit() {
-        this.libraryService.addBookToLibrary(this.libraryId!, this.bookId!, this.libraryBook!)
-            .subscribe(() => this.router.navigate(['/libraries', this.libraryId!]));
-    }
+  onSubmit() {
+    this.libraryService.addBookToLibrary(this.libraryId!, this.bookId!, this.libraryBook!)
+      .subscribe(() => this.router.navigate(['/libraries', this.libraryId!]));
+  }
 }

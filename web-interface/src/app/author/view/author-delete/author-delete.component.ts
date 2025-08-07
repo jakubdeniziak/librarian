@@ -8,16 +8,16 @@ import {Authors} from "../../model/authors";
   styleUrl: './author-delete.component.css'
 })
 export class AuthorDeleteComponent implements OnInit {
-    authors: Authors | undefined;
+  authors: Authors | undefined;
 
-    constructor(private service: AuthorService) {
-    }
+  constructor(private service: AuthorService) {
+  }
 
-    onDeleteButtonClicked(authorId: string) {
-        this.service.deleteAuthor(authorId).subscribe(() => this.ngOnInit())
-    }
+  onDeleteButtonClicked(authorId: string) {
+    this.service.deleteAuthor(authorId).subscribe(() => this.ngOnInit())
+  }
 
-    ngOnInit() {
-        this.service.getAuthors().subscribe(authors => this.authors = authors)
-    }
+  ngOnInit() {
+    this.service.getAuthors().subscribe(authors => this.authors = authors)
+  }
 }

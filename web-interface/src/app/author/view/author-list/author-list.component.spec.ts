@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AuthorListComponent } from './author-list.component';
+import {AuthorListComponent} from './author-list.component';
 
 describe('AuthorListComponent', () => {
   let component: AuthorListComponent;
@@ -10,8 +10,8 @@ describe('AuthorListComponent', () => {
     await TestBed.configureTestingModule({
       imports: [AuthorListComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(AuthorListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

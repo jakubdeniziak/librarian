@@ -9,24 +9,24 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrl: './author-edit.component.css'
 })
 export class AuthorEditComponent implements OnInit {
-    uuid: string | undefined;
-    author: AuthorDetails | undefined;
+  uuid: string | undefined;
+  author: AuthorDetails | undefined;
 
-    constructor(private service: AuthorService, private route: ActivatedRoute, private router: Router) {
-    }
+  constructor(private service: AuthorService, private route: ActivatedRoute, private router: Router) {
+  }
 
-    ngOnInit(): void {
-        this.route.params.subscribe(params => {
-            this.service.getAuthor(params['uuid'])
-                .subscribe(author => {
-                    this.uuid = author.id
-                    this.author = author
-                });
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.service.getAuthor(params['uuid'])
+        .subscribe(author => {
+          this.uuid = author.id
+          this.author = author
         });
-    }
+    });
+  }
 
-    onSubmit() {
-        this.service.putAuthor(this.uuid!, this.author!)
-            .subscribe(() => this.router.navigate(['/authors/' + this.uuid]));
-    }
+  onSubmit() {
+    this.service.putAuthor(this.uuid!, this.author!)
+      .subscribe(() => this.router.navigate(['/authors/' + this.uuid]));
+  }
 }

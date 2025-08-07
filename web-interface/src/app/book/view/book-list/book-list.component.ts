@@ -9,12 +9,12 @@ import {UserService} from "../../../user/service/user.service";
   styleUrl: './book-list.component.css'
 })
 export class BookListComponent implements OnInit {
-    constructor(public userService: UserService, private service: BookService) {
-    }
+  constructor(public userService: UserService, private service: BookService) {
+  }
 
-    books: Books | undefined;
+  books: Books | undefined;
 
-    ngOnInit() {
-        this.service.getBooks().subscribe(books => this.books = books)
-    }
+  ngOnInit() {
+    this.service.getBooks().subscribe(books => this.books = books)
+  }
 }

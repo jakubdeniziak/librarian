@@ -1,5 +1,5 @@
-import { Book} from "./book";
+import {Book} from "./book";
 
 export interface Books {
-    books: Book[];
+  books: Book[];
 }

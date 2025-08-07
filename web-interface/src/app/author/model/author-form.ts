@@ -1,5 +1,5 @@
 export interface AuthorForm {
-    firstName: string;
-    lastName: string;
-    description: string;
+  firstName: string;
+  lastName: string;
+  description: string;
 }

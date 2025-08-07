@@ -8,12 +8,12 @@ import {LibraryService} from "../../service/library.service";
   styleUrl: './library-list.component.css'
 })
 export class LibraryListComponent implements OnInit {
-    constructor(private service: LibraryService) {
-    }
+  constructor(private service: LibraryService) {
+  }
 
-    libraries: Libraries | undefined
+  libraries: Libraries | undefined
 
-    ngOnInit(): void {
-        this.service.getLibraries().subscribe(libraries => this.libraries = libraries);
-    }
+  ngOnInit(): void {
+    this.service.getLibraries().subscribe(libraries => this.libraries = libraries);
+  }
 }

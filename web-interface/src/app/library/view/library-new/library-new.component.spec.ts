@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { LibraryNewComponent } from './library-new.component';
+import {LibraryNewComponent} from './library-new.component';
 
 describe('LibraryNewComponent', () => {
   let component: LibraryNewComponent;
@@ -10,8 +10,8 @@ describe('LibraryNewComponent', () => {
     await TestBed.configureTestingModule({
       imports: [LibraryNewComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(LibraryNewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

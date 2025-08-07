@@ -8,16 +8,16 @@ import {PublisherService} from "../../service/publisher.service";
   styleUrl: './publisher-delete.component.css'
 })
 export class PublisherDeleteComponent implements OnInit {
-    publishers: Publishers | undefined;
+  publishers: Publishers | undefined;
 
-    constructor(private service: PublisherService) {
-    }
+  constructor(private service: PublisherService) {
+  }
 
-    onDeleteButtonClicked(publisherId: string) {
-        this.service.deletePublisher(publisherId).subscribe(() => this.ngOnInit())
-    }
+  onDeleteButtonClicked(publisherId: string) {
+    this.service.deletePublisher(publisherId).subscribe(() => this.ngOnInit())
+  }
 
-    ngOnInit() {
-        this.service.getPublishers().subscribe(publishers => this.publishers = publishers)
-    }
+  ngOnInit() {
+    this.service.getPublishers().subscribe(publishers => this.publishers = publishers)
+  }
 }

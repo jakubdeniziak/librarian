@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AuthorDeleteComponent } from './author-delete.component';
+import {AuthorDeleteComponent} from './author-delete.component';
 
 describe('AuthorDeleteComponent', () => {
   let component: AuthorDeleteComponent;
@@ -10,8 +10,8 @@ describe('AuthorDeleteComponent', () => {
     await TestBed.configureTestingModule({
       imports: [AuthorDeleteComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(AuthorDeleteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

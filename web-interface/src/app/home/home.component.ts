@@ -8,11 +8,11 @@ import {UserService} from "../user/service/user.service";
 
 
 interface HomePanel {
-    image: string;
-    alt: string;
-    label: string;
-    count: number | string;
-    route: string;
+  image: string;
+  alt: string;
+  label: string;
+  count: number | string;
+  route: string;
 }
 
 @Component({
@@ -22,60 +22,61 @@ interface HomePanel {
 })
 export class HomeComponent implements OnInit {
 
-    cards: HomePanel[] = [];
+  cards: HomePanel[] = [];
 
-    constructor(
-        public loginService: UserService,
-        private bookService: BookService,
-        private authorService: AuthorService,
-        private publisherService: PublisherService,
-        private libraryService: LibraryService
-    ) {}
+  constructor(
+    public loginService: UserService,
+    private bookService: BookService,
+    private authorService: AuthorService,
+    private publisherService: PublisherService,
+    private libraryService: LibraryService
+  ) {
+  }
 
-    ngOnInit(): void {
-        if (!this.loginService.isLoggedIn()) {
-            return;
-        }
-
-        forkJoin({
-            bookCount: this.bookService.getBooksCount().pipe(catchError(() => of(-1))),
-            authorCount: this.authorService.getAuthorsCount().pipe(catchError(() => of(-1))),
-            publisherCount: this.publisherService.getPublishersCount().pipe(catchError(() => of(-1))),
-            libraryCount: this.libraryService.getLibrariesCount().pipe(catchError(() => of(-1)))
-        }).subscribe(({ bookCount, authorCount, publisherCount, libraryCount }) => {
-            const safeCount = (count: number) => count >= 0 ? count : '?';
-
-            this.cards = [
-                {
-                    image: 'assets/images/books.png',
-                    alt: 'Books',
-                    label: 'Books',
-                    count: safeCount(bookCount),
-                    route: '/books'
-                },
-                {
-                    image: 'assets/images/authors.png',
-                    alt: 'Authors',
-                    label: 'Authors',
-                    count: safeCount(authorCount),
-                    route: '/authors'
-                },
-                {
-                    image: 'assets/images/publishers.png',
-                    alt: 'Publishers',
-                    label: 'Publishers',
-                    count: safeCount(publisherCount),
-                    route: '/publishers'
-                },
-                {
-                    image: 'assets/images/libraries.png',
-                    alt: 'Libraries',
-                    label: 'Libraries',
-                    count: safeCount(libraryCount),
-                    route: '/libraries'
-                }
-            ];
-        });
+  ngOnInit(): void {
+    if (!this.loginService.isLoggedIn()) {
+      return;
     }
+
+    forkJoin({
+      bookCount: this.bookService.getBooksCount().pipe(catchError(() => of(-1))),
+      authorCount: this.authorService.getAuthorsCount().pipe(catchError(() => of(-1))),
+      publisherCount: this.publisherService.getPublishersCount().pipe(catchError(() => of(-1))),
+      libraryCount: this.libraryService.getLibrariesCount().pipe(catchError(() => of(-1)))
+    }).subscribe(({bookCount, authorCount, publisherCount, libraryCount}) => {
+      const safeCount = (count: number) => count >= 0 ? count : '?';
+
+      this.cards = [
+        {
+          image: 'assets/images/books.png',
+          alt: 'Books',
+          label: 'Books',
+          count: safeCount(bookCount),
+          route: '/books'
+        },
+        {
+          image: 'assets/images/authors.png',
+          alt: 'Authors',
+          label: 'Authors',
+          count: safeCount(authorCount),
+          route: '/authors'
+        },
+        {
+          image: 'assets/images/publishers.png',
+          alt: 'Publishers',
+          label: 'Publishers',
+          count: safeCount(publisherCount),
+          route: '/publishers'
+        },
+        {
+          image: 'assets/images/libraries.png',
+          alt: 'Libraries',
+          label: 'Libraries',
+          count: safeCount(libraryCount),
+          route: '/libraries'
+        }
+      ];
+    });
+  }
 
 }

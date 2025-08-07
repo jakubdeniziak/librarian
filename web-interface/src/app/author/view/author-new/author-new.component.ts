@@ -10,19 +10,19 @@ import {v4 as uuid} from "uuid";
   styleUrl: './author-new.component.css'
 })
 export class AuthorNewComponent implements OnInit {
-    uuid: string | undefined;
-    author: AuthorForm | undefined;
+  uuid: string | undefined;
+  author: AuthorForm | undefined;
 
-    constructor(private authorService: AuthorService, private router: Router) {
-    }
+  constructor(private authorService: AuthorService, private router: Router) {
+  }
 
-    ngOnInit(): void {
-        this.uuid = uuid();
-        this.author = {firstName: "", lastName: "", description: ""}
-    }
+  ngOnInit(): void {
+    this.uuid = uuid();
+    this.author = {firstName: "", lastName: "", description: ""}
+  }
 
-    onSubmit(): void {
-        this.authorService.putAuthor(this.uuid!, this.author!)
-            .subscribe(() => this.router.navigate(['/authors']));
-    }
+  onSubmit(): void {
+    this.authorService.putAuthor(this.uuid!, this.author!)
+      .subscribe(() => this.router.navigate(['/authors']));
+  }
 }

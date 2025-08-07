@@ -9,29 +9,32 @@ import {Router} from "@angular/router";
 })
 export class NavComponent implements OnInit, OnDestroy {
 
-    dropdownOpen = false;
+  dropdownOpen = false;
 
-    constructor(public userService: UserService, private router: Router, private eRef: ElementRef) {}
+  constructor(public userService: UserService, private router: Router, private eRef: ElementRef) {
+  }
 
-    ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
-    ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+  }
 
-    toggleDropdown(): void {
-        this.dropdownOpen = !this.dropdownOpen;
+  toggleDropdown(): void {
+    this.dropdownOpen = !this.dropdownOpen;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent): void {
+    if (!this.eRef.nativeElement.contains(event.target)) {
+      this.dropdownOpen = false;
     }
+  }
 
-    @HostListener('document:click', ['$event'])
-    onClickOutside(event: MouseEvent): void {
-        if (!this.eRef.nativeElement.contains(event.target)) {
-            this.dropdownOpen = false;
-        }
-    }
-
-    logout(): void {
-        this.dropdownOpen = false;
-        this.userService.logout();
-        this.router.navigate(['/']);
-    }
+  logout(): void {
+    this.dropdownOpen = false;
+    this.userService.logout();
+    this.router.navigate(['/']);
+  }
 
 }

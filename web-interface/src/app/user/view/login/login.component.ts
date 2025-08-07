@@ -6,27 +6,28 @@ import {PageHeaderComponent} from "../../../shared/page-header/page-header.compo
 import {UserService} from "../../service/user.service";
 
 @Component({
-    selector: 'app-user',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css'],
-    imports: [
-        FormsModule,
-        NgIf,
-        PageHeaderComponent,
-    ],
-    standalone: true
+  selector: 'app-user',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
+  imports: [
+    FormsModule,
+    NgIf,
+    PageHeaderComponent,
+  ],
+  standalone: true
 })
 export class LoginComponent {
-    username = '';
-    password = '';
-    error = '';
+  username = '';
+  password = '';
+  error = '';
 
-    constructor(private loginService: UserService, private router: Router) {}
+  constructor(private loginService: UserService, private router: Router) {
+  }
 
-    login(): void {
-        this.loginService.login(this.username, this.password).subscribe({
-            next: () => this.router.navigate(['/']),
-            error: () => this.error = 'Invalid credentials. Please try again.',
-        });
-    }
+  login(): void {
+    this.loginService.login(this.username, this.password).subscribe({
+      next: () => this.router.navigate(['/']),
+      error: () => this.error = 'Invalid credentials. Please try again.',
+    });
+  }
 }
