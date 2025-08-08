@@ -5,7 +5,8 @@ An application that will help manage libraries.
 
 ## Running
 
-The entire project can be easily run using `docker compose up --build`.
+The entire project can be easily run using `docker compose up --build` (production setup).
+If you want to run the project in the development mode (contains features like frontend auto reload) you have to run `docker compose -f compose.dev.yaml up --build --watch`.
 
 ### Environmental properties
 

@@ -1,0 +1,23 @@
+name: librarian-dev
+
+
+services:
+  frontend-dev:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    restart: always
+    ports:
+      - "4200:4200"
+    develop:
+      watch:
+        - action: sync
+          path: ./frontend
+          target: /app
+    networks:
+      - librarian-dev-network
+
+
+networks:
+  librarian-dev-network:
+    driver: bridge

@@ -8,6 +8,7 @@ coverage/
 .gitignore
 .dockerignore
 Dockerfile
+Dockerfile.*
 
 *.env*
 *.iml
