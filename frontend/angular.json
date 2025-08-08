@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "web-interface": {
+    "librarian-frontend": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/web-interface",
+            "outputPath": "dist/librarian-frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -21,7 +21,6 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
@@ -55,16 +54,16 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "buildTarget": "web-interface:build",
-            "proxyConfig": "src/proxy.conf.json"
-          },
           "configurations": {
             "production": {
-              "buildTarget": "web-interface:build:production"
+              "buildTarget": "librarian-frontend:build:production",
+              "proxyConfig": "proxy.conf.json"
             },
             "development": {
-              "buildTarget": "web-interface:build:development"
+              "buildTarget": "librarian-frontend:build:development",
+              "proxyConfig": "proxy.conf.json",
+              "liveReload": true,
+              "open": true
             }
           },
           "defaultConfiguration": "development"
@@ -72,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "web-interface:build"
+            "buildTarget": "librarian-frontend:build"
           }
         },
         "test": {
@@ -84,7 +83,6 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
-              "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
