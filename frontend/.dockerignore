@@ -1,0 +1,13 @@
+.idea/
+.angular/
+
+node_modules/
+dist/
+coverage/
+
+.gitignore
+.dockerignore
+Dockerfile
+
+*.env*
+*.iml

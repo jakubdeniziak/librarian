@@ -3,7 +3,7 @@ services:
     build: ./frontend
     restart: always
     ports:
-      - "4200:4200"
+      - "8080:8080"
     networks:
       - librarian-network
     depends_on:
@@ -23,7 +23,7 @@ services:
       - ADMIN_PASSWORD=${ADMIN_PASSWORD}
       - JWT_SECRET=${JWT_SECRET}
     ports:
-      - "8080:8080"
+      - "8081:8081"
     networks:
       librarian-network:
     depends_on:
