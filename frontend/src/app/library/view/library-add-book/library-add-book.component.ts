@@ -2,12 +2,22 @@ import {Component, OnInit} from '@angular/core';
 import {Books} from "../../../book/model/books";
 import {LibraryService} from "../../service/library.service";
 import {BookService} from "../../../book/service/book.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {LibraryBookForm} from "../../model/library-book/library-book-form";
+import {PageHeaderComponent} from "../../../shared/page-header/page-header.component";
+import {FormsModule} from "@angular/forms";
+import {NgForOf, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-library-add-book',
   templateUrl: './library-add-book.component.html',
+  imports: [
+    PageHeaderComponent,
+    FormsModule,
+    NgIf,
+    NgForOf,
+    RouterLink
+  ],
   styleUrl: './library-add-book.component.css'
 })
 export class LibraryAddBookComponent implements OnInit {

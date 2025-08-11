@@ -1,14 +1,22 @@
 import {Component, OnInit} from '@angular/core';
 import {PublisherService} from "../../service/publisher.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, RouterLink} from "@angular/router";
 import {PublisherDetails} from "../../model/publisher-details";
 import {Books} from "../../../book/model/books";
 import {BookService} from "../../../book/service/book.service";
 import {UserService} from "../../../user/service/user.service";
+import {NgForOf, NgIf} from "@angular/common";
+import {PageHeaderComponent} from "../../../shared/page-header/page-header.component";
 
 @Component({
   selector: 'app-publisher-details',
   templateUrl: './publisher-details.component.html',
+  imports: [
+    RouterLink,
+    NgIf,
+    NgForOf,
+    PageHeaderComponent
+  ],
   styleUrl: './publisher-details.component.css'
 })
 export class PublisherDetailsComponent implements OnInit {

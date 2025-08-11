@@ -1,12 +1,21 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {PublisherForm} from "../../model/publisher-form";
 import {PublisherService} from "../../service/publisher.service";
 import {v4 as uuid} from "uuid";
+import {FormsModule} from "@angular/forms";
+import {PageHeaderComponent} from "../../../shared/page-header/page-header.component";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-publisher-new',
   templateUrl: './publisher-new.component.html',
+  imports: [
+    FormsModule,
+    PageHeaderComponent,
+    RouterLink,
+    NgIf
+  ],
   styleUrl: './publisher-new.component.css'
 })
 export class PublisherNewComponent implements OnInit {

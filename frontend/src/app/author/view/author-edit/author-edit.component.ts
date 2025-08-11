@@ -1,11 +1,20 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthorDetails} from "../../model/author-details";
 import {AuthorService} from "../../service/author.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
+import {FormsModule} from "@angular/forms";
+import {PageHeaderComponent} from "../../../shared/page-header/page-header.component";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-author-edit',
   templateUrl: './author-edit.component.html',
+  imports: [
+    FormsModule,
+    PageHeaderComponent,
+    NgIf,
+    RouterLink
+  ],
   styleUrl: './author-edit.component.css'
 })
 export class AuthorEditComponent implements OnInit {

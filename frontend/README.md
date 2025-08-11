@@ -1,4 +1,4 @@
-# frontend
+# librarian-frontend
 
 This is the **Angular-based frontend** of the **Librarian** application.
 It provides the user interface for managing books, authors, libraries and more.

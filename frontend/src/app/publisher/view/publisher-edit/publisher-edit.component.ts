@@ -1,11 +1,20 @@
 import {Component} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {PublisherDetails} from "../../model/publisher-details";
 import {PublisherService} from "../../service/publisher.service";
+import {FormsModule} from "@angular/forms";
+import {PageHeaderComponent} from "../../../shared/page-header/page-header.component";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-publisher-edit',
   templateUrl: './publisher-edit.component.html',
+  imports: [
+    FormsModule,
+    PageHeaderComponent,
+    RouterLink,
+    NgIf
+  ],
   styleUrl: './publisher-edit.component.css'
 })
 export class PublisherEditComponent {

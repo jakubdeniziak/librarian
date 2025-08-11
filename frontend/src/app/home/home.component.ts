@@ -5,6 +5,8 @@ import {LibraryService} from "../library/service/library.service";
 import {AuthorService} from "../author/service/author.service";
 import {catchError, forkJoin, of} from "rxjs";
 import {UserService} from "../user/service/user.service";
+import {NgForOf, NgIf} from "@angular/common";
+import {RouterLink} from "@angular/router";
 
 
 interface HomePanel {
@@ -18,6 +20,11 @@ interface HomePanel {
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
+  imports: [
+    NgIf,
+    RouterLink,
+    NgForOf
+  ],
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {

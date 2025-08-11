@@ -4,12 +4,22 @@ import {Publishers} from "../../../publisher/model/publishers";
 import {BookService} from "../../service/book.service";
 import {AuthorService} from "../../../author/service/author.service";
 import {PublisherService} from "../../../publisher/service/publisher.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {BookDetails} from "../../model/book-details";
+import {PageHeaderComponent} from "../../../shared/page-header/page-header.component";
+import {FormsModule} from "@angular/forms";
+import {NgForOf, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-book-edit',
   templateUrl: './book-edit.component.html',
+  imports: [
+    PageHeaderComponent,
+    FormsModule,
+    NgIf,
+    NgForOf,
+    RouterLink
+  ],
   styleUrl: './book-edit.component.css'
 })
 export class BookEditComponent implements OnInit {

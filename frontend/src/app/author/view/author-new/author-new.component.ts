@@ -1,12 +1,21 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthorForm} from "../../model/author-form";
 import {AuthorService} from "../../service/author.service";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {v4 as uuid} from "uuid";
+import {PageHeaderComponent} from "../../../shared/page-header/page-header.component";
+import {FormsModule} from "@angular/forms";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-author-new',
   templateUrl: './author-new.component.html',
+  imports: [
+    PageHeaderComponent,
+    FormsModule,
+    RouterLink,
+    NgIf
+  ],
   styleUrl: './author-new.component.css'
 })
 export class AuthorNewComponent implements OnInit {

@@ -1,10 +1,16 @@
 import {Component, ElementRef, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {UserService} from "../../user/service/user.service";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
+import {NgIf, NgOptimizedImage} from "@angular/common";
 
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
+  imports: [
+    RouterLink,
+    NgOptimizedImage,
+    NgIf
+  ],
   styleUrl: './nav.component.css'
 })
 export class NavComponent implements OnInit, OnDestroy {

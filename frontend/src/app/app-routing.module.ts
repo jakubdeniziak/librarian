@@ -1,5 +1,4 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from "@angular/router";
+import {Routes} from "@angular/router";
 import {BookListComponent} from "./book/view/book-list/book-list.component";
 import {HomeComponent} from "./home/home.component";
 import {AuthorListComponent} from "./author/view/author-list/author-list.component";
@@ -27,7 +26,7 @@ import {RegisterComponent} from "./user/view/register/register.component";
 import {adminGuard} from "./auth/admin.guard";
 import {UnauthorizedComponent} from "./auth/unauthorized/unauthorized.component";
 
-const routes: Routes = [
+export const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'authors', component: AuthorListComponent},
   {path: 'authors/add', component: AuthorNewComponent, canActivate: [adminGuard]},
@@ -54,14 +53,3 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'unauthorized', component: UnauthorizedComponent},
 ];
-
-@NgModule({
-  imports: [
-    RouterModule.forRoot(routes)
-  ],
-  exports: [
-    RouterModule
-  ]
-})
-export class AppRoutingModule {
-}

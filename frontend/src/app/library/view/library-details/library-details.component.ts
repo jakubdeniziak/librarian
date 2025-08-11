@@ -1,13 +1,21 @@
 import {Component, OnInit} from '@angular/core';
 import {LibraryService} from "../../service/library.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, RouterLink} from "@angular/router";
 import {LibraryDetails} from "../../model/library-details";
 import {BookService} from "../../../book/service/book.service";
 import {LibraryBooks} from "../../model/library-book/library-books";
+import {PageHeaderComponent} from "../../../shared/page-header/page-header.component";
+import {NgForOf, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-library-details',
   templateUrl: './library-details.component.html',
+  imports: [
+    PageHeaderComponent,
+    RouterLink,
+    NgForOf,
+    NgIf
+  ],
   styleUrl: './library-details.component.css'
 })
 export class LibraryDetailsComponent implements OnInit {
