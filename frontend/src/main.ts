@@ -7,11 +7,11 @@ import {BookService} from "./app/book/service/book.service";
 import {PublisherService} from "./app/publisher/service/publisher.service";
 import {LibraryService} from "./app/library/service/library.service";
 import {routes} from "./app/app-routing.module";
-import {AuthInterceptorFn} from "./app/interceptors/auth.interceptor";
+import {authInterceptor} from "./app/core/interceptors/auth-interceptor";
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideHttpClient(withInterceptors([AuthInterceptorFn])),
+    provideHttpClient(withInterceptors([authInterceptor])),
     provideRouter(routes),
     AuthorService,
     BookService,
