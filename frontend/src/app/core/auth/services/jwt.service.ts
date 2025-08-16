@@ -4,7 +4,7 @@ import {Injectable} from '@angular/core';
   providedIn: 'root'
 })
 export class JwtService {
-  private static readonly TOKEN_KEY: string = "auth_token";
+  private static readonly TOKEN_KEY: string = 'auth_token';
 
   public saveToken(token: string): void {
     sessionStorage.setItem(JwtService.TOKEN_KEY, token);
