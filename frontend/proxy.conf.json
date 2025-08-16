@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://gateway:443",
+    "target": "http://gateway-dev:443",
     "secure": false,
     "changeOrigin": true
   }

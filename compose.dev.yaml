@@ -16,6 +16,23 @@ services:
           target: /app
     networks:
       - librarian-dev-network
+    depends_on:
+      - gateway-dev
+
+  gateway-dev:
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile.dev
+    restart: always
+    ports:
+      - "443:443"
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./gateway/src
+          target: /app
+    networks:
+      - librarian-dev-network
 
 
 networks:
