@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://backend:8081",
+    "target": "http://gateway:443",
     "secure": false,
     "changeOrigin": true
   }

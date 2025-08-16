@@ -1,3 +1,15 @@
 spring:
   application:
-    name: gateway
+    name: "librarian-gateway"
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: backend
+              uri: http://backend:8081
+              predicates:
+                - Path=/api/**
+
+server:
+  port: 443
