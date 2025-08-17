@@ -20,4 +20,10 @@ describe('FooterComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render footer text', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('footer')?.textContent)
+      .toContain('© jakubdeniziak 2024-2025');
+  });
 });
