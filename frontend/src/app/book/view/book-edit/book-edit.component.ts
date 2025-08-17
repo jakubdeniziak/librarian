@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {Authors} from "../../../author/model/authors";
 import {Publishers} from "../../../publisher/model/publishers";
 import {BookService} from "../../service/book.service";
-import {AuthorService} from "../../../author/service/author.service";
 import {PublisherService} from "../../../publisher/service/publisher.service";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {BookDetails} from "../../model/book-details";
 import {PageHeaderComponent} from "../../../shared/page-header/page-header.component";
 import {FormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
+import {Authors} from "../../../features/author/models/authors.model";
+import {AuthorService} from "../../../features/author/services/author.service";
 
 @Component({
   selector: 'app-book-edit',

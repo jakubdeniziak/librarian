@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {BookService} from "../book/service/book.service";
 import {PublisherService} from "../publisher/service/publisher.service";
 import {LibraryService} from "../library/service/library.service";
-import {AuthorService} from "../author/service/author.service";
 import {catchError, forkJoin, of} from "rxjs";
 import {UserService} from "../user/service/user.service";
 import {NgForOf, NgIf} from "@angular/common";
 import {RouterLink} from "@angular/router";
+import {AuthorService} from "../features/author/services/author.service";
 
 
 interface HomePanel {
@@ -83,6 +83,7 @@ export class HomeComponent implements OnInit {
           route: '/libraries'
         }
       ];
+
     });
   }
 

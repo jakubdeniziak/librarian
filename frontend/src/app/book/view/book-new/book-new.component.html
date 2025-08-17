@@ -32,7 +32,7 @@
     </div>
 
     <div class="mt-3">
-      <label for="author">Author:</label>
+      <label for="author">AuthorModel:</label>
       <br>
       <select id="author" name="author" [(ngModel)]="book.authorId" class="text-bgSecondary mt-1 p-1 w-64">
         <option *ngFor="let author of authors?.authors" [value]="author.id">

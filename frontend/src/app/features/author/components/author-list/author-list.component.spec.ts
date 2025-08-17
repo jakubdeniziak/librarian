@@ -1,6 +1,8 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
-
 import {AuthorListComponent} from './author-list.component';
+import {provideHttpClient} from "@angular/common/http";
+import {UserService} from "../../../../user/service/user.service";
+import {AuthorService} from "../../services/author.service";
 
 describe('AuthorListComponent', () => {
   let component: AuthorListComponent;
@@ -8,16 +10,16 @@ describe('AuthorListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AuthorListComponent]
-    })
-      .compileComponents();
+      imports: [AuthorListComponent],
+      providers: [provideHttpClient(), UserService, AuthorService]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AuthorListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should be created', () => {
     expect(component).toBeTruthy();
   });
 });
