@@ -10,23 +10,7 @@ If you want to run the project in the development mode (contains features like f
 
 ### Environmental properties
 
-Before running the project you have to create a `.env` file in the project root (where `compose.yaml` is located)
-that will contain the following properties:
-
-```properties
-# Optional:
-BACKEND_VERSION=1.0.0
-
-# Required:
-DATABASE_USERNAME=root
-DATABASE_PASSWORD=root
-DATABASE_NAME=librarian
-
-ADMIN_USERNAME=username
-ADMIN_PASSWORD=password
-JWT_SECRET=secret
-```
-
+Before running the project you have to create a `.env` file in the project root (where `compose.yaml` is located).
 You can copy and rename the `.env.example` file that contains all the required properties.
 The `JWT_SECRET` must be a base64-encoded string with 256 bits (32 bytes), you can generate it using this command: `openssl rand -base64 32`.
 
