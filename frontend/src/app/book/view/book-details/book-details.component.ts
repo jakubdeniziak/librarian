@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {BookService} from "../../service/book.service";
-import {PublisherService} from "../../../publisher/service/publisher.service";
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {BookDetails} from "../../model/book-details";
-import {PublisherDetails} from "../../../publisher/model/publisher-details";
 import {UserService} from "../../../user/service/user.service";
 import {PageHeaderComponent} from "../../../shared/page-header/page-header.component";
 import {NgIf} from "@angular/common";
 import {AuthorDetails} from "../../../features/author/models/author-details.model";
 import {AuthorService} from "../../../features/author/services/author.service";
+import {PublisherDetails} from "../../../features/publisher/models/publisher-details.model";
+import {PublisherService} from "../../../features/publisher/service/publisher.service";
 
 @Component({
   selector: 'app-book-details',

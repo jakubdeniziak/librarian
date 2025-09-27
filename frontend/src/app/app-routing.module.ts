@@ -2,19 +2,14 @@ import {Routes} from "@angular/router";
 import {BookListComponent} from "./book/view/book-list/book-list.component";
 import {HomeComponent} from "./home/home.component";
 import {AuthorListComponent} from "./features/author/components/author-list/author-list.component";
-import {PublisherListComponent} from "./publisher/view/publisher-list/publisher-list.component";
 import {LibraryListComponent} from "./library/view/library-list/library-list.component";
 import {AuthorDetailsComponent} from "./features/author/components/author-details/author-details.component";
-import {PublisherDetailsComponent} from "./publisher/view/publisher-details/publisher-details.component";
 import {LibraryDetailsComponent} from "./library/view/library-details/library-details.component";
 import {AuthorNewComponent} from "./features/author/components/author-new/author-new.component";
-import {PublisherNewComponent} from "./publisher/view/publisher-new/publisher-new.component";
 import {BookDetailsComponent} from "./book/view/book-details/book-details.component";
 import {BookNewComponent} from "./book/view/book-new/book-new.component";
 import {AuthorDeleteComponent} from "./features/author/components/author-delete/author-delete.component";
 import {AuthorEditComponent} from "./features/author/components/author-edit/author-edit.component";
-import {PublisherDeleteComponent} from "./publisher/view/publisher-delete/publisher-delete.component";
-import {PublisherEditComponent} from "./publisher/view/publisher-edit/publisher-edit.component";
 import {BookDeleteComponent} from "./book/view/book-delete/book-delete.component";
 import {BookEditComponent} from "./book/view/book-edit/book-edit.component";
 import {LibraryNewComponent} from "./library/view/library-new/library-new.component";
@@ -25,6 +20,11 @@ import {LoginComponent} from "./user/view/login/login.component";
 import {RegisterComponent} from "./user/view/register/register.component";
 import {adminGuard} from "./auth/admin.guard";
 import {UnauthorizedComponent} from "./auth/unauthorized/unauthorized.component";
+import {PublisherListComponent} from "./features/publisher/components/publisher-list/publisher-list.component";
+import {PublisherNewComponent} from "./features/publisher/components/publisher-new/publisher-new.component";
+import {PublisherDeleteComponent} from "./features/publisher/components/publisher-delete/publisher-delete.component";
+import {PublisherDetailsComponent} from "./features/publisher/components/publisher-details/publisher-details.component";
+import {PublisherEditComponent} from "./features/publisher/components/publisher-edit/publisher-edit.component";
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},

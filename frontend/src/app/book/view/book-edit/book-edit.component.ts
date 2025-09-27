@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Publishers} from "../../../publisher/model/publishers";
 import {BookService} from "../../service/book.service";
-import {PublisherService} from "../../../publisher/service/publisher.service";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {BookDetails} from "../../model/book-details";
 import {PageHeaderComponent} from "../../../shared/page-header/page-header.component";
@@ -9,6 +7,8 @@ import {FormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
 import {Authors} from "../../../features/author/models/authors.model";
 import {AuthorService} from "../../../features/author/services/author.service";
+import {Publishers} from "../../../features/publisher/models/publishers.model";
+import {PublisherService} from "../../../features/publisher/service/publisher.service";
 
 @Component({
   selector: 'app-book-edit',
@@ -28,11 +28,14 @@ export class BookEditComponent implements OnInit {
   authors: Authors | undefined;
   publishers: Publishers | undefined;
 
+  private publisherService: PublisherService;
+
   constructor(private bookService: BookService,
               private authorService: AuthorService,
-              private publisherService: PublisherService,
+              publisherService: PublisherService,
               private route: ActivatedRoute,
               private router: Router) {
+    this.publisherService = publisherService;
   }
 
   ngOnInit(): void {

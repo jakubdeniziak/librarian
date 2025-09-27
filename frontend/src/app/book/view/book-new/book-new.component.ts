@@ -3,13 +3,13 @@ import {Router, RouterLink} from "@angular/router";
 import {BookForm} from "../../model/book-form";
 import {BookService} from "../../service/book.service";
 import {v4 as uuid} from "uuid";
-import {PublisherService} from "../../../publisher/service/publisher.service";
-import {Publishers} from "../../../publisher/model/publishers";
 import {PageHeaderComponent} from "../../../shared/page-header/page-header.component";
 import {FormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
 import {Authors} from "../../../features/author/models/authors.model";
 import {AuthorService} from "../../../features/author/services/author.service";
+import {PublisherService} from "../../../features/publisher/service/publisher.service";
+import {Publishers} from "../../../features/publisher/models/publishers.model";
 
 @Component({
   selector: 'app-book-new',

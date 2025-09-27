@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, RouterLink} from "@angular/router";
-import {PublisherForm} from "../../model/publisher-form";
+import {PublisherForm} from "../../models/publisher-form.model";
 import {PublisherService} from "../../service/publisher.service";
 import {v4 as uuid} from "uuid";
 import {FormsModule} from "@angular/forms";
-import {PageHeaderComponent} from "../../../shared/page-header/page-header.component";
-import {NgIf} from "@angular/common";
+import {PageHeaderComponent} from "../../../../shared/page-header/page-header.component";
+import {PUBLISHERS} from "../../../../pages";
 
 @Component({
   selector: 'app-publisher-new',
@@ -14,24 +14,26 @@ import {NgIf} from "@angular/common";
     FormsModule,
     PageHeaderComponent,
     RouterLink,
-    NgIf
+    PageHeaderComponent
   ],
   styleUrl: './publisher-new.component.css'
 })
 export class PublisherNewComponent implements OnInit {
-  uuid: string | undefined;
-  publisher: PublisherForm | undefined;
+  protected readonly PUBLISHERS = PUBLISHERS;
+
+  protected uuid: string | undefined;
+  protected publisher: PublisherForm | undefined;
 
   constructor(private publisherService: PublisherService, private router: Router) {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.uuid = uuid();
     this.publisher = {name: "", websiteUrl: "", description: ""}
   }
 
-  onSubmit(): void {
+  public onSubmit(): void {
     this.publisherService.putPublisher(this.uuid!, this.publisher!)
-      .subscribe(() => this.router.navigate(['/publishers']));
+      .subscribe(() => this.router.navigate([PUBLISHERS]));
   }
 }

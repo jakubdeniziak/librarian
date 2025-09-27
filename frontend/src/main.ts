@@ -3,7 +3,6 @@ import {AppComponent} from "./app/app.component";
 import {provideHttpClient, withInterceptors} from "@angular/common/http";
 import {provideRouter} from "@angular/router";
 import {BookService} from "./app/book/service/book.service";
-import {PublisherService} from "./app/publisher/service/publisher.service";
 import {LibraryService} from "./app/library/service/library.service";
 import {routes} from "./app/app-routing.module";
 import {authInterceptor} from "./app/core/interceptors/auth-interceptor";
@@ -13,7 +12,6 @@ bootstrapApplication(AppComponent, {
     provideHttpClient(withInterceptors([authInterceptor])),
     provideRouter(routes),
     BookService,
-    PublisherService,
     LibraryService,
   ]
 }).catch(err => console.error(err));

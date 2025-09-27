@@ -1,30 +1,32 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
-import {PublisherDetails} from "../../model/publisher-details";
+import {PublisherDetails} from "../../models/publisher-details.model";
 import {PublisherService} from "../../service/publisher.service";
 import {FormsModule} from "@angular/forms";
-import {PageHeaderComponent} from "../../../shared/page-header/page-header.component";
-import {NgIf} from "@angular/common";
+import {PageHeaderComponent} from "../../../../shared/page-header/page-header.component";
+import {PUBLISHERS} from "../../../../pages";
 
 @Component({
   selector: 'app-publisher-edit',
   templateUrl: './publisher-edit.component.html',
+  styleUrl: './publisher-edit.component.css',
   imports: [
     FormsModule,
     PageHeaderComponent,
     RouterLink,
-    NgIf
-  ],
-  styleUrl: './publisher-edit.component.css'
+    PageHeaderComponent
+  ]
 })
-export class PublisherEditComponent {
-  uuid: string | undefined;
-  publisher: PublisherDetails | undefined;
+export class PublisherEditComponent implements OnInit {
+  protected readonly PUBLISHERS = PUBLISHERS;
+
+  protected uuid: string | undefined;
+  protected publisher: PublisherDetails | undefined;
 
   constructor(private service: PublisherService, private route: ActivatedRoute, private router: Router) {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.service.getPublisher(params['uuid'])
         .subscribe(publisher => {
@@ -34,8 +36,8 @@ export class PublisherEditComponent {
     });
   }
 
-  onSubmit() {
+  public onSubmit() {
     this.service.putPublisher(this.uuid!, this.publisher!)
-      .subscribe(() => this.router.navigate(['/publishers/' + this.uuid]));
+      .subscribe(() => this.router.navigate([PUBLISHERS + '/' + this.uuid]));
   }
 }

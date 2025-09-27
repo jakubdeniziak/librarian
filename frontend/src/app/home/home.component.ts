@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {BookService} from "../book/service/book.service";
-import {PublisherService} from "../publisher/service/publisher.service";
 import {LibraryService} from "../library/service/library.service";
 import {catchError, forkJoin, of} from "rxjs";
 import {UserService} from "../user/service/user.service";
 import {NgForOf, NgIf} from "@angular/common";
 import {RouterLink} from "@angular/router";
 import {AuthorService} from "../features/author/services/author.service";
+import {PublisherService} from "../features/publisher/service/publisher.service";
 
 
 interface HomePanel {
