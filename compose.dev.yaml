@@ -26,6 +26,11 @@ services:
     restart: always
     ports:
       - "443:443"
+    environment:
+      - SERVER_SSL_KEY_STORE=/run/secrets/gateway_keystore
+      - SERVER_SSL_KEY_STORE_PASSWORD=${GATEWAY_KEYSTORE_PASSWORD}
+    secrets:
+      - gateway_keystore
     develop:
       watch:
         - action: sync+restart
@@ -33,6 +38,11 @@ services:
           target: /app
     networks:
       - librarian-dev-network
+
+
+secrets:
+  gateway_keystore:
+    file: ./secrets/gateway-keystore.p12
 
 
 networks:

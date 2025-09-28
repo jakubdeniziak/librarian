@@ -13,3 +13,9 @@ spring:
 
 server:
   port: 443
+  ssl:
+    enabled: true
+    key-alias: scg
+    key-store: ${SERVER_SSL_KEY_STORE}
+    key-store-password: ${SERVER_SSL_KEY_STORE_PASSWORD}
+    key-store-type: PKCS12
