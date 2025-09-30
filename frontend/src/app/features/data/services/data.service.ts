@@ -1,13 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Endpoints} from "../../endpoints";
+import {Endpoints} from "../../../endpoints";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-
   constructor(private http: HttpClient) {
   }
 
@@ -18,5 +17,4 @@ export class DataService {
   downloadAll(): Observable<any> {
     return this.http.get(Endpoints.DATA_ALL, {responseType: 'json'});
   }
-
 }

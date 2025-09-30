@@ -9,7 +9,6 @@ import {AuthorDeleteComponent} from "@features/author/components/author-delete/a
 import {AuthorEditComponent} from "@features/author/components/author-edit/author-edit.component";
 import {BookDeleteComponent} from "./book/view/book-delete/book-delete.component";
 import {BookEditComponent} from "./book/view/book-edit/book-edit.component";
-import {DataComponent} from "./data/view/data.component";
 import {LoginComponent} from "./user/view/login/login.component";
 import {RegisterComponent} from "./user/view/register/register.component";
 import {adminGuard} from "./auth/admin.guard";
@@ -25,6 +24,7 @@ import {LibraryNewComponent} from "@features/library/components/library-new/libr
 import {LibraryDeleteComponent} from "@features/library/components/library-delete/library-delete.component";
 import {LibraryDetailsComponent} from "@features/library/components/library-details/library-details.component";
 import {LibraryAddBookComponent} from "@features/library-book/components/library-add-book/library-add-book.component";
+import {DataComponent} from "@features/data/components/data-manage/data-manage.component";
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
