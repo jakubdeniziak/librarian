@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {LibrariesModel} from "@features/library/models/libraries.model";
+import {Libraries} from "@features/library/models/libraries";
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
-import {LibraryDetailsModel} from "@features/library/models/library-details.model";
-import {LibraryFormModel} from "@features/library/models/library-form.model";
+import {LibraryDetails} from "@features/library/models/library.details";
+import {LibraryForm} from "@features/library/models/library.form";
 import {Endpoints} from "../../../endpoints";
 
 @Injectable({
@@ -13,16 +13,16 @@ export class LibraryService {
   constructor(private http: HttpClient) {
   }
 
-  public putLibrary(uuid: string, request: LibraryFormModel): Observable<any> {
+  public putLibrary(uuid: string, request: LibraryForm): Observable<any> {
     return this.http.put<void>(`${Endpoints.LIBRARIES}/${uuid}`, request);
   }
 
-  public getLibrary(uuid: string): Observable<LibraryDetailsModel> {
-    return this.http.get<LibraryDetailsModel>(`${Endpoints.LIBRARIES}/${uuid}`);
+  public getLibrary(uuid: string): Observable<LibraryDetails> {
+    return this.http.get<LibraryDetails>(`${Endpoints.LIBRARIES}/${uuid}`);
   }
 
-  public getLibraries(): Observable<LibrariesModel> {
-    return this.http.get<LibrariesModel>(Endpoints.LIBRARIES);
+  public getLibraries(): Observable<Libraries> {
+    return this.http.get<Libraries>(Endpoints.LIBRARIES);
   }
 
   public getLibrariesCount(): Observable<number> {

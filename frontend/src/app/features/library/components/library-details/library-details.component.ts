@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LibraryService} from "@features/library/services/library.service";
 import {ActivatedRoute, RouterLink} from "@angular/router";
-import {LibraryDetailsModel} from "@features/library/models/library-details.model";
+import {LibraryDetails} from "@features/library/models/library.details";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
 import {LIBRARIES} from "../../../../pages";
 import {LibraryBookList} from "@features/library-book/components/library-book-list/library-book-list.component";
@@ -19,7 +19,7 @@ import {LibraryBookList} from "@features/library-book/components/library-book-li
 export class LibraryDetailsComponent implements OnInit {
   protected readonly LIBRARIES = LIBRARIES;
 
-  protected library: LibraryDetailsModel | undefined
+  protected library: LibraryDetails | undefined
 
   constructor(private service: LibraryService, private route: ActivatedRoute) {
   }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LibrariesModel} from "@features/library/models/libraries.model";
+import {Libraries} from "@features/library/models/libraries";
 import {LibraryService} from "@features/library/services/library.service";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
 import {RouterLink} from "@angular/router";
@@ -17,7 +17,7 @@ import {LIBRARIES} from "../../../../pages";
 export class LibraryListComponent implements OnInit {
   protected readonly LIBRARIES = LIBRARIES;
 
-  protected libraries: LibrariesModel | undefined
+  protected libraries: Libraries | undefined
 
   constructor(private service: LibraryService) {
   }

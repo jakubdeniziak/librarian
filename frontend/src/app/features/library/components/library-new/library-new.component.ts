@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LibraryFormModel} from "@features/library/models/library-form.model";
+import {LibraryForm} from "@features/library/models/library.form";
 import {LibraryService} from "@features/library/services/library.service";
 import {Router, RouterLink} from "@angular/router";
 import {v4 as uuid} from "uuid";
@@ -21,7 +21,7 @@ export class LibraryNewComponent implements OnInit {
   protected readonly LIBRARIES = LIBRARIES;
 
   protected uuid: string | undefined;
-  protected library: LibraryFormModel | undefined;
+  protected library: LibraryForm | undefined;
 
   constructor(private libraryService: LibraryService, private router: Router) {
   }

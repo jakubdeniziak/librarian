@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LibrariesModel} from "@features/library/models/libraries.model";
+import {Libraries} from "@features/library/models/libraries";
 import {LibraryService} from "@features/library/services/library.service";
 import {RouterLink} from "@angular/router";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
@@ -17,7 +17,7 @@ import {LIBRARIES} from "../../../../pages";
 export class LibraryDeleteComponent implements OnInit {
   protected readonly LIBRARIES = LIBRARIES;
 
-  protected libraries: LibrariesModel | undefined;
+  protected libraries: Libraries | undefined;
 
   constructor(private service: LibraryService) {
   }

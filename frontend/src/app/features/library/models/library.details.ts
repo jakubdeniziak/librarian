@@ -1,4 +1,4 @@
-export interface LibraryDetailsModel {
+export interface LibraryDetails {
   id: string;
   name: string;
   address: string;
