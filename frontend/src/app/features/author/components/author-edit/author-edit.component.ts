@@ -3,7 +3,7 @@ import {AuthorDetails} from "../../models/author-details.model";
 import {AuthorService} from "../../services/author.service";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {FormsModule} from "@angular/forms";
-import {PageHeaderComponent} from "../../../../shared/page-header/page-header.component";
+import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
 
 @Component({
   selector: 'app-author-edit',

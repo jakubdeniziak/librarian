@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BookService} from "../../service/book.service";
 import {Books} from "../../model/books";
 import {UserService} from "../../../user/service/user.service";
-import {PageHeaderComponent} from "../../../shared/page-header/page-header.component";
+import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
 import {NgForOf, NgIf} from "@angular/common";
 import {RouterLink} from "@angular/router";
 

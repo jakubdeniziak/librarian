@@ -4,8 +4,8 @@ import {LibraryService} from "../../service/library.service";
 import {Router, RouterLink} from "@angular/router";
 import {v4 as uuid} from "uuid";
 import {FormsModule} from "@angular/forms";
-import {PageHeaderComponent} from "../../../shared/page-header/page-header.component";
 import {NgIf} from "@angular/common";
+import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
 
 @Component({
   selector: 'app-library-new',

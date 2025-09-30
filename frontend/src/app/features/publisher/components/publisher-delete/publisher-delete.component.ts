@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {PublisherService} from "../../service/publisher.service";
 import {Publishers} from "../../models/publishers.model";
 import {RouterLink} from "@angular/router";
-import {PageHeaderComponent} from "../../../../shared/page-header/page-header.component";
+import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
 import {PUBLISHERS} from "../../../../pages";
 
 @Component({

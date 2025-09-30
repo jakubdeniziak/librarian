@@ -2,8 +2,8 @@ import {Component} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {Router} from "@angular/router";
 import {NgIf} from "@angular/common";
-import {PageHeaderComponent} from "../../../shared/page-header/page-header.component";
 import {UserService} from "../../service/user.service";
+import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
 
 @Component({
   selector: 'app-user',

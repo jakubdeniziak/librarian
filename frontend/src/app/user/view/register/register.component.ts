@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgIf} from "@angular/common";
-import {PageHeaderComponent} from "../../../shared/page-header/page-header.component";
+import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
 import {UserService} from "../../service/user.service";
 import {Router} from "@angular/router";
 

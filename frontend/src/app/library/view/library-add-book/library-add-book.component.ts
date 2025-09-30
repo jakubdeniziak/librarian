@@ -4,7 +4,7 @@ import {LibraryService} from "../../service/library.service";
 import {BookService} from "../../../book/service/book.service";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {LibraryBookForm} from "../../model/library-book/library-book-form";
-import {PageHeaderComponent} from "../../../shared/page-header/page-header.component";
+import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
 import {FormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
 

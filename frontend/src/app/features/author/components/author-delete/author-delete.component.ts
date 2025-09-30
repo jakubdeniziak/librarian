@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AuthorService} from "../../services/author.service";
 import {Authors} from "../../models/authors.model";
 import {RouterLink} from "@angular/router";
-import {PageHeaderComponent} from "../../../../shared/page-header/page-header.component";
+import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
 import {Author} from "../../models/author.model";
 
 @Component({

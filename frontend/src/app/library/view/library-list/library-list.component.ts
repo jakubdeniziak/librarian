@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Libraries} from "../../model/libraries";
 import {LibraryService} from "../../service/library.service";
-import {PageHeaderComponent} from "../../../shared/page-header/page-header.component";
+import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
 import {NgForOf, NgIf} from "@angular/common";
 import {RouterLink} from "@angular/router";
 

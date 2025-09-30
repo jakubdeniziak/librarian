@@ -4,7 +4,7 @@ import {ActivatedRoute, RouterLink} from "@angular/router";
 import {LibraryDetails} from "../../model/library-details";
 import {BookService} from "../../../book/service/book.service";
 import {LibraryBooks} from "../../model/library-book/library-books";
-import {PageHeaderComponent} from "../../../shared/page-header/page-header.component";
+import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
 import {NgForOf, NgIf} from "@angular/common";
 
 @Component({
