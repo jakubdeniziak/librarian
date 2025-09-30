@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthorForm} from "../../models/author-form.model";
-import {AuthorService} from "../../services/author.service";
 import {Router, RouterLink} from "@angular/router";
 import {v4 as uuid} from "uuid";
 import {FormsModule} from "@angular/forms";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
+import {AUTHORS} from "../../../../pages";
+import {AuthorForm} from "@features/author/models/author-form.model";
+import {AuthorService} from "@features/author/services/author.service";
 
 @Component({
   selector: 'app-author-new',
@@ -13,12 +14,14 @@ import {PageHeaderComponent} from "@shared/components/page-header/page-header.co
   imports: [
     PageHeaderComponent,
     FormsModule,
-    RouterLink
+    RouterLink,
   ]
 })
 export class AuthorNewComponent implements OnInit {
-  public uuid: string | undefined;
-  public author: AuthorForm | undefined;
+  protected readonly AUTHORS = AUTHORS;
+
+  protected uuid: string | undefined;
+  protected author: AuthorForm | undefined;
 
   constructor(private authorService: AuthorService, private router: Router) {
   }
@@ -30,7 +33,7 @@ export class AuthorNewComponent implements OnInit {
 
   public onSubmit(): void {
     this.authorService.putAuthor(this.uuid!, this.author!).subscribe(() => {
-      this.router.navigate(['/authors']).then(success => {
+      this.router.navigate([AUTHORS, this.uuid]).then(success => {
         if (!success) console.error('Edit submit navigation failed');
       });
     });

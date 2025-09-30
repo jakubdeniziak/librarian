@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthorService} from "../../services/author.service";
-import {Authors} from "../../models/authors.model";
 import {RouterLink} from "@angular/router";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
-import {Author} from "../../models/author.model";
 import {UserService} from "@core/auth/services/user.service";
+import {AUTHORS} from "../../../../pages";
+import {AuthorService} from "@features/author/services/author.service";
+import {Authors} from "@features/author/models/authors.model";
 
 @Component({
   selector: 'app-author-list',
@@ -16,7 +16,10 @@ import {UserService} from "@core/auth/services/user.service";
   ]
 })
 export class AuthorListComponent implements OnInit {
-  public authors: Authors | undefined;
+  protected readonly AUTHORS = AUTHORS;
+
+  protected authors: Authors | undefined;
+  protected authorCount: number = 0;
 
   constructor(public userService: UserService, private service: AuthorService) {
   }
@@ -24,10 +27,7 @@ export class AuthorListComponent implements OnInit {
   public ngOnInit() {
     this.service.getAuthors().subscribe(authors => {
       this.authors = authors;
+      this.authorCount = authors.authors.length;
     })
-  }
-
-  public getAuthorLink(author: Author): string {
-    return `/authors/${author.id}`
   }
 }

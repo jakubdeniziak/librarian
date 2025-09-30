@@ -4,6 +4,7 @@ import {Authors} from "../../models/authors.model";
 import {RouterLink} from "@angular/router";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
 import {Author} from "../../models/author.model";
+import {AUTHORS} from "../../../../pages";
 
 @Component({
   selector: 'app-author-delete',
@@ -15,6 +16,8 @@ import {Author} from "../../models/author.model";
   ]
 })
 export class AuthorDeleteComponent implements OnInit {
+  protected readonly AUTHORS = AUTHORS;
+
   public authors: Authors | undefined;
 
   constructor(private service: AuthorService) {

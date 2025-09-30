@@ -4,6 +4,7 @@ import {AuthorService} from "../../services/author.service";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
+import {AUTHORS} from "../../../../pages";
 
 @Component({
   selector: 'app-author-edit',
@@ -16,6 +17,8 @@ import {PageHeaderComponent} from "@shared/components/page-header/page-header.co
   ]
 })
 export class AuthorEditComponent implements OnInit {
+  protected readonly AUTHORS = AUTHORS;
+
   public uuid: string | undefined;
   public author: AuthorDetails | undefined;
 
@@ -33,13 +36,9 @@ export class AuthorEditComponent implements OnInit {
 
   public onSubmit() {
     this.service.putAuthor(this.uuid!, this.author!).subscribe(() => {
-      this.router.navigateByUrl(this.getAuthorLink()).then(success => {
+      this.router.navigateByUrl(`${AUTHORS}/${this.uuid}`).then(success => {
         if (!success) console.error('Edit submit navigation failed');
       })
     });
-  }
-
-  public getAuthorLink(): string {
-    return `/authors/${this.uuid}`;
   }
 }
