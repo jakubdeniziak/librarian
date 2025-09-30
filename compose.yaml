@@ -24,6 +24,7 @@ services:
     environment:
       - SERVER_SSL_KEY_STORE=/run/secrets/gateway_keystore
       - SERVER_SSL_KEY_STORE_PASSWORD=${GATEWAY_KEYSTORE_PASSWORD}
+      - FRONTEND_ORIGIN=http://localhost:8080
     secrets:
       - gateway_keystore
     networks:

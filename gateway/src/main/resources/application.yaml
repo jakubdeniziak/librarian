@@ -10,6 +10,19 @@ spring:
               uri: http://backend:8081
               predicates:
                 - Path=/api/**
+          globalcors:
+            cors-configurations:
+              '[/**]':
+                allowedOrigins: "${FRONTEND_ORIGIN}"
+                allowedMethods:
+                  - GET
+                  - POST
+                  - PUT
+                  - DELETE
+                  - OPTIONS
+                  - PATCH
+                allowedHeaders: "*"
+                allowCredentials: true
 
 server:
   port: 443
