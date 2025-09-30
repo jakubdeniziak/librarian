@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthorService} from "../../services/author.service";
 import {ActivatedRoute, RouterLink} from "@angular/router";
-import {AuthorDetails} from "../../models/author-details.model";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
 import {Books} from "@features/book/models/books.model";
-import {UserService} from "../../../../user/service/user.service";
 import {BookService} from "@features/book/services/book.service";
 import {Book} from "@features/book/models/book.model";
+import {AuthorDetails} from "@features/author/models/author-details.model";
+import {UserService} from "@core/auth/services/user.service";
+import {AuthorService} from "@features/author/services/author.service";
 
 @Component({
   selector: 'app-author-details',

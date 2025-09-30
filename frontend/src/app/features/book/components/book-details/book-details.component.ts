@@ -6,9 +6,9 @@ import {PageHeaderComponent} from "@shared/components/page-header/page-header.co
 import {AUTHORS, BOOKS, PUBLISHERS} from "../../../../pages";
 import {AuthorDetails} from "@features/author/models/author-details.model";
 import {PublisherDetails} from "@features/publisher/models/publisher-details.model";
-import {UserService} from "../../../../user/service/user.service";
 import {AuthorService} from "@features/author/services/author.service";
 import {PublisherService} from "@features/publisher/service/publisher.service";
+import {UserService} from "@core/auth/services/user.service";
 
 @Component({
   selector: 'app-book-details',

@@ -3,10 +3,10 @@ import {catchError, forkJoin, of} from "rxjs";
 import {RouterLink} from "@angular/router";
 import {AuthorService} from "@features/author/services/author.service";
 import {PublisherService} from "@features/publisher/service/publisher.service";
-import {UserService} from "../../../user/service/user.service";
 import {NgOptimizedImage} from "@angular/common";
 import {LibraryService} from "@features/library/services/library.service";
 import {BookService} from "@features/book/services/book.service";
+import {UserService} from "@core/auth/services/user.service";
 
 interface HomePanel {
   image: string;

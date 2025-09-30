@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {PublisherService} from "../../service/publisher.service";
-import {Publishers} from "../../models/publishers.model";
 import {RouterLink} from "@angular/router";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
-import {UserService} from "../../../../user/service/user.service";
 import {PUBLISHERS} from "../../../../pages";
+import {UserService} from "@core/auth/services/user.service";
+import {Publishers} from "@features/publisher/models/publishers.model";
+import {PublisherService} from "@features/publisher/service/publisher.service";
 
 @Component({
   selector: 'app-publisher-list',

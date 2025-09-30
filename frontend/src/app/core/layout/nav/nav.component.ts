@@ -1,8 +1,8 @@
 import {Component, ElementRef, HostListener} from '@angular/core';
 import {Router, RouterLink} from "@angular/router";
 import {NgOptimizedImage} from "@angular/common";
-import {UserService} from "../../../user/service/user.service";
 import * as Pages from "../../../pages";
+import {UserService} from "@core/auth/services/user.service";
 
 @Component({
   selector: 'app-nav',

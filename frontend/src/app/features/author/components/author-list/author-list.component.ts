@@ -3,8 +3,8 @@ import {AuthorService} from "../../services/author.service";
 import {Authors} from "../../models/authors.model";
 import {RouterLink} from "@angular/router";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
-import {UserService} from "../../../../user/service/user.service";
 import {Author} from "../../models/author.model";
+import {UserService} from "@core/auth/services/user.service";
 
 @Component({
   selector: 'app-author-list',

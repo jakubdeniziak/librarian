@@ -1,24 +1,20 @@
 import {Component} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {NgIf} from "@angular/common";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
-import {UserService} from "../../service/user.service";
 import {Router} from "@angular/router";
+import {UserService} from "@core/auth/services/user.service";
 
 @Component({
   selector: 'app-register',
-  standalone: true,
+  templateUrl: './register.component.html',
+  styleUrl: './register.component.css',
   imports: [
     FormsModule,
-    NgIf,
     PageHeaderComponent,
     ReactiveFormsModule
-  ],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.css'
+  ]
 })
 export class RegisterComponent {
-
   username = '';
   password = '';
   error = '';
@@ -26,7 +22,7 @@ export class RegisterComponent {
   constructor(private userService: UserService, private router: Router) {
   }
 
-  register(): void {
+  public register(): void {
     this.userService.register(this.username, this.password).subscribe({
       next: () => this.router.navigate(['/']),
       error: (err) => {
@@ -38,5 +34,4 @@ export class RegisterComponent {
       }
     });
   }
-
 }
