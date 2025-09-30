@@ -2,24 +2,24 @@ name: librarian-dev
 
 
 services:
-  frontend-dev:
+  frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile.dev
     restart: always
     ports:
       - "4200:4200"
+    networks:
+      - librarian-network
+    depends_on:
+      - gateway
     develop:
       watch:
         - action: sync
           path: ./frontend
           target: /app
-    networks:
-      - librarian-dev-network
-    depends_on:
-      - gateway-dev
 
-  gateway-dev:
+  gateway:
     build:
       context: ./gateway
       dockerfile: Dockerfile.dev
@@ -32,13 +32,55 @@ services:
       - FRONTEND_ORIGIN=http://localhost:4200
     secrets:
       - gateway_keystore
+    networks:
+      - librarian-network
+    depends_on:
+      - backend
     develop:
       watch:
         - action: sync+restart
           path: ./gateway/src
           target: /app
+
+  backend:
+    build:
+      context: ./backend
+      args:
+        - VERSION=${BACKEND_VERSION:-1.0.0}
+    restart: always
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://database:5432/${DATABASE_NAME}
+      - SPRING_DATASOURCE_USERNAME=${DATABASE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${DATABASE_PASSWORD}
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
+    ports:
+      - "8081:8081"
     networks:
-      - librarian-dev-network
+      librarian-network:
+    depends_on:
+      - database
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./backend/src
+          target: /app
+
+  database:
+    image: postgres:17
+    restart: always
+    environment:
+      - POSTGRES_USER=${DATABASE_USERNAME}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_NAME}
+    ports:
+      - "5432:5432"
+    networks:
+      librarian-network:
+    volumes:
+      - database_data:/var/lib/postgresql/data
+      - ./sql-scripts:/docker-entrypoint-initdb.d
 
 
 secrets:
@@ -46,6 +88,10 @@ secrets:
     file: ./secrets/gateway-keystore.p12
 
 
+volumes:
+  database_data:
+
+
 networks:
-  librarian-dev-network:
+  librarian-network:
     driver: bridge
