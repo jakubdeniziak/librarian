@@ -1,15 +1,14 @@
 import {CanActivateFn, Router} from '@angular/router';
 import {inject} from "@angular/core";
 import {jwtDecode} from "jwt-decode";
-import {JwtService} from "../core/auth/services/jwt.service";
+import {JwtService} from "@core/auth/services/jwt.service";
 
 export const adminGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   const jwtService = inject(JwtService);
 
   if (!jwtService.isTokenPresent()) {
-    router.navigate(['/unauthorized']);
-    return false;
+    return router.parseUrl('/unauthorized');
   }
 
   const decoded: any = jwtDecode(jwtService.getToken());
@@ -17,6 +16,5 @@ export const adminGuard: CanActivateFn = (route, state) => {
     return true;
   }
 
-  router.navigate(['/unauthorized']);
-  return false;
+  return router.parseUrl('/unauthorized');
 };

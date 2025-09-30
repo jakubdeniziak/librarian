@@ -1,14 +1,14 @@
 import {Routes} from "@angular/router";
 import {LoginComponent} from "./user/view/login/login.component";
 import {RegisterComponent} from "./user/view/register/register.component";
-import {adminGuard} from "./auth/admin.guard";
-import {UnauthorizedComponent} from "./auth/unauthorized/unauthorized.component";
 import {HomeComponent} from "@core/layout/home/home.component";
 import {DataComponent} from "@features/data/components/data-manage/data-manage.component";
 import {authorRoutes} from "@features/author/author.routes";
 import {publisherRoutes} from "@features/publisher/publishers.routes";
 import {libraryRoutes} from "@features/library/library.routes";
 import {bookRoutes} from "./book/book.routes";
+import {adminGuard} from "@core/auth/guards/admin.guard";
+import {UnauthorizedComponent} from "@core/auth/components/unauthorized/unauthorized.component";
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},

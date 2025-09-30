@@ -4,7 +4,7 @@ import {AuthorNewComponent} from "@features/author/components/author-new/author-
 import {AuthorDeleteComponent} from "@features/author/components/author-delete/author-delete.component";
 import {AuthorDetailsComponent} from "@features/author/components/author-details/author-details.component";
 import {AuthorEditComponent} from "@features/author/components/author-edit/author-edit.component";
-import {adminGuard} from "../../auth/admin.guard";
+import {adminGuard} from "@core/auth/guards/admin.guard";
 
 export const authorRoutes: Routes = [
   {

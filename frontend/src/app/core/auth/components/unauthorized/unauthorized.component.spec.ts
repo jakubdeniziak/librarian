@@ -9,15 +9,14 @@ describe('UnauthorizedComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [UnauthorizedComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(UnauthorizedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should be created', () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,10 +1,10 @@
 import {Routes} from "@angular/router";
 import {PublisherListComponent} from "@features/publisher/components/publisher-list/publisher-list.component";
 import {PublisherNewComponent} from "@features/publisher/components/publisher-new/publisher-new.component";
-import {adminGuard} from "../../auth/admin.guard";
 import {PublisherDeleteComponent} from "@features/publisher/components/publisher-delete/publisher-delete.component";
 import {PublisherDetailsComponent} from "@features/publisher/components/publisher-details/publisher-details.component";
 import {PublisherEditComponent} from "@features/publisher/components/publisher-edit/publisher-edit.component";
+import {adminGuard} from "@core/auth/guards/admin.guard";
 
 export const publisherRoutes: Routes = [
   {
