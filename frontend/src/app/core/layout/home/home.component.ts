@@ -1,13 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {BookService} from "../book/service/book.service";
-import {LibraryService} from "../library/service/library.service";
 import {catchError, forkJoin, of} from "rxjs";
-import {UserService} from "../user/service/user.service";
-import {NgForOf, NgIf} from "@angular/common";
 import {RouterLink} from "@angular/router";
-import {AuthorService} from "../features/author/services/author.service";
-import {PublisherService} from "../features/publisher/service/publisher.service";
-
+import {AuthorService} from "@features/author/services/author.service";
+import {PublisherService} from "@features/publisher/service/publisher.service";
+import {UserService} from "../../../user/service/user.service";
+import {BookService} from "../../../book/service/book.service";
+import {LibraryService} from "../../../library/service/library.service";
+import {NgOptimizedImage} from "@angular/common";
 
 interface HomePanel {
   image: string;
@@ -20,19 +19,17 @@ interface HomePanel {
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
+  styleUrl: './home.component.css',
   imports: [
-    NgIf,
     RouterLink,
-    NgForOf
-  ],
-  styleUrl: './home.component.css'
+    NgOptimizedImage
+  ]
 })
 export class HomeComponent implements OnInit {
-
-  cards: HomePanel[] = [];
+  protected cards: HomePanel[] = [];
 
   constructor(
-    public loginService: UserService,
+    protected loginService: UserService,
     private bookService: BookService,
     private authorService: AuthorService,
     private publisherService: PublisherService,
@@ -40,7 +37,7 @@ export class HomeComponent implements OnInit {
   ) {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     if (!this.loginService.isLoggedIn()) {
       return;
     }
@@ -83,7 +80,6 @@ export class HomeComponent implements OnInit {
           route: '/libraries'
         }
       ];
-
     });
   }
 
