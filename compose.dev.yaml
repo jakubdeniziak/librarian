@@ -16,6 +16,34 @@ services:
           target: /app
     networks:
       - librarian-dev-network
+    depends_on:
+      - gateway-dev
+
+  gateway-dev:
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile.dev
+    restart: always
+    ports:
+      - "443:443"
+    environment:
+      - SERVER_SSL_KEY_STORE=/run/secrets/gateway_keystore
+      - SERVER_SSL_KEY_STORE_PASSWORD=${GATEWAY_KEYSTORE_PASSWORD}
+      - FRONTEND_ORIGIN=http://localhost:4200
+    secrets:
+      - gateway_keystore
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./gateway/src
+          target: /app
+    networks:
+      - librarian-dev-network
+
+
+secrets:
+  gateway_keystore:
+    file: ./secrets/gateway-keystore.p12
 
 
 networks:

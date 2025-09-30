@@ -12,6 +12,24 @@ services:
     networks:
       - librarian-network
     depends_on:
+      - gateway
+
+  gateway:
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "443:443"
+    environment:
+      - SERVER_SSL_KEY_STORE=/run/secrets/gateway_keystore
+      - SERVER_SSL_KEY_STORE_PASSWORD=${GATEWAY_KEYSTORE_PASSWORD}
+      - FRONTEND_ORIGIN=http://localhost:8080
+    secrets:
+      - gateway_keystore
+    networks:
+      - librarian-network
+    depends_on:
       - backend
 
   backend:
@@ -48,6 +66,11 @@ services:
     volumes:
       - database_data:/var/lib/postgresql/data
       - ./sql-scripts:/docker-entrypoint-initdb.d
+
+
+secrets:
+  gateway_keystore:
+    file: ./secrets/gateway-keystore.p12
 
 
 volumes:

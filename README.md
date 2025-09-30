@@ -5,31 +5,35 @@ An application that will help manage libraries.
 
 ## Running
 
+There are a couple of steps you need to take before running the project, see sections below to learn more.
 The entire project can be easily run using `docker compose up --build` (production setup).
 If you want to run the project in the development mode (contains features like frontend auto reload) you have to run `docker compose -f compose.dev.yaml up --build --watch`.
 
 ### Environmental properties
 
-Before running the project you have to create a `.env` file in the project root (where `compose.yaml` is located)
-that will contain the following properties:
+Before running the project you have to create a `.env` file in the project root (where `compose.yaml` is located).
+You can copy and rename the `.env.example` file that contains all the required properties.
 
-```properties
-# Optional:
-BACKEND_VERSION=1.0.0
+### TLS certificates
 
-# Required:
-DATABASE_USERNAME=root
-DATABASE_PASSWORD=root
-DATABASE_NAME=librarian
+The gateway requires a TLS certificate to work properly. You can generate it using the command below (keep in mind that the password must much the password specified in the `.env` file).
 
-ADMIN_USERNAME=username
-ADMIN_PASSWORD=password
-JWT_SECRET=secret
+```bash
+keytool -genkeypair \
+  -alias scg \
+  -keyalg RSA \
+  -keysize 2048 \
+  -storetype PKCS12 \
+  -keystore ./secrets/gateway-keystore.p12 \
+  -validity 365
 ```
 
-You can copy and rename the `.env.example` file that contains all the required properties.
-The `JWT_SECRET` must be a base64-encoded string with 256 bits (32 bytes), you can generate it using this command: `openssl rand -base64 32`.
+## Project structure
 
+```mermaid
+flowchart LR
+    frontend --> gateway --> backend
+```
 
 ## License
 
