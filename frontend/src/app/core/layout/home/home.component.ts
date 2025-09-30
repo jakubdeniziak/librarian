@@ -5,8 +5,8 @@ import {AuthorService} from "@features/author/services/author.service";
 import {PublisherService} from "@features/publisher/service/publisher.service";
 import {UserService} from "../../../user/service/user.service";
 import {BookService} from "../../../book/service/book.service";
-import {LibraryService} from "../../../library/service/library.service";
 import {NgOptimizedImage} from "@angular/common";
+import {LibraryService} from "@features/library/services/library.service";
 
 interface HomePanel {
   image: string;
@@ -82,5 +82,4 @@ export class HomeComponent implements OnInit {
       ];
     });
   }
-
 }

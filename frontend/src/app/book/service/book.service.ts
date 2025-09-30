@@ -4,8 +4,8 @@ import {Observable} from "rxjs";
 import {Books} from "../model/books";
 import {BookDetails} from "../model/book-details";
 import {BookForm} from "../model/book-form";
-import {LibraryBooks} from "../../library/model/library-book/library-books";
 import {Endpoints} from "../../endpoints";
+import {LibraryBooks} from "@features/library-book/models/library.books";
 
 @Injectable()
 export class BookService {

@@ -1,9 +1,7 @@
 import {Routes} from "@angular/router";
 import {BookListComponent} from "./book/view/book-list/book-list.component";
 import {AuthorListComponent} from "@features/author/components/author-list/author-list.component";
-import {LibraryListComponent} from "./library/view/library-list/library-list.component";
 import {AuthorDetailsComponent} from "@features/author/components/author-details/author-details.component";
-import {LibraryDetailsComponent} from "./library/view/library-details/library-details.component";
 import {AuthorNewComponent} from "@features/author/components/author-new/author-new.component";
 import {BookDetailsComponent} from "./book/view/book-details/book-details.component";
 import {BookNewComponent} from "./book/view/book-new/book-new.component";
@@ -11,9 +9,6 @@ import {AuthorDeleteComponent} from "@features/author/components/author-delete/a
 import {AuthorEditComponent} from "@features/author/components/author-edit/author-edit.component";
 import {BookDeleteComponent} from "./book/view/book-delete/book-delete.component";
 import {BookEditComponent} from "./book/view/book-edit/book-edit.component";
-import {LibraryNewComponent} from "./library/view/library-new/library-new.component";
-import {LibraryDeleteComponent} from "./library/view/library-delete/library-delete.component";
-import {LibraryAddBookComponent} from "./library/view/library-add-book/library-add-book.component";
 import {DataComponent} from "./data/view/data.component";
 import {LoginComponent} from "./user/view/login/login.component";
 import {RegisterComponent} from "./user/view/register/register.component";
@@ -25,6 +20,11 @@ import {PublisherDeleteComponent} from "@features/publisher/components/publisher
 import {PublisherDetailsComponent} from "@features/publisher/components/publisher-details/publisher-details.component";
 import {PublisherEditComponent} from "@features/publisher/components/publisher-edit/publisher-edit.component";
 import {HomeComponent} from "@core/layout/home/home.component";
+import {LibraryListComponent} from "@features/library/components/library-list/library-list.component";
+import {LibraryNewComponent} from "@features/library/components/library-new/library-new.component";
+import {LibraryDeleteComponent} from "@features/library/components/library-delete/library-delete.component";
+import {LibraryDetailsComponent} from "@features/library/components/library-details/library-details.component";
+import {LibraryAddBookComponent} from "@features/library-book/components/library-add-book/library-add-book.component";
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
