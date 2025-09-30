@@ -4,7 +4,7 @@ import {provideRouter} from "@angular/router";
 import {AuthorDetailsComponent} from './author-details.component';
 import {UserService} from "../../../../user/service/user.service";
 import {AuthorService} from "../../services/author.service";
-import {BookService} from "../../../../book/service/book.service";
+import {BookService} from "../../../../book/services/book.services";
 
 describe('AuthorDetailsComponent', () => {
   let component: AuthorDetailsComponent;

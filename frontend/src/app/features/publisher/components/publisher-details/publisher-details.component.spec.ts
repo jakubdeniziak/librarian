@@ -4,7 +4,7 @@ import {provideHttpClient} from "@angular/common/http";
 import {provideRouter} from "@angular/router";
 import {PublisherService} from "../../service/publisher.service";
 import {UserService} from "../../../../user/service/user.service";
-import {BookService} from "../../../../book/service/book.service";
+import {BookService} from "../../../../book/services/book.services";
 
 describe('PublisherDetailsComponent', () => {
   let component: PublisherDetailsComponent;

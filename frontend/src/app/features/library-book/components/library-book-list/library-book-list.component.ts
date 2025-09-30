@@ -1,18 +1,18 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {BOOKS} from "../../../../pages";
 import {LibraryService} from "@features/library/services/library.service";
-import {BookService} from "../../../../book/service/book.service";
 import {LibraryBook} from "@features/library-book/models/library.book";
 import {RouterLink} from "@angular/router";
 import {LibraryBooks} from "@features/library-book/models/library.books";
+import {BookService} from "@features/book/services/book.service";
 
 @Component({
   selector: 'app-library-book-list',
   templateUrl: './library-book-list.component.html',
+  styleUrl: './library-book-list.component.css',
   imports: [
     RouterLink
-  ],
-  styleUrl: './library-book-list.component.css'
+  ]
 })
 export class LibraryBookList implements OnInit {
   protected readonly BOOKS = BOOKS;

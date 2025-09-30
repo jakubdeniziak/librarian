@@ -6,9 +6,9 @@ import {DataComponent} from "@features/data/components/data-manage/data-manage.c
 import {authorRoutes} from "@features/author/author.routes";
 import {publisherRoutes} from "@features/publisher/publishers.routes";
 import {libraryRoutes} from "@features/library/library.routes";
-import {bookRoutes} from "./book/book.routes";
 import {adminGuard} from "@core/auth/guards/admin.guard";
 import {UnauthorizedComponent} from "@core/auth/components/unauthorized/unauthorized.component";
+import {bookRoutes} from "@features/book/book.routes";
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},

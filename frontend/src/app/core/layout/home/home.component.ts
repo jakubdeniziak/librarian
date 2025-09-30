@@ -4,9 +4,9 @@ import {RouterLink} from "@angular/router";
 import {AuthorService} from "@features/author/services/author.service";
 import {PublisherService} from "@features/publisher/service/publisher.service";
 import {UserService} from "../../../user/service/user.service";
-import {BookService} from "../../../book/service/book.service";
 import {NgOptimizedImage} from "@angular/common";
 import {LibraryService} from "@features/library/services/library.service";
+import {BookService} from "@features/book/services/book.service";
 
 interface HomePanel {
   image: string;

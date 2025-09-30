@@ -1,0 +1,39 @@
+@if (book) {
+  <section class="p-4 text-center">
+    <app-page-header [title]="book.title" [subtitle]="book.isbn"/>
+
+    <p>Format: {{ book.format }}</p>
+
+    <h3 class="text-xl font-bold mt-5">Description</h3>
+    <p class="mt-1">
+      {{ book.description }}
+    </p>
+
+    @if (author) {
+      <div>
+        <h3 class="text-xl font-bold mt-5 mb-1">Author</h3>
+        <a [routerLink]="[AUTHORS, author.id]" class="hover:underline">
+          {{ author.firstName }} {{ author.lastName }}
+        </a>
+      </div>
+    }
+
+    @if (publisher) {
+      <div>
+        <h3 class="text-xl font-bold mt-5 mb-1">Publisher</h3>
+        <a [routerLink]="[PUBLISHERS, publisher.id]" class="hover:underline">
+          {{ publisher.name }}
+        </a>
+      </div>
+    }
+
+    @if (userService.isAdmin()) {
+      <div class="text-center mt-4">
+        <h3 class="text-xl font-bold">Manage</h3>
+        <button [routerLink]="[BOOKS, book.id, 'edit']" class="rounded-md bg-bgSecondary text-primary px-4 py-2 mx-auto my-1 w-36 h-10">
+          Edit
+        </button>
+      </div>
+    }
+  </section>
+}

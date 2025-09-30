@@ -9,15 +9,14 @@ describe('BookDeleteComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [BookDeleteComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BookDeleteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should be created', () => {
     expect(component).toBeTruthy();
   });
 });

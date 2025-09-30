@@ -1,15 +1,16 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Books} from "../model/books";
-import {BookDetails} from "../model/book-details";
-import {BookForm} from "../model/book-form";
-import {Endpoints} from "../../endpoints";
+import {Books} from "@features/book/models/books.model";
+import {BookDetails} from "@features/book/models/book-details.model";
+import {BookForm} from "@features/book/models/book-form.model";
 import {LibraryBooks} from "@features/library-book/models/library.books";
+import {Endpoints} from "../../../endpoints";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class BookService {
-
   constructor(private http: HttpClient) {
   }
 
@@ -18,31 +19,30 @@ export class BookService {
   }
 
   getBook(uuid: string): Observable<BookDetails> {
-    return this.http.get<BookDetails>(Endpoints.BOOKS + '/' + uuid);
+    return this.http.get<BookDetails>(`${Endpoints.BOOKS}/${uuid}`);
   }
 
   getBooksByAuthor(uuid: string): Observable<Books> {
-    return this.http.get<Books>(Endpoints.AUTHORS + '/' + uuid + '/books')
+    return this.http.get<Books>(`${Endpoints.AUTHORS}/${uuid}/books`);
   }
 
   getBooksByPublisher(uuid: string): Observable<Books> {
-    return this.http.get<Books>(Endpoints.PUBLISHERS + '/' + uuid + '/books')
+    return this.http.get<Books>(`${Endpoints.PUBLISHERS}/${uuid}/books`);
   }
 
   getBooksByLibrary(uuid: string): Observable<LibraryBooks> {
-    return this.http.get<LibraryBooks>(Endpoints.LIBRARIES + '/' + uuid + '/books')
+    return this.http.get<LibraryBooks>(`${Endpoints.LIBRARIES}/${uuid}/books`);
   }
 
   getBooksCount(): Observable<number> {
-    return this.http.get<number>(Endpoints.BOOKS + "/count");
+    return this.http.get<number>(`${Endpoints.BOOKS}/count`);
   }
 
   putBook(uuid: string, request: BookForm): Observable<any> {
-    return this.http.put(Endpoints.BOOKS + '/' + uuid, request);
+    return this.http.put(`${Endpoints.BOOKS}/${uuid}`, request);
   }
 
   deleteBook(uuid: string): Observable<any> {
-    return this.http.delete(Endpoints.BOOKS + '/' + uuid)
+    return this.http.delete(`${Endpoints.BOOKS}/${uuid}`)
   }
-
 }

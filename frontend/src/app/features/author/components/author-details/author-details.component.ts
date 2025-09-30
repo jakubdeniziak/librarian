@@ -3,10 +3,10 @@ import {AuthorService} from "../../services/author.service";
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {AuthorDetails} from "../../models/author-details.model";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
-import {Books} from "../../../../book/model/books";
+import {Books} from "@features/book/models/books.model";
 import {UserService} from "../../../../user/service/user.service";
-import {BookService} from "../../../../book/service/book.service";
-import {Book} from "../../../../book/model/book";
+import {BookService} from "@features/book/services/book.service";
+import {Book} from "@features/book/models/book.model";
 
 @Component({
   selector: 'app-author-details',

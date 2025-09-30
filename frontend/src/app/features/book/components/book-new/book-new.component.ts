@@ -1,34 +1,34 @@
 import {Component, OnInit} from '@angular/core';
 import {Router, RouterLink} from "@angular/router";
-import {BookForm} from "../../model/book-form";
-import {BookService} from "../../service/book.service";
+import {BookForm} from "@features/book/models/book-form.model";
+import {BookService} from "@features/book/services/book.service";
 import {v4 as uuid} from "uuid";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
 import {FormsModule} from "@angular/forms";
-import {NgForOf, NgIf} from "@angular/common";
-import {Authors} from "../../../features/author/models/authors.model";
-import {AuthorService} from "../../../features/author/services/author.service";
-import {PublisherService} from "../../../features/publisher/service/publisher.service";
-import {Publishers} from "../../../features/publisher/models/publishers.model";
+import {BOOKS} from "../../../../pages";
+import {Authors} from "@features/author/models/authors.model";
+import {Publishers} from "@features/publisher/models/publishers.model";
+import {AuthorService} from "@features/author/services/author.service";
+import {PublisherService} from "@features/publisher/service/publisher.service";
 
 @Component({
   selector: 'app-book-new',
   templateUrl: './book-new.component.html',
+  styleUrl: './book-new.component.css',
   imports: [
     PageHeaderComponent,
     FormsModule,
-    NgIf,
-    NgForOf,
     RouterLink
-  ],
-  styleUrl: './book-new.component.css'
+  ]
 })
 export class BookNewComponent implements OnInit {
-  uuid: string | undefined;
-  book: BookForm | undefined;
-  formats: string[] | undefined;
-  authors: Authors | undefined;
-  publishers: Publishers | undefined;
+  protected readonly BOOKS = BOOKS;
+
+  protected uuid: string | undefined;
+  protected book: BookForm | undefined;
+  protected formats: string[] | undefined;
+  protected authors: Authors | undefined;
+  protected publishers: Publishers | undefined;
 
   constructor(private bookService: BookService,
               private authorService: AuthorService,
@@ -36,21 +36,18 @@ export class BookNewComponent implements OnInit {
               private router: Router) {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.uuid = uuid();
     this.book = {isbn: "", title: "", description: "", format: "", authorId: "", publisherId: ""}
-
     this.formats = ['AUDIOBOOK', 'EBOOK', 'HARDCOVER', 'PAPERBACK'];
-
     this.authorService.getAuthors()
       .subscribe(authors => this.authors = authors)
-
     this.publisherService.getPublishers()
       .subscribe(publishers => this.publishers = publishers)
   }
 
-  onSubmit(): void {
+  protected onSubmit(): void {
     this.bookService.putBook(this.uuid!, this.book!)
-      .subscribe(() => this.router.navigate(['/books']));
+      .subscribe(() => this.router.navigate([BOOKS]));
   }
 }

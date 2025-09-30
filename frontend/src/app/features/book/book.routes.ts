@@ -1,9 +1,9 @@
 import {Routes} from "@angular/router";
-import {BookListComponent} from "./view/book-list/book-list.component";
-import {BookNewComponent} from "./view/book-new/book-new.component";
-import {BookDeleteComponent} from "./view/book-delete/book-delete.component";
-import {BookDetailsComponent} from "./view/book-details/book-details.component";
-import {BookEditComponent} from "./view/book-edit/book-edit.component";
+import {BookListComponent} from "@features/book/components/book-list/book-list.component";
+import {BookNewComponent} from "@features/book/components/book-new/book-new.component";
+import {BookDeleteComponent} from "@features/book/components/book-delete/book-delete.component";
+import {BookDetailsComponent} from "@features/book/components/book-details/book-details.component";
+import {BookEditComponent} from "@features/book/components/book-edit/book-edit.component";
 import {adminGuard} from "@core/auth/guards/admin.guard";
 
 export const bookRoutes: Routes = [

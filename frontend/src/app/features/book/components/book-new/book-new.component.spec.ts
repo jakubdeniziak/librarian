@@ -9,15 +9,14 @@ describe('BookNewComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [BookNewComponent]
-    })
-      .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BookNewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should be created', () => {
     expect(component).toBeTruthy();
   });
 });

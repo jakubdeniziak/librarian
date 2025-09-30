@@ -4,12 +4,12 @@ import {PageHeaderComponent} from "@shared/components/page-header/page-header.co
 import {FormsModule} from "@angular/forms";
 import {LIBRARIES} from "../../../../pages";
 import {LibraryBookForm} from "@features/library-book/models/library-book.form";
-import {BookService} from "../../../../book/service/book.service";
 import {LibraryBookService} from "@features/library-book/services/library-book.service";
 import {LibraryBooks} from "@features/library-book/models/library.books";
 import {LibraryBook} from "@features/library-book/models/library.book";
 import {Observable} from "rxjs";
-import {BookDetails} from "../../../../book/model/book-details";
+import {BookService} from "@features/book/services/book.service";
+import {BookDetails} from "@features/book/models/book-details.model";
 
 @Component({
   selector: 'app-library-add-book',
