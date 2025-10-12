@@ -37,4 +37,4 @@ flowchart LR
 
 ## License
 
-This work is licensed under the MIT license. See the [LICENSE.md](LICENSE.md) file for more information.
+This work is licensed under the MIT license. See the [LICENSE](LICENSE.md) file for more information.
