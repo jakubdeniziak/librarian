@@ -1,9 +1,32 @@
+name: librarian
+
+
 services:
-  web-interface:
-    build: ./web-interface
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
     restart: always
     ports:
-      - "4200:4200"
+      - "8080:8080"
+    networks:
+      - librarian-network
+    depends_on:
+      - gateway
+
+  gateway:
+    build:
+      context: ./gateway
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "443:443"
+    environment:
+      - SERVER_SSL_KEY_STORE=/run/secrets/gateway_keystore
+      - SERVER_SSL_KEY_STORE_PASSWORD=${GATEWAY_KEYSTORE_PASSWORD}
+      - FRONTEND_ORIGIN=http://localhost:8080
+    secrets:
+      - gateway_keystore
     networks:
       - librarian-network
     depends_on:
@@ -23,7 +46,7 @@ services:
       - ADMIN_PASSWORD=${ADMIN_PASSWORD}
       - JWT_SECRET=${JWT_SECRET}
     ports:
-      - "8080:8080"
+      - "8081:8081"
     networks:
       librarian-network:
     depends_on:
@@ -43,6 +66,11 @@ services:
     volumes:
       - database_data:/var/lib/postgresql/data
       - ./sql-scripts:/docker-entrypoint-initdb.d
+
+
+secrets:
+  gateway_keystore:
+    file: ./secrets/gateway-keystore.p12
 
 
 volumes:

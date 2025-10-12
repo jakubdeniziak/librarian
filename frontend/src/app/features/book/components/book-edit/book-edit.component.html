@@ -1,0 +1,58 @@
+<section class="p-4">
+  <app-page-header title="Edit a book"/>
+
+  @if (book) {
+    <form (ngSubmit)="onSubmit()" class="text-center">
+      <div>
+        <label for="title">Title:</label>
+        <br>
+        <input id="title" name="title" [(ngModel)]="book.title" class="text-bgSecondary mt-1 p-1"/>
+      </div>
+
+      <div class="mt-3">
+        <label for="isbn">ISBN:</label>
+        <br>
+        <input id="isbn" name="isbn" [(ngModel)]="book.isbn" class="text-bgSecondary mt-1 p-1"/>
+      </div>
+
+      <div class="mt-3">
+        <label for="description">Description:</label>
+        <br>
+        <textarea id="description" name="description" [(ngModel)]="book.description" class="text-bgSecondary mt-1 p-1 w-64"></textarea>
+      </div>
+
+      <div class="mt-3">
+        <label for="author">Author:</label>
+        <br>
+        <select id="author" name="author" [(ngModel)]="book.authorId" class="text-bgSecondary mt-1 p-1">
+          @for (author of authors?.authors; track author.id) {
+            <option [value]="author.id">
+              {{ author.firstName }} {{ author.lastName }}
+            </option>
+          }
+        </select>
+      </div>
+
+      <div class="mt-3">
+        <label for="publisher">Publisher:</label>
+        <br>
+        <select id="publisher" name="publisher" [(ngModel)]="book.publisherId" class="text-bgSecondary mt-1 p-1">
+          @for (publisher of publishers?.publishers; track publisher.id) {
+            <option [value]="publisher.id">
+              {{ publisher.name }}
+            </option>
+          }
+        </select>
+      </div>
+
+      <div class="text-center mt-5">
+        <button type="submit" class="rounded-md bg-bgSecondary text-primary px-4 py-2 mx-auto my-1 w-36 h-10 mr-3">
+          Submit
+        </button>
+        <button [routerLink]="[BOOKS, book.id]" class="rounded-md bg-bgSecondary text-primary px-4 py-2 mx-auto my-1 w-36 h-10">
+          Cancel
+        </button>
+      </div>
+    </form>
+  }
+</section>

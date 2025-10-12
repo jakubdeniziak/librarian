@@ -9,6 +9,6 @@ import java.util.List;
 public interface AuthorDomainToResponseMapper {
 
     AuthorResponse mapToResponse(Author author);
-    AuthorsResponse mapToResponse(List<Author> authors);
+    AuthorsResponse mapToResponse(List<Author> authors, int count);
 
 }

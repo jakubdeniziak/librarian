@@ -1,0 +1,28 @@
+<section class="p-4">
+  <app-page-header [title]="'Publishers'"></app-page-header>
+
+  @if (publishers) {
+    <div class="grid gap-4 w-1/6 mx-auto">
+      @for (publisher of publishers.publishers; track publisher.id) {
+        <p class="bg-bgSecondary p-2 rounded-md shadow-md text-center">
+          <a [routerLink]="[PUBLISHERS, publisher.id]" class="hover:underline">
+            {{ publisher.name }}
+          </a>
+        </p>
+      }
+    </div>
+  }
+
+  @if (userService.isAdmin()) {
+    <div class="text-center mt-4">
+      <h3 class="text-xl font-bold">Manage</h3>
+      <button [routerLink]="[PUBLISHERS, 'add']" class="rounded-md bg-bgSecondary text-primary px-4 py-2 mx-auto my-1 w-36 h-10">
+        Add
+      </button>
+      <br>
+      <button [routerLink]="[PUBLISHERS, 'delete']" class="rounded-md bg-bgSecondary text-primary px-4 py-2 mx-auto my-1 w-36 h-10">
+        Remove
+      </button>
+    </div>
+  }
+</section>

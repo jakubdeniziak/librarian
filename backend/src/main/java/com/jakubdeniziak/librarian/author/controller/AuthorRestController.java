@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -40,7 +41,8 @@ public class AuthorRestController implements AuthorController {
     @Override
     @GetMapping
     public AuthorsResponse readAll() {
-        return domainToResponseMapper.mapToResponse(service.findAll());
+        List<Author> authors = service.findAll();
+        return domainToResponseMapper.mapToResponse(authors, authors.size());
     }
 
     @Override

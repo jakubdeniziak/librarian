@@ -21,5 +21,6 @@ public class AuthorsResponse {
     }
 
     List<Author> authors;
+    int count;
 
 }
