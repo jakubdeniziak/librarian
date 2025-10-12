@@ -1,6 +1,6 @@
 # Environment
-secrets/*
-!secrets/.gitkeep
+*/secrets/*
+!*/secrets/.gitkeep
 
 *.env
 

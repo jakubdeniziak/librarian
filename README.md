@@ -24,7 +24,7 @@ keytool -genkeypair \
   -keyalg RSA \
   -keysize 2048 \
   -storetype PKCS12 \
-  -keystore ./secrets/gateway-keystore.p12 \
+  -keystore ./gateway/secrets/gateway-keystore.p12 \
   -validity 365
 ```
 

@@ -85,7 +85,7 @@ services:
 
 secrets:
   gateway_keystore:
-    file: ./secrets/gateway-keystore.p12
+    file: ./gateway/secrets/gateway-keystore.p12
 
 
 volumes:
