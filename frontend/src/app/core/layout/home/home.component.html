@@ -1,0 +1,16 @@
+<header class="text-center my-10">
+  <h1 class="text-5xl font-bold">Librarian</h1>
+  <p class="mt-2 text-secondary">The ultimate library management system</p>
+</header>
+
+@if (loginService.isLoggedIn()) {
+  <section class="flex justify-center gap-6 flex-wrap p-4">
+    @for (card of cards; track card.route) {
+      <a [routerLink]="card.route" class="w-40 h-56 bg-bgSecondary rounded-xl shadow-xl hover:shadow-2xl transition p-4 flex flex-col items-center justify-between text-primary text-center">
+        <img [ngSrc]="card.image" width="400" height="400" [alt]="card.alt" class="w-16 h-16 mt-5"/>
+        <div class="text-xl font-bold">{{ card.count }}</div>
+        <span class="font-semibold">{{ card.label }}</span>
+      </a>
+    }
+  </section>
+}

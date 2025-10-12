@@ -1,5 +1,6 @@
 package com.jakubdeniziak.librarian.library.domain;
 
+import com.jakubdeniziak.librarian.user.domain.User;
 import lombok.Builder;
 import lombok.Data;
 
@@ -13,5 +14,6 @@ public class Library {
     private String name;
     private String address;
     private String description;
+    private User user;
 
 }

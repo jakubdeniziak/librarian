@@ -5,13 +5,18 @@ import com.jakubdeniziak.librarian.library.entity.LibraryEntity;
 import com.jakubdeniziak.librarian.library.dto.LibrariesResponse;
 import com.jakubdeniziak.librarian.library.dto.LibraryRequest;
 import com.jakubdeniziak.librarian.library.dto.LibraryResponse;
+import com.jakubdeniziak.librarian.user.mapper.UserMapper;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.UUID;
 
 @Component
+@AllArgsConstructor
 public class LibraryDefaultMapper implements LibraryMapper {
+
+    private final UserMapper userMapper;
 
     @Override
     public Library map(UUID id, LibraryRequest request) {
@@ -30,6 +35,7 @@ public class LibraryDefaultMapper implements LibraryMapper {
                 .name(library.getName())
                 .address(library.getAddress())
                 .description(library.getDescription())
+                .user(userMapper.map(library.getUser()))
                 .build();
     }
 
@@ -47,6 +53,7 @@ public class LibraryDefaultMapper implements LibraryMapper {
                 .name(library.getName())
                 .address(library.getAddress())
                 .description(library.getDescription())
+                .user(userMapper.mapToDomain(library.getUser()))
                 .build();
     }
 

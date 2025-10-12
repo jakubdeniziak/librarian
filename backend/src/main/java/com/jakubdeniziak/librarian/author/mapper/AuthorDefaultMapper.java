@@ -70,7 +70,7 @@ public class AuthorDefaultMapper implements AuthorRequestToDomainMapper, AuthorD
     }
 
     @Override
-    public AuthorsResponse mapToResponse(List<Author> authors) {
+    public AuthorsResponse mapToResponse(List<Author> authors, int count) {
         List<AuthorsResponse.Author> responseAuthors = authors.stream()
                 .map(author -> AuthorsResponse.Author.builder()
                         .id(author.getId())
@@ -80,6 +80,7 @@ public class AuthorDefaultMapper implements AuthorRequestToDomainMapper, AuthorD
                 .toList();
         return AuthorsResponse.builder()
                 .authors(responseAuthors)
+                .count(count)
                 .build();
     }
 

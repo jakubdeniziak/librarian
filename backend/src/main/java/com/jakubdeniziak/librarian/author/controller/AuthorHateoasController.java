@@ -12,6 +12,7 @@ import com.jakubdeniziak.librarian.book.service.BookService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpServerErrorException;
 
@@ -30,6 +31,7 @@ public class AuthorHateoasController implements AuthorController {
 
     @Override
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void create(@PathVariable UUID id, @Valid @RequestBody AuthorRequest request) {
         authorService.save(requestToDomainMapper.map(id, request));
     }
@@ -57,12 +59,14 @@ public class AuthorHateoasController implements AuthorController {
 
     @Override
     @PatchMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void update(@PathVariable UUID id, @RequestBody AuthorRequest request) {
         authorService.update(id, requestToDomainMapper.map(id, request));
     }
 
     @Override
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void delete(@PathVariable UUID id) {
         authorService.delete(id);
     }

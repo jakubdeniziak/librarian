@@ -29,11 +29,19 @@ CREATE TABLE books (
     publisher_id UUID NOT NULL REFERENCES publishers(id)
 );
 
+CREATE TABLE users (
+                       id UUID PRIMARY KEY,
+                       first_name VARCHAR(100),
+                       last_name VARCHAR(100),
+                       nickname VARCHAR(100)
+);
+
 CREATE TABLE libraries (
     id UUID PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     address VARCHAR(255) NOT NULL,
-    description VARCHAR(1000)
+    description VARCHAR(1000),
+    user_id UUID NOT NULL REFERENCES users(id)
 );
 
 CREATE TABLE library_books (
@@ -41,13 +49,6 @@ CREATE TABLE library_books (
     book_id UUID NOT NULL REFERENCES books(id),
     number_of_copies INT NOT NULL CHECK (number_of_copies >= 0),
     PRIMARY KEY(library_id, book_id)
-);
-
-CREATE TABLE users (
-   id UUID PRIMARY KEY,
-   first_name VARCHAR(100),
-   last_name VARCHAR(100),
-   nickname VARCHAR(100)
 );
 
 CREATE TABLE user_books (
@@ -59,4 +60,17 @@ CREATE TABLE user_books (
     review TEXT,
     reading_status reading_status,
     PRIMARY KEY (user_id, book_id)
+);
+
+CREATE TABLE user_security (
+   id UUID PRIMARY KEY,
+   username VARCHAR(100) NOT NULL UNIQUE,
+   password VARCHAR(100) NOT NULL,
+   profile_id UUID NOT NULL REFERENCES users(id)
+);
+
+CREATE TABLE user_roles (
+    user_id UUID NOT NULL REFERENCES user_security(id),
+    role VARCHAR(255) NOT NULL,
+    PRIMARY KEY (user_id, role)
 );

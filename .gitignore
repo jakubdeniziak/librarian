@@ -1,4 +1,10 @@
+# Environment
+secrets/*
+!secrets/.gitkeep
+
+*.env
+
+# IntelliJ
 .idea/
 
 *.iml
-*.env

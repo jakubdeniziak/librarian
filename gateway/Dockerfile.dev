@@ -1,0 +1,12 @@
+FROM eclipse-temurin:21-jdk-alpine-3.22 AS dependencies
+WORKDIR /app
+COPY gradlew gradlew
+COPY gradle/ gradle/
+COPY build.gradle .
+COPY settings.gradle .
+RUN --mount=type=cache,target=/root/.gradle ./gradlew dependencies --no-daemon
+
+FROM dependencies AS run
+COPY src/ src/
+EXPOSE 443
+CMD ["./gradlew", "bootRun", "--no-daemon"]
