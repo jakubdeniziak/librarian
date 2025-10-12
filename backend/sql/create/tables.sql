@@ -30,10 +30,10 @@ CREATE TABLE books (
 );
 
 CREATE TABLE users (
-                       id UUID PRIMARY KEY,
-                       first_name VARCHAR(100),
-                       last_name VARCHAR(100),
-                       nickname VARCHAR(100)
+    id UUID PRIMARY KEY,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    nickname VARCHAR(100)
 );
 
 CREATE TABLE libraries (

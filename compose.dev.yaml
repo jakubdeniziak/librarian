@@ -80,7 +80,7 @@ services:
       librarian-network:
     volumes:
       - database_data:/var/lib/postgresql/data
-      - ./sql-scripts:/docker-entrypoint-initdb.d
+      - ./backend/sql/create:/docker-entrypoint-initdb.d
 
 
 secrets:
