@@ -6,6 +6,7 @@ spring:
     hibernate:
       ddl-auto: validate
 server:
+  port: 8081
   servlet:
     context-path: /api
 management:
@@ -18,3 +19,5 @@ springdoc:
     path: /docs/download
   swagger-ui:
     path: /docs
+jwt:
+  expiration: 3600000 # in milliseconds
