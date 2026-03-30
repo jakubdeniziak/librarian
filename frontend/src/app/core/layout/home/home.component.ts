@@ -3,14 +3,13 @@ import {catchError, forkJoin, of} from "rxjs";
 import {RouterLink} from "@angular/router";
 import {AuthorService} from "@features/author/services/author.service";
 import {PublisherService} from "@features/publisher/service/publisher.service";
-import {NgOptimizedImage} from "@angular/common";
 import {LibraryService} from "@features/library/services/library.service";
 import {BookService} from "@features/book/services/book.service";
 import {UserService} from "@core/auth/services/user.service";
+import * as Pages from "../../../pages";
 
 interface HomePanel {
-  image: string;
-  alt: string;
+  iconKey: 'books' | 'authors' | 'publishers' | 'libraries';
   label: string;
   count: number | string;
   route: string;
@@ -21,11 +20,11 @@ interface HomePanel {
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
   imports: [
-    RouterLink,
-    NgOptimizedImage
+    RouterLink
   ]
 })
 export class HomeComponent implements OnInit {
+  protected readonly PAGES = Pages;
   protected cards: HomePanel[] = [];
 
   constructor(
@@ -52,29 +51,25 @@ export class HomeComponent implements OnInit {
 
       this.cards = [
         {
-          image: 'assets/images/books.png',
-          alt: 'Books',
+          iconKey: 'books',
           label: 'Books',
           count: safeCount(bookCount),
           route: '/books'
         },
         {
-          image: 'assets/images/authors.png',
-          alt: 'Authors',
+          iconKey: 'authors',
           label: 'Authors',
           count: safeCount(authorCount),
           route: '/authors'
         },
         {
-          image: 'assets/images/publishers.png',
-          alt: 'Publishers',
+          iconKey: 'publishers',
           label: 'Publishers',
           count: safeCount(publisherCount),
           route: '/publishers'
         },
         {
-          image: 'assets/images/libraries.png',
-          alt: 'Libraries',
+          iconKey: 'libraries',
           label: 'Libraries',
           count: safeCount(libraryCount),
           route: '/libraries'

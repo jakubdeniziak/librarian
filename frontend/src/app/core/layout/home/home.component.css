@@ -1,0 +1,9 @@
+.home-scroll-snap {
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: 4.5rem;
+}
+
+.home-snap {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}

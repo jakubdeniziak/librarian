@@ -1,16 +1,100 @@
-<header class="text-center my-10">
-  <h1 class="text-5xl font-bold">Librarian</h1>
-  <p class="mt-2 text-secondary">The ultimate library management system</p>
-</header>
+@if (!loginService.isLoggedIn()) {
+  <div class="home-scroll-snap">
+    <div class="home-snap relative min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-bgPrimary via-bgSecondary to-bgPrimary overflow-hidden">
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute -top-40 -right-40 w-96 h-96 bg-brandFrom/10 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-brandMid/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s"></div>
+    </div>
+    <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+      <h1 class="text-6xl sm:text-7xl font-black bg-gradient-to-r from-brandFrom via-brandMid to-brandTo bg-clip-text text-transparent mb-6 leading-tight">
+        Librarian
+      </h1>
+      <p class="text-xl sm:text-2xl text-secondary mb-2 font-light">
+        The ultimate library management system
+      </p>
+      <p class="text-base sm:text-lg text-secondary/80 mb-12 max-w-2xl mx-auto">
+        Organize, manage, and discover your literary collection with effortless elegance
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+        <a [routerLink]="PAGES.LOGIN" class="px-8 py-4 bg-gradient-to-r from-brandFrom to-brandMid text-white font-semibold rounded-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2">
+          <span>Get Started</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+          </svg>
+        </a>
+        <a [routerLink]="PAGES.DOCS" class="px-8 py-4 border border-secondary/30 text-primary font-semibold rounded-lg hover:bg-white/5 transition-all duration-300 inline-flex items-center justify-center">
+          Learn More
+        </a>
+      </div>
+    </div>
+    </div>
+  </div>
+}
 
 @if (loginService.isLoggedIn()) {
-  <section class="flex justify-center gap-6 flex-wrap p-4">
-    @for (card of cards; track card.route) {
-      <a [routerLink]="card.route" class="w-40 h-56 bg-bgSecondary rounded-xl shadow-xl hover:shadow-2xl transition p-4 flex flex-col items-center justify-between text-primary text-center">
-        <img [ngSrc]="card.image" width="400" height="400" [alt]="card.alt" class="w-16 h-16 mt-5"/>
-        <div class="text-xl font-bold">{{ card.count }}</div>
-        <span class="font-semibold">{{ card.label }}</span>
-      </a>
-    }
+  <section class="flex items-start px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-bgPrimary via-bgSecondary to-bgPrimary">
+    <div class="max-w-7xl mx-auto w-full pt-8 sm:pt-10 lg:pt-12 pb-3 sm:pb-6">
+      <div class="text-center mb-8 sm:mb-12">
+        <h2 class="text-4xl sm:text-5xl font-bold text-primary mb-4">
+          Your Collection Overview
+        </h2>
+        <p class="text-lg text-secondary max-w-2xl mx-auto">
+          Quick access to your most important library resources
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        @for (card of cards; track card.route) {
+          <a [routerLink]="card.route" class="group relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-lg border border-white/10 rounded-2xl p-8 overflow-hidden hover:border-white/20 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1">
+            <div class="absolute inset-0 bg-gradient-to-br from-brandFrom/0 to-brandMid/0 group-hover:from-brandFrom/10 group-hover:to-brandMid/10 transition-all duration-300"></div>
+            <div class="relative z-10 flex flex-col items-center justify-between h-full">
+              <div class="mb-6 p-4 bg-gradient-to-br from-brandFrom/20 to-brandMid/20 rounded-xl group-hover:from-brandFrom/30 group-hover:to-brandMid/30 transition-all duration-300">
+                @switch (card.iconKey) {
+                  @case ('books') {
+                    <svg class="w-16 h-16 opacity-90 group-hover:opacity-100 transition-opacity text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6.5 2H20v20H6.5A2.5 2.5 0 0 0 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 7h7"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 11h7"/>
+                    </svg>
+                  }
+                  @case ('authors') {
+                    <svg class="w-16 h-16 opacity-90 group-hover:opacity-100 transition-opacity text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                      <circle cx="12" cy="7" r="4"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    </svg>
+                  }
+                  @case ('publishers') {
+                    <svg class="w-16 h-16 opacity-90 group-hover:opacity-100 transition-opacity text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 21V7l7-4 7 4v14"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 21v-8h6v8"/>
+                    </svg>
+                  }
+                  @case ('libraries') {
+                    <svg class="w-16 h-16 opacity-90 group-hover:opacity-100 transition-opacity text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4 19V5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v14"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h6"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M8 11h6"/>
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 19h14a2 2 0 0 1 2 2H4a2 2 0 0 1 2-2z"/>
+                    </svg>
+                  }
+                }
+              </div>
+              <div class="text-5xl font-bold bg-gradient-to-r from-brandFrom to-brandMid bg-clip-text text-transparent mb-3 group-hover:opacity-95 transition-all">
+                {{ card.count }}
+              </div>
+              <span class="text-base font-semibold text-primary text-center group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-brandFrom group-hover:to-brandMid group-hover:bg-clip-text transition-all">
+                {{ card.label }}
+              </span>
+              <div class="mt-4 text-secondary group-hover:text-brandFrom transition-all transform group-hover:translate-x-1">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </div>
+            </div>
+          </a>
+        }
+      </div>
+    </div>
   </section>
 }
