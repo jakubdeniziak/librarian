@@ -1,4 +1,14 @@
+export const HOME = '/';
 export const BOOKS = '/books';
 export const AUTHORS = '/authors';
 export const PUBLISHERS = '/publishers';
 export const LIBRARIES = '/libraries';
+// Admin
+export const DATA = '/data';
+// Account
+export const LOGIN = 'login';
+export const REGISTER = 'register';
+export const ACCOUNT_PROFILE = '/account/profile';
+export const ACCOUNT_SETTINGS = '/account/settings';
+// Documentation
+export const DOCS = '/docs';

@@ -42,4 +42,13 @@ export class UserService {
     const decoded: any = jwtDecode(token);
     return decoded.roles?.includes('ROLE_ADMIN');
   }
+
+  public getAccountLabel(): string | null {
+    if (!this.jwtService.isTokenPresent()) {
+      return null;
+    }
+    const token = this.jwtService.getToken();
+    const decoded: any = jwtDecode(token);
+    return decoded.username ?? decoded.sub ?? decoded.email ?? null;
+  }
 }
