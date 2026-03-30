@@ -1,3 +1,29 @@
-<footer class="bg-bgSecondary p-4 fixed bottom-0 w-full text-center">
-  <p>&copy; <a href="https://github.com/jakubdeniziak" target="_blank">jakubdeniziak</a> 2024-2025</p>
+<footer class="relative border-t border-white/10 bg-bgSecondary/60 backdrop-blur-xl">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-xl bg-gradient-to-br from-brandFrom to-brandMid shadow-lg flex items-center justify-center">
+          <img ngSrc="assets/logo-white.png" alt="Logo" class="w-6" height="500" width="500">
+        </div>
+        <div>
+          <p class="text-sm font-semibold text-primary">Librarian</p>
+          <p class="text-xs text-secondary">Modern library management</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center sm:items-end gap-5">
+        <nav class="flex flex-wrap items-center justify-center sm:justify-end gap-x-5 gap-y-2 text-sm">
+          <a class="footer-nav-link" [routerLink]="PAGES.DOCS">Docs</a>
+          <a class="footer-nav-link" [routerLink]="PAGES.API">API</a>
+          <a class="footer-nav-link" [routerLink]="PAGES.CHANGELOG">Changelog</a>
+          <a class="footer-nav-link" [href]="PAGES.SOURCE" target="_blank">Source</a>
+        </nav>
+
+        <p class="text-sm text-secondary text-center sm:text-right">
+          &copy; <span class="text-primary/90">2024–2025</span>
+          <a class="footer-link" [href]="PAGES.COPYRIGHT_HOLDER" target="_blank" rel="noreferrer">jakubdeniziak</a>
+        </p>
+      </div>
+    </div>
+  </div>
 </footer>

@@ -12,3 +12,7 @@ export const ACCOUNT_PROFILE = '/account/profile';
 export const ACCOUNT_SETTINGS = '/account/settings';
 // Documentation
 export const DOCS = '/docs';
+export const API = '/api';
+export const CHANGELOG = '/changelog';
+export const SOURCE = 'https://github.com/jakubdeniziak/librarian';
+export const COPYRIGHT_HOLDER = 'https://github.com/jakubdeniziak';
