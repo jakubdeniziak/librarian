@@ -9,6 +9,7 @@ import {UnauthorizedComponent} from "@core/auth/components/unauthorized/unauthor
 import {bookRoutes} from "@features/book/book.routes";
 import {LoginComponent} from "@core/auth/components/login/login.component";
 import {RegisterComponent} from "@core/auth/components/register/register.component";
+import {NotFoundComponent} from "@core/layout/not-found/not-found.component";
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -20,4 +21,5 @@ export const routes: Routes = [
   {path: '', children: bookRoutes},
   {path: '', children: publisherRoutes},
   {path: '', children: libraryRoutes},
+  {path: '**', component: NotFoundComponent},
 ];
