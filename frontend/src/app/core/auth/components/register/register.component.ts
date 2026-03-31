@@ -1,20 +1,24 @@
 import {Component} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule} from "@angular/forms";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {UserService} from "@core/auth/services/user.service";
+import * as Pages from "../../../../pages";
 
 @Component({
   selector: 'app-register',
+  standalone: true,
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
   imports: [
     FormsModule,
     PageHeaderComponent,
-    ReactiveFormsModule
+    RouterLink
   ]
 })
 export class RegisterComponent {
+  protected readonly PAGES = Pages;
+
   username = '';
   password = '';
   error = '';
