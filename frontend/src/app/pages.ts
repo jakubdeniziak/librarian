@@ -3,6 +3,7 @@ export const BOOKS = '/books';
 export const AUTHORS = '/authors';
 export const PUBLISHERS = '/publishers';
 export const LIBRARIES = '/libraries';
+export const LIBRARIES_ADD_BOOK = '/libraries/add-book';
 // Admin
 export const DATA = '/data';
 // Account

@@ -1,17 +1,40 @@
-<header class="text-center my-4">
-  <h2 class="text-4xl font-bold">
-    @if (titleLink) {
-      <a [href]="titleLink" target="_blank" class="hover:underline">
-        {{ title }}
-      </a>
-    } @else {
-      {{ title }}
-    }
-  </h2>
+<header
+  class="w-full"
+  [class.text-center]="centered"
+  [class.my-4]="!dense"
+  [class.my-2]="dense"
+  [class.mb-10]="!dense"
+  [class.mb-6]="dense"
+>
+  <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+    <div>
+      <h2
+        class="text-4xl sm:text-5xl font-bold text-primary"
+        [class.mt-2]="!dense"
+      >
+        @if (titleLink) {
+          <a
+            [href]="titleLink"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-gradient-to-r from-brandFrom via-brandMid to-brandTo bg-clip-text text-transparent hover:opacity-90 transition"
+          >
+            {{ title }}
+          </a>
+        } @else {
+          {{ title }}
+        }
+      </h2>
 
-  @if (subtitle) {
-    <p>
-      {{ subtitle }}
-    </p>
-  }
+      @if (subtitle) {
+        <p class="text-base sm:text-lg text-secondary/90 mt-3 max-w-2xl">
+          {{ subtitle }}
+        </p>
+      }
+    </div>
+
+    <div class="flex flex-col sm:flex-row gap-3" [class.justify-center]="centered">
+      <ng-content />
+    </div>
+  </div>
 </header>

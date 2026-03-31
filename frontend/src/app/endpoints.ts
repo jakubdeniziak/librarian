@@ -7,5 +7,7 @@ export class Endpoints {
   public static readonly DATA_ALL = '/api/v1/data/all';
   public static readonly LOGIN = '/api/login';
   public static readonly REGISTER = '/api/register';
+  public static readonly ME_DASHBOARD = '/api/dashboard/me';
+  public static readonly SEARCH = '/api/search'
 
 }
