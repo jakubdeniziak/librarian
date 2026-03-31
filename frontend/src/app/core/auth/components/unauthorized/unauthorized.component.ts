@@ -1,18 +1,15 @@
 import {Component} from '@angular/core';
-import {Router} from "@angular/router";
+import {RouterLink} from "@angular/router";
+import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
+import * as Pages from "../../../../pages";
 
 @Component({
   selector: 'app-unauthorized',
+  standalone: true,
   templateUrl: './unauthorized.component.html',
-  styleUrl: './unauthorized.component.css'
+  styleUrl: './unauthorized.component.css',
+  imports: [RouterLink, PageHeaderComponent],
 })
 export class UnauthorizedComponent {
-  constructor(private router: Router) {
-  }
-
-  protected goHome(): void {
-    this.router.navigate(['/']).catch(err => {
-      console.error('Navigation failed', err);
-    });
-  }
+  protected readonly PAGES = Pages;
 }
