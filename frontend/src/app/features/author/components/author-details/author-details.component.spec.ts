@@ -2,9 +2,9 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {provideHttpClient} from "@angular/common/http";
 import {provideRouter} from "@angular/router";
 import {AuthorDetailsComponent} from './author-details.component';
-import {UserService} from "../../../../user/service/user.service";
+import {UserService} from "@core/auth/services/user.service";
 import {AuthorService} from "../../services/author.service";
-import {BookService} from "../../../../book/services/book.services";
+import {BookService} from "@features/book/services/book.service";
 
 describe('AuthorDetailsComponent', () => {
   let component: AuthorDetailsComponent;

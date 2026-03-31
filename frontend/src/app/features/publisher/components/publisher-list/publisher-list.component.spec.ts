@@ -1,7 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {PublisherListComponent} from './publisher-list.component';
-import {UserService} from "../../../../user/service/user.service";
+import {UserService} from "@core/auth/services/user.service";
 import {PublisherService} from "../../service/publisher.service";
 
 describe('PublisherListComponent', () => {
