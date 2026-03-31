@@ -7,10 +7,11 @@ export const LIBRARIES_ADD_BOOK = '/libraries/add-book';
 // Admin
 export const DATA = '/data';
 // Account
-export const LOGIN = 'login';
-export const REGISTER = 'register';
+export const LOGIN = '/login';
+export const REGISTER = '/register';
 export const ACCOUNT_PROFILE = '/account/profile';
 export const ACCOUNT_SETTINGS = '/account/settings';
+export const UNAUTHORIZED = '/unauthorized';
 // Documentation
 export const DOCS = '/docs';
 export const API = '/api';
