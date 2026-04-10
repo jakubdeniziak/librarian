@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {LibraryDetails} from "@features/library/models/library.details";
 import {LibraryForm} from "@features/library/models/library.form";
-import {Endpoints} from "../../../endpoints";
+import {Endpoints} from "@app/endpoints";
 
 @Injectable({
   providedIn: 'root'

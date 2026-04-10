@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
-import {BOOKS, PUBLISHERS} from "../../../../pages";
+import {BOOKS, PUBLISHERS} from "@app/pages";
 import {BookService} from "@features/book/services/book.service";
 import {Books} from "@features/book/models/books.model";
 import {PublisherDetails} from "@features/publisher/models/publisher-details.model";

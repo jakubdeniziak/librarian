@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {RouterLink} from "@angular/router";
-import * as Pages from "../../../pages";
+import * as Pages from "@app/pages";
 import {NgOptimizedImage} from "@angular/common";
 
 @Component({

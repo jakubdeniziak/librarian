@@ -5,7 +5,7 @@ import {BookService} from "@features/book/services/book.service";
 import {AuthorDetails} from "@features/author/models/author-details.model";
 import {UserService} from "@core/auth/services/user.service";
 import {AuthorService} from "@features/author/services/author.service";
-import {AUTHORS, BOOKS} from "../../../../pages";
+import {AUTHORS, BOOKS} from "@app/pages";
 import {DatePipe} from "@angular/common";
 import {SanitizeHtmlPipe} from "@shared/pipes/sanitize-html.pipe";
 

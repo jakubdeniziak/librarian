@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {Authors} from "../models/authors.model";
 import {AuthorDetails} from "../models/author-details.model";
 import {AuthorForm} from "../models/author-form.model";
-import {Endpoints} from "../../../endpoints";
+import {Endpoints} from "@app/endpoints";
 import {PagedResult} from "@shared/models/paged-result.model";
 import {Author} from "@features/author/models/author.model";
 import {AuthorsQuery} from "@features/author/models/authors-query.model";

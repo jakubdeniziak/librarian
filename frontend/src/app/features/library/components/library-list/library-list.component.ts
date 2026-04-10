@@ -3,7 +3,7 @@ import {Libraries} from "@features/library/models/libraries";
 import {LibraryService} from "@features/library/services/library.service";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
 import {RouterLink} from "@angular/router";
-import {LIBRARIES} from "../../../../pages";
+import {LIBRARIES} from "@app/pages";
 
 @Component({
   selector: 'app-library-list',

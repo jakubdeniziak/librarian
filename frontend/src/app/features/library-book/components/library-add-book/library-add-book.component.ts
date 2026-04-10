@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
 import {FormsModule} from "@angular/forms";
-import {LIBRARIES} from "../../../../pages";
+import {LIBRARIES} from "@app/pages";
 import {LibraryBookForm} from "@features/library-book/models/library-book.form";
 import {LibraryBookService} from "@features/library-book/services/library-book.service";
 import {LibraryBooks} from "@features/library-book/models/library.books";

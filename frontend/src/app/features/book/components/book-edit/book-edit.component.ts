@@ -4,7 +4,7 @@ import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {BookDetails} from "@features/book/models/book-details.model";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
 import {FormsModule} from "@angular/forms";
-import {BOOKS} from "../../../../pages";
+import {BOOKS} from "@app/pages";
 import {Authors} from "@features/author/models/authors.model";
 import {Publishers} from "@features/publisher/models/publishers.model";
 import {PublisherService} from "@features/publisher/service/publisher.service";

@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {UserService} from "@core/auth/services/user.service";
 import {DashboardComponent} from "@features/dashboard/components/dashboard/dashboard.component";
-import * as Pages from "../../../pages";
+import * as Pages from "@app/pages";
 
 @Component({
   selector: 'app-home',

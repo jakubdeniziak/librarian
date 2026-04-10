@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {map, Observable, tap} from "rxjs";
 import {jwtDecode} from "jwt-decode";
 import {JwtService} from "@core/auth/services/jwt.service";
-import {Endpoints} from "../../../endpoints";
+import {Endpoints} from "@app/endpoints";
 
 @Injectable({
   providedIn: 'root',

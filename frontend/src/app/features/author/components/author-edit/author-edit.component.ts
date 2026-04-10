@@ -4,7 +4,7 @@ import {AuthorService} from "../../services/author.service";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
-import {AUTHORS} from "../../../../pages";
+import {AUTHORS} from "@app/pages";
 import {AuthorForm} from "@features/author/models/author-form.model";
 import {RichTextEditorComponent} from "@shared/components/rich-text-editor/rich-text-editor.component";
 

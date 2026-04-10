@@ -3,7 +3,7 @@ import {RouterLink} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {catchError, of} from 'rxjs';
 
-import * as Pages from '../../../../pages';
+import * as Pages from '@app/pages';
 import {DashboardResponse} from '../../models/dashboard.model';
 import {DashboardService} from '../../services/dashboard.service';
 import {UserService} from '@core/auth/services/user.service';

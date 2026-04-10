@@ -3,7 +3,7 @@ import {FormsModule} from "@angular/forms";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
 import {Router, RouterLink} from "@angular/router";
 import {UserService} from "@core/auth/services/user.service";
-import * as Pages from "../../../../pages";
+import * as Pages from "@app/pages";
 
 @Component({
   selector: 'app-register',

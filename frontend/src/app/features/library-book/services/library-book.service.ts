@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {LibraryBookForm} from "@features/library-book/models/library-book.form";
 import {Observable} from "rxjs";
-import {Endpoints} from "../../../endpoints";
+import {Endpoints} from "@app/endpoints";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable({

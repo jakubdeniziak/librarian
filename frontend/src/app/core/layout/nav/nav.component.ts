@@ -1,7 +1,7 @@
 import {Component, ElementRef, HostListener} from '@angular/core';
 import {Router, RouterLink} from "@angular/router";
 import {NgOptimizedImage} from "@angular/common";
-import * as Pages from "../../../pages";
+import * as Pages from "@app/pages";
 import {UserService} from "@core/auth/services/user.service";
 
 @Component({

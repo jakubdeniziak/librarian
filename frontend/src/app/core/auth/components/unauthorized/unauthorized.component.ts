@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {RouterLink} from "@angular/router";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
-import * as Pages from "../../../../pages";
+import * as Pages from "@app/pages";
 
 @Component({
   selector: 'app-unauthorized',

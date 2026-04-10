@@ -1,7 +1,7 @@
 import {CanActivateFn, Router} from '@angular/router';
 import {inject} from '@angular/core';
 import {UserService} from '@core/auth/services/user.service';
-import * as PAGES from '../../../pages';
+import * as PAGES from '@app/pages';
 
 export const publicOnlyGuard: CanActivateFn = () => {
   const router = inject(Router);

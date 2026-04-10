@@ -3,7 +3,7 @@ import {PublisherService} from "../../service/publisher.service";
 import {Publishers} from "../../models/publishers.model";
 import {RouterLink} from "@angular/router";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
-import {PUBLISHERS} from "../../../../pages";
+import {PUBLISHERS} from "@app/pages";
 
 @Component({
   selector: 'app-publisher-delete',

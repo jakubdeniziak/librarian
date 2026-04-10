@@ -11,7 +11,7 @@ import {
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
 import {UserService} from "@core/auth/services/user.service";
-import {AUTHORS} from "../../../../pages";
+import {AUTHORS} from "@app/pages";
 import {AuthorService} from "@features/author/services/author.service";
 import {FormsModule} from "@angular/forms";
 import {DEFAULT_AUTHORS_PAGE_SIZE} from "@features/author/models/authors-query.model";

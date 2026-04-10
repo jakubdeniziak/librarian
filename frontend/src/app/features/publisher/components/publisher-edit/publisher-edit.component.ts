@@ -4,7 +4,7 @@ import {PublisherDetails} from "../../models/publisher-details.model";
 import {PublisherService} from "../../service/publisher.service";
 import {FormsModule} from "@angular/forms";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
-import {PUBLISHERS} from "../../../../pages";
+import {PUBLISHERS} from "@app/pages";
 
 @Component({
   selector: 'app-publisher-edit',
