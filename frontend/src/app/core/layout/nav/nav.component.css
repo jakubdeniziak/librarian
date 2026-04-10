@@ -1,0 +1,120 @@
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.875rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  color: rgba(255, 255, 255, 0.88);
+  transition: color 180ms ease, box-shadow 180ms ease;
+}
+
+.nav-link:hover {
+  color: transparent;
+  background-image: linear-gradient(90deg, var(--color-brandFrom), var(--color-brandMid));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.nav-link:focus-visible {
+  outline: none;
+  box-shadow:
+	0 0 0 2px rgba(255, 255, 255, 0.12),
+	0 0 0 5px rgba(59, 130, 246, 0.25);
+}
+
+.nav-link--admin:hover {
+  color: transparent;
+  background-image: linear-gradient(90deg, var(--color-brandFrom), var(--color-brandMid));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.nav-link--admin {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.avatar-initial {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.95);
+  background: linear-gradient(135deg, var(--color-brandFrom), var(--color-brandMid));
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.account-link {
+  display: block;
+  padding: 0.7rem 1rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.92);
+  transition: background-color 160ms ease, color 160ms ease;
+}
+
+.account-link:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.account-link--admin {
+  border: 1px solid rgba(59, 130, 246, 0.22);
+  border-radius: 0.9rem;
+  padding: 0.6rem 0.9rem;
+  background: #101010;
+}
+
+.app-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: #101010;
+  color: rgba(255, 255, 255, 0.9);
+  transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease;
+}
+
+.app-tile:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.16);
+  background: #141414;
+}
+
+.app-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.9rem;
+  background: linear-gradient(135deg, var(--color-brandFromSoft), var(--color-brandMidSoft));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.app-icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.app-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.app-tile--admin .app-icon {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--color-brandFromSoft) 160%, transparent), color-mix(in srgb, var(--color-brandMidSoft) 160%, transparent));
+}

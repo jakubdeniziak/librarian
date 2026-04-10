@@ -1,8 +1,30 @@
-<section class="flex flex-col items-center justify-center h-screen text-center">
-  <h1 class="text-4xl font-bold text-red-600 mb-4">401 - Unauthorized</h1>
-  <p class="text-lg mb-6">You don’t have permission to view this page.</p>
+<section class="min-h-[calc(100vh-4.5rem)] px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-bgPrimary via-bgSecondary to-bgPrimary">
+  <div class="max-w-4xl mx-auto pt-10 sm:pt-12 lg:pt-14 pb-12">
+    <app-page-header
+      title="Access denied"
+      subtitle="You’re not authorized to view this page."
+      [centered]="true"
+    />
 
-  <button (click)="goHome()" class="px-6 py-2 bg-bgSecondary text-primary rounded-md shadow hover:bg-bgHover transition">
-    Go Home
-  </button>
+    <div class="mt-6">
+      <div class="w-full max-w-md flex flex-col sm:flex-row gap-3">
+        <a
+          [routerLink]="PAGES.HOME"
+          class="px-6 py-3 rounded-xl bg-gradient-to-r from-brandFrom to-brandMid text-white font-semibold shadow-lg hover:shadow-2xl transition inline-flex items-center justify-center gap-2"
+        >
+          <span>Go home</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+
+        <a
+          [routerLink]="PAGES.LOGIN"
+          class="px-6 py-3 rounded-xl bg-bgPrimary border border-white/10 text-primary font-semibold hover:bg-white/5 transition inline-flex items-center justify-center"
+        >
+          Sign in
+        </a>
+      </div>
+    </div>
+  </div>
 </section>

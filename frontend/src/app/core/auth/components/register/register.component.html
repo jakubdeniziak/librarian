@@ -1,37 +1,62 @@
-<section class="p-4 text-center">
-  <app-page-header title="Register"/>
+<section class="min-h-[calc(100vh-4.5rem)] px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-bgPrimary via-bgSecondary to-bgPrimary">
+  <div class="max-w-md mx-auto pt-10 sm:pt-12 lg:pt-14 pb-12">
+    <app-page-header
+      title="Create account"
+      subtitle="Start organizing your libraries in minutes."
+      [centered]="true"
+    />
 
-  <form (ngSubmit)="register()" #registerForm="ngForm">
-    <div class="mb-3">
-      <label for="username" class="mr-4">Username</label>
-      <input
-        id="username"
-        name="username"
-        type="text"
-        [(ngModel)]="username"
-        required
-        class="text-primary p-2 border border-secondary rounded bg-transparent"
-      />
-    </div>
-    <div class="mb-8">
-      <label for="password" class="mr-4">Password</label>
-      <input
-        id="password"
-        name="password"
-        type="password"
-        [(ngModel)]="password"
-        required
-        class="text-primary p-2 border border-secondary rounded bg-transparent"
-      />
-    </div>
-    <button type="submit" [disabled]="registerForm.invalid" class="border p-2 rounded bg-bgSecondary">
-      Sign up
-    </button>
-  </form>
+    <div class="rounded-2xl border border-white/10 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-lg p-6 sm:p-8 shadow-2xl">
+      <form (ngSubmit)="register()" #registerForm="ngForm" class="space-y-5">
+        <div>
+          <label for="username" class="block text-sm font-semibold text-secondary mb-2">Username</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            [(ngModel)]="username"
+            required
+            autocomplete="username"
+            class="w-full rounded-xl bg-bgSecondary border border-white/10 px-4 py-3 text-primary placeholder:text-secondary/70 focus:outline-none focus:ring-2 focus:ring-brandFrom/50"
+            placeholder="your-username"
+          />
+        </div>
 
-  @if (error) {
-    <div style="color: red; margin-top: 10px;">
-      {{ error }}
+        <div>
+          <label for="password" class="block text-sm font-semibold text-secondary mb-2">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            [(ngModel)]="password"
+            required
+            autocomplete="new-password"
+            class="w-full rounded-xl bg-bgSecondary border border-white/10 px-4 py-3 text-primary placeholder:text-secondary/70 focus:outline-none focus:ring-2 focus:ring-brandFrom/50"
+            placeholder="••••••••"
+          />
+        </div>
+
+        @if (error) {
+          <div class="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
+            {{ error }}
+          </div>
+        }
+
+        <button
+          type="submit"
+          [disabled]="registerForm.invalid"
+          class="w-full px-5 py-3 rounded-xl bg-gradient-to-r from-brandFrom to-brandMid text-white font-semibold shadow-lg hover:shadow-2xl transition disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Sign up
+        </button>
+
+        <div class="text-center text-sm text-secondary">
+          <span>Already have an account?</span>
+          <a [routerLink]="PAGES.LOGIN" class="ml-2 font-semibold bg-gradient-to-r from-brandFrom to-brandMid bg-clip-text text-transparent hover:opacity-90 transition">
+            Sign in
+          </a>
+        </div>
+      </form>
     </div>
-  }
+  </div>
 </section>

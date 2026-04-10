@@ -1,7 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {provideRouter} from "@angular/router";
 import {NavComponent} from './nav.component';
-import {UserService} from "../../../user/service/user.service";
+import {UserService} from "@core/auth/services/user.service";
 import {provideHttpClient} from "@angular/common/http";
 
 describe('NavComponent', () => {

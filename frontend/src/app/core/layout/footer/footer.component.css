@@ -1,0 +1,22 @@
+.footer-link {
+  margin-left: 0.5rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  transition: color 150ms ease;
+}
+
+.footer-link:hover {
+  color: transparent;
+  background-image: linear-gradient(90deg, var(--color-brandFrom), var(--color-brandMid));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.footer-nav-link {
+  color: rgba(255, 255, 255, 0.75);
+  transition: color 150ms ease;
+}
+
+.footer-nav-link:hover {
+  color: rgba(255, 255, 255, 0.95);
+}

@@ -5,7 +5,7 @@ import {Books} from "@features/book/models/books.model";
 import {BookDetails} from "@features/book/models/book-details.model";
 import {BookForm} from "@features/book/models/book-form.model";
 import {LibraryBooks} from "@features/library-book/models/library.books";
-import {Endpoints} from "../../../endpoints";
+import {Endpoints} from "@app/endpoints";
 
 @Injectable({
   providedIn: 'root'

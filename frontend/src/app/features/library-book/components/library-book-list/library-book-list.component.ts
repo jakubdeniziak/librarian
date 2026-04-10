@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {BOOKS} from "../../../../pages";
+import {BOOKS} from "@app/pages";
 import {LibraryService} from "@features/library/services/library.service";
 import {LibraryBook} from "@features/library-book/models/library.book";
 import {RouterLink} from "@angular/router";

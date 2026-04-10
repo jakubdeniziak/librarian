@@ -3,7 +3,7 @@ import {BookService} from "@features/book/services/book.service";
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {BookDetails} from "@features/book/models/book-details.model";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
-import {AUTHORS, BOOKS, PUBLISHERS} from "../../../../pages";
+import {AUTHORS, BOOKS, PUBLISHERS} from "@app/pages";
 import {AuthorDetails} from "@features/author/models/author-details.model";
 import {PublisherDetails} from "@features/publisher/models/publisher-details.model";
 import {AuthorService} from "@features/author/services/author.service";

@@ -1,35 +1,161 @@
-<nav class="bg-bgSecondary p-4">
-  <div class="container mx-auto flex justify-between items-center">
-    <a [routerLink]="'/'">
-      <img ngSrc="assets/logo-white.png" alt="Logo" class="w-12" height="500" width="500">
-    </a>
-    @if (userService.isLoggedIn()) {
-      <ul class="flex space-x-4 justify-end items-center">
-        <li><a [routerLink]="'/'" class="text-primary hover:text-secondary">Home</a></li>
-        <li><a [routerLink]="PAGES.BOOKS" class="text-primary hover:text-secondary">Books</a></li>
-        <li><a [routerLink]="'/authors'" class="text-primary hover:text-secondary">Authors</a></li>
-        <li><a [routerLink]="PAGES.PUBLISHERS" class="text-primary hover:text-secondary">Publishers</a></li>
-        <li><a [routerLink]="'/libraries'" class="text-primary hover:text-secondary">Libraries</a></li>
-        @if (userService.isAdmin()) {
-          <li><a [routerLink]="'/data'" class="text-primary hover:text-secondary mx-6">Data</a></li>
-        }
-        <li (click)="toggleDropdown()" tabindex="0">
-          <img ngSrc="assets/images/user.png" alt="User" class="w-12 h-12 rounded-full cursor-pointer" height="1000" width="1000"/>
-          @if (dropdownOpen) {
-            <ul class="absolute right-12 mt-2 w-48 bg-secondary border rounded-lg shadow-md z-50 text-black">
-              <li>
-                <button class="block w-full text-left px-4 py-2 hover:bg-gray-100" (click)="logout()">Sign Out</button>
-              </li>
-            </ul>
+<nav class="sticky top-0 z-50 border-b border-white/10 bg-bgSecondary/60 backdrop-blur-xl"
+     xmlns="http://www.w3.org/1999/html">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between">
+      <a [routerLink]="PAGES.HOME" class="flex items-center gap-3 group">
+        <div class="relative">
+          <div class="absolute -inset-1 rounded-xl bg-gradient-to-r from-brandFrom/30 to-brandMid/30 blur opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <div class="relative inline-flex items-center justify-center h-10 w-10 rounded-xl bg-gradient-to-br from-brandFrom to-brandMid shadow-lg">
+            <img ngSrc="assets/logo-white.png" alt="Logo" class="w-6" height="500" width="500">
+          </div>
+        </div>
+        <span class="hidden sm:block text-sm font-semibold tracking-wide text-primary">Librarian</span>
+      </a>
+
+      @if (userService.isLoggedIn()) {
+        <div class="flex items-center gap-1 sm:gap-2">
+          <div class="relative md:hidden">
+            <button
+              type="button"
+              class="inline-flex items-center justify-center h-10 w-10 rounded-full text-primary/90 hover:bg-white/5 transition"
+              (click)="toggleMobileMenu()"
+              [attr.aria-expanded]="mobileMenuOpen"
+              aria-label="Open navigation"
+            >
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="6" cy="6" r="2" />
+                <circle cx="12" cy="6" r="2" />
+                <circle cx="18" cy="6" r="2" />
+                <circle cx="6" cy="12" r="2" />
+                <circle cx="12" cy="12" r="2" />
+                <circle cx="18" cy="12" r="2" />
+                <circle cx="6" cy="18" r="2" />
+                <circle cx="12" cy="18" r="2" />
+                <circle cx="18" cy="18" r="2" />
+              </svg>
+              @if (mobileMenuOpen) {
+                <span class="pointer-events-none absolute inset-0 rounded-full bg-white/10 ring-1 ring-brandFrom/40"></span>
+              }
+            </button>
+
+            @if (mobileMenuOpen) {
+              <div class="fixed left-4 right-4 mt-3 w-auto max-w-[calc(100vw-2rem)] overflow-hidden rounded-2xl border border-white/10 bg-bgSecondary shadow-2xl">
+                <div class="p-3 grid grid-cols-3 gap-2">
+                  <a [routerLink]="PAGES.HOME" class="app-tile" (click)="closeMenus()">
+                    <span class="app-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 10.5l9-7 9 7V20a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1v-9.5z"/>
+                      </svg>
+                    </span>
+                    <span class="app-label">Home</span>
+                  </a>
+                  <a [routerLink]="PAGES.BOOKS" class="app-tile" (click)="closeMenus()">
+                    <span class="app-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6.5 2H20v20H6.5A2.5 2.5 0 0 0 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                      </svg>
+                    </span>
+                    <span class="app-label">Books</span>
+                  </a>
+                  <a [routerLink]="PAGES.AUTHORS" class="app-tile" (click)="closeMenus()">
+                    <span class="app-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                      </svg>
+                    </span>
+                    <span class="app-label">Authors</span>
+                  </a>
+                  <a [routerLink]="PAGES.PUBLISHERS" class="app-tile" (click)="closeMenus()">
+                    <span class="app-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 21V7l7-4 7 4v14"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 21v-8h6v8"/>
+                      </svg>
+                    </span>
+                    <span class="app-label">Publishers</span>
+                  </a>
+                  <a [routerLink]="PAGES.LIBRARIES" class="app-tile" (click)="closeMenus()">
+                    <span class="app-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 19V5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v14"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h6"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8 11h6"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 19h14a2 2 0 0 1 2 2H4a2 2 0 0 1 2-2z"/>
+                      </svg>
+                    </span>
+                    <span class="app-label">Libraries</span>
+                  </a>
+
+                  @if (userService.isAdmin()) {
+                    <a [routerLink]="PAGES.DATA" class="app-tile app-tile--admin" (click)="closeMenus()">
+                      <span class="app-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                      </span>
+                      <span class="app-label">Data</span>
+                    </a>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+
+          <div class="hidden md:flex items-center gap-2">
+            <a [routerLink]="PAGES.HOME" class="nav-link">Home</a>
+            <a [routerLink]="PAGES.BOOKS" class="nav-link">Books</a>
+            <a [routerLink]="PAGES.AUTHORS" class="nav-link">Authors</a>
+            <a [routerLink]="PAGES.PUBLISHERS" class="nav-link">Publishers</a>
+            <a [routerLink]="PAGES.LIBRARIES" class="nav-link">Libraries</a>
+          </div>
+          @if (userService.isAdmin()) {
+            <div class="hidden md:flex items-center gap-1 rounded-2xl border border-brandFrom/30 px-2 py-1 bg-white/0">
+              <span class="px-2 text-[11px] font-semibold tracking-wider uppercase text-secondary">Admin</span>
+              <a [routerLink]="PAGES.DATA" class="nav-link nav-link--admin">Data</a>
+            </div>
           }
-        </li>
-      </ul>
-    }
-    @if (!userService.isLoggedIn()) {
-      <ul class="flex space-x-8 justify-end items-center">
-        <li><a [routerLink]="'/login'" class="text-primary hover:text-secondary">Sign in</a></li>
-        <li><a [routerLink]="'/register'" class="text-primary hover:text-secondary">Sign up</a></li>
-      </ul>
-    }
+
+          <div class="relative ml-0 sm:ml-1">
+            <button
+              type="button"
+              class="inline-flex items-center gap-2 rounded-xl p-1.5 hover:bg-white/5 transition"
+              aria-label="Open user menu"
+              (click)="toggleDropdown()"
+            >
+              <span class="avatar-initial" aria-hidden="true">{{ accountInitial }}</span>
+              <svg class="hidden sm:block w-4 h-4 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+
+            @if (dropdownOpen) {
+              <div class="absolute right-0 mt-3 w-56 overflow-hidden rounded-2xl border border-white/10 bg-bgSecondary shadow-2xl">
+                <div class="px-4 py-3 border-b border-white/10">
+                  <p class="text-xs text-secondary">Signed in</p>
+                  <p class="text-sm font-semibold text-primary">{{ accountLabel }}</p>
+                </div>
+                <a class="account-link" [routerLink]="PAGES.ACCOUNT_PROFILE" (click)="closeMenus()">Profile</a>
+                <a class="account-link" [routerLink]="PAGES.ACCOUNT_SETTINGS" (click)="closeMenus()">Settings</a>
+                <a class="account-link" [routerLink]="PAGES.DOCS" (click)="closeMenus()">Docs</a>
+                <div class="border-t border-white/10"></div>
+                <button class="w-full text-left px-4 py-3 text-sm text-primary hover:bg-white/5 transition" (click)="logout()">
+                  Sign out
+                </button>
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      @if (!userService.isLoggedIn()) {
+        <div class="flex items-center gap-2 sm:gap-3">
+          <a [routerLink]="PAGES.LOGIN" class="nav-link">Sign in</a>
+          <a [routerLink]="PAGES.REGISTER" class="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-semibold text-white bg-gradient-to-r from-brandFrom to-brandMid hover:shadow-xl transition">
+            Sign up
+          </a>
+        </div>
+      }
+    </div>
   </div>
 </nav>

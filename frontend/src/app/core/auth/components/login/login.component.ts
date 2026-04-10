@@ -1,16 +1,18 @@
 import {Component} from '@angular/core';
 import {FormsModule} from "@angular/forms";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
 import {UserService} from "@core/auth/services/user.service";
 
 @Component({
   selector: 'app-user',
+  standalone: true,
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
   imports: [
     FormsModule,
     PageHeaderComponent,
+    RouterLink,
   ],
 })
 export class LoginComponent {

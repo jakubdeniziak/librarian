@@ -1,16 +1,40 @@
-<header class="text-center my-10">
-  <h1 class="text-5xl font-bold">Librarian</h1>
-  <p class="mt-2 text-secondary">The ultimate library management system</p>
-</header>
-
 @if (loginService.isLoggedIn()) {
-  <section class="flex justify-center gap-6 flex-wrap p-4">
-    @for (card of cards; track card.route) {
-      <a [routerLink]="card.route" class="w-40 h-56 bg-bgSecondary rounded-xl shadow-xl hover:shadow-2xl transition p-4 flex flex-col items-center justify-between text-primary text-center">
-        <img [ngSrc]="card.image" width="400" height="400" [alt]="card.alt" class="w-16 h-16 mt-5"/>
-        <div class="text-xl font-bold">{{ card.count }}</div>
-        <span class="font-semibold">{{ card.label }}</span>
-      </a>
-    }
-  </section>
+  <app-dashboard />
+} @else {
+  <div class="home-scroll-snap">
+    <div class="home-snap relative min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-bgPrimary via-bgSecondary to-bgPrimary overflow-hidden">
+      <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute -top-40 -right-40 w-96 h-96 bg-brandFrom/10 rounded-full blur-3xl animate-pulse"></div>
+        <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-brandMid/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s"></div>
+      </div>
+
+      <div class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+        <h1 class="text-6xl sm:text-7xl font-black bg-gradient-to-r from-brandFrom via-brandMid to-brandTo bg-clip-text text-transparent mb-6 leading-tight">
+          Librarian
+        </h1>
+        <p class="text-xl sm:text-2xl text-secondary mb-2 font-light">
+          The ultimate library management system
+        </p>
+        <p class="text-base sm:text-lg text-secondary/80 mb-12 max-w-2xl mx-auto">
+          Organize, manage, and discover your literary collection with effortless elegance
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+          <a [routerLink]="PAGES.LOGIN"
+             class="px-8 py-4 bg-gradient-to-r from-brandFrom to-brandMid text-white font-semibold rounded-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center gap-2">
+            <span>Get Started</span>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+            </svg>
+          </a>
+
+          <a [routerLink]="PAGES.DOCS"
+             class="px-8 py-4 border border-secondary/30 text-primary font-semibold rounded-lg hover:bg-white/5 transition-all duration-300 inline-flex items-center justify-center">
+            Learn More
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 }

@@ -5,7 +5,7 @@ import {Router, RouterLink} from "@angular/router";
 import {v4 as uuid} from "uuid";
 import {FormsModule} from "@angular/forms";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
-import {LIBRARIES} from "../../../../pages";
+import {LIBRARIES} from "@app/pages";
 
 @Component({
   selector: 'app-library-new',

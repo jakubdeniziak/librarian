@@ -5,7 +5,7 @@ import {BookService} from "@features/book/services/book.service";
 import {v4 as uuid} from "uuid";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
 import {FormsModule} from "@angular/forms";
-import {BOOKS} from "../../../../pages";
+import {BOOKS} from "@app/pages";
 import {Authors} from "@features/author/models/authors.model";
 import {Publishers} from "@features/publisher/models/publishers.model";
 import {AuthorService} from "@features/author/services/author.service";

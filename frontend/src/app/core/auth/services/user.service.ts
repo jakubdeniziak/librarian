@@ -3,7 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {map, Observable, tap} from "rxjs";
 import {jwtDecode} from "jwt-decode";
 import {JwtService} from "@core/auth/services/jwt.service";
-import {Endpoints} from "../../../endpoints";
+import {Endpoints} from "@app/endpoints";
 
 @Injectable({
   providedIn: 'root',
@@ -41,5 +41,14 @@ export class UserService {
     }
     const decoded: any = jwtDecode(token);
     return decoded.roles?.includes('ROLE_ADMIN');
+  }
+
+  public getAccountLabel(): string | null {
+    if (!this.jwtService.isTokenPresent()) {
+      return null;
+    }
+    const token = this.jwtService.getToken();
+    const decoded: any = jwtDecode(token);
+    return decoded.username ?? decoded.sub ?? decoded.email ?? null;
   }
 }

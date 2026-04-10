@@ -3,8 +3,8 @@ import {PublisherDetailsComponent} from './publisher-details.component';
 import {provideHttpClient} from "@angular/common/http";
 import {provideRouter} from "@angular/router";
 import {PublisherService} from "../../service/publisher.service";
-import {UserService} from "../../../../user/service/user.service";
-import {BookService} from "../../../../book/services/book.services";
+import {UserService} from "@core/auth/services/user.service";
+import {BookService} from "@features/book/services/book.service";
 
 describe('PublisherDetailsComponent', () => {
   let component: PublisherDetailsComponent;

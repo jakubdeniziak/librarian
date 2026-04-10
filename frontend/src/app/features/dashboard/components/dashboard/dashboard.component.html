@@ -1,0 +1,270 @@
+<section class="flex items-start px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-bgPrimary via-bgSecondary to-bgPrimary">
+  <div class="max-w-7xl mx-auto w-full pt-8 sm:pt-10 lg:pt-12 pb-3 sm:pb-6">
+    <app-page-header
+      title="Collection Overview"
+      subtitle="Quick access to your most important library resources,\u00A0plus shortcuts for common tasks."
+      [dense]="true"
+    >
+      <a
+        [routerLink]="PAGES.LIBRARIES_ADD_BOOK"
+        class="px-5 py-3 rounded-xl bg-gradient-to-r from-brandFrom to-brandMid text-white font-semibold shadow-lg hover:shadow-2xl transition inline-flex items-center justify-center gap-2"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+        </svg>
+        Add book
+      </a>
+    </app-page-header>
+
+    <div class="mb-8 sm:mb-10">
+      <div class="flex flex-col sm:flex-row gap-3">
+        <div class="flex-1 relative">
+          <svg class="w-5 h-5 text-secondary absolute left-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35"/>
+            <circle cx="11" cy="11" r="7"/>
+          </svg>
+          <input
+            class="w-full rounded-2xl bg-bgSecondary border border-white/10 px-12 py-3 text-primary placeholder:text-secondary/80 focus:outline-none focus:ring-2 focus:ring-brandFrom/50"
+            placeholder="Search books, authors, publishers…"
+            [(ngModel)]="searchQuery"
+            (keyup.enter)="onSearch()"
+          />
+
+          @if (searchQuery) {
+            <button
+              type="button"
+              (click)="clearSearch()"
+              class="absolute right-3 top-1/2 -translate-y-1/2 rounded-xl px-3 py-1 text-sm font-semibold text-secondary hover:text-primary hover:bg-white/5 transition"
+            >
+              Clear
+            </button>
+          }
+        </div>
+
+        <button
+          type="button"
+          (click)="toggleAdvancedSearch()"
+          class="px-5 py-3 rounded-2xl border border-white/10 bg-bgSecondary text-primary font-semibold hover:bg-white/5 transition inline-flex items-center justify-center"
+        >
+          {{ isAdvancedSearchOpen ? 'Hide filters' : 'Advanced' }}
+        </button>
+
+        <button
+          type="button"
+          (click)="onSearch()"
+          class="px-5 py-3 rounded-2xl bg-gradient-to-r from-brandFrom to-brandMid text-white font-semibold shadow-lg hover:shadow-2xl transition inline-flex items-center justify-center gap-2"
+        >
+          @if (isSearching) {
+            <span class="opacity-90">Searching…</span>
+          } @else {
+            Search
+          }
+        </button>
+      </div>
+
+      @if (isAdvancedSearchOpen) {
+        <div class="mt-4 rounded-2xl border border-white/10 bg-bgSecondary p-4">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="rounded-xl bg-bgPrimary border border-white/10 p-3">
+              <p class="text-xs font-semibold text-secondary mb-2">Search in</p>
+              <label class="flex items-center gap-2 text-sm text-primary">
+                <input type="checkbox" class="accent-brandMid" [(ngModel)]="includeBooks" />
+                Books
+              </label>
+              <label class="flex items-center gap-2 text-sm text-primary mt-2">
+                <input type="checkbox" class="accent-brandMid" [(ngModel)]="includeAuthors" />
+                Authors
+              </label>
+              <label class="flex items-center gap-2 text-sm text-primary mt-2">
+                <input type="checkbox" class="accent-brandMid" [(ngModel)]="includePublishers" />
+                Publishers
+              </label>
+              <label class="flex items-center gap-2 text-sm text-primary mt-2">
+                <input type="checkbox" class="accent-brandMid" [(ngModel)]="includeLibraries" />
+                Libraries
+              </label>
+            </div>
+
+            <div class="rounded-xl bg-bgPrimary border border-white/10 p-3">
+              <p class="text-xs font-semibold text-secondary mb-2">Year</p>
+              <div class="flex gap-3">
+                <input
+                  class="w-full rounded-xl bg-bgSecondary border border-white/10 px-3 py-2 text-primary placeholder:text-secondary/80 focus:outline-none focus:ring-2 focus:ring-brandFrom/40"
+                  placeholder="From"
+                  type="number"
+                  [(ngModel)]="yearFrom"
+                />
+                <input
+                  class="w-full rounded-xl bg-bgSecondary border border-white/10 px-3 py-2 text-primary placeholder:text-secondary/80 focus:outline-none focus:ring-2 focus:ring-brandFrom/40"
+                  placeholder="To"
+                  type="number"
+                  [(ngModel)]="yearTo"
+                />
+              </div>
+            </div>
+
+            <div class="rounded-xl bg-bgPrimary border border-white/10 p-3">
+              <p class="text-xs font-semibold text-secondary mb-2">Format</p>
+              <select
+                class="w-full rounded-xl bg-bgSecondary border border-white/10 px-3 py-2 text-primary focus:outline-none focus:ring-2 focus:ring-brandFrom/40"
+                [(ngModel)]="format"
+              >
+                <option [ngValue]="undefined">Any</option>
+                <option [ngValue]="'HARDCOVER'">Hardcover</option>
+                <option [ngValue]="'PAPERBACK'">Paperback</option>
+                <option [ngValue]="'EBOOK'">E-book</option>
+                <option [ngValue]="'AUDIOBOOK'">Audiobook</option>
+                <option [ngValue]="'OTHER'">Other</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      }
+
+      @if (searchError) {
+        <p class="mt-3 text-sm text-secondary/90">
+          Search is currently unavailable.
+        </p>
+      }
+
+      @if (searchResults) {
+        <div class="mt-4 rounded-2xl border border-white/10 bg-bgSecondary overflow-hidden">
+          <div class="flex items-center justify-between px-4 py-3 border-b border-white/10">
+            <p class="text-sm font-semibold text-primary">Results</p>
+            <p class="text-xs text-secondary">{{ searchResults.total }} total</p>
+          </div>
+
+          @if (searchResults.hits.length === 0) {
+            <div class="px-4 py-4 text-sm text-secondary">No results.</div>
+          } @else {
+            <div class="divide-y divide-white/10">
+              @for (hit of searchResults.hits; track hit.type + ':' + hit.id) {
+                <a
+                  [routerLink]="hitRouterLink(hit)"
+                  class="block px-4 py-3 hover:bg-white/5 transition"
+                >
+                  <div class="flex items-center justify-between gap-4">
+                    <div class="min-w-0">
+                      <p class="text-sm font-semibold text-primary truncate">{{ hit.title }}</p>
+                      @if (hit.subtitle) {
+                        <p class="text-xs text-secondary truncate mt-1">{{ hit.subtitle }}</p>
+                      }
+                    </div>
+                    <span class="text-[11px] font-semibold text-secondary px-2 py-1 rounded-full border border-white/10 bg-bgPrimary">
+                      {{ hit.type }}
+                    </span>
+                  </div>
+                </a>
+              }
+            </div>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      @for (card of cards; track card.route) {
+        <a [routerLink]="card.route" class="group relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-lg border border-white/10 rounded-2xl p-8 overflow-hidden hover:border-white/20 transition-all duration-300 transform hover:scale-105 hover:-translate-y-1">
+          <div class="absolute inset-0 bg-gradient-to-br from-brandFrom/0 to-brandMid/0 group-hover:from-brandFrom/10 group-hover:to-brandMid/10 transition-all duration-300"></div>
+          <div class="relative z-10 flex flex-col items-center justify-between h-full">
+            <div class="mb-6 p-4 bg-gradient-to-br from-brandFrom/20 to-brandMid/20 rounded-xl group-hover:from-brandFrom/30 group-hover:to-brandMid/30 transition-all duration-300">
+              @switch (card.iconKey) {
+                @case ('books') {
+                  <svg class="w-16 h-16 opacity-90 group-hover:opacity-100 transition-opacity text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6.5 2H20v20H6.5A2.5 2.5 0 0 0 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 7h7"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 11h7"/>
+                  </svg>
+                }
+                @case ('authors') {
+                  <svg class="w-16 h-16 opacity-90 group-hover:opacity-100 transition-opacity text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                    <circle cx="12" cy="7" r="4"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  </svg>
+                }
+                @case ('publishers') {
+                  <svg class="w-16 h-16 opacity-90 group-hover:opacity-100 transition-opacity text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 21V7l7-4 7 4v14"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 21v-8h6v8"/>
+                  </svg>
+                }
+                @case ('libraries') {
+                  <svg class="w-16 h-16 opacity-90 group-hover:opacity-100 transition-opacity text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 19V5a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v14"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h6"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 11h6"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 19h14a2 2 0 0 1 2 2H4a2 2 0 0 1 2-2z"/>
+                  </svg>
+                }
+              }
+            </div>
+            <div class="text-5xl font-bold bg-gradient-to-r from-brandFrom to-brandMid bg-clip-text text-transparent mb-3 group-hover:opacity-95 transition-all">
+              {{ card.count }}
+            </div>
+            <span class="text-base font-semibold text-primary text-center group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-brandFrom group-hover:to-brandMid group-hover:bg-clip-text transition-all">
+              {{ card.label }}
+            </span>
+            <div class="mt-4 text-secondary group-hover:text-brandFrom transition-all transform group-hover:translate-x-1">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+              </svg>
+            </div>
+          </div>
+        </a>
+      }
+    </div>
+
+    <div class="mt-10 sm:mt-12">
+      <div class="flex items-end justify-between gap-4 mb-4">
+        <div>
+          <h3 class="text-2xl font-bold text-primary">Insights</h3>
+          <p class="text-sm text-secondary mt-1">Personalized stats based on your libraries.</p>
+        </div>
+        <a [routerLink]="'/insights'" class="hidden sm:inline-flex px-4 py-2 rounded-xl border border-white/10 bg-bgSecondary text-sm font-semibold text-primary hover:bg-white/5 transition">
+          View all
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="rounded-2xl border border-white/10 bg-bgSecondary p-6">
+          <div class="flex items-center justify-between">
+            <h4 class="text-lg font-semibold text-primary">Top 10 genres</h4>
+          </div>
+          <div class="mt-4 aspect-[4/3] rounded-xl border border-white/10 bg-bgPrimary flex items-center justify-center text-secondary text-sm">
+            Pie chart placeholder
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-white/10 bg-bgSecondary p-6">
+          <div class="flex items-center justify-between">
+            <h4 class="text-lg font-semibold text-primary">Format breakdown</h4>
+          </div>
+          <div class="mt-4 aspect-[4/3] rounded-xl border border-white/10 bg-bgPrimary flex items-center justify-center text-secondary text-sm">
+            Pie chart placeholder
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-white/10 bg-bgSecondary p-6">
+          <div class="flex items-center justify-between">
+            <h4 class="text-lg font-semibold text-primary">Most collected authors</h4>
+            <a [routerLink]="'/authors/popular'" class="text-sm text-secondary hover:text-primary transition">Details</a>
+          </div>
+          <div class="mt-4 space-y-3">
+            @for (row of [1,2,3,4,5]; track row) {
+              <div class="flex items-center gap-3">
+                <div class="h-9 w-9 rounded-full bg-gradient-to-br from-brandFrom/25 to-brandMid/25 border border-white/10"></div>
+                <div class="flex-1">
+                  <div class="h-3 w-40 rounded bg-white/10"></div>
+                  <div class="h-2 w-24 rounded bg-white/10 mt-2"></div>
+                </div>
+                <div class="h-6 w-12 rounded bg-white/10"></div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -3,7 +3,7 @@ import {BookService} from "@features/book/services/book.service";
 import {Books} from "@features/book/models/books.model";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
 import {RouterLink} from "@angular/router";
-import {BOOKS} from "../../../../pages";
+import {BOOKS} from "@app/pages";
 import {UserService} from "@core/auth/services/user.service";
 
 @Component({

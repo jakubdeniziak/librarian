@@ -4,7 +4,7 @@ import {Observable} from "rxjs";
 import {Publishers} from "../models/publishers.model";
 import {PublisherDetails} from "../models/publisher-details.model";
 import {PublisherForm} from "../models/publisher-form.model";
-import {Endpoints} from "../../../endpoints";
+import {Endpoints} from "@app/endpoints";
 
 @Injectable({
   providedIn: 'root'

@@ -9,4 +9,7 @@ export class PageHeaderComponent {
   @Input() title?: string;
   @Input() subtitle?: string;
   @Input() titleLink?: string;
+
+  @Input() centered = false;
+  @Input() dense = false;
 }

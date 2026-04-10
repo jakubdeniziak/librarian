@@ -5,7 +5,7 @@ import {PublisherService} from "../../service/publisher.service";
 import {v4 as uuid} from "uuid";
 import {FormsModule} from "@angular/forms";
 import {PageHeaderComponent} from "@shared/components/page-header/page-header.component";
-import {PUBLISHERS} from "../../../../pages";
+import {PUBLISHERS} from "@app/pages";
 
 @Component({
   selector: 'app-publisher-new',
