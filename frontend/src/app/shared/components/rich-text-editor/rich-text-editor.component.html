@@ -24,6 +24,7 @@
 
     <div
       #editor
+      [id]="editorId || null"
       class="rte-editor px-4 py-3 text-primary outline-none"
       [style.min-height.px]="minHeightPx"
       (input)="onInput()"

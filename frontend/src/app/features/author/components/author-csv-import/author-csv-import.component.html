@@ -1,0 +1,361 @@
+@if (open) {
+  <div
+    id="author-csv-import-overlay"
+    (click)="onOverlayClick($event)"
+    class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center px-4 py-8 overflow-y-auto"
+  >
+    <div class="w-full max-w-3xl rounded-2xl border border-white/10 bg-bgSecondary shadow-2xl">
+      <div class="flex items-start justify-between gap-4 p-5 sm:p-6 border-b border-white/10">
+        <div>
+          <p class="text-lg font-bold text-primary">Import Authors (CSV)</p>
+          <p class="text-sm text-secondary mt-1">Upload a CSV file, map columns, then import.</p>
+        </div>
+        <button
+          type="button"
+          (click)="close()"
+          class="rounded-xl px-3 py-2 text-sm font-semibold text-secondary hover:text-primary hover:bg-white/5 transition"
+        >
+          Close
+        </button>
+      </div>
+
+      <div class="p-5 sm:p-6">
+        <div class="flex items-center gap-2 mb-6">
+          <div class="h-2 flex-1 rounded-full bg-white/10 overflow-hidden">
+            <div class="h-full bg-gradient-to-r from-brandFrom to-brandMid" [style.width]="(step / 3) * 100 + '%'"></div>
+          </div>
+          <span class="text-xs text-secondary font-semibold">Step {{ step }}/3</span>
+        </div>
+
+        @if (step === 1) {
+          <div class="rounded-2xl border border-white/10 bg-bgPrimary p-5">
+            <p class="text-sm font-semibold text-primary">1) Upload CSV</p>
+            <p class="text-sm text-secondary mt-1">
+              Required columns: first name, last name. Other fields are optional and their columns may be missing.
+            </p>
+
+            <div class="mt-4 flex flex-col gap-3">
+              <label class="inline-flex items-center gap-2 text-sm text-primary">
+                <input type="checkbox" class="accent-brandMid" [(ngModel)]="hasHeader"/>
+                First row contains headers
+              </label>
+
+              <input
+                type="file"
+                accept=".csv,text/csv,.txt"
+                (change)="onFileSelected($event)"
+                class="block w-full text-sm text-secondary file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border file:border-white/10 file:bg-bgSecondary file:text-primary file:font-semibold hover:file:bg-white/5"
+              />
+
+              @if (fileName) {
+                <p class="text-xs text-secondary">Selected:
+                  <span class="text-primary/90 font-semibold">{{ fileName }}</span></p>
+              }
+
+              @if (isParsing) {
+                <p class="text-sm text-secondary">Parsing…</p>
+              }
+
+              @if (parseError) {
+                <p class="text-sm text-red-300">{{ parseError }}</p>
+              }
+
+              <div class="mt-2 text-xs text-secondary">
+                <p class="font-semibold text-secondary">Example CSV:</p>
+                <pre class="mt-2 rounded-2xl border border-white/10 bg-bgSecondary p-4 overflow-auto text-primary/90">firstName,lastName,description,pictureUrl,aliases,genres,birthDate,deathDate
+Jane,Austen,English novelist,https://example.com/jane.jpg,"J. Austen","Romance;Satire",1775-12-16,
+George,Orwell,English writer,,"Eric Arthur Blair","Dystopian;Political fiction",1903-06-25,1950-01-21</pre>
+                <p class="mt-2 text-[11px] text-secondary">
+                  Tip: list fields (<span class="text-primary/80">aliases</span>,
+                  <span class="text-primary/80">genres</span>) can be separated by
+                  <span class="text-primary/80">;</span> or <span class="text-primary/80">,</span>. Dates use
+                  <span class="text-primary/80">YYYY-MM-DD</span>.
+                </p>
+              </div>
+            </div>
+          </div>
+        }
+
+        @if (step === 2) {
+          <div class="rounded-2xl border border-white/10 bg-bgPrimary p-5">
+            <div class="text-center">
+              <p class="text-sm font-semibold text-primary">2) Map columns</p>
+              <p class="text-sm text-secondary mt-1">Choose which CSV columns map to author fields. Optional fields can
+                be left unmapped.</p>
+            </div>
+
+            <div class="mt-5">
+              <p class="text-xs font-semibold text-secondary">Required mappings</p>
+              <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-sm font-semibold text-secondary mb-2">First name</label>
+                  <select
+                    class="w-full rounded-2xl bg-bgSecondary border border-white/10 px-4 py-3 text-primary focus:outline-none focus:ring-2 focus:ring-brandFrom/40"
+                    [(ngModel)]="mapping.firstName"
+                    (ngModelChange)="requestRecompute()"
+                  >
+                    <option [ngValue]="undefined">— Select —</option>
+                    @for (c of columns; track c) {
+                      <option [ngValue]="c">{{ c }}</option>
+                    }
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-semibold text-secondary mb-2">Last name</label>
+                  <select
+                    class="w-full rounded-2xl bg-bgSecondary border border-white/10 px-4 py-3 text-primary focus:outline-none focus:ring-2 focus:ring-brandFrom/40"
+                    [(ngModel)]="mapping.lastName"
+                    (ngModelChange)="requestRecompute()"
+                  >
+                    <option [ngValue]="undefined">— Select —</option>
+                    @for (c of columns; track c) {
+                      <option [ngValue]="c">{{ c }}</option>
+                    }
+                  </select>
+                </div>
+              </div>
+
+              <p class="mt-6 text-xs font-semibold text-secondary">Optional mappings</p>
+              <div class="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div>
+                  <label class="block text-sm font-semibold text-secondary mb-2">Description</label>
+                  <select
+                    class="w-full rounded-2xl bg-bgSecondary border border-white/10 px-4 py-3 text-primary focus:outline-none focus:ring-2 focus:ring-brandFrom/40"
+                    [(ngModel)]="mapping.description"
+                    (ngModelChange)="requestRecompute()"
+                  >
+                    <option [ngValue]="undefined">— None —</option>
+                    @for (c of columns; track c) {
+                      <option [ngValue]="c">{{ c }}</option>
+                    }
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-semibold text-secondary mb-2">Picture URL</label>
+                  <select
+                    class="w-full rounded-2xl bg-bgSecondary border border-white/10 px-4 py-3 text-primary focus:outline-none focus:ring-2 focus:ring-brandFrom/40"
+                    [(ngModel)]="mapping.pictureUrl"
+                    (ngModelChange)="requestRecompute()"
+                  >
+                    <option [ngValue]="undefined">— None —</option>
+                    @for (c of columns; track c) {
+                      <option [ngValue]="c">{{ c }}</option>
+                    }
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-semibold text-secondary mb-2">Aliases</label>
+                  <select
+                    class="w-full rounded-2xl bg-bgSecondary border border-white/10 px-4 py-3 text-primary focus:outline-none focus:ring-2 focus:ring-brandFrom/40"
+                    [(ngModel)]="mapping.aliases"
+                    (ngModelChange)="requestRecompute()"
+                  >
+                    <option [ngValue]="undefined">— None —</option>
+                    @for (c of columns; track c) {
+                      <option [ngValue]="c">{{ c }}</option>
+                    }
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-semibold text-secondary mb-2">Genres</label>
+                  <select
+                    class="w-full rounded-2xl bg-bgSecondary border border-white/10 px-4 py-3 text-primary focus:outline-none focus:ring-2 focus:ring-brandFrom/40"
+                    [(ngModel)]="mapping.genres"
+                    (ngModelChange)="requestRecompute()"
+                  >
+                    <option [ngValue]="undefined">— None —</option>
+                    @for (c of columns; track c) {
+                      <option [ngValue]="c">{{ c }}</option>
+                    }
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-semibold text-secondary mb-2">Birth date</label>
+                  <select
+                    class="w-full rounded-2xl bg-bgSecondary border border-white/10 px-4 py-3 text-primary focus:outline-none focus:ring-2 focus:ring-brandFrom/40"
+                    [(ngModel)]="mapping.birthDate"
+                    (ngModelChange)="requestRecompute()"
+                  >
+                    <option [ngValue]="undefined">— None —</option>
+                    @for (c of columns; track c) {
+                      <option [ngValue]="c">{{ c }}</option>
+                    }
+                  </select>
+                </div>
+
+                <div>
+                  <label class="block text-sm font-semibold text-secondary mb-2">Death date</label>
+                  <select
+                    class="w-full rounded-2xl bg-bgSecondary border border-white/10 px-4 py-3 text-primary focus:outline-none focus:ring-2 focus:ring-brandFrom/40"
+                    [(ngModel)]="mapping.deathDate"
+                    (ngModelChange)="requestRecompute()"
+                  >
+                    <option [ngValue]="undefined">— None —</option>
+                    @for (c of columns; track c) {
+                      <option [ngValue]="c">{{ c }}</option>
+                    }
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div class="rounded-2xl border border-white/10 bg-bgSecondary p-4">
+                <p class="text-xs font-semibold text-secondary">Valid</p>
+                <p class="text-xl font-bold text-primary mt-1">{{ validCount }}</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-bgSecondary p-4">
+                <p class="text-xs font-semibold text-secondary">Invalid</p>
+                <p class="text-xl font-bold text-primary mt-1">{{ invalidCount }}</p>
+              </div>
+              <div class="rounded-2xl border border-white/10 bg-bgSecondary p-4">
+                <p class="text-xs font-semibold text-secondary">Duplicates in CSV</p>
+                <p class="text-xl font-bold text-primary mt-1">{{ duplicateCount }}</p>
+              </div>
+            </div>
+
+            <div class="mt-6 flex justify-between gap-3">
+              <button
+                type="button"
+                (click)="goToStep(1)"
+                class="px-5 py-3 rounded-2xl border border-white/10 bg-bgSecondary text-primary font-semibold hover:bg-white/5 transition"
+              >
+                Back
+              </button>
+              <button
+                type="button"
+                (click)="goToStep(3)"
+                class="px-5 py-3 rounded-2xl bg-gradient-to-r from-brandFrom to-brandMid text-white font-semibold shadow-lg hover:shadow-2xl transition"
+              >
+                Continue
+              </button>
+            </div>
+          </div>
+        }
+
+        @if (step === 3) {
+          <div class="rounded-2xl border border-white/10 bg-bgPrimary p-5">
+            <div class="text-center">
+              <p class="text-sm font-semibold text-primary">3) Import</p>
+              <p class="text-sm text-secondary mt-1">We will create new authors using the API (one request per row).</p>
+            </div>
+
+            @if (isImporting) {
+              <div class="mt-4 rounded-2xl border border-white/10 bg-bgSecondary p-4">
+                <div class="flex items-center justify-between">
+                  <p class="text-sm text-primary font-semibold">Progress</p>
+                  <p class="text-xs text-secondary">{{ progressDone }} / {{ progressTotal }}</p>
+                </div>
+                <div class="mt-3 h-2 rounded-full bg-white/10 overflow-hidden">
+                  <div class="h-full bg-gradient-to-r from-brandFrom to-brandMid" [style.width]="(progressTotal ? (progressDone / progressTotal) * 100 : 0) + '%'"></div>
+                </div>
+              </div>
+            }
+
+            @if (importError) {
+              <p class="mt-4 text-sm text-red-300">{{ importError }}</p>
+            }
+
+            @if (importResult) {
+              <div class="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div class="rounded-2xl border border-white/10 bg-bgSecondary p-4">
+                  <p class="text-xs font-semibold text-secondary">Created</p>
+                  <p class="text-xl font-bold text-primary mt-1">{{ importResult.created }}</p>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-bgSecondary p-4">
+                  <p class="text-xs font-semibold text-secondary">Failed</p>
+                  <p class="text-xl font-bold text-primary mt-1">{{ importResult.failed }}</p>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-bgSecondary p-4">
+                  <p class="text-xs font-semibold text-secondary">Skipped</p>
+                  <p class="text-xl font-bold text-primary mt-1">{{ importResult.skipped }}</p>
+                </div>
+              </div>
+
+              <div class="mt-5 flex justify-end gap-3">
+                <button
+                  type="button"
+                  (click)="close()"
+                  class="px-5 py-3 rounded-2xl border border-white/10 bg-bgSecondary text-primary font-semibold hover:bg-white/5 transition"
+                >
+                  Done
+                </button>
+              </div>
+            }
+
+            @if (!importResult && !isImporting) {
+              <div class="mt-6 rounded-2xl border border-white/10 bg-bgSecondary overflow-hidden">
+                <div class="flex items-center justify-between px-4 py-3 border-b border-white/10">
+                  <p class="text-sm font-semibold text-primary">Preview (first 25)</p>
+                  <p class="text-xs text-secondary">{{ rows.length }} rows</p>
+                </div>
+                <div class="divide-y divide-white/10">
+                  @for (r of rows.slice(0, 25); track r.index) {
+                    <div class="px-4 py-3">
+                      <div class="flex items-start justify-between gap-4">
+                        <div class="min-w-0">
+                          <p class="text-sm font-semibold text-primary truncate">
+                            {{ r.form?.firstName ?? '—' }} {{ r.form?.lastName ?? '' }}
+                          </p>
+                          @if (r.form?.description) {
+                            <p class="text-xs text-secondary mt-1 line-clamp-2">{{ r.form?.description }}</p>
+                          }
+                        </div>
+                        <div class="flex flex-col items-end gap-1">
+                          @if (r.errors.length === 0 && !r.duplicateInFile) {
+                            <span class="text-[11px] font-semibold text-green-200 px-2 py-1 rounded-full border border-white/10 bg-bgPrimary">Ready</span>
+                          } @else {
+                            <span class="text-[11px] font-semibold text-yellow-200 px-2 py-1 rounded-full border border-white/10 bg-bgPrimary">Review</span>
+                          }
+                        </div>
+                      </div>
+
+                      @if (r.errors.length > 0) {
+                        <p class="mt-2 text-xs text-red-300">Errors: {{ r.errors.join(', ') }}</p>
+                      }
+                      @if (r.warnings.length > 0) {
+                        <p class="mt-2 text-xs text-yellow-200">Warnings: {{ r.warnings.join(', ') }}</p>
+                      }
+                    </div>
+                  }
+                </div>
+              </div>
+
+              <div class="mt-6 flex justify-between gap-3">
+                <button
+                  type="button"
+                  (click)="goToStep(2)"
+                  class="px-5 py-3 rounded-2xl border border-white/10 bg-bgSecondary text-primary font-semibold hover:bg-white/5 transition"
+                >
+                  Back
+                </button>
+                <div class="flex gap-3">
+                  <button
+                    type="button"
+                    (click)="close()"
+                    class="px-5 py-3 rounded-2xl border border-white/10 bg-bgSecondary text-primary font-semibold hover:bg-white/5 transition"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    (click)="startImport()"
+                    [disabled]="validCount === 0"
+                    class="px-5 py-3 rounded-xl bg-gradient-to-r from-brandFrom to-brandMid text-white font-semibold shadow-lg hover:shadow-2xl transition disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    Start import
+                  </button>
+                </div>
+              </div>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+}

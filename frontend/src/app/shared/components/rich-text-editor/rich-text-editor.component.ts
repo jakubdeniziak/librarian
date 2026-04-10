@@ -17,6 +17,7 @@ import {ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR} from '@angular/for
 })
 export class RichTextEditorComponent implements ControlValueAccessor {
   @Input() label = 'Description';
+  @Input() editorId = '';
   @Input() placeholder = 'Write something...';
   @Input() helpText?: string;
   @Input() disabled = false;

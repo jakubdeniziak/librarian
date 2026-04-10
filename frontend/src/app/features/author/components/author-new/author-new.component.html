@@ -1,54 +1,124 @@
-<section class="p-4">
-  <app-page-header title="Add an author"/>
+<section class="flex items-start px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-bgPrimary via-bgSecondary to-bgPrimary">
+  <div class="max-w-7xl mx-auto w-full pt-8 sm:pt-10 lg:pt-12 pb-12">
+    <app-page-header title="Add an author" subtitle="Create a new author profile for your collection."/>
 
-  @if (author) {
-    <form (ngSubmit)="onSubmit()" class="max-w-lg mx-auto">
-      <div class="flex items-center mb-3">
-        <label for="firstName" class="w-32 text-right mr-3">First name:</label>
-        <input
-          id="firstName"
-          name="firstName"
-          [(ngModel)]="author.firstName"
-          class="flex-1 text-primary p-2 border border-secondary rounded bg-transparent"
-        />
-      </div>
+    @if (author) {
+      <form (ngSubmit)="onSubmit()" class="max-w-2xl mx-auto">
+        <div class="rounded-2xl border border-white/10 bg-bgSecondary p-5 sm:p-6">
+          <div class="grid grid-cols-1 gap-4">
+            <div>
+              <label for="firstName" class="block text-sm font-semibold text-secondary mb-2">First name</label>
+              <input
+                id="firstName"
+                name="firstName"
+                [(ngModel)]="author.firstName"
+                class="w-full rounded-2xl bg-bgSecondary border border-white/10 px-4 py-3 text-primary placeholder:text-secondary/80 focus:outline-none focus:ring-2 focus:ring-brandFrom/50"
+                placeholder="e.g. Jane"
+              />
+            </div>
 
-      <div class="flex items-center mb-3">
-        <label for="lastName" class="w-32 text-right mr-3">Last name:</label>
-        <input
-          id="lastName"
-          name="lastName"
-          [(ngModel)]="author.lastName"
-          class="flex-1 text-primary p-2 border border-secondary rounded bg-transparent"
-        />
-      </div>
+            <div>
+              <label for="lastName" class="block text-sm font-semibold text-secondary mb-2">Last name</label>
+              <input
+                id="lastName"
+                name="lastName"
+                [(ngModel)]="author.lastName"
+                class="w-full rounded-2xl bg-bgSecondary border border-white/10 px-4 py-3 text-primary placeholder:text-secondary/80 focus:outline-none focus:ring-2 focus:ring-brandFrom/50"
+                placeholder="e.g. Austen"
+              />
+            </div>
 
-      <div class="flex items-start mb-3">
-        <label for="description" class="w-32 text-right mr-3 pt-2">Description:</label>
-        <textarea
-          id="description"
-          name="description"
-          [(ngModel)]="author.description"
-          class="flex-1 text-primary p-2 border border-secondary rounded bg-transparent"
-          rows="5"
-        ></textarea>
-      </div>
+            <div>
+              <app-rich-text-editor
+                label=""
+                placeholder="Short bio, notable works, style, background…"
+                helpText="Supports basic formatting (bold, italic, lists, links)."
+                [editorId]="'description'"
+                name="description"
+                [(ngModel)]="author.description"
+              />
+            </div>
 
-      <div class="flex justify-center gap-3 mt-5">
-        <button
-          type="submit"
-          class="rounded-md bg-bgSecondary text-primary px-4 py-2 w-36 h-10"
-        >
-          Submit
-        </button>
-        <button
-          [routerLink]="AUTHORS"
-          class="rounded-md bg-bgSecondary text-primary px-4 py-2 w-36 h-10"
-        >
-          Cancel
-        </button>
-      </div>
-    </form>
-  }
+            <div>
+              <label for="pictureUrl" class="block text-sm font-semibold text-secondary mb-2">Picture URL (optional)</label>
+              <input
+                id="pictureUrl"
+                name="pictureUrl"
+                [(ngModel)]="author.pictureUrl"
+                class="w-full rounded-2xl bg-bgSecondary border border-white/10 px-4 py-3 text-primary placeholder:text-secondary/80 focus:outline-none focus:ring-2 focus:ring-brandFrom/50"
+                placeholder="https://… or /assets/…"
+              />
+              <p class="text-xs text-secondary mt-2">External or internal URLs are supported. If invalid, we’ll show a placeholder.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="birthDate" class="block text-sm font-semibold text-secondary mb-2">Birth date (optional)</label>
+                <input
+                  id="birthDate"
+                  name="birthDate"
+                  type="date"
+                  [(ngModel)]="author.birthDate"
+                  class="w-full rounded-2xl bg-bgSecondary border border-white/10 px-4 py-3 text-primary focus:outline-none focus:ring-2 focus:ring-brandFrom/50"
+                />
+              </div>
+
+              <div>
+                <label for="deathDate" class="block text-sm font-semibold text-secondary mb-2">Death date (optional)</label>
+                <input
+                  id="deathDate"
+                  name="deathDate"
+                  type="date"
+                  [(ngModel)]="author.deathDate"
+                  class="w-full rounded-2xl bg-bgSecondary border border-white/10 px-4 py-3 text-primary focus:outline-none focus:ring-2 focus:ring-brandFrom/50"
+                />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="aliases" class="block text-sm font-semibold text-secondary mb-2">Aliases (comma-separated)</label>
+                <input
+                  id="aliases"
+                  name="aliases"
+                  [ngModel]="(author.aliases ?? []).join(', ')"
+                  (ngModelChange)="author.aliases = parseCommaList($event)"
+                  class="w-full rounded-2xl bg-bgSecondary border border-white/10 px-4 py-3 text-primary placeholder:text-secondary/80 focus:outline-none focus:ring-2 focus:ring-brandFrom/50"
+                  placeholder="e.g. Mark Twain, Samuel Clemens"
+                />
+              </div>
+
+              <div>
+                <label for="genres" class="block text-sm font-semibold text-secondary mb-2">Genres (comma-separated)</label>
+                <input
+                  id="genres"
+                  name="genres"
+                  [ngModel]="(author.genres ?? []).join(', ')"
+                  (ngModelChange)="author.genres = parseCommaList($event)"
+                  class="w-full rounded-2xl bg-bgSecondary border border-white/10 px-4 py-3 text-primary placeholder:text-secondary/80 focus:outline-none focus:ring-2 focus:ring-brandFrom/50"
+                  placeholder="e.g. Fiction, Satire"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row justify-end gap-3 mt-6">
+            <button
+              type="button"
+              [routerLink]="AUTHORS"
+              class="px-5 py-3 rounded-2xl border border-white/10 bg-bgSecondary text-primary font-semibold hover:bg-white/5 transition inline-flex items-center justify-center"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              class="px-5 py-3 rounded-2xl bg-gradient-to-r from-brandFrom to-brandMid text-white font-semibold shadow-lg hover:shadow-2xl transition inline-flex items-center justify-center"
+            >
+              Save author
+            </button>
+          </div>
+        </div>
+      </form>
+    }
+  </div>
 </section>
-
