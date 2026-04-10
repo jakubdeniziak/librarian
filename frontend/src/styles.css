@@ -24,3 +24,16 @@ body {
 a {
   text-decoration: none;
 }
+
+.prose a,
+.prose-invert a,
+.rte-editor a {
+  color: rgb(96, 165, 250);
+  text-decoration: underline;
+}
+
+.prose a:hover,
+.prose-invert a:hover,
+.rte-editor a:hover {
+  text-decoration-thickness: 2px;
+}
